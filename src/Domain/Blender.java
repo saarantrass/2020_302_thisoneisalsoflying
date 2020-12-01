@@ -1,5 +1,5 @@
-package Classes;
+package Domain;
 
 public class Blender {
-	
+
 }
