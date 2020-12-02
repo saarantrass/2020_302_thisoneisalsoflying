@@ -2,14 +2,14 @@ package Domain;
 
 import Domain.Player.Inventory;
 
-public static class Blender {
+public class Blender {
    
   
    protected static void useBlender(int sourceAtom, int goalAtom, Inventory inventory ) {
       
       if(verify(sourceAtom,goalAtom, inventory)) {
-      inventory.addInventoryAtom(goalAtom);
-      inventory.removeInventoryAtom(sourceAtom);
+      //inventory.addInventoryAtom(goalAtom);
+      //inventory.removeInventoryAtom(sourceAtom);
       }
     	
    }
@@ -22,3 +22,5 @@ public static class Blender {
     	//TODO add exception for invalid input/output combination
     	return true;
     } 
+    
+}
