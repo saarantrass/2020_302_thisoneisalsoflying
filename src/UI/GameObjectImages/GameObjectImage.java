@@ -1,17 +1,18 @@
 package UI.GameObjectImages;
 
+import java.awt.Canvas;
+import java.awt.Graphics;
 import java.awt.Image;
 
-public abstract class GameObjectImage {
-	
-	protected double x;
-	protected double y;
+public abstract class GameObjectImage extends Canvas {
+
 	protected int type;
 	protected String imageName;
 	protected Image image;
 	
 	
 	public GameObjectImage(int type) {
+		super();
 		this.type = type;
 	}
 	
@@ -19,24 +20,9 @@ public abstract class GameObjectImage {
 	public abstract void setImageName(int type);
 	
 	
-	public double getX() {
-		return x;
-	}
-	
-	
-	public void setX(double x) {
-		this.x = x;
-	}
-	
-	
-	public double getY() {
-		return y;
-	}
-	
-	
-	public void setY(double y) {
-		this.y = y;
-	}
+	public void paint(Graphics g) {
+		super.paint(g);
+	};
 	
 	
 	public int getType() {
