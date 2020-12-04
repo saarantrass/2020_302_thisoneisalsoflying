@@ -1,9 +1,14 @@
 package Domain;
 
-import Domain.Player.Player;
+import Domain.Player.*;
 
 public class GameController {
 	public Player player;
+	private Shooter shooter;
+	
+	public GameController(Shooter s) {
+		this.shooter = s;
+	}
 	
 	public void useBlender(int source, int goal) {
 		
@@ -14,10 +19,10 @@ public class GameController {
 	public int getRandomAtom() {
 		return 0;
 	}
-	public void moveShooter(int dir) {
-		
+	public void moveShooter(int direction) {
+		shooter.move(direction);
 	}
-	public void rotateShooter(int dir) {
+	public void rotateShooter(int direction) {
 		
 	}
 	public void quitGame() {

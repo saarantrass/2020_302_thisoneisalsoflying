@@ -8,8 +8,8 @@ public class ReactionBlockerImage extends GameObjectImage{
 	private static final String SIGMA_RB_IMAGE = "sigma";
 	
 
-	public ReactionBlockerImage(int type) {
-		super(type);
+	public ReactionBlockerImage(int type, int x, int y) {
+		super(type, x, y);
 		setImageName(type);
 	}
 	
@@ -39,6 +39,13 @@ public class ReactionBlockerImage extends GameObjectImage{
 				break;
 		
 		}
+		
+	}
+
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
 		
 	}
 	

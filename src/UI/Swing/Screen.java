@@ -12,15 +12,21 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-import UI.GameObjectImages.*;
+import Domain.GameController;
+import Domain.Player.Shooter;
+import UI.IObserver;
+import UI.GameObjectImages.ShooterImage;
 
+@SuppressWarnings("serial")
 public class Screen extends JFrame implements IObserver {
+	
+	private GameController GC;
 	
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private List<String> objectList;
 	
-	ShooterImage shooter;
-	private static final int L = 10; //TODO
+	//ShooterImage shooter;
+	//private static final int L = 10; //TODO
 	
 	private JPanel sidePanel = new JPanel(new GridBagLayout());
 	private JPanel playerPanel = new JPanel(new GridBagLayout());
@@ -28,26 +34,38 @@ public class Screen extends JFrame implements IObserver {
 	private JPanel atomPanel = new JPanel(new GridBagLayout());
 	
 	private JLabel scoreLabel = new JLabel("Score: ");
+	private JLabel currentScoreField = new JLabel();
 	private JLabel timeLabel = new JLabel("Time: ");
+	private JLabel currentTimeField = new JLabel();
 	private JLabel healthLabel = new JLabel("Health: ");
+	private JLabel currentHealthLabel = new JLabel();
 	
-	private JLabel alphaPULabel = new JLabel("AlphaPU: ");
-	private JLabel betaPULabel = new JLabel("BetaPU: ");
-	private JLabel gammaPULabel = new JLabel("GammaPU: ");
-	private JLabel sigmaPULabel = new JLabel("SigmaPU: ");
+	private JButton alphaPUButton = new JButton("AlphaPU");
+	private JLabel currentAlphaPULabel = new JLabel();
+	private JButton betaPUButton = new JButton("BetaPU");
+	private JLabel currentBetaPULabel = new JLabel();
+	private JButton gammaPUButton = new JButton("GammaPU");
+	private JLabel currentGammaPULabel = new JLabel();
+	private JButton sigmaPUButton = new JButton("SigmaPU");
+	private JLabel currentSigmaPULabel = new JLabel();
 	
 	private JLabel alphaAtomLabel = new JLabel("Alpha: ");
+	private JLabel currentAlphaAtomLabel = new JLabel();
 	private JLabel betaAtomLabel = new JLabel("Beta: ");
+	private JLabel currentBetaAtomLabel = new JLabel();
 	private JLabel gammaAtomLabel = new JLabel("Gamma: ");
+	private JLabel currentGammaAtomLabel = new JLabel();
 	private JLabel sigmaAtomLabel = new JLabel("Sigma: ");
+	private JLabel currentSigmaAtomLabel = new JLabel();
 	
 	
-	public Screen(){
+	public Screen(GameController GC){
+		super("KUVID");
+		this.GC = GC;
 		
 		/*
 		 * screen JFrame design
 		 */
-		super("KUVID");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(screenSize.width, screenSize.height);
 		this.setLayout(new BorderLayout());
@@ -64,12 +82,20 @@ public class Screen extends JFrame implements IObserver {
 		c.gridx = 0;
 		c.gridy = 0;
 		playerPanel.add(scoreLabel, c);
+		c.gridx = 1;
+		playerPanel.add(currentScoreField, c);
 		
+		c.gridx = 0;
 		c.gridy = 1;
 		playerPanel.add(timeLabel, c);
+		c.gridx = 1;
+		playerPanel.add(currentTimeField, c);
 		
+		c.gridx = 0;
 		c.gridy = 2;
 		playerPanel.add(healthLabel, c);
+		c.gridx = 1;
+		playerPanel.add(currentHealthLabel);
 		
 		/*
 		 * powerUp panel design
@@ -78,16 +104,31 @@ public class Screen extends JFrame implements IObserver {
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		powerUpPanel.add(alphaPULabel, c);
+		alphaPUButton.addActionListener(actionListener);
+		powerUpPanel.add(alphaPUButton, c);
+		c.gridx = 1;
+		powerUpPanel.add(currentAlphaPULabel);
 		
-		c.gridy= 1;
-		powerUpPanel.add(betaPULabel, c);
+		c.gridx = 0;
+		c.gridy = 1;
+		betaPUButton.addActionListener(actionListener);
+		powerUpPanel.add(betaPUButton, c);
+		c.gridx = 1;
+		powerUpPanel.add(currentBetaPULabel);
 		
+		c.gridx = 0;
 		c.gridy = 2;
-		powerUpPanel.add(gammaPULabel, c);
+		gammaPUButton.addActionListener(actionListener);
+		powerUpPanel.add(gammaPUButton, c);
+		c.gridx = 1;
+		powerUpPanel.add(currentGammaPULabel);
 		
+		c.gridx = 0;
 		c.gridy = 3;
-		powerUpPanel.add(sigmaPULabel, c);
+		sigmaPUButton.addActionListener(actionListener);
+		powerUpPanel.add(sigmaPUButton, c);
+		c.gridx = 1;
+		powerUpPanel.add(currentSigmaPULabel);
 		
 		/*
 		 * atom panel design
@@ -97,15 +138,26 @@ public class Screen extends JFrame implements IObserver {
 		c.gridx = 0;
 		c.gridy = 0;
 		atomPanel.add(alphaAtomLabel, c);
+		c.gridx = 1;
+		atomPanel.add(currentAlphaAtomLabel);
 		
+		c.gridx = 0;
 		c.gridy = 1;
 		atomPanel.add(betaAtomLabel, c);
+		c.gridx = 1;
+		atomPanel.add(currentBetaAtomLabel);
 		
+		c.gridx = 0;
 		c.gridy = 2;
 		atomPanel.add(gammaAtomLabel, c);
+		c.gridx = 1;
+		atomPanel.add(currentGammaAtomLabel);
 		
+		c.gridx = 0;
 		c.gridy = 3;
 		atomPanel.add(sigmaAtomLabel, c);
+		c.gridx = 1;
+		atomPanel.add(currentSigmaAtomLabel);
 		
 		/*
 		 * side panel design
@@ -124,12 +176,7 @@ public class Screen extends JFrame implements IObserver {
 		
 		
 		
-		
-		shooter = new ShooterImage();
-		
-		
 		this.add(sidePanel, BorderLayout.LINE_END);
-		this.add(shooter);
 		this.addKeyListener(this.keyListener);
 		this.setVisible(true);
 	}
@@ -157,15 +204,50 @@ public class Screen extends JFrame implements IObserver {
 		
 		@Override
 		public void keyPressed(KeyEvent e) {
-			
+			System.out.println(e);
 			switch(e.getKeyCode()) {
 			
-				case KeyEvent.VK_LEFT:
-					shooter.move(L, 0);
+				case KeyEvent.VK_UP: //shoot atom-powerUp
+					//GC.shootAtom();
+					//GC.shootPowerUp();
+					break;
+			
+				case KeyEvent.VK_LEFT: //move shooter left
+					System.out.println("here");
+					GC.moveShooter(0);
+					//shooter.update();
 					break;
 					
-				case KeyEvent.VK_RIGHT:
-					shooter.move(L, 1);
+				case KeyEvent.VK_RIGHT: //move shooter right
+					GC.moveShooter(1);
+					break;
+					
+				case KeyEvent.VK_A: //rotate shooter left
+					GC.rotateShooter(0);
+					break;
+					
+				case KeyEvent.VK_D: //rotate shooter right
+					GC.rotateShooter(1);
+					
+				case KeyEvent.VK_C: //change atom on shooter
+					break;
+					
+				case KeyEvent.VK_P: //pause game
+					GC.pauseGame();
+					break;
+					
+				case KeyEvent.VK_R: //resume game
+					GC.resumeGame();
+					break;
+				
+				case KeyEvent.VK_S: //save game
+					break;
+					
+				case KeyEvent.VK_L: //load game
+					break;
+					
+				case KeyEvent.VK_B: //use blender
+					//GC.useBlender();
 					break;
 					
 				default:
@@ -193,7 +275,25 @@ public class Screen extends JFrame implements IObserver {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			
+			switch(e.getActionCommand()) {
+				
+				case "AlphaPU":
+					break;
+					
+				case "BetaPU":
+					break;
+				
+				case "GammaPU":
+					break;
+					
+				case "SigmaPU":
+					break;
+					
+				default:
+					break;
+					
+			}
 			
 		}
 		
