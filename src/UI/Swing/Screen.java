@@ -177,8 +177,11 @@ public class Screen extends JFrame implements IObserver {
 		
 		
 		this.add(sidePanel, BorderLayout.LINE_END);
-		this.addKeyListener(this.keyListener);
 		this.setVisible(true);
+		this.setFocusable(true);
+		if (this.requestFocus(true))
+            System.out.println("true");
+		this.addKeyListener(this.keyListener);
 	}
 
 	
