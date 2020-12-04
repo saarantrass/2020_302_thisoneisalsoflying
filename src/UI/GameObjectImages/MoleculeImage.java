@@ -8,8 +8,8 @@ public class MoleculeImage extends GameObjectImage{
 	private static final String SIGMA_MOLECULE_IMAGE = "sigma";
 	
 	
-	public MoleculeImage(int type) {
-		super(type);
+	public MoleculeImage(int type, int x, int y) {
+		super(type, x, y);
 		setImageName(type);
 	}
 	
@@ -39,6 +39,13 @@ public class MoleculeImage extends GameObjectImage{
 				break;
 		
 		}
+		
+	}
+
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
 		
 	}
 

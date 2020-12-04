@@ -1,22 +1,20 @@
 package UI.GameObjectImages;
 
 import java.awt.Graphics;
-import java.awt.Toolkit;
+import Domain.Player.Shooter;
 
+@SuppressWarnings("serial")
 public class ShooterImage extends GameObjectImage {
 	
-	Toolkit t = Toolkit.getDefaultToolkit();
-	int x;
-	int y;
-	
-	private static final String SHOOTER_IMAGE = "rectangle.jpg";
+	private static final String SHOOTER_IMAGE = "shooter";
+	private Shooter shooter;
 	
 	
-	public ShooterImage() {
-		super(0);
+	public ShooterImage(Shooter shooter, int x, int y) {
+		super(0, x, y);
 		setImageName(0);
-		x = t.getScreenSize().width / 2;
-		y = t.getScreenSize().height / 2;
+		this.shooter = shooter;
+		this.shooter.add(this);
 	}
 	
 
@@ -24,27 +22,21 @@ public class ShooterImage extends GameObjectImage {
 	public void setImageName(int type) {	
 		this.imageName = SHOOTER_IMAGE;	
 	}
-	
-	
-	public void move(int L, int direction) {
-		if(direction == 0) {
-			x = x - L;
-			repaint();
-		} else if(direction == 1) {
-			x = x + L;
-			repaint();
-		}
-	}
 
 	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		//Toolkit t = Toolkit.getDefaultToolkit();  
-		//this.image = t.getImage(imageName);
-		//g.drawImage(image, t.getScreenSize().width / 2, t.getScreenSize().height, 50, 100, this);
-		g.drawRect(x, y, 50, 100);
+		g.drawRect(this.x, this.y, 50, 100);
 		
+	}
+
+
+	@Override
+	public void update() {
+		this.x = shooter.getX();
+		this.y = shooter.getY();
+		repaint();
 	}
 
 }
