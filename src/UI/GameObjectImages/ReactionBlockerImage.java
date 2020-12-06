@@ -1,16 +1,25 @@
 package UI.GameObjectImages;
 
+import java.awt.Graphics;
+
+import Domain.GameObjects.ReactionBlocker;
+
+@SuppressWarnings("serial")
 public class ReactionBlockerImage extends GameObjectImage{
 	
-	private static final String ALPHA_RB_IMAGE = "alpha";
-	private static final String BETA_RB_IMAGE = "beta";
-	private static final String GAMMA_RB_IMAGE = "gamma";
-	private static final String SIGMA_RB_IMAGE = "sigma";
+	private static final String ALPHA_RB_IMAGE = "../../Images/blockers/alpha-b.png";
+	private static final String BETA_RB_IMAGE = "../../Images/blockers/beta-b.png";
+	private static final String GAMMA_RB_IMAGE = "../../Images/blockers/gamma-b.png";
+	private static final String SIGMA_RB_IMAGE = "../../Images/blockers/sigma-b.png";
+	private ReactionBlocker RB;
 	
 
-	public ReactionBlockerImage(int type, int x, int y) {
+	public ReactionBlockerImage(ReactionBlocker RB, int type, int x, int y) {
 		super(type, x, y);
 		setImageName(type);
+		this.RB = RB;
+		this.RB.add(this);
+		
 	}
 	
 
@@ -41,12 +50,21 @@ public class ReactionBlockerImage extends GameObjectImage{
 		}
 		
 	}
+	
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		g.drawRect(this.x, this.y, 25, 25);
+		
+	}
 
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		this.x = RB.getCoordinate().x;
+		this.y = RB.getCoordinate().y;
+		repaint();
 	}
 	
 }

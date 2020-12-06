@@ -2,6 +2,8 @@ package UI.GameObjectImages;
 
 import java.awt.Graphics;
 
+import Domain.GameObjects.Atom;
+
 @SuppressWarnings("serial")
 public class AtomImage extends GameObjectImage{
 	
@@ -9,11 +11,14 @@ public class AtomImage extends GameObjectImage{
 	private static final String BETA_ATOM_IMAGE = "beta";
 	private static final String GAMMA_ATOM_IMAGE = "gamma";
 	private static final String SIGMA_ATOM_IMAGE = "sigma";
+	private Atom atom;
 	
 	
-	public AtomImage(int type, int x, int y) {
+	public AtomImage(Atom atom, int type, int x, int y) {
 		super(type, x, y);
 		setImageName(type);
+		this.atom = atom;
+		this.atom.add(this);
 	}
 	
 
@@ -49,15 +54,14 @@ public class AtomImage extends GameObjectImage{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		//g.drawRect(this.x, this.y, 50, 100);
-		
+		g.drawRect(this.x, this.y, 25, 25);
 	}
 
 
 	@Override
 	public void update() {
-		//this.x = shooter.getX();
-		//this.y = shooter.getY();
+		this.x = atom.getCoordinate().x;
+		this.y = atom.getCoordinate().y;
 		repaint();
 	}
 	

@@ -183,8 +183,8 @@ public class Screen extends JFrame implements IObserver {
 		
 		
 		this.add(sidePanel, BorderLayout.LINE_END);
-		this.setVisible(true);
 		this.setFocusable(true);
+		this.setVisible(true);
 		this.addKeyListener(this.keyListener);
 	}
 	
@@ -210,7 +210,7 @@ public class Screen extends JFrame implements IObserver {
 		
 		@Override
 		public void keyPressed(KeyEvent e) {
-			System.out.println(e);
+			
 			switch(e.getKeyCode()) {
 			
 				case KeyEvent.VK_UP: //shoot atom-powerUp
@@ -219,9 +219,7 @@ public class Screen extends JFrame implements IObserver {
 					break;
 			
 				case KeyEvent.VK_LEFT: //move shooter left
-					System.out.println("here");
 					GC.moveShooter(0);
-					//shooter.update();
 					break;
 					
 				case KeyEvent.VK_RIGHT: //move shooter right

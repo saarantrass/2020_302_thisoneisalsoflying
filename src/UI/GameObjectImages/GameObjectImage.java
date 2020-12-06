@@ -2,7 +2,6 @@ package UI.GameObjectImages;
 
 import java.awt.Canvas;
 import java.awt.Image;
-
 import UI.IObserver;
 
 @SuppressWarnings("serial")
