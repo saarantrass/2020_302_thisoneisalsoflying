@@ -1,20 +1,28 @@
 package UI.Swing;
 
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 import Domain.GameController;
 import Domain.Player.Shooter;
 import UI.IObserver;
+import UI.GameObjectImages.GameObjectImage;
 import UI.GameObjectImages.ShooterImage;
 
 @SuppressWarnings("serial")
@@ -23,10 +31,7 @@ public class Screen extends JFrame implements IObserver {
 	private GameController GC;
 	
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	private List<String> objectList;
-	
-	//ShooterImage shooter;
-	//private static final int L = 10; //TODO
+	private List<GameObjectImage> objectList;
 	
 	private JPanel sidePanel = new JPanel(new GridBagLayout());
 	private JPanel playerPanel = new JPanel(new GridBagLayout());
@@ -69,6 +74,7 @@ public class Screen extends JFrame implements IObserver {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(screenSize.width, screenSize.height);
 		this.setLayout(new BorderLayout());
+		
 		
 		/*
 		 * player panel design
@@ -183,16 +189,15 @@ public class Screen extends JFrame implements IObserver {
             System.out.println("true");
 		this.addKeyListener(this.keyListener);
 	}
-
 	
 	
-	public List<String> getObjectList() {
+	public List<GameObjectImage> getObjectList() {
 		return objectList;
 	}
 
 
 
-	public void setObjectList(List<String> objectList) {
+	public void setObjectList(List<GameObjectImage> objectList) {
 		this.objectList = objectList;
 	}
 	
