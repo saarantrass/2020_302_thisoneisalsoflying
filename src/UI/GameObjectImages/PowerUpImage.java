@@ -8,8 +8,8 @@ public class PowerUpImage extends GameObjectImage{
 	private static final String SIGMA_POWERUP_IMAGE = "sigma";
 	
 	
-	public PowerUpImage(int type) {
-		super(type);
+	public PowerUpImage(int type, int x, int y) {
+		super(type, x, y);
 		setImageName(type);
 	}
 	
@@ -39,6 +39,13 @@ public class PowerUpImage extends GameObjectImage{
 				break;
 		
 		}
+		
+	}
+
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
 		
 	}
 
