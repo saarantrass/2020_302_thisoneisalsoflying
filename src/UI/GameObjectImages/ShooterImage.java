@@ -1,12 +1,13 @@
 package UI.GameObjectImages;
 
 import java.awt.Graphics;
+
 import Domain.Player.Shooter;
 
 @SuppressWarnings("serial")
 public class ShooterImage extends GameObjectImage {
 	
-	private static final String SHOOTER_IMAGE = "shooter";
+	private static final String SHOOTER_IMAGE = "../../Images/shooter.png";
 	private Shooter shooter;
 	
 	
@@ -30,13 +31,13 @@ public class ShooterImage extends GameObjectImage {
 		g.drawRect(this.x, this.y, 50, 100);
 		
 	}
-
-
+	
+	
 	@Override
 	public void update() {
-		this.x = shooter.getX();
-		this.y = shooter.getY();
+		this.x = shooter.getCoordinate().x;
+		this.y = shooter.getCoordinate().y;
 		repaint();
 	}
-
+	
 }

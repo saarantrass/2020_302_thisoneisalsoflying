@@ -1,49 +1,38 @@
 package Domain.Player;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
-
 import Domain.IObservable;
 import UI.IObserver;
 
 public class Shooter implements IObservable{
 	
-	private int x;
-	private int y;
+	private Point coordinate;
 	private int speed = 10; //TODO
 	private List<IObserver> observers = new ArrayList<IObserver>();
-	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	
-	public Shooter() {
-		this.x = screenSize.width / 2;
-		this.y = screenSize.height / 2;
+	public Shooter(Point coordinate) {
+		this.coordinate = coordinate;
 	}
 	
 	
-	public int getX() {
-		return x;
+	public Point getCoordinate() {
+		return this.coordinate;
 	}
-
-
-	public int getY() {
-		return y;
+	
+	public void setCoordinate(Point coordinate) {
+		this.coordinate = coordinate;
 	}
 
 	
 	public void move(int direction) {
 		
 		if(direction == 0) { //left
-			//if(this.x - speed) {
-				this.x -= speed;
-				System.out.println("left");
-			//}
-		} else if(direction == 1) { //rigth
-			//if(this.x + speed) {
-				this.x += speed;
-			//}
+				this.coordinate.x -= speed;
+		} else if(direction == 1) { //right
+				this.coordinate.x += speed;
 		}
 		
 		publish();
@@ -52,18 +41,19 @@ public class Shooter implements IObservable{
 	
 	@Override
 	public void add(IObserver o) {
-		observers.add(o);
+		this.observers.add(o);
 	}
 
 
 	@Override
 	public void remove(IObserver o) {
-		observers.remove(o);	
+		this.observers.remove(o);	
 	}
 	
 	
 	@Override
 	public void publish() {
-		for(IObserver o: observers) o.update();
+		for(IObserver o: this.observers) o.update();
 	}
+	
 }

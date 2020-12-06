@@ -1,16 +1,23 @@
 package UI.GameObjectImages;
 
+import java.awt.Graphics;
+import Domain.GameObjects.PowerUp;
+
+@SuppressWarnings("serial")
 public class PowerUpImage extends GameObjectImage{
 	
-	private static final String ALPHA_POWERUP_IMAGE = "alpha";
-	private static final String BETA_POWERUP_IMAGE = "beta";
-	private static final String GAMMA_POWERUP_IMAGE = "gamma";
-	private static final String SIGMA_POWERUP_IMAGE = "sigma";
+	private static final String ALPHA_POWERUP_IMAGE = "../../Images/powerups/+alpha-b.png";
+	private static final String BETA_POWERUP_IMAGE = "../../Images/powerups/+beta-b.png";
+	private static final String GAMMA_POWERUP_IMAGE = "../../Images/powerups/+gamma-b.png";
+	private static final String SIGMA_POWERUP_IMAGE = "../../Images/powerups/+sigma-b.png";
+	private PowerUp PU;
 	
 	
-	public PowerUpImage(int type, int x, int y) {
+	public PowerUpImage(PowerUp PU, int type, int x, int y) {
 		super(type, x, y);
 		setImageName(type);
+		this.PU = PU;
+		this.PU.add(this);
 	}
 	
 
@@ -41,12 +48,21 @@ public class PowerUpImage extends GameObjectImage{
 		}
 		
 	}
+	
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		g.drawRect(this.x, this.y, 25, 25);
+		
+	}
 
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		this.x = PU.getCoordinate().x;
+		this.y = PU.getCoordinate().y;
+		repaint();
 	}
 
 }
