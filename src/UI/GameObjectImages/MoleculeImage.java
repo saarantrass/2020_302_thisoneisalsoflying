@@ -2,15 +2,17 @@ package UI.GameObjectImages;
 
 import java.awt.Graphics;
 
+import javax.swing.ImageIcon;
+
 import Domain.GameObjects.Molecule;
 
 @SuppressWarnings("serial")
 public class MoleculeImage extends GameObjectImage{
 	
-	private static final String ALPHA_MOLECULE_IMAGE = "alpha";
-	private static final String BETA_MOLECULE_IMAGE = "beta";
-	private static final String GAMMA_MOLECULE_IMAGE = "gamma";
-	private static final String SIGMA_MOLECULE_IMAGE = "sigma";
+	private static final String ALPHA_MOLECULE_IMAGE = "../../Images/molecules/alpha-1.png";
+	private static final String BETA_MOLECULE_IMAGE = "../../Images/molecules/beta-1.png";
+	private static final String GAMMA_MOLECULE_IMAGE = "../../Images/molecules/gamma-.png";
+	private static final String SIGMA_MOLECULE_IMAGE = "../../Images/molecules/sigma-.png";
 	private Molecule molecule;
 	
 	
@@ -19,6 +21,7 @@ public class MoleculeImage extends GameObjectImage{
 		setImageName(type);
 		this.molecule = molecule;
 		this.molecule.add(this);
+		this.image = new ImageIcon(getClass().getResource(this.imageName)).getImage();
 	}
 	
 
@@ -53,9 +56,7 @@ public class MoleculeImage extends GameObjectImage{
 	
 	@Override
 	public void paint(Graphics g) {
-		super.paint(g);
-		g.drawRect(this.x, this.y, 25, 25);
-		
+		g.drawImage(this.image, this.x, this.y, this);
 	}
 
 

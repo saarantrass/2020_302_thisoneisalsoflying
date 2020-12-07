@@ -6,15 +6,14 @@ public class GameController {
 	public Player player;
 	private Shooter shooter;
 	
-	public GameController(Shooter s) {
-		this.shooter = s;
+	public GameController() {
 	}
 	
 	public void useBlender(int source, int goal) {
 		
 	}
-	public void editInBuildMode() {
-		
+	public void editInBuildMode(int atomNumber, int moleculeNumber, int RBNumber, int PUNumber, boolean isLinear, boolean isSpinning, int L, int difficultyLevel) {
+		System.out.println(atomNumber + " " + moleculeNumber + " " +RBNumber + " " + PUNumber + " " + isLinear +  " " + isSpinning + " " + L + " " + difficultyLevel);
 	}
 	public int getRandomAtom() {
 		return 0;

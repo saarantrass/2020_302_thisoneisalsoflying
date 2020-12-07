@@ -2,6 +2,8 @@ package UI.GameObjectImages;
 
 import java.awt.Graphics;
 
+import javax.swing.ImageIcon;
+
 import Domain.GameObjects.ReactionBlocker;
 
 @SuppressWarnings("serial")
@@ -19,6 +21,7 @@ public class ReactionBlockerImage extends GameObjectImage{
 		setImageName(type);
 		this.RB = RB;
 		this.RB.add(this);
+		this.image = new ImageIcon(getClass().getResource(this.imageName)).getImage();
 		
 	}
 	
@@ -54,9 +57,7 @@ public class ReactionBlockerImage extends GameObjectImage{
 	
 	@Override
 	public void paint(Graphics g) {
-		super.paint(g);
-		g.drawRect(this.x, this.y, 25, 25);
-		
+		g.drawImage(this.image, this.x, this.y, this);
 	}
 
 
