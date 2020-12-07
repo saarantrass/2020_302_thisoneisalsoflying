@@ -4,17 +4,22 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
 import Domain.GameController;
+import UI.ImageResizer;
 
 @SuppressWarnings("serial")
 public class GameModePanel extends JPanel{
@@ -32,23 +37,24 @@ public class GameModePanel extends JPanel{
 	private JLabel currentTimeField = new JLabel();
 	private JLabel healthLabel = new JLabel("Health: ");
 	private JLabel currentHealthLabel = new JLabel();
+	private JLabel blenderLabel = new JLabel();
 	
-	private JButton alphaPUButton = new JButton("AlphaPU");
+	private JButton alphaPUButton = new JButton();
 	private JLabel currentAlphaPULabel = new JLabel();
-	private JButton betaPUButton = new JButton("BetaPU");
+	private JButton betaPUButton = new JButton();
 	private JLabel currentBetaPULabel = new JLabel();
-	private JButton gammaPUButton = new JButton("GammaPU");
+	private JButton gammaPUButton = new JButton();
 	private JLabel currentGammaPULabel = new JLabel();
-	private JButton sigmaPUButton = new JButton("SigmaPU");
+	private JButton sigmaPUButton = new JButton();
 	private JLabel currentSigmaPULabel = new JLabel();
 	
-	private JLabel alphaAtomLabel = new JLabel("Alpha: ");
+	private JLabel alphaAtomLabel = new JLabel();
 	private JLabel currentAlphaAtomLabel = new JLabel();
-	private JLabel betaAtomLabel = new JLabel("Beta: ");
+	private JLabel betaAtomLabel = new JLabel();
 	private JLabel currentBetaAtomLabel = new JLabel();
-	private JLabel gammaAtomLabel = new JLabel("Gamma: ");
+	private JLabel gammaAtomLabel = new JLabel();
 	private JLabel currentGammaAtomLabel = new JLabel();
-	private JLabel sigmaAtomLabel = new JLabel("Sigma: ");
+	private JLabel sigmaAtomLabel = new JLabel();
 	private JLabel currentSigmaAtomLabel = new JLabel();
 	
 	
@@ -57,6 +63,7 @@ public class GameModePanel extends JPanel{
 		this.GC = GC;
 		
 		this.setLayout(new BorderLayout());
+		this.setSidePanelImages();
 		
 		/*
 		 * player panel design
@@ -125,24 +132,28 @@ public class GameModePanel extends JPanel{
 		
 		c.gridx = 0;
 		c.gridy = 0;
+		atomPanel.add(blenderLabel);
+		
+		c.gridx = 0;
+		c.gridy = 1;
 		atomPanel.add(alphaAtomLabel, c);
 		c.gridx = 1;
 		atomPanel.add(currentAlphaAtomLabel, c);
 		
 		c.gridx = 0;
-		c.gridy = 1;
+		c.gridy = 2;
 		atomPanel.add(betaAtomLabel, c);
 		c.gridx = 1;
 		atomPanel.add(currentBetaAtomLabel, c);
 		
 		c.gridx = 0;
-		c.gridy = 2;
+		c.gridy = 3;
 		atomPanel.add(gammaAtomLabel, c);
 		c.gridx = 1;
 		atomPanel.add(currentGammaAtomLabel, c);
 		
 		c.gridx = 0;
-		c.gridy = 3;
+		c.gridy = 4;
 		atomPanel.add(sigmaAtomLabel, c);
 		c.gridx = 1;
 		atomPanel.add(currentSigmaAtomLabel, c);
@@ -167,6 +178,48 @@ public class GameModePanel extends JPanel{
 		
 	}
 	
+	
+	private void setSidePanelImages() {
+		try {
+			
+		    Image img = ImageIO.read(getClass().getResource("../../Images/powerups/+alpha-b.png"));
+		    img = ImageResizer.getResizedImage(img, 50, 50);
+		    alphaPUButton.setIcon(new ImageIcon(img));
+		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+beta-b.png"));
+		    img = ImageResizer.getResizedImage(img, 50, 50);
+		    betaPUButton.setIcon(new ImageIcon(img));
+		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+gamma-b.png"));
+		    img = ImageResizer.getResizedImage(img, 50, 50);
+		    gammaPUButton.setIcon(new ImageIcon(img));
+		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+sigma-b.png"));
+		    img = ImageResizer.getResizedImage(img, 50, 50);
+		    sigmaPUButton.setIcon(new ImageIcon(img));
+		    
+		    img = ImageIO.read(getClass().getResource("../../Images/atoms/alpha.png"));
+		    img = ImageResizer.getResizedImage(img, 35, 35);
+		    alphaAtomLabel.setIcon(new ImageIcon(img));
+		    img = ImageIO.read(getClass().getResource("../../Images/atoms/beta.png"));
+		    img = ImageResizer.getResizedImage(img, 35, 35);
+		    betaAtomLabel.setIcon(new ImageIcon(img));
+		    img = ImageIO.read(getClass().getResource("../../Images/atoms/gamma.png"));
+		    img = ImageResizer.getResizedImage(img, 35, 35);
+		    gammaAtomLabel.setIcon(new ImageIcon(img));
+		    img = ImageIO.read(getClass().getResource("../../Images/atoms/sigma.png"));
+		    img = ImageResizer.getResizedImage(img, 35, 35);
+		    sigmaAtomLabel.setIcon(new ImageIcon(img));
+		    
+		    img = ImageIO.read(getClass().getResource("../../Images/mixer.png"));
+		    img = ImageResizer.getResizedImage(img, 35, 35);
+		    blenderLabel.setIcon(new ImageIcon(img));
+			
+			/*Image img = ImageIO.read(getClass().getResource("../../Images/atoms/alpha.png"));
+			ImageIcon imageIcon = new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
+			alphaAtomLabel.setIcon(imageIcon);*/
+			
+		} catch (Exception ex) {
+		    System.out.println(ex);
+		}
+	}
 	
 	private KeyListener keyListener = new KeyListener() {
 		
