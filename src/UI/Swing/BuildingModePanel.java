@@ -1,6 +1,6 @@
 package UI.Swing;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -60,7 +60,7 @@ public class BuildingModePanel extends JPanel{
 		
 		this.GC = GC;
 		
-		this.setLayout(new BorderLayout());
+		this.setLayout(new GridBagLayout());
 		
 		/*
 		 * game object numbers panel design
@@ -163,8 +163,15 @@ public class BuildingModePanel extends JPanel{
 		c.gridy = 3;
 		settingsPanel.add(startGameButton, c);
 		
+		//settingsPanel.setMaximumSize(new Dimension(400,600));
+		//settingsPanel.setMinimumSize(new Dimension(400,600));
+		//settingsPanel.setPreferredSize(new Dimension(400,600));
+		settingsPanel.setBackground(Color.PINK);
 		
-		this.add(settingsPanel, BorderLayout.CENTER);
+		//settingsPanel.setBackground(new Color(0,0,0,65));
+		//this.add(settingsPanel, BorderLayout.CENTER);
+		this.add(settingsPanel);
+		//this.setBackground(Color.BLUE);
 	}
 	
 	public void setSettings() {
