@@ -41,8 +41,10 @@ public class ScreenCoordinator { //singleton
 	
 	public void startGame() {
 		//clean();
+		Game.getInstance().startGame(GC);
 		this.gameScreen(GC);
-		Game.getInstance().startGame();
+		
+		
 	}
 	
 	
