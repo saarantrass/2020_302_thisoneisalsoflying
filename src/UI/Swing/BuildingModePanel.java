@@ -1,6 +1,5 @@
 package UI.Swing;
 
-import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -23,6 +22,8 @@ import Domain.GameController;
 public class BuildingModePanel extends JPanel{
 
 	private GameController GC;
+	
+	private JLabel background = new Background();
 	
 	private JPanel settingsPanel = new JPanel(new GridBagLayout());
 	private JPanel gameObjectNumbersPanel = new JPanel(new GridBagLayout());
@@ -66,6 +67,7 @@ public class BuildingModePanel extends JPanel{
 		 * game object numbers panel design
 		 */
 		gameObjectNumbersPanel.setBorder(new TitledBorder("Game Object Numbers"));
+		gameObjectNumbersPanel.setOpaque(false);
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.BASELINE_LEADING;
@@ -98,7 +100,11 @@ public class BuildingModePanel extends JPanel{
 		/*
 		 * alpha beta structure panel design
 		 */
+		//TitledBorder t = new TitledBorder("Alpha Beta Molecule Structure");
+		//t.setTitleColor(new Color(0.0f, 0.0f, 0.0f, 0.5f));
 		alphaBetaStructurePanel.setBorder(new TitledBorder("Alpha Beta Molecule Structure"));
+		alphaBetaStructurePanel.setOpaque(false);
+		
 		
 		linearCheckBox.addItemListener(this.itemListener);
 		
@@ -122,6 +128,7 @@ public class BuildingModePanel extends JPanel{
 		 * game essentials panel design
 		 */
 		gameEssentialsPanel.setBorder(new EtchedBorder());
+		gameEssentialsPanel.setOpaque(false);
 		
 		difficultyLevelGroup.add(easyButton);
 		difficultyLevelGroup.add(mediumButton);
@@ -163,15 +170,12 @@ public class BuildingModePanel extends JPanel{
 		c.gridy = 3;
 		settingsPanel.add(startGameButton, c);
 		
-		//settingsPanel.setMaximumSize(new Dimension(400,600));
-		//settingsPanel.setMinimumSize(new Dimension(400,600));
-		//settingsPanel.setPreferredSize(new Dimension(400,600));
-		settingsPanel.setBackground(Color.PINK);
+		//settingsPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
+		settingsPanel.setOpaque(false);
 		
-		//settingsPanel.setBackground(new Color(0,0,0,65));
-		//this.add(settingsPanel, BorderLayout.CENTER);
-		this.add(settingsPanel);
-		//this.setBackground(Color.BLUE);
+		background.add(settingsPanel);
+		//this.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
+		this.add(background);
 	}
 	
 	public void setSettings() {

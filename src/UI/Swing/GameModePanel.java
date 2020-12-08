@@ -2,8 +2,10 @@ package UI.Swing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -16,7 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
 
 import Domain.GameController;
 import UI.ImageResizer;
@@ -25,6 +27,8 @@ import UI.ImageResizer;
 public class GameModePanel extends JPanel{
 	
 	private GameController GC;
+	
+	private JLabel background  = new Background();
 	
 	private JPanel sidePanel = new JPanel(new GridBagLayout());
 	private JPanel playerPanel = new JPanel(new GridBagLayout());
@@ -62,13 +66,14 @@ public class GameModePanel extends JPanel{
 		
 		this.GC = GC;
 		
-		this.setLayout(new BorderLayout());
+		this.setLayout(new GridBagLayout());
 		this.setSidePanelImages();
 		
 		/*
 		 * player panel design
 		 */
-		playerPanel.setBorder(new TitledBorder("Player Panel"));
+		playerPanel.setBorder(new LineBorder(new Color(0.0f, 0.0f, 0.0f, 0.5f), 2));
+		playerPanel.setOpaque(false);
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.BASELINE_LEADING;
@@ -95,7 +100,8 @@ public class GameModePanel extends JPanel{
 		/*
 		 * powerUp panel design
 		 */
-		powerUpPanel.setBorder(new TitledBorder("PowerUp Panel"));
+		powerUpPanel.setBorder(new LineBorder(new Color(0.0f, 0.0f, 0.0f, 0.5f), 2));
+		powerUpPanel.setOpaque(false);
 		
 		c.gridx = 0;
 		c.gridy = 0;
@@ -128,7 +134,8 @@ public class GameModePanel extends JPanel{
 		/*
 		 * atom panel design
 		 */
-		atomPanel.setBorder(new TitledBorder("Atom Panel"));
+		atomPanel.setBorder(new LineBorder(new Color(0.0f, 0.0f, 0.0f, 0.5f), 2));
+		atomPanel.setOpaque(false);
 		
 		c.gridx = 0;
 		c.gridy = 0;
@@ -161,19 +168,19 @@ public class GameModePanel extends JPanel{
 		/*
 		 * side panel design
 		 */
-		sidePanel.setBackground(Color.PINK);
+		sidePanel.setMaximumSize(new Dimension(100, this.getHeight()));
+		sidePanel.setMinimumSize(new Dimension(100, this.getHeight()));
+		sidePanel.setPreferredSize(new Dimension(100, this.getHeight()));
+		sidePanel.setBorder(new LineBorder(new Color(0.0f, 0.0f, 0.0f, 0.5f), 2));
+		sidePanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
+		sidePanel.setLayout(new GridLayout(3,0));
+		sidePanel.add(playerPanel);
+		sidePanel.add(powerUpPanel);
+		sidePanel.add(atomPanel);
 		
-		c.gridx = 0;
-		c.gridy = 0;
-		sidePanel.add(playerPanel, c);
+		background.add(sidePanel, BorderLayout.LINE_END);
 		
-		c.gridy = 1;
-		sidePanel.add(powerUpPanel, c);
-		
-		c.gridy = 2;
-		sidePanel.add(atomPanel, c);
-		
-		this.add(sidePanel, BorderLayout.LINE_END);
+		this.add(background);
 		this.addKeyListener(keyListener);
 		
 	}
