@@ -301,24 +301,14 @@ public class GameModePanel extends JPanel{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			switch(e.getActionCommand()) {
+			if(e.getSource() == alphaPUButton) {
 				
-				case "AlphaPU":
-					System.out.println("here");
-					break;
-					
-				case "BetaPU":
-					break;
+			} else if(e.getSource() == betaPUButton) {
 				
-				case "GammaPU":
-					break;
-					
-				case "SigmaPU":
-					break;
-					
-				default:
-					break;
-					
+			} else if(e.getSource() == gammaPUButton) {
+				
+			} else if(e.getSource() == sigmaPUButton) {
+				
 			}
 		}
 		
