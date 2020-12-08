@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -21,10 +22,12 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import Domain.GameController;
+import Domain.Player.Shooter;
 import UI.ImageResizer;
+import UI.GameObjectImages.ShooterImage;
 
 @SuppressWarnings("serial")
-public class GameModePanel extends JPanel{
+public class GameModePanel extends ModePanel {
 	
 	private GameController GC;
 	
@@ -61,10 +64,27 @@ public class GameModePanel extends JPanel{
 	private JLabel sigmaAtomLabel = new JLabel();
 	private JLabel currentSigmaAtomLabel = new JLabel();
 	
+	MainGamePanel mainGamePanel = MainGamePanel.getInstance();
+	
 	
 	public GameModePanel(GameController GC) {
 		
 		this.GC = GC;
+		
+		/*
+		 * 
+		 */
+		Shooter sh = new Shooter(new Point(500,500));
+		GC.shooter = sh;
+
+		
+		ShooterImage shooter = new ShooterImage(sh, 500,500);
+		sh.add(shooter);
+		
+		mainGamePanel.shooter = shooter;
+		/*
+		 * 
+		 */
 		
 		this.setLayout(new GridBagLayout());
 		this.setSidePanelImages();
@@ -178,14 +198,16 @@ public class GameModePanel extends JPanel{
 		sidePanel.add(powerUpPanel);
 		sidePanel.add(atomPanel);
 		
+		background.add(mainGamePanel);
 		background.add(sidePanel, BorderLayout.LINE_END);
 		
 		this.add(background);
+		this.setFocusable(true);
 		this.addKeyListener(keyListener);
+		this.setFocusable(true);
 		
 	}
-	
-	
+
 	private void setSidePanelImages() {
 		try {
 			
@@ -219,6 +241,7 @@ public class GameModePanel extends JPanel{
 		    img = ImageResizer.getResizedImage(img, 35, 35);
 		    blenderLabel.setIcon(new ImageIcon(img));
 			
+		    //another way to scale image
 			/*Image img = ImageIO.read(getClass().getResource("../../Images/atoms/alpha.png"));
 			ImageIcon imageIcon = new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
 			alphaAtomLabel.setIcon(imageIcon);*/
@@ -228,10 +251,12 @@ public class GameModePanel extends JPanel{
 		}
 	}
 	
+	
 	private KeyListener keyListener = new KeyListener() {
 		
 		@Override
 		public void keyPressed(KeyEvent e) {
+			System.out.println(e);
 			
 			switch(e.getKeyCode()) {
 			
@@ -313,5 +338,12 @@ public class GameModePanel extends JPanel{
 		}
 		
 	};
+
+
+	@Override
+	public void removeListeners() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -7,7 +7,7 @@ import UI.Swing.GameModePanel;
 
 public class GameController {
 	public Player player;
-	private Shooter shooter;
+	public Shooter shooter;
 	
 	public GameController() {
 	}

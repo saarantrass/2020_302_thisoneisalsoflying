@@ -1,5 +1,6 @@
 package UI.Swing;
 
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -19,7 +20,7 @@ import javax.swing.border.TitledBorder;
 import Domain.GameController;
 
 @SuppressWarnings("serial")
-public class BuildingModePanel extends JPanel{
+public class BuildingModePanel extends ModePanel{
 
 	private GameController GC;
 	
@@ -100,8 +101,6 @@ public class BuildingModePanel extends JPanel{
 		/*
 		 * alpha beta structure panel design
 		 */
-		//TitledBorder t = new TitledBorder("Alpha Beta Molecule Structure");
-		//t.setTitleColor(new Color(0.0f, 0.0f, 0.0f, 0.5f));
 		alphaBetaStructurePanel.setBorder(new TitledBorder("Alpha Beta Molecule Structure"));
 		alphaBetaStructurePanel.setOpaque(false);
 		
@@ -170,13 +169,12 @@ public class BuildingModePanel extends JPanel{
 		c.gridy = 3;
 		settingsPanel.add(startGameButton, c);
 		
-		//settingsPanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
 		settingsPanel.setOpaque(false);
 		
 		background.add(settingsPanel);
-		//this.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
 		this.add(background);
 	}
+	
 	
 	public void setSettings() {
 		int atomNumber = Integer.parseInt(atomNumberField.getText());
@@ -235,5 +233,14 @@ public class BuildingModePanel extends JPanel{
 		}
 		
 	};
+
+
+	@Override
+	public void removeListeners() {
+		linearCheckBox.removeItemListener(this.itemListener);
+		startGameButton.removeActionListener(this.actionListener);
+		startGameButton.setFocusable(false);
+		this.setFocusable(false);
+	}
 
 }
