@@ -1,6 +1,7 @@
 package UI.Swing;
 
 import Domain.GameController;
+import Domain.Game;
 
 public class ScreenCoordinator { //singleton
 	
@@ -41,6 +42,7 @@ public class ScreenCoordinator { //singleton
 	public void startGame() {
 		//clean();
 		this.gameScreen(GC);
+		Game.getInstance().startGame();
 	}
 	
 	
