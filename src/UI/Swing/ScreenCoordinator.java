@@ -3,6 +3,7 @@ package UI.Swing;
 import javax.swing.JPanel;
 
 import Domain.GameController;
+import Domain.Game;
 
 public class ScreenCoordinator { //singleton
 	
@@ -35,6 +36,7 @@ public class ScreenCoordinator { //singleton
 	public void startGame() {
 		mainFrame.remove(currentPanel);
 		this.gameScreen(GC);
+		Game.getInstance().startGame();
 	}
 	
 	

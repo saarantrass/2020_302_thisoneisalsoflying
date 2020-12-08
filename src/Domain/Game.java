@@ -8,6 +8,7 @@ import UI.IObserver;
 
 public class Game implements IObservable{
 	
+	private Thread mainGameLoop;
 	private static Game game_instance = null;
 	private List<IObserver> observers = new ArrayList<IObserver>();
 	
@@ -15,7 +16,30 @@ public class Game implements IObservable{
 	private GameController GC;
 	
 	private Game() {
-		
+		mainGameLoop = new Thread(() -> {
+			while (true) {
+				//System.out.println("game loop");
+				//TODO call functions from game controller
+				
+				
+				
+				
+				//to prevent crash
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+                    while (true) {
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e2) {
+                            break;
+                        }
+                    }
+				}
+				//to prevent crash
+				
+			}
+		});
 	}
 	
 	public static Game getInstance() {
@@ -24,6 +48,10 @@ public class Game implements IObservable{
 		}
 		
 		return game_instance;
+	}
+	
+	public void startGame(){
+		mainGameLoop.start();
 	}
 
 	@Override
