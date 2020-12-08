@@ -39,12 +39,9 @@ public class GameController {
 		JLabel pausePanel;
 		pausePanel = new JLabel();
 		pausePanel.setFocusable(true);
+		Game.getInstance().pauseGame();
 		//mainFrame.setContentPane(pausePanel);
-		//mainFrame.setVisible(true);
-		
-		
-		
-		
+		//mainFrame.setVisible(true);	
 	}
 	public void shootPowerUp(int powerUpID) {
 		
