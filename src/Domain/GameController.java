@@ -4,7 +4,7 @@ import Domain.Player.*;
 
 public class GameController {
 	public Player player;
-	private Shooter shooter;
+	public Shooter shooter;
 	
 	public GameController() {
 	}
