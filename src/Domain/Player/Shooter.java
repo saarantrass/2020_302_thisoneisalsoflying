@@ -41,9 +41,13 @@ public class Shooter implements IObservable{
 	public void rotate(int direction) {
 		
 		if(direction == 0) { //left
+			if(this.angle >-180) {
 				this.angle -= 10;
+			}
 		} else if(direction == 1) { //right
+			if(this.angle<180) {
 				this.angle += 10;
+			}
 		}
 		
 		publish();
