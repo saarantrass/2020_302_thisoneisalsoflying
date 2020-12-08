@@ -22,6 +22,13 @@ public class Inventory {
 		inventoryPowerUp.put(2, 0);
 		inventoryPowerUp.put(3, 0);
 	}
+	public boolean checkAtomAvailability(int num) {
+		if(inventoryAtom.get(num)>0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	public void addInventoryAtom(int type) {
 		int curr = this.inventoryAtom.get(type);

@@ -1,6 +1,9 @@
 package Domain;
 
+import javax.swing.JLabel;
+
 import Domain.Player.*;
+import UI.Swing.GameModePanel;
 
 public class GameController {
 	public Player player;
@@ -31,6 +34,15 @@ public class GameController {
 		
 	}
 	public void pauseGame() {
+		//isRunningGame = false;
+		JLabel pausePanel;
+		pausePanel = new JLabel();
+		pausePanel.setFocusable(true);
+		//mainFrame.setContentPane(pausePanel);
+		//mainFrame.setVisible(true);
+		
+		
+		
 		
 	}
 	public void shootPowerUp(int powerUpID) {
