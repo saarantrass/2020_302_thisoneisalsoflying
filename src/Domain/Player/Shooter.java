@@ -53,7 +53,7 @@ public class Shooter implements IObservable{
 	
 	@Override
 	public void publish() {
-		System.out.println("shooter");
+		//System.out.println("shooter");
 		for(IObserver o: this.observers) o.update();
 	}
 	

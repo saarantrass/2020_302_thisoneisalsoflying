@@ -25,7 +25,7 @@ public class Game implements IObservable{
 			while (true) {
 				//System.out.println("game loop");
 				//TODO call functions from game controller
-				
+				System.out.println("current shooter coordinates x: " + this.shooter.getCoordinate().x + " y: " + this.shooter.getCoordinate().y);
 				
 				
 				
@@ -55,7 +55,10 @@ public class Game implements IObservable{
 		return game_instance;
 	}
 	
-	public void startGame(){
+	public void startGame(GameController GC){
+		this.GC = GC;
+		this.shooter = new Shooter(new Point(500,500));
+		GC.shooter = this.shooter;
 		mainGameLoop.start();
 	}
 

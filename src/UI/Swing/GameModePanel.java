@@ -71,21 +71,6 @@ public class GameModePanel extends ModePanel {
 		
 		this.GC = GC;
 		
-		/*
-		 * 
-		 */
-		Shooter sh = new Shooter(new Point(500,500));
-		GC.shooter = sh;
-
-		
-		ShooterImage shooter = new ShooterImage(sh, 500,500);
-		sh.add(shooter);
-		
-		mainGamePanel.shooter = shooter;
-		/*
-		 * 
-		 */
-		
 		this.setLayout(new GridBagLayout());
 		this.setSidePanelImages();
 		
@@ -256,7 +241,7 @@ public class GameModePanel extends ModePanel {
 		
 		@Override
 		public void keyPressed(KeyEvent e) {
-			System.out.println(e);
+			//System.out.println(e);
 			
 			switch(e.getKeyCode()) {
 			
