@@ -25,6 +25,7 @@ public class GameController {
 		shooter.move(direction);
 	}
 	public void rotateShooter(int direction) {
+		shooter.rotate(direction);
 		
 	}
 	public void quitGame() {
