@@ -10,6 +10,7 @@ public class Shooter implements IObservable{
 	
 	private Point coordinate;
 	private int speed = 10; //TODO
+	private int angle = 0; //TODO
 	private List<IObserver> observers = new ArrayList<IObserver>();
 	
 	
@@ -37,7 +38,20 @@ public class Shooter implements IObservable{
 		
 		publish();
 	}
-
+	public void rotate(int direction) {
+		
+		if(direction == 0) { //left
+				this.angle -= 10;
+		} else if(direction == 1) { //right
+				this.angle += 10;
+		}
+		
+		publish();
+	}
+	
+	public int getAngle() {
+		return this.angle;
+	}
 	
 	@Override
 	public void add(IObserver o) {

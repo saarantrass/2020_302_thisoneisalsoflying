@@ -279,6 +279,7 @@ public class GameModePanel extends ModePanel {
 					
 				case KeyEvent.VK_D: //rotate shooter right
 					GC.rotateShooter(1);
+					break;
 					
 				case KeyEvent.VK_C: //change atom on shooter
 					break;

@@ -1,6 +1,7 @@
 package UI.GameObjectImages;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
@@ -34,7 +35,9 @@ public class ShooterImage extends GameObjectImage {
 	
 	@Override
 	public void paint(Graphics g) {
-	    g.drawImage(this.image, this.x, this.y, this);
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.rotate(Math.toRadians(shooter.getAngle()), shooter.getCoordinate().x + L/4, shooter.getCoordinate().y +L);
+	    g2d.drawImage(this.image, this.x, this.y, this);
 	}
 	
 	
