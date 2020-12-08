@@ -1,5 +1,8 @@
 package Domain;
 
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +17,10 @@ public class Game implements IObservable{
 	private Shooter shooter;
 	private GameController GC;
 	
+	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //TODO
+	
 	private Game() {
-		
+		shooter = new Shooter(new Point((int) screenSize.getWidth() / 2, (int) screenSize.getHeight() / 2)); //TODO
 	}
 	
 	public static Game getInstance() {
@@ -29,6 +34,7 @@ public class Game implements IObservable{
 	@Override
 	public void add(IObserver o) {
 		this.observers.add(o);
+		publish(); //tODO
 	}
 
 	@Override

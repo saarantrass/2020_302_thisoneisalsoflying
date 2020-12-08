@@ -1,12 +1,10 @@
 package UI.Swing;
 
-import javax.swing.JPanel;
-
 import Domain.GameController;
 
 public class ScreenCoordinator { //singleton
 	
-	private JPanel currentPanel;
+	private ModePanel currentPanel;
 	private GameController GC;
 	private static ScreenCoordinator screen_coordinator = null;
 	private ScreenFrame mainFrame;
@@ -14,6 +12,7 @@ public class ScreenCoordinator { //singleton
 	
 	private ScreenCoordinator() {
 		this.mainFrame = new ScreenFrame();
+		//this.mainFrame.setFocusable(true);
 		this.GC = new GameController();
 	}
 	
@@ -28,27 +27,42 @@ public class ScreenCoordinator { //singleton
 	
 	
 	public void initialize() {
-		this.buildingModeScreen();
+		//this.buildingModeScreen();
+		this.startGame();
+	}
+	
+	
+	public void clean() {
+		currentPanel.removeListeners();
+		mainFrame.remove(currentPanel);
 	}
 	
 	
 	public void startGame() {
-		mainFrame.remove(currentPanel);
+		//clean();
 		this.gameScreen(GC);
 	}
 	
 	
 	public void buildingModeScreen() {
 		currentPanel = new BuildingModePanel(GC);
-		currentPanel.setFocusable(true);
 		mainFrame.setContentPane(currentPanel);
 		mainFrame.setVisible(true);
 	}
 	
 	
 	public void gameScreen(GameController GC) {
+		
 		currentPanel = new GameModePanel(GC);
+		
 		currentPanel.setFocusable(true);
+		currentPanel.requestFocus();
+		
+		System.out.println(mainFrame.getFocusOwner());
+		currentPanel.transferFocus();
+		
+		System.out.println(mainFrame.getFocusOwner());
+		
 		mainFrame.setContentPane(currentPanel);
 		mainFrame.setVisible(true);
 	}
