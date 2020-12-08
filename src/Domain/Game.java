@@ -55,6 +55,9 @@ public class Game implements IObservable{
 		return game_instance;
 	}
 	
+	@SuppressWarnings("deprecation")
+	public void pauseGame() {this.mainGameLoop.stop();}
+	
 	public void startGame(GameController GC){
 		this.GC = GC;
 		this.shooter = new Shooter(new Point(500,500));
