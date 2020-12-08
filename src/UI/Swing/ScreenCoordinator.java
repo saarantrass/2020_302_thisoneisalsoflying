@@ -1,6 +1,5 @@
 package UI.Swing;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Domain.GameController;
@@ -42,7 +41,7 @@ public class ScreenCoordinator { //singleton
 	public void buildingModeScreen() {
 		currentPanel = new BuildingModePanel(GC);
 		currentPanel.setFocusable(true);
-		mainFrame.getContentPane().add(currentPanel);
+		mainFrame.setContentPane(currentPanel);
 		mainFrame.setVisible(true);
 	}
 	
@@ -50,7 +49,7 @@ public class ScreenCoordinator { //singleton
 	public void gameScreen(GameController GC) {
 		currentPanel = new GameModePanel(GC);
 		currentPanel.setFocusable(true);
-		mainFrame.getContentPane().add(currentPanel);
+		mainFrame.setContentPane(currentPanel);
 		mainFrame.setVisible(true);
 	}
 	
