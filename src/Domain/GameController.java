@@ -1,5 +1,7 @@
 package Domain;
 
+import java.awt.Point;
+
 import javax.swing.JLabel;
 
 import Domain.Player.*;
@@ -8,15 +10,34 @@ import UI.Swing.GameModePanel;
 public class GameController {
 	public Player player;
 	public Shooter shooter;
+	public Settings settings;
 	
 	public GameController() {
+		this.player = new Player();
+		this.shooter = new Shooter(null);
+		this.settings = new Settings();
+	}
+	
+	public GameController(Point coordinates) {
+		this.player = new Player();
+		this.shooter = new Shooter(coordinates);
+		this.settings = new Settings();
 	}
 	
 	public void useBlender(int source, int goal) {
 		
 	}
-	public void editInBuildMode(int atomNumber, int moleculeNumber, int RBNumber, int PUNumber, boolean isLinear, boolean isSpinning, int L, int difficultyLevel) {
-		System.out.println(atomNumber + " " + moleculeNumber + " " +RBNumber + " " + PUNumber + " " + isLinear +  " " + isSpinning + " " + L + " " + difficultyLevel);
+	public void editInBuildMode(int atomNumber, int moleculeNumber, int RBNumber, int PUNumber, boolean isLinear, boolean isSpinning, int length, int difficultyLevel) {
+		System.out.println(atomNumber + " " + moleculeNumber + " " +RBNumber + " " + PUNumber + " " + isLinear +  " " + isSpinning + " " + length + " " + difficultyLevel);
+
+		this.settings.setAtomNumber(atomNumber);
+		this.settings.setMoleculeNumber(moleculeNumber);
+		this.settings.setReactionBlockerNumber(RBNumber);
+		this.settings.setPowerUpNumber(PUNumber);
+		this.settings.setLinear(isLinear);
+		this.settings.setSpinning(isSpinning);
+		this.settings.setLengthUnit(length);
+		this.settings.setDifficultyLevel(difficultyLevel);
 	}
 	public int getRandomAtom() {
 		return 0;

@@ -1,6 +1,9 @@
 package UI.Swing;
 
 import Domain.GameController;
+
+import java.awt.Point;
+
 import Domain.Game;
 
 public class ScreenCoordinator { //singleton
@@ -14,7 +17,8 @@ public class ScreenCoordinator { //singleton
 	private ScreenCoordinator() {
 		this.mainFrame = new ScreenFrame();
 		//this.mainFrame.setFocusable(true);
-		this.GC = new GameController();
+		// TODO change coordinates
+		this.GC = new GameController(new Point(500, 500));
 	}
 	
 	
