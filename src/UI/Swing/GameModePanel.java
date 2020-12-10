@@ -8,6 +8,7 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -16,7 +17,6 @@ import java.awt.event.KeyListener;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -64,6 +64,8 @@ public class GameModePanel extends ModePanel {
 	private JLabel currentSigmaAtomLabel = new JLabel();
 	
 	MainGamePanel mainGamePanel = MainGamePanel.getInstance();
+	
+	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	
 	public GameModePanel(GameController GC) {
@@ -175,9 +177,9 @@ public class GameModePanel extends ModePanel {
 		/*
 		 * side panel design
 		 */
-		sidePanel.setMaximumSize(new Dimension(100, this.getHeight()));
-		sidePanel.setMinimumSize(new Dimension(100, this.getHeight()));
-		sidePanel.setPreferredSize(new Dimension(100, this.getHeight()));
+		sidePanel.setMaximumSize(new Dimension((int) this.screenSize.getWidth() / 8, this.getHeight()));
+		sidePanel.setMinimumSize(new Dimension((int) this.screenSize.getWidth() / 8, this.getHeight()));
+		sidePanel.setPreferredSize(new Dimension((int) this.screenSize.getWidth() / 8, this.getHeight()));
 		sidePanel.setBorder(new LineBorder(new Color(0.0f, 0.0f, 0.0f, 0.5f), 2));
 		sidePanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
 		sidePanel.setLayout(new GridLayout(3,0));
@@ -196,10 +198,10 @@ public class GameModePanel extends ModePanel {
 	}
 	
 	private void setCurrentAtomNumbers() {
-		//currentAlphaAtomLabel.setText(GC.settings.getAtomNumber());
-		//currentBetaAtomLabel.setText(GC.settings.getAtomNumber());
-		//currentGammaAtomLabel.setText(GC.settings.getAtomNumber());
-		//currentSigmaAtomLabel.setText(GC.settings.getAtomNumber());
+		currentAlphaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
+		currentBetaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
+		currentGammaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
+		currentSigmaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
 	}
 
 	private void setSidePanelImages() {
