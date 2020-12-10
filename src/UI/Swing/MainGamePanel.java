@@ -7,7 +7,9 @@ import java.awt.GridBagLayout;
 import javax.swing.JPanel;
 
 import Domain.Game;
+import Domain.GameObjects.Molecule;
 import UI.IObserver;
+import UI.GameObjectImages.MoleculeImage;
 import UI.GameObjectImages.ShooterImage;
 
 @SuppressWarnings("serial")
@@ -46,6 +48,11 @@ public class MainGamePanel extends JPanel implements IObserver{
 	@Override
 	public void paint(Graphics g) {
 		shooterImage.paint(g);
+		for (Molecule mol: Game.getInstance().onScreenMoleculeList) {
+			MoleculeImage img = new MoleculeImage(mol, mol.moleculeID, mol.getCoordinate().x,mol.getCoordinate().y);
+			img.paint(g);
+		}
+		
 		//System.out.println(this.getWidth());
 		//System.out.println(this.getHeight());
 	}
