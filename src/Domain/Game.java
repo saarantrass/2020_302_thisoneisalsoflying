@@ -145,8 +145,6 @@ public class Game implements IObservable{
 	
 	public void startGame(GameController GC){
 		this.GC = GC;
-		this.shooter = new Shooter(new Point(500,500));
-		GC.shooter = this.shooter;
 		mainGameLoop.start();
 	}
 

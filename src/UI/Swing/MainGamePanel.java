@@ -29,8 +29,8 @@ public class MainGamePanel extends JPanel{
 	
 	public void initialize() {
 		this.game = Game.getInstance();
-		this.shooterImage = new ShooterImage(game.getShooter(), game.getShooter().getCoordinate().x, game.getShooter().getCoordinate().y);
-		game.getShooter().add(shooterImage);
+		this.shooterImage = new ShooterImage(game.getGC().shooter, game.getGC().shooter.getCoordinate().x, game.getGC().shooter.getCoordinate().y);
+		game.getGC().shooter.add(shooterImage);
 		this.setOpaque(false);
 		this.setFocusable(false);
 		
