@@ -1,10 +1,13 @@
 package UI.GameObjectImages;
 
 import java.awt.Graphics;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 
 import Domain.GameObjects.Atom;
+import UI.ImageResizer;
+import UI.Swing.MainGamePanel;
 
 @SuppressWarnings("serial")
 public class AtomImage extends GameObjectImage{
@@ -14,6 +17,8 @@ public class AtomImage extends GameObjectImage{
 	private static final String GAMMA_ATOM_IMAGE = "../../Images/atoms/gamma.png";
 	private static final String SIGMA_ATOM_IMAGE = "../../Images/atoms/sigma.png";
 	private Atom atom;
+
+	private int L = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 10); //TODO
 	
 	
 	public AtomImage(Atom atom, int type, int x, int y) {
@@ -22,6 +27,7 @@ public class AtomImage extends GameObjectImage{
 		this.atom = atom;
 		this.atom.add(this);
 		this.image = new ImageIcon(getClass().getResource(this.imageName)).getImage();
+		this.image = ImageResizer.getResizedImage(image, L / 10, L / 10);
 	}
 	
 
@@ -64,7 +70,7 @@ public class AtomImage extends GameObjectImage{
 	public void update() {
 		this.x = atom.getCoordinate().x;
 		this.y = atom.getCoordinate().y;
-		repaint();
+		MainGamePanel.getInstance().repaint();
 	}
 	
 }
