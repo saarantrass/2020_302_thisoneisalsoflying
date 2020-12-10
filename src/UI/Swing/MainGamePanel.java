@@ -1,13 +1,18 @@
 package UI.Swing;
 
 import java.awt.Graphics;
+import java.awt.GridBagLayout;
+
 import javax.swing.JPanel;
 
 import Domain.Game;
+import Domain.GameObjects.Molecule;
+import UI.IObserver;
+import UI.GameObjectImages.MoleculeImage;
 import UI.GameObjectImages.ShooterImage;
 
 @SuppressWarnings("serial")
-public class MainGamePanel extends JPanel{
+public class MainGamePanel extends JPanel implements IObserver{
 	
 	public ShooterImage shooterImage; //TODO
 	private Game game;
@@ -15,7 +20,8 @@ public class MainGamePanel extends JPanel{
 	
 	
 	private MainGamePanel() {
-		
+		Game.getInstance().add(this);
+		this.setLayout(new GridBagLayout());
 	}
 	
 	
@@ -29,8 +35,8 @@ public class MainGamePanel extends JPanel{
 	
 	public void initialize() {
 		this.game = Game.getInstance();
-		this.shooterImage = new ShooterImage(game.getShooter(), game.getShooter().getCoordinate().x, game.getShooter().getCoordinate().y);
-		game.getShooter().add(shooterImage);
+		this.shooterImage = new ShooterImage(game.getGC().shooter, game.getGC().shooter.getCoordinate().x, game.getGC().shooter.getCoordinate().y);
+		game.getGC().shooter.add(shooterImage);
 		this.setOpaque(false);
 		this.setFocusable(false);
 		
@@ -41,8 +47,26 @@ public class MainGamePanel extends JPanel{
 	@Override
 	public void paint(Graphics g) {
 		shooterImage.paint(g);
+		for (Molecule mol: Game.getInstance().onScreenMoleculeList) {
+			MoleculeImage img = new MoleculeImage(mol, mol.moleculeID, mol.getCoordinate().x,mol.getCoordinate().y);
+			img.paint(g);
+		}
+		
 		//System.out.println(this.getWidth());
 		//System.out.println(this.getHeight());
+	}
+
+
+	@Override
+	public void update() {
+		if(Game.getInstance().isPaused) {
+			PausePanel panel = new PausePanel();
+			this.add(panel);
+			System.out.print("heloo");
+			panel.setVisible(true);
+			
+		}
+		
 	}
 	
 }
