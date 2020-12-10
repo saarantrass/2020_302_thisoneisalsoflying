@@ -5,15 +5,14 @@ import Domain.Game;
 
 public class ScreenCoordinator { //singleton
 	
+	private ScreenFrame mainFrame;
 	private ModePanel currentPanel;
 	private GameController GC;
 	private static ScreenCoordinator screen_coordinator = null;
-	private ScreenFrame mainFrame;
 	
 	
 	private ScreenCoordinator() {
 		this.mainFrame = new ScreenFrame();
-		//this.mainFrame.setFocusable(true);
 		this.GC = new GameController();
 	}
 	
@@ -28,48 +27,43 @@ public class ScreenCoordinator { //singleton
 	
 	
 	public void initialize() {
-		//this.buildingModeScreen();
-		this.startGame();
+		this.buildingModeScreen();
 	}
 	
-	
-	public void clean() {
-		currentPanel.removeListeners();
-		mainFrame.remove(currentPanel);
-	}
 	
 	
 	public void startGame() {
-		//clean();
-		Game.getInstance().startGame(GC);
-		this.gameScreen(GC);
-		
-		
+		Game.getInstance().startGame(this.GC);
+		this.gameScreen();
 	}
 	
 	
 	public void buildingModeScreen() {
-		currentPanel = new BuildingModePanel(GC);
+		clean();
+		currentPanel = new BuildingModePanel(this.GC);
 		mainFrame.setContentPane(currentPanel);
 		mainFrame.setVisible(true);
 	}
 	
 	
-	public void gameScreen(GameController GC) {
-		
-		currentPanel = new GameModePanel(GC);
-		
-		currentPanel.setFocusable(true);
-		currentPanel.requestFocus();
-		
-		System.out.println(mainFrame.getFocusOwner());
-		currentPanel.transferFocus();
-		
-		System.out.println(mainFrame.getFocusOwner());
-		
+	public void gameScreen() {
+		clean();
+		currentPanel = new GameModePanel(this.GC);
 		mainFrame.setContentPane(currentPanel);
 		mainFrame.setVisible(true);
 	}
 	
+	
+	public ModePanel getCurrentPanel() {
+		return this.currentPanel;
+	}
+
+	
+	public void clean() {
+		if(currentPanel != null) {
+			currentPanel.removeListeners();
+			mainFrame.remove(currentPanel);
+		}
+	}
 	
 }
