@@ -15,11 +15,7 @@ public class MainGamePanel extends JPanel{
 	
 	
 	private MainGamePanel() {
-		this.game = Game.getInstance();
-		this.shooterImage = new ShooterImage(game.getShooter(), 500,500);
-		game.getShooter().add(shooterImage);
-		this.setOpaque(false);
-		this.setFocusable(false);
+		
 	}
 	
 	
@@ -31,11 +27,22 @@ public class MainGamePanel extends JPanel{
 		return main_game_panel;
 	}
 	
+	public void initialize() {
+		this.game = Game.getInstance();
+		this.shooterImage = new ShooterImage(game.getShooter(), game.getShooter().getCoordinate().x, game.getShooter().getCoordinate().y);
+		game.getShooter().add(shooterImage);
+		this.setOpaque(false);
+		this.setFocusable(false);
+		
+		
+	}
+	
 	
 	@Override
 	public void paint(Graphics g) {
 		shooterImage.paint(g);
-		
+		//System.out.println(this.getWidth());
+		//System.out.println(this.getHeight());
 	}
 	
 }

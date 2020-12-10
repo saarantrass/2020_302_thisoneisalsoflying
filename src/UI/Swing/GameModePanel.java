@@ -8,7 +8,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,9 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import Domain.GameController;
-import Domain.Player.Shooter;
 import UI.ImageResizer;
-import UI.GameObjectImages.ShooterImage;
 
 @SuppressWarnings("serial")
 public class GameModePanel extends ModePanel {
@@ -47,13 +44,13 @@ public class GameModePanel extends ModePanel {
 	private JLabel blenderLabel = new JLabel();
 	
 	private JButton alphaPUButton = new JButton();
-	private JLabel currentAlphaPULabel = new JLabel();
+	private JLabel currentAlphaPULabel = new JLabel("0");
 	private JButton betaPUButton = new JButton();
-	private JLabel currentBetaPULabel = new JLabel();
+	private JLabel currentBetaPULabel = new JLabel("0");
 	private JButton gammaPUButton = new JButton();
-	private JLabel currentGammaPULabel = new JLabel();
+	private JLabel currentGammaPULabel = new JLabel("0");
 	private JButton sigmaPUButton = new JButton();
-	private JLabel currentSigmaPULabel = new JLabel();
+	private JLabel currentSigmaPULabel = new JLabel("0");
 	
 	private JLabel alphaAtomLabel = new JLabel();
 	private JLabel currentAlphaAtomLabel = new JLabel();
@@ -73,6 +70,7 @@ public class GameModePanel extends ModePanel {
 		
 		this.setLayout(new GridBagLayout());
 		this.setSidePanelImages();
+		this.setCurrentAtomNumbers();
 		
 		/*
 		 * player panel design
@@ -191,6 +189,14 @@ public class GameModePanel extends ModePanel {
 		this.addKeyListener(keyListener);
 		this.setFocusable(true);
 		
+		this.mainGamePanel.initialize();
+	}
+	
+	private void setCurrentAtomNumbers() {
+		//currentAlphaAtomLabel.setText(GC.settings.getAtomNumber());
+		//currentBetaAtomLabel.setText(GC.settings.getAtomNumber());
+		//currentGammaAtomLabel.setText(GC.settings.getAtomNumber());
+		//currentSigmaAtomLabel.setText(GC.settings.getAtomNumber());
 	}
 
 	private void setSidePanelImages() {

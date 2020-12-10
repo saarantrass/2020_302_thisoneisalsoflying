@@ -1,10 +1,13 @@
 package UI.GameObjectImages;
 
 import java.awt.Graphics;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 
 import Domain.GameObjects.PowerUp;
+import UI.ImageResizer;
+import UI.Swing.MainGamePanel;
 
 @SuppressWarnings("serial")
 public class PowerUpImage extends GameObjectImage{
@@ -14,6 +17,7 @@ public class PowerUpImage extends GameObjectImage{
 	private static final String GAMMA_POWERUP_IMAGE = "../../Images/powerups/+gamma-b.png";
 	private static final String SIGMA_POWERUP_IMAGE = "../../Images/powerups/+sigma-b.png";
 	private PowerUp PU;
+	private int L = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 10); //TODO
 	
 	
 	public PowerUpImage(PowerUp PU, int type, int x, int y) {
@@ -22,6 +26,7 @@ public class PowerUpImage extends GameObjectImage{
 		this.PU = PU;
 		this.PU.add(this);
 		this.image = new ImageIcon(getClass().getResource(this.imageName)).getImage();
+		this.image = ImageResizer.getResizedImage(image, L / 10, L / 10);
 	}
 	
 
@@ -64,7 +69,7 @@ public class PowerUpImage extends GameObjectImage{
 	public void update() {
 		this.x = PU.getCoordinate().x;
 		this.y = PU.getCoordinate().y;
-		repaint();
+		MainGamePanel.getInstance().repaint();
 	}
 
 }

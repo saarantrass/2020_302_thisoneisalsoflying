@@ -1,10 +1,13 @@
 package UI.GameObjectImages;
 
 import java.awt.Graphics;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 
 import Domain.GameObjects.ReactionBlocker;
+import UI.ImageResizer;
+import UI.Swing.MainGamePanel;
 
 @SuppressWarnings("serial")
 public class ReactionBlockerImage extends GameObjectImage{
@@ -15,6 +18,8 @@ public class ReactionBlockerImage extends GameObjectImage{
 	private static final String SIGMA_RB_IMAGE = "../../Images/blockers/sigma-b.png";
 	private ReactionBlocker RB;
 	
+	private int L = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 10); //TODO
+	
 
 	public ReactionBlockerImage(ReactionBlocker RB, int type, int x, int y) {
 		super(type, x, y);
@@ -22,7 +27,7 @@ public class ReactionBlockerImage extends GameObjectImage{
 		this.RB = RB;
 		this.RB.add(this);
 		this.image = new ImageIcon(getClass().getResource(this.imageName)).getImage();
-		
+		this.image = ImageResizer.getResizedImage(image, L / 10, L / 10);
 	}
 	
 
@@ -65,7 +70,7 @@ public class ReactionBlockerImage extends GameObjectImage{
 	public void update() {
 		this.x = RB.getCoordinate().x;
 		this.y = RB.getCoordinate().y;
-		repaint();
+		MainGamePanel.getInstance().repaint();
 	}
 	
 }
