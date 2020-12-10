@@ -185,7 +185,7 @@ public class BuildingModePanel extends ModePanel{
 		boolean isSpinning = false;
 		if(isLinear) {
 			if(spinningButton.isSelected())
-				isSpinning = false;
+				isSpinning = true;
 		}
 		
 		int L = Integer.parseInt(unitLengthField.getText());
@@ -229,6 +229,7 @@ public class BuildingModePanel extends ModePanel{
 				setSettings();
 				ScreenCoordinator.getInstance().startGame();
 			}
+			ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 		}
 		
 	};
@@ -238,7 +239,6 @@ public class BuildingModePanel extends ModePanel{
 	public void removeListeners() {
 		linearCheckBox.removeItemListener(this.itemListener);
 		startGameButton.removeActionListener(this.actionListener);
-		startGameButton.setFocusable(false);
 		this.setFocusable(false);
 	}
 

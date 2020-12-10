@@ -66,6 +66,8 @@ public class GameModePanel extends ModePanel {
 	
 	public GameModePanel(GameController GC) {
 		
+		setFocusTraversalKeysEnabled(false);
+		
 		this.GC = GC;
 		
 		this.setLayout(new GridBagLayout());
@@ -187,7 +189,6 @@ public class GameModePanel extends ModePanel {
 		this.add(background);
 		this.setFocusable(true);
 		this.addKeyListener(keyListener);
-		this.setFocusable(true);
 		
 		this.mainGamePanel.initialize();
 	}
@@ -231,11 +232,6 @@ public class GameModePanel extends ModePanel {
 		    img = ImageIO.read(getClass().getResource("../../Images/mixer.png"));
 		    img = ImageResizer.getResizedImage(img, 35, 35);
 		    blenderLabel.setIcon(new ImageIcon(img));
-			
-		    //another way to scale image
-			/*Image img = ImageIO.read(getClass().getResource("../../Images/atoms/alpha.png"));
-			ImageIcon imageIcon = new ImageIcon(new ImageIcon(img).getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT));
-			alphaAtomLabel.setIcon(imageIcon);*/
 			
 		} catch (Exception ex) {
 		    System.out.println(ex);
@@ -320,6 +316,7 @@ public class GameModePanel extends ModePanel {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == alphaPUButton) {
 				
+				
 			} else if(e.getSource() == betaPUButton) {
 				
 			} else if(e.getSource() == gammaPUButton) {
@@ -327,6 +324,8 @@ public class GameModePanel extends ModePanel {
 			} else if(e.getSource() == sigmaPUButton) {
 				
 			}
+			
+			ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 		}
 		
 	};
@@ -334,8 +333,12 @@ public class GameModePanel extends ModePanel {
 
 	@Override
 	public void removeListeners() {
-		// TODO Auto-generated method stub
-		
+		this.removeKeyListener(keyListener);
+		this.alphaPUButton.removeActionListener(actionListener);
+		this.betaPUButton.removeActionListener(actionListener);
+		this.gammaPUButton.removeActionListener(actionListener);
+		this.sigmaPUButton.removeActionListener(actionListener);
+		this.setFocusable(false);
 	}
 	
 }
