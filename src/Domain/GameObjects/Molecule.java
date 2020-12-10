@@ -13,7 +13,9 @@ public class Molecule implements IObservable{
 	private boolean isSpinning;
 	private boolean isLinear;
 	private List<IObserver> observers = new ArrayList<IObserver>();
-	
+	//TODO change speed to true
+	private int xSpeed = 10;
+	private int ySpeed = 5;
 	
 	public Molecule (int moleculeID, Point coordinate,boolean isSpinning, boolean isLinear) {
 		this.moleculeID = moleculeID;
@@ -22,16 +24,20 @@ public class Molecule implements IObservable{
 		this.isLinear = isLinear;
 	}
 	
-	
 	public Molecule (int moleculeID, Point coordinate) {
 		this(moleculeID, coordinate, false, false);
 	}
 	
+	public void move() {
+		//TODO check screen borders
+		this.coordinate.x += xSpeed;
+		this.coordinate.y += ySpeed;
+		publish();
+	}
 	
 	public void setCoordinate(Point coordinate) {
 		this.coordinate = coordinate;
 	}
-	
 	
 	public Point getCoordinate() {
 		return this.coordinate;
