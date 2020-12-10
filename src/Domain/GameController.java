@@ -2,8 +2,12 @@ package Domain;
 
 import java.awt.Point;
 
-import javax.swing.JLabel;
+import java.util.ArrayList;
 
+import Domain.GameObjects.Atom;
+import Domain.GameObjects.Molecule;
+import Domain.GameObjects.PowerUp;
+import Domain.GameObjects.ReactionBlocker;
 import Domain.Player.*;
 import UI.Swing.GameModePanel;
 
@@ -55,19 +59,19 @@ public class GameController {
 	public void resumeGame() {
 		
 	}
+	public void shoot() {
+		Game.getInstance().shoot();
+	}
+	public void changeAtomOnBarrel() {
+		Game.getInstance().getRandomAtomToBarrel();
+	}
+	public void getPowerUpOnBarrel(int type) {
+		Game.getInstance().getPowerUpToBarrel(type);
+	}
 	public void pauseGame() {
 		//isRunningGame = false;
-		JLabel pausePanel;
-		pausePanel = new JLabel();
-		pausePanel.setFocusable(true);
 		Game.getInstance().pauseGame();
 		//mainFrame.setContentPane(pausePanel);
 		//mainFrame.setVisible(true);	
-	}
-	public void shootPowerUp(int powerUpID) {
-		
-	}
-	public void shootAtom(int atomID) {
-		
 	}
 }
