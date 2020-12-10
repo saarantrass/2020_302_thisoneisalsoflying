@@ -1,13 +1,17 @@
 package UI.Swing;
 
+import java.awt.BorderLayout;
 import java.awt.Graphics;
+import java.awt.GridBagLayout;
+
 import javax.swing.JPanel;
 
 import Domain.Game;
+import UI.IObserver;
 import UI.GameObjectImages.ShooterImage;
 
 @SuppressWarnings("serial")
-public class MainGamePanel extends JPanel{
+public class MainGamePanel extends JPanel implements IObserver{
 	
 	public ShooterImage shooterImage; //TODO
 	private Game game;
@@ -15,7 +19,8 @@ public class MainGamePanel extends JPanel{
 	
 	
 	private MainGamePanel() {
-		
+		Game.getInstance().add(this);
+		this.setLayout(new GridBagLayout());
 	}
 	
 	
@@ -43,6 +48,19 @@ public class MainGamePanel extends JPanel{
 		shooterImage.paint(g);
 		//System.out.println(this.getWidth());
 		//System.out.println(this.getHeight());
+	}
+
+
+	@Override
+	public void update() {
+		if(Game.getInstance().isPaused) {
+			PausePanel panel = new PausePanel();
+			this.add(panel);
+			System.out.print("heloo");
+			panel.setVisible(true);
+			
+		}
+		
 	}
 	
 }
