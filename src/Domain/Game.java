@@ -18,7 +18,7 @@ public class Game implements IObservable{
 	private Thread mainGameLoop;
 	private static Game game_instance = null;
 	private List<IObserver> observers = new ArrayList<IObserver>();
-	
+	public boolean isPaused = false;
 	public ArrayList<Atom> onScreenAtomList = new ArrayList<>();
 	public ArrayList<Molecule> onScreenMoleculeList = new ArrayList<>();
 	public ArrayList<PowerUp> onScreenPowerUpList = new ArrayList<>();
@@ -141,7 +141,11 @@ public class Game implements IObservable{
 	}
 	
 	@SuppressWarnings("deprecation")
-	public void pauseGame() {this.mainGameLoop.stop();}
+	public void pauseGame() {
+		isPaused = true;
+		this.mainGameLoop.stop();
+		publish();
+		}
 	
 	public void startGame(GameController GC){
 		this.GC = GC;

@@ -16,12 +16,14 @@ import java.awt.event.KeyListener;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import Domain.GameController;
 import UI.ImageResizer;
+
 
 @SuppressWarnings("serial")
 public class GameModePanel extends ModePanel {
@@ -273,6 +275,7 @@ public class GameModePanel extends ModePanel {
 					
 				case KeyEvent.VK_P: //pause game
 					GC.pauseGame();
+					
 					break;
 					
 				case KeyEvent.VK_R: //resume game
