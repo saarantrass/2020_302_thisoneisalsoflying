@@ -4,10 +4,9 @@ import java.awt.Point;
 import Domain.GameObjects.*;
 
 public class FallingObjectFactory {
-	private int currentMoleculeNumber ;
-	private int currentPowerUpNumber ;
-	private int currentReactionBlockerNumber ;
 	private static FallingObjectFactory singleton;
+	
+	public FallingObjectFactory() {}
 	
 	public Molecule getNewMolecule(int type, Point coords, boolean isSpinning, boolean isLinear) {
 		return new Molecule(type, coords, isSpinning, isLinear);
