@@ -5,6 +5,8 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public abstract class ModePanel extends JPanel{
 	
-	public abstract void removeListeners();
+	//public abstract void addListeners();
+	
+	//public abstract void removeListeners();
 
 }
