@@ -10,6 +10,11 @@ public class GameObjectImageCreator {
 	
 	private static GameObjectImageCreator game_object_image_creator  = null;
 	
+	private static final String ALPHA_ATOM_IMAGE = "../../Images/atoms/alpha.png";
+	private static final String BETA_ATOM_IMAGE = "../../Images/atoms/beta.png";
+	private static final String GAMMA_ATOM_IMAGE = "../../Images/atoms/gamma.png";
+	private static final String SIGMA_ATOM_IMAGE = "../../Images/atoms/sigma.png";
+	
 	private static final String ALPHA_MOLECULE_IMAGE = "../../Images/molecules/alpha-1.png";
 	private static final String ALPHA_LINEAR_MOLECULE_IMAGE = "../../Images/molecules/alpha-2.png";
 	private static final String BETA_MOLECULE_IMAGE = "../../Images/molecules/beta-1.png";
@@ -41,6 +46,25 @@ public class GameObjectImageCreator {
 		}
 		
 		return game_object_image_creator;
+	}
+	
+	
+	public Image getAtomImage(int type) {
+		Image image = null;
+		
+		if(type == 1) {
+			image = new ImageIcon(getClass().getResource(ALPHA_ATOM_IMAGE)).getImage();
+		} else if(type == 2) {
+			image = new ImageIcon(getClass().getResource(BETA_ATOM_IMAGE)).getImage();
+		} else if(type == 3) {
+			image = new ImageIcon(getClass().getResource(GAMMA_ATOM_IMAGE)).getImage();
+		} else if(type == 4){
+			image = new ImageIcon(getClass().getResource(SIGMA_ATOM_IMAGE)).getImage();
+		}
+		
+		image = ImageResizer.getResizedImage(image, L, L);
+		
+		return image;
 	}
 	
 	

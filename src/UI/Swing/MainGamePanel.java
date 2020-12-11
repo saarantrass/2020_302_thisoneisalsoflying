@@ -7,6 +7,7 @@ import java.awt.Image;
 import javax.swing.JPanel;
 
 import Domain.Game;
+import Domain.GameObjects.Atom;
 import Domain.GameObjects.Molecule;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
@@ -49,17 +50,22 @@ public class MainGamePanel extends JPanel implements IObserver{
 	public void paint(Graphics g) {
 		shooterImage.paint(g);
 		
-		for (Molecule molecule: Game.getInstance().onScreenMoleculeList) {
+		for(Atom atom: Game.getInstance().onScreenAtomList) {
+			Image image = GameObjectImageCreator.getInstance().getAtomImage(atom.atomID);
+			g.drawImage(image, atom.getCoordinate().x, atom.getCoordinate().y, null);
+		}
+		
+		for(Molecule molecule: Game.getInstance().onScreenMoleculeList) {
 			Image image = GameObjectImageCreator.getInstance().getMoleculeImage(molecule.moleculeID, false);
 			g.drawImage(image, molecule.getCoordinate().x, molecule.getCoordinate().y, null);
 		}
 		
-		for (ReactionBlocker reactionBlocker: Game.getInstance().onScreenReactionBlockerList) {
+		for(ReactionBlocker reactionBlocker: Game.getInstance().onScreenReactionBlockerList) {
 			Image image = GameObjectImageCreator.getInstance().getRBImage(reactionBlocker.reactionBlockerID);
 			g.drawImage(image, reactionBlocker.getCoordinate().x, reactionBlocker.getCoordinate().y, null);
 		}
 		
-		for (PowerUp powerUp: Game.getInstance().onScreenPowerUpList) {
+		for(PowerUp powerUp: Game.getInstance().onScreenPowerUpList) {
 			Image image = GameObjectImageCreator.getInstance().getPowerUpImage(powerUp.powerUpID);
 			g.drawImage(image, powerUp.getCoordinate().x, powerUp.getCoordinate().y, null);
 		}

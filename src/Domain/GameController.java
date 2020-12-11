@@ -1,15 +1,7 @@
 package Domain;
 
 import java.awt.Point;
-
-import java.util.ArrayList;
-
-import Domain.GameObjects.Atom;
-import Domain.GameObjects.Molecule;
-import Domain.GameObjects.PowerUp;
-import Domain.GameObjects.ReactionBlocker;
 import Domain.Player.*;
-import UI.Swing.GameModePanel;
 
 public class GameController {
 	public Player player;
@@ -69,9 +61,6 @@ public class GameController {
 		Game.getInstance().getPowerUpToBarrel(type);
 	}
 	public void pauseGame() {
-		//isRunningGame = false;
-		Game.getInstance().pauseGame();
-		//mainFrame.setContentPane(pausePanel);
-		//mainFrame.setVisible(true);	
+		Game.getInstance().pauseGame();	
 	}
 }
