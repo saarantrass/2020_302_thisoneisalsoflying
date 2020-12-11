@@ -139,13 +139,21 @@ public class Game implements IObservable{
 		this.barrelAtom = null;
 		this.barrelPowerUp = new PowerUp(type, new Point(0,0), true); //TODO Inventory checks and coordinates to shooter end
 	}
-	
+
+
 	@SuppressWarnings("deprecation")
 	public void pauseGame() {
-		isPaused = true;
+		this.isPaused = true;
 		this.mainGameLoop.stop();
 		publish();
-		}
+	}
+	
+	@SuppressWarnings("removal")
+	public void resumeGame() {
+		this.isPaused = false;
+		this.mainGameLoop.resume();
+		publish();
+	}
 	
 	public void startGame(GameController GC){
 		this.GC = GC;
