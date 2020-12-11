@@ -19,7 +19,7 @@ import javax.swing.border.TitledBorder;
 import Domain.GameController;
 
 @SuppressWarnings("serial")
-public class BuildingModePanel extends ModePanel{
+public class BuildingModePanel extends JPanel{
 
 	private GameController GC;
 	
@@ -233,13 +233,5 @@ public class BuildingModePanel extends ModePanel{
 		}
 		
 	};
-
-
-	/*@Override
-	public void removeListeners() {
-		linearCheckBox.removeItemListener(this.itemListener);
-		startGameButton.removeActionListener(this.actionListener);
-		this.setFocusable(false);
-	}*/
 
 }

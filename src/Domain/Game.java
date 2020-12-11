@@ -83,8 +83,8 @@ public class Game implements IObservable{
 	}
 	
 	private void createRandomFallingObject() {
-		int next = (int) (Math.random() * 2);
-		int type = (int) (1 + (Math.random() * 3));
+		int next = (int) (Math.random() * 3);
+		int type = (int) (1 + (Math.random() * 4));
 		switch (next) {
 		case 0:
 			Molecule newMol = new Molecule(type , new Point(100, 0), true, false);

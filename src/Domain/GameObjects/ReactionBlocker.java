@@ -1,10 +1,6 @@
 package Domain.GameObjects;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
-import Domain.IObservable;
-import UI.IObserver;
 
 public class ReactionBlocker {
 	
