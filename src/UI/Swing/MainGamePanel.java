@@ -1,13 +1,16 @@
 package UI.Swing;
 
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 
 import javax.swing.JPanel;
 
 import Domain.Game;
 import Domain.GameObjects.Molecule;
 import UI.IObserver;
+import UI.GameObjectImages.GameObjectImage;
 import UI.GameObjectImages.MoleculeImage;
 import UI.GameObjectImages.ShooterImage;
 
@@ -21,7 +24,7 @@ public class MainGamePanel extends JPanel implements IObserver{
 	
 	private MainGamePanel() {
 		Game.getInstance().add(this);
-		this.setLayout(new GridBagLayout());
+		this.setLayout(new BorderLayout());
 	}
 	
 	
@@ -50,22 +53,25 @@ public class MainGamePanel extends JPanel implements IObserver{
 		for (Molecule mol: Game.getInstance().onScreenMoleculeList) {
 			MoleculeImage img = new MoleculeImage(mol, mol.moleculeID, mol.getCoordinate().x,mol.getCoordinate().y);
 			img.paint(g);
+			//Image moleculeImage = new GameObjectImage.getMoleculeImage(molecule.moleculeID);
+			//g.drawImage(moleculeImage, molecule.getCoordinate().x, molecule.getCoordinate().y, this);
 		}
 		
 		//System.out.println(this.getWidth());
 		//System.out.println(this.getHeight());
+		super.paint(g);
 	}
 
 
 	@Override
 	public void update() {
-		if(Game.getInstance().isPaused) {
+		/*if(Game.getInstance().isPaused) {
 			PausePanel panel = new PausePanel();
 			this.add(panel);
 			System.out.print("heloo");
 			panel.setVisible(true);
 			
-		}
+		}*/
 		
 	}
 	

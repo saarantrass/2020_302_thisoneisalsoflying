@@ -43,6 +43,11 @@ public class ScreenCoordinator { //singleton
 	}
 	
 	
+	public void pauseGame() {
+		mainFrame.getContentPane().add(new PausePanel());
+	}
+	
+	
 	public void buildingModeScreen() {
 		clean();
 		currentPanel = new BuildingModePanel(this.GC);
@@ -66,7 +71,7 @@ public class ScreenCoordinator { //singleton
 	
 	public void clean() {
 		if(currentPanel != null) {
-			currentPanel.removeListeners();
+			//currentPanel.removeListeners();
 			mainFrame.remove(currentPanel);
 		}
 	}

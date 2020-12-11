@@ -235,11 +235,11 @@ public class BuildingModePanel extends ModePanel{
 	};
 
 
-	@Override
+	/*@Override
 	public void removeListeners() {
 		linearCheckBox.removeItemListener(this.itemListener);
 		startGameButton.removeActionListener(this.actionListener);
 		this.setFocusable(false);
-	}
+	}*/
 
 }
