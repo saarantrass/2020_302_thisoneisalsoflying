@@ -2,14 +2,9 @@ package UI.Swing;
 
 import Domain.GameController;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.Toolkit;
-
 import javax.swing.JPanel;
-
-import Domain.Game;
 
 public class ScreenCoordinator { //singleton
 	
@@ -17,7 +12,7 @@ public class ScreenCoordinator { //singleton
 	private JPanel currentPanel;
 	private GameController GC;
 	private static ScreenCoordinator screen_coordinator = null;
-	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	public static final Dimension SCREEN_SIZE = new Dimension(1200,700);
 	
 	
 	private ScreenCoordinator() {
@@ -40,18 +35,12 @@ public class ScreenCoordinator { //singleton
 	}
 	
 	
-	
 	public void startGame() {
-		int xShooter = this.mainFrame.getSize().width * 7/16;
-		int yShooter = this.mainFrame.getHeight() - 23 - this.GC.settings.getLengthUnit();
+		int xShooter = SCREEN_SIZE.width * 7/16;
+		int yShooter = SCREEN_SIZE.height - this.GC.settings.getLengthUnit();
 		GC.setInitialShooterCoordinate(new Point(xShooter, yShooter));
-		Game.getInstance().startGame(this.GC);
+		GC.startGame();
 		this.gameScreen();
-	}
-	
-	
-	public void pauseGame() {
-		mainFrame.getContentPane().add(new PausePanel());
 	}
 	
 	
@@ -59,6 +48,7 @@ public class ScreenCoordinator { //singleton
 		clean();
 		currentPanel = new BuildingModePanel(this.GC);
 		mainFrame.setContentPane(currentPanel);
+		mainFrame.pack();
 		mainFrame.setVisible(true);
 	}
 	
@@ -67,16 +57,13 @@ public class ScreenCoordinator { //singleton
 		clean();
 		currentPanel = new GameModePanel(this.GC);
 		mainFrame.setContentPane(currentPanel);
+		mainFrame.pack();
 		mainFrame.setVisible(true);
 	}
 	
 	
 	public JPanel getCurrentPanel() {
 		return this.currentPanel;
-	}
-	
-	public ScreenFrame getMainFrame() {
-		return this.mainFrame;
 	}
 
 	

@@ -12,26 +12,20 @@ public class GameController {
 	public GameController() {
 		this.player = new Player();
 		this.shooter = new Shooter(null);
-		this.settings = new Settings();
 	}
 	
 	
 	public void useBlender(int source, int goal) {
-		
+		System.out.println(source + " blender " + goal);
 	}
 	
 	
-	public void editInBuildMode(int atomNumber, int moleculeNumber, int RBNumber, int PUNumber, boolean isLinear, boolean isSpinning, int length, int difficultyLevel) {
-		System.out.println(atomNumber + " " + moleculeNumber + " " +RBNumber + " " + PUNumber + " " + isLinear +  " " + isSpinning + " " + length + " " + difficultyLevel);
-
-		this.settings.setAtomNumber(atomNumber);
-		this.settings.setMoleculeNumber(moleculeNumber);
-		this.settings.setReactionBlockerNumber(RBNumber);
-		this.settings.setPowerUpNumber(PUNumber);
-		this.settings.setLinear(isLinear);
-		this.settings.setSpinning(isSpinning);
-		this.settings.setLengthUnit(length);
-		this.settings.setDifficultyLevel(difficultyLevel);
+	public void editInBuildMode(int atomNumber, int moleculeNumber, int reactionBlockerNumber, int powerUpNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel) {
+		this.settings = new Settings(atomNumber, moleculeNumber, reactionBlockerNumber, powerUpNumber, isLinear, isSpinning,  lengthUnit, difficultyLevel);
+	}
+	
+	public void startGame() {
+		Game.getInstance().startGame(this);
 	}
 	
 	

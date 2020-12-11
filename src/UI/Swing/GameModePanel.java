@@ -5,27 +5,27 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import Domain.GameController;
+import UI.IObserver;
 import UI.ImageResizer;
 import UI.GameObjectImages.GameObjectImageCreator;
 
 
 @SuppressWarnings("serial")
-public class GameModePanel extends JPanel {
+public class GameModePanel extends JPanel implements IObserver{
 	
 	private GameController GC;
 	private boolean isPaused = false;
@@ -45,13 +45,13 @@ public class GameModePanel extends JPanel {
 	private JLabel currentHealthLabel = new JLabel();
 	private JLabel blenderLabel = new JLabel();
 	
-	private JButton alphaPUButton = new JButton();
+	private JLabel alphaPULabel = new JLabel();
 	private JLabel currentAlphaPULabel = new JLabel("0");
-	private JButton betaPUButton = new JButton();
+	private JLabel betaPULabel = new JLabel();
 	private JLabel currentBetaPULabel = new JLabel("0");
-	private JButton gammaPUButton = new JButton();
+	private JLabel gammaPULabel = new JLabel();
 	private JLabel currentGammaPULabel = new JLabel("0");
-	private JButton sigmaPUButton = new JButton();
+	private JLabel sigmaPULabel = new JLabel();
 	private JLabel currentSigmaPULabel = new JLabel("0");
 	
 	private JLabel alphaAtomLabel = new JLabel();
@@ -75,7 +75,7 @@ public class GameModePanel extends JPanel {
 		
 		this.setLayout(new GridBagLayout());
 		this.setSidePanelImages();
-		this.setCurrentAtomNumbers();
+		this.setSidePanel();
 		
 		/*
 		 * player panel design
@@ -113,29 +113,69 @@ public class GameModePanel extends JPanel {
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		alphaPUButton.addActionListener(this.powerUpButtonListener);
-		powerUpPanel.add(alphaPUButton, c);
+		alphaPULabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!isPaused) {
+					GC.getPowerUpOnBarrel(1);
+					ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+				} else {
+					pausePanel.requestFocus();
+				}
+			}
+		});
+		powerUpPanel.add(alphaPULabel, c);
 		c.gridx = 1;
 		powerUpPanel.add(currentAlphaPULabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 1;
-		betaPUButton.addActionListener(this.powerUpButtonListener);
-		powerUpPanel.add(betaPUButton, c);
+		betaPULabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!isPaused) {
+					GC.getPowerUpOnBarrel(2);
+					ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+				} else {
+					pausePanel.requestFocus();
+				}
+			}
+		});
+		powerUpPanel.add(betaPULabel, c);
 		c.gridx = 1;
 		powerUpPanel.add(currentBetaPULabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 2;
-		gammaPUButton.addActionListener(this.powerUpButtonListener);
-		powerUpPanel.add(gammaPUButton, c);
+		gammaPULabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!isPaused) {
+					GC.getPowerUpOnBarrel(3);
+					ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+				} else {
+					pausePanel.requestFocus();
+				}
+			}
+		});
+		powerUpPanel.add(gammaPULabel, c);
 		c.gridx = 1;
 		powerUpPanel.add(currentGammaPULabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 3;
-		sigmaPUButton.addActionListener(this.powerUpButtonListener);
-		powerUpPanel.add(sigmaPUButton, c);
+		sigmaPULabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!isPaused) {
+					GC.getPowerUpOnBarrel(4);
+					ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+				} else {
+					pausePanel.requestFocus();
+				}
+			}
+		});
+		powerUpPanel.add(sigmaPULabel, c);
 		c.gridx = 1;
 		powerUpPanel.add(currentSigmaPULabel, c);
 		
@@ -151,43 +191,53 @@ public class GameModePanel extends JPanel {
 		
 		c.gridx = 0;
 		c.gridy = 1;
-		atomPanel.add(alphaAtomLabel, c);
-		c.gridx = 1;
 		atomPanel.add(currentAlphaAtomLabel, c);
+		c.gridx = 1;
+		atomPanel.add(alphaAtomLabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 2;
-		atomPanel.add(betaAtomLabel, c);
-		c.gridx = 1;
 		atomPanel.add(currentBetaAtomLabel, c);
+		c.gridx = 1;
+		atomPanel.add(betaAtomLabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 3;
-		atomPanel.add(gammaAtomLabel, c);
-		c.gridx = 1;
 		atomPanel.add(currentGammaAtomLabel, c);
+		c.gridx = 1;
+		atomPanel.add(gammaAtomLabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 4;
-		atomPanel.add(sigmaAtomLabel, c);
-		c.gridx = 1;
 		atomPanel.add(currentSigmaAtomLabel, c);
+		c.gridx = 1;
+		atomPanel.add(sigmaAtomLabel, c);
 		
 		/*
 		 * side panel design
 		 */
-		//Dimension screenSize = ScreenCoordinator.getInstance().getMainFrame().getSize();
-		
-		sidePanel.setMaximumSize(new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight()));
-		sidePanel.setMinimumSize(new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight()));
-		sidePanel.setPreferredSize(new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight()));
+		sidePanel.setMaximumSize((new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight())));
+		sidePanel.setMinimumSize((new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight())));
+		sidePanel.setPreferredSize((new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight())));
 		sidePanel.setSize((new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight())));
 		sidePanel.setBorder(new LineBorder(new Color(0.0f, 0.0f, 0.0f, 0.5f), 2));
 		sidePanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
-		sidePanel.setLayout(new GridLayout(3,0));
-		sidePanel.add(playerPanel);
-		sidePanel.add(powerUpPanel);
-		sidePanel.add(atomPanel);
+		sidePanel.setLayout(new GridBagLayout());
+		
+		c.insets = new Insets(0, 0, 0, 0);
+		c.fill = GridBagConstraints.BOTH;
+		c.weightx = 1;
+		c.weighty = 1;
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		sidePanel.add(playerPanel, c);
+		
+		c.gridy = 1;
+		sidePanel.add(powerUpPanel, c);
+		
+		c.gridy = 2;
+		sidePanel.add(atomPanel, c);
 		
 		background.add(mainGamePanel);
 		background.add(sidePanel, BorderLayout.LINE_END);
@@ -200,7 +250,7 @@ public class GameModePanel extends JPanel {
 		this.mainGamePanel.initialize();
 	}
 	
-	private void setCurrentAtomNumbers() {
+	private void setSidePanel() {
 		currentAlphaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
 		currentBetaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
 		currentGammaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
@@ -209,35 +259,36 @@ public class GameModePanel extends JPanel {
 
 	private void setSidePanelImages() {
 		try {
+			Dimension screenSize = ScreenCoordinator.SCREEN_SIZE;
 			
 		    Image img = ImageIO.read(getClass().getResource("../../Images/powerups/+alpha-b.png"));
-		    img = ImageResizer.getResizedImage(img, 50, 50);
-		    alphaPUButton.setIcon(new ImageIcon(img));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1700), (int) (img.getHeight(this) * screenSize.getHeight()/1700));
+		    alphaPULabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+beta-b.png"));
-		    img = ImageResizer.getResizedImage(img, 50, 50);
-		    betaPUButton.setIcon(new ImageIcon(img));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1700), (int) (img.getHeight(this) * screenSize.getHeight()/1700));
+		    betaPULabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+gamma-b.png"));
-		    img = ImageResizer.getResizedImage(img, 50, 50);
-		    gammaPUButton.setIcon(new ImageIcon(img));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1700), (int) (img.getHeight(this) * screenSize.getHeight()/1700));
+		    gammaPULabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+sigma-b.png"));
-		    img = ImageResizer.getResizedImage(img, 50, 50);
-		    sigmaPUButton.setIcon(new ImageIcon(img));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1700), (int) (img.getHeight(this) * screenSize.getHeight()/1700));
+		    sigmaPULabel.setIcon(new ImageIcon(img));
 		    
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/alpha.png"));
-		    img = ImageResizer.getResizedImage(img, 35, 35);
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1000), (int) (img.getHeight(this) * screenSize.getHeight()/1000));
 		    alphaAtomLabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/beta.png"));
-		    img = ImageResizer.getResizedImage(img, 35, 35);
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1000), (int) (img.getHeight(this) * screenSize.getHeight()/1000));
 		    betaAtomLabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/gamma.png"));
-		    img = ImageResizer.getResizedImage(img, 35, 35);
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1000), (int) (img.getHeight(this) * screenSize.getHeight()/1000));
 		    gammaAtomLabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/sigma.png"));
-		    img = ImageResizer.getResizedImage(img, 35, 35);
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1000), (int) (img.getHeight(this) * screenSize.getHeight()/1000));
 		    sigmaAtomLabel.setIcon(new ImageIcon(img));
 		    
 		    img = ImageIO.read(getClass().getResource("../../Images/mixer.png"));
-		    img = ImageResizer.getResizedImage(img, 35, 35);
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/6000), (int) (img.getHeight(this) * screenSize.getHeight()/6000));
 		    blenderLabel.setIcon(new ImageIcon(img));
 			
 		} catch (Exception ex) {
@@ -259,64 +310,47 @@ public class GameModePanel extends JPanel {
 		this.mainGamePanel.repaint();
 	}
 	
-	
-	private KeyListener runningModeListener = new KeyListener() {
+	private KeyListener runningModeListener = new KeyAdapter() {
+		int firstEventCode = 0; //initially 0 since there is no key event code 0
+		int secondEventCode = 0; //initially 0 since there is no key event code 0
+		int currentEventCode = 0; //initially 0 since there is no key event code 0
 		
 		@Override
 		public void keyPressed(KeyEvent e) {
+			currentEventCode = e.getKeyCode();
 			
-			switch(e.getKeyCode()) {
-			
-				case KeyEvent.VK_UP: //shoot atom-powerUp
-					//GC.shoot();
-					break;
-			
-				case KeyEvent.VK_LEFT: //move shooter left
-					GC.moveShooter(0);
-					break;
-					
-				case KeyEvent.VK_RIGHT: //move shooter right
-					GC.moveShooter(1);
-					break;
-					
-				case KeyEvent.VK_A: //rotate shooter left
-					GC.rotateShooter(0);
-					break;
-					
-				case KeyEvent.VK_D: //rotate shooter right
-					GC.rotateShooter(1);
-					break;
-					
-				case KeyEvent.VK_C: //change atom on shooter
-					GC.changeAtomOnBarrel();
-					break;
-					
-				case KeyEvent.VK_P: //pause game
-					GC.pauseGame();
-					displayPausePanel();
-					pausePanel.requestFocus();
-					isPaused = true;
-					break;
-					
-				case KeyEvent.VK_B: //use blender
-					//GC.useBlender();
-					break;
-					
-				default:
-					break;
-				
+			if(firstEventCode == KeyEvent.VK_B) {
+				if(secondEventCode == KeyEvent.VK_1 || secondEventCode == KeyEvent.VK_2 || secondEventCode == KeyEvent.VK_3 || secondEventCode == KeyEvent.VK_4) {
+					if(currentEventCode == KeyEvent.VK_1 || currentEventCode == KeyEvent.VK_2 || currentEventCode == KeyEvent.VK_3 || currentEventCode == KeyEvent.VK_4) {
+						GC.useBlender(secondEventCode - 48, currentEventCode - 48); //since event code of key 1 is 49 and it is ordered
+					}
+				}
+			} else if(currentEventCode == KeyEvent.VK_UP) { //shoot atom/powerUp
+				//GC.shoot();
+			} else if(currentEventCode == KeyEvent.VK_LEFT) { //move shooter left
+				GC.moveShooter(0);
+			} else if(currentEventCode == KeyEvent.VK_RIGHT) { //move shooter right
+				GC.moveShooter(1);
+			} else if(currentEventCode == KeyEvent.VK_A) { //rotate shooter left
+				GC.rotateShooter(0);
+			} else if(currentEventCode == KeyEvent.VK_D) { //rotate shooter right
+				GC.rotateShooter(1);
+			} else if(currentEventCode == KeyEvent.VK_C) { //change atom on barrel
+				GC.changeAtomOnBarrel();
+			} else if(currentEventCode == KeyEvent.VK_P) { //pause game
+				GC.pauseGame();
+				displayPausePanel();
+				pausePanel.requestFocus();
+				isPaused = true;
 			}
+			
+			firstEventCode = secondEventCode;
+			secondEventCode = currentEventCode;
 		}
-		
-		@Override
-		public void keyTyped(KeyEvent e) {}
-
-		@Override
-		public void keyReleased(KeyEvent e) {}
 
 	};
 	
-	private KeyListener pausePanelListener = new KeyListener() {
+	private KeyListener pausePanelListener = new KeyAdapter() {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
@@ -338,36 +372,12 @@ public class GameModePanel extends JPanel {
 			
 		}
 		
-		@Override
-		public void keyTyped(KeyEvent e) {}
-
-		@Override
-		public void keyReleased(KeyEvent e) {}
-		
 	};
 	
 	
-	private ActionListener powerUpButtonListener = new ActionListener() {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			if(isPaused) {
-				pausePanel.requestFocus();
-			} else {
-				if(e.getSource() == alphaPUButton) {
-					
-				} else if(e.getSource() == betaPUButton) {
-					
-				} else if(e.getSource() == gammaPUButton) {
-					
-				} else if(e.getSource() == sigmaPUButton) {
-					
-				}
-				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();				
-			}
-			
-		}
-		
-	};
+	@Override
+	public void update() {
+		this.setSidePanel();
+	}
 	
 }
