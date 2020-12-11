@@ -3,6 +3,7 @@ package UI.Swing;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -62,6 +63,8 @@ public class GameModePanel extends ModePanel {
 	private JLabel currentGammaAtomLabel = new JLabel();
 	private JLabel sigmaAtomLabel = new JLabel();
 	private JLabel currentSigmaAtomLabel = new JLabel();
+	
+	private PausePanel pausePanel = new PausePanel();
 	
 	MainGamePanel mainGamePanel = MainGamePanel.getInstance();
 	
@@ -242,6 +245,20 @@ public class GameModePanel extends ModePanel {
 		}
 	}
 	
+	public void displayPausePanel() {
+		pausePanel.addKeyListener(pausePanelListener);
+		this.mainGamePanel.add(pausePanel);
+		this.mainGamePanel.validate();
+		this.mainGamePanel.repaint();
+	}
+	
+	public void removePausePanel() {
+		pausePanel.removeKeyListener(pausePanelListener);
+		this.mainGamePanel.remove(pausePanel);
+		this.mainGamePanel.validate();
+		this.mainGamePanel.repaint();
+	}
+	
 	
 	private KeyListener keyListener = new KeyListener() {
 		
@@ -252,8 +269,7 @@ public class GameModePanel extends ModePanel {
 			switch(e.getKeyCode()) {
 			
 				case KeyEvent.VK_UP: //shoot atom-powerUp
-					//GC.shootAtom();
-					//GC.shootPowerUp();
+					GC.shoot();
 					break;
 			
 				case KeyEvent.VK_LEFT: //move shooter left
@@ -273,21 +289,13 @@ public class GameModePanel extends ModePanel {
 					break;
 					
 				case KeyEvent.VK_C: //change atom on shooter
+					GC.changeAtomOnBarrel();
 					break;
 					
 				case KeyEvent.VK_P: //pause game
 					GC.pauseGame();
-					
-					break;
-					
-				case KeyEvent.VK_R: //resume game
-					GC.resumeGame();
-					break;
-				
-				case KeyEvent.VK_S: //save game
-					break;
-					
-				case KeyEvent.VK_L: //load game
+					displayPausePanel();
+					pausePanel.requestFocus();
 					break;
 					
 				case KeyEvent.VK_B: //use blender
@@ -301,17 +309,40 @@ public class GameModePanel extends ModePanel {
 		}
 		
 		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+		public void keyTyped(KeyEvent e) {}
 
 		@Override
-		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
+		public void keyReleased(KeyEvent e) {}
+
+	};
+	
+	private KeyListener pausePanelListener = new KeyListener() {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			
+			if(e.getKeyCode() == KeyEvent.VK_R) {
+				GC.resumeGame();
+				removePausePanel();
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_S) {
+				//save game
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_L) {
+				//load game
+			}
 			
 		}
+		
+		@Override
+		public void keyTyped(KeyEvent e) {}
 
+		@Override
+		public void keyReleased(KeyEvent e) {}
+		
 	};
 	
 	
@@ -336,7 +367,7 @@ public class GameModePanel extends ModePanel {
 	};
 
 
-	@Override
+	/*@Override
 	public void removeListeners() {
 		this.removeKeyListener(keyListener);
 		this.alphaPUButton.removeActionListener(actionListener);
@@ -345,5 +376,11 @@ public class GameModePanel extends ModePanel {
 		this.sigmaPUButton.removeActionListener(actionListener);
 		this.setFocusable(false);
 	}
+
+	@Override
+	public void addListeners() {
+		// TODO Auto-generated method stub
+		
+	}*/
 	
 }
