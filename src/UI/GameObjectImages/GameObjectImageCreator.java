@@ -32,7 +32,7 @@ public class GameObjectImageCreator {
 	private static final String GAMMA_POWERUP_IMAGE = "../../Images/powerups/+gamma-b.png";
 	private static final String SIGMA_POWERUP_IMAGE = "../../Images/powerups/+sigma-b.png";
 	
-	private int L = 100;
+	private int L;
 	
 	
 	private GameObjectImageCreator() {
@@ -49,6 +49,11 @@ public class GameObjectImageCreator {
 	}
 	
 	
+	public void setLengthUnit(int L) {
+		this.L = L;
+	}
+	
+	
 	public Image getAtomImage(int type) {
 		Image image = null;
 		
@@ -62,7 +67,7 @@ public class GameObjectImageCreator {
 			image = new ImageIcon(getClass().getResource(SIGMA_ATOM_IMAGE)).getImage();
 		}
 		
-		image = ImageResizer.getResizedImage(image, L, L);
+		image = ImageResizer.getResizedImage(image, L / 10, L / 10);
 		
 		return image;
 	}
@@ -89,7 +94,7 @@ public class GameObjectImageCreator {
 			image = new ImageIcon(getClass().getResource(SIGMA_MOLECULE_IMAGE)).getImage();
 		}
 		
-		image = ImageResizer.getResizedImage(image, L, L);
+		image = ImageResizer.getResizedImage(image, L / 4, L / 4);
 		
 		return image;
 	}
@@ -108,7 +113,7 @@ public class GameObjectImageCreator {
 			image = new ImageIcon(getClass().getResource(SIGMA_RB_IMAGE)).getImage();
 		}
 		
-		image = ImageResizer.getResizedImage(image, L, L);
+		image = ImageResizer.getResizedImage(image, L / 4, L / 4);
 		
 		return image;
 	}
@@ -127,7 +132,7 @@ public class GameObjectImageCreator {
 			image = new ImageIcon(getClass().getResource(SIGMA_POWERUP_IMAGE)).getImage();
 		}
 		
-		image = ImageResizer.getResizedImage(image, L, L);
+		image = ImageResizer.getResizedImage(image, L / 4, L / 4);
 		
 		return image;
 	}

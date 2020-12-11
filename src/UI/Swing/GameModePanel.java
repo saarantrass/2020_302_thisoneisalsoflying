@@ -21,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import Domain.GameController;
 import UI.ImageResizer;
+import UI.GameObjectImages.GameObjectImageCreator;
 
 
 @SuppressWarnings("serial")
@@ -65,14 +66,12 @@ public class GameModePanel extends JPanel {
 	private MainGamePanel mainGamePanel = MainGamePanel.getInstance();
 	private PausePanel pausePanel = new PausePanel();
 	
-	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	
-	
 	public GameModePanel(GameController GC) {
 		
 		setFocusTraversalKeysEnabled(false);
 		
 		this.GC = GC;
+		
 		
 		this.setLayout(new GridBagLayout());
 		this.setSidePanelImages();
@@ -177,9 +176,12 @@ public class GameModePanel extends JPanel {
 		/*
 		 * side panel design
 		 */
-		sidePanel.setMaximumSize(new Dimension((int) this.screenSize.getWidth() / 8, this.getHeight()));
-		sidePanel.setMinimumSize(new Dimension((int) this.screenSize.getWidth() / 8, this.getHeight()));
-		sidePanel.setPreferredSize(new Dimension((int) this.screenSize.getWidth() / 8, this.getHeight()));
+		//Dimension screenSize = ScreenCoordinator.getInstance().getMainFrame().getSize();
+		
+		sidePanel.setMaximumSize(new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight()));
+		sidePanel.setMinimumSize(new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight()));
+		sidePanel.setPreferredSize(new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight()));
+		sidePanel.setSize((new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight())));
 		sidePanel.setBorder(new LineBorder(new Color(0.0f, 0.0f, 0.0f, 0.5f), 2));
 		sidePanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
 		sidePanel.setLayout(new GridLayout(3,0));
@@ -194,6 +196,7 @@ public class GameModePanel extends JPanel {
 		this.setFocusable(true);
 		this.addKeyListener(this.runningModeListener);
 		
+		GameObjectImageCreator.getInstance().setLengthUnit(GC.settings.getLengthUnit());
 		this.mainGamePanel.initialize();
 	}
 	
@@ -265,7 +268,7 @@ public class GameModePanel extends JPanel {
 			switch(e.getKeyCode()) {
 			
 				case KeyEvent.VK_UP: //shoot atom-powerUp
-					GC.shoot();
+					//GC.shoot();
 					break;
 			
 				case KeyEvent.VK_LEFT: //move shooter left

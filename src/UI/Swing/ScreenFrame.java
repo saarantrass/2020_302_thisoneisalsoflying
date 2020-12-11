@@ -2,6 +2,7 @@ package UI.Swing;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 
@@ -13,7 +14,7 @@ public class ScreenFrame extends JFrame{
 	public ScreenFrame() {
 		super("this one is also flying");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setSize(screenSize.width, screenSize.height);
+		this.setSize(1400, 800);
 		this.setResizable(false);
 		this.setLayout(new BorderLayout());
 	}
