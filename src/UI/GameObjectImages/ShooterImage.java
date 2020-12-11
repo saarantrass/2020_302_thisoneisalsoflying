@@ -1,37 +1,39 @@
 package UI.GameObjectImages;
 
+import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 
 import Domain.Player.Shooter;
+import UI.IObserver;
 import UI.ImageResizer;
 import UI.Swing.MainGamePanel;
 
 @SuppressWarnings("serial")
-public class ShooterImage extends GameObjectImage {
+public class ShooterImage extends Canvas implements IObserver{
+	
+	protected int x;
+	protected int y;
+	protected Image image;
 	
 	private static final String SHOOTER_IMAGE = "../../Images/shooter.png";
 	private Shooter shooter;
 	private int L = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 10); //TODO
 	
 	public ShooterImage(Shooter shooter, int x, int y) {
-		super(0, x, y);
-		setImageName(0);
+		super();
+		this.x = x;
+		this.y = y;
 		this.shooter = shooter;
 		this.shooter.add(this);
-		this.image = new ImageIcon(getClass().getResource(this.imageName)).getImage();
+		this.image = new ImageIcon(getClass().getResource(SHOOTER_IMAGE)).getImage();
 		this.image = ImageResizer.getResizedImage(image, L/2, L);
 	}
 	
-
-	@Override
-	public void setImageName(int type) {	
-		this.imageName = SHOOTER_IMAGE;	
-	}
-
 	
 	@Override
 	public void paint(Graphics g) {

@@ -1,16 +1,11 @@
 package Domain.GameObjects;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.List;
-import Domain.IObservable;
-import UI.IObserver;
 
-public class ReactionBlocker implements IObservable{
+public class ReactionBlocker {
 	
 	public int reactionBlockerID;
 	private Point coordinate;
-	private List<IObserver> observers = new ArrayList<IObserver>();
 	//TODO change speed to true
 	private int xSpeed = 0;
 	private int ySpeed = 5;
@@ -29,7 +24,6 @@ public class ReactionBlocker implements IObservable{
 		//TODO check screen borders
 		this.coordinate.x += xSpeed;
 		this.coordinate.y += ySpeed;
-		publish();
 	}
 	
 	public Point getCoordinate() {
@@ -40,23 +34,4 @@ public class ReactionBlocker implements IObservable{
 	public int getReactionBlockerID() {
 		return this.reactionBlockerID;
 	}
-
-
-	@Override
-	public void add(IObserver o) {
-		this.observers.add(o);
-	}
-
-
-	@Override
-	public void remove(IObserver o) {
-		this.observers.remove(o);
-	}
-
-
-	@Override
-	public void publish() {
-		for(IObserver o: this.observers) o.update();
-	}
-	
 }
