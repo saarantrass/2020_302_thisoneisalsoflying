@@ -27,7 +27,7 @@ public class MoleculeImage extends GameObjectImage{
 		this.molecule = molecule;
 		this.molecule.add(this);
 		this.image = new ImageIcon(getClass().getResource(this.imageName)).getImage();
-		this.image = ImageResizer.getResizedImage(image, L / 4, L / 4);
+		this.image = ImageResizer.getResizedImage(image, L, L );
 	}
 	
 

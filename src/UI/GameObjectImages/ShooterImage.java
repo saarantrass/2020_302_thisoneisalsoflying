@@ -35,7 +35,7 @@ public class ShooterImage extends GameObjectImage {
 	
 	@Override
 	public void paint(Graphics g) {
-		Graphics2D g2d = (Graphics2D) g;
+		Graphics2D g2d = (Graphics2D)g.create();
 		g2d.rotate(Math.toRadians(shooter.getAngle()), shooter.getCoordinate().x + L/4, shooter.getCoordinate().y +L);
 	    g2d.drawImage(this.image, this.x, this.y, this);
 	}
