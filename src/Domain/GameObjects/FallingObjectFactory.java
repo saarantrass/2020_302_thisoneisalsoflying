@@ -1,23 +1,31 @@
 package Domain.GameObjects;
+import java.awt.Point;
+
 import Domain.GameObjects.*;
 
 public class FallingObjectFactory {
 	private int currentMoleculeNumber ;
 	private int currentPowerUpNumber ;
 	private int currentReactionBlockerNumber ;
-	//private static FallingObjectFactory singleton;
+	private static FallingObjectFactory singleton;
 	
-	public void create(int type ) {
-		
+	public Molecule getNewMolecule(int type, Point coords, boolean isSpinning, boolean isLinear) {
+		return new Molecule(type, coords, isSpinning, isLinear);
 	}
 	
+	public PowerUp getNewPowerUp(int type, Point coords) {
+		return new PowerUp(type, coords);
+	}
 	
-	/*
+	public ReactionBlocker getNewReactionBlocker(int type, Point coords) {
+		return new ReactionBlocker(type, coords);
+	}
+	
 	public static FallingObjectFactory getInstance(){
         if (singleton == null){
             singleton = new FallingObjectFactory();
         }
         return singleton;
     }
-    */
+    
 }

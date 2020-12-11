@@ -12,8 +12,8 @@ public class ReactionBlocker implements IObservable{
 	private Point coordinate;
 	private List<IObserver> observers = new ArrayList<IObserver>();
 	//TODO change speed to true
-	private int xSpeed = 1;
-	private int ySpeed = 1;
+	private int xSpeed = 0;
+	private int ySpeed = 5;
 	
 	public ReactionBlocker (int reactionBlockerID, Point coordinate) {
 		this.reactionBlockerID = reactionBlockerID;

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Domain.GameObjects.Atom;
+import Domain.GameObjects.FallingObjectFactory;
 import Domain.GameObjects.Molecule;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
@@ -38,7 +39,16 @@ public class Game implements IObservable{
 		mainGameLoop = new Thread(() -> {
 			while (true) {
 				//TODO call functions from game controller
-				this.continueGame();
+				if(!this.isPaused) {
+					this.continueGame();
+				}else {
+					try {
+						Thread.sleep(100);
+	                } catch(InterruptedException e) {
+	                    // nothing
+	                }
+				}
+				
 				System.out.println("Mols: " + this.onScreenMoleculeList);
 				System.out.println("Powss: " + this.onScreenPowerUpList);
 				System.out.println("blockers: " + this.onScreenReactionBlockerList);
@@ -60,6 +70,7 @@ public class Game implements IObservable{
 				
 			}
 		});
+		
 	}
 	
 	
@@ -83,17 +94,18 @@ public class Game implements IObservable{
 	private void createRandomFallingObject() {
 		int next = (int) (Math.random() * 2);
 		int type = (int) (1 + (Math.random() * 3));
+		int xCoord = (int) (Math.random() * (screenSize.width * 7 / 8)) - 30;
 		switch (next) {
 		case 0:
-			Molecule newMol = new Molecule(type , new Point(100, 0), true, false);
+			Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, 0), true, false);
 			onScreenMoleculeList.add(newMol);
 			break;
 		case 1:
-			PowerUp newPw = new PowerUp(type, new Point(0,0));
+			PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, 0));
 			onScreenPowerUpList.add(newPw);
 			break;
 		case 2:
-			ReactionBlocker bl = new ReactionBlocker(type, new Point(0,0));
+			ReactionBlocker bl = FallingObjectFactory.getInstance().getNewReactionBlocker(type, new Point(xCoord, 0));
 			onScreenReactionBlockerList.add(bl);
 			break;
 
@@ -141,17 +153,15 @@ public class Game implements IObservable{
 	}
 
 
-	@SuppressWarnings("deprecation")
 	public void pauseGame() {
 		this.isPaused = true;
-		this.mainGameLoop.stop();
+		//this.mainGameLoop.stop();
 		publish();
 	}
 	
-	@SuppressWarnings("removal")
 	public void resumeGame() {
 		this.isPaused = false;
-		this.mainGameLoop.resume();
+		//this.mainGameLoop.start();
 		publish();
 	}
 	
