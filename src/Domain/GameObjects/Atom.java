@@ -6,11 +6,10 @@ import java.util.List;
 import Domain.IObservable;
 import UI.IObserver;
 
-public class Atom implements IObservable{
+public class Atom {
 	
 	public int atomID;
 	private Point coordinate;
-	private List<IObserver> observers = new ArrayList<IObserver>();
 	//TODO change speed to true
 	private int xSpeed = 1;
 	private int ySpeed = 1;
@@ -36,7 +35,6 @@ public class Atom implements IObservable{
 		//TODO check screen borders
 		this.coordinate.x += xSpeed;
 		this.coordinate.y += ySpeed;
-		publish();
 	}
 	
 	public Point getCoordinate() {
@@ -46,24 +44,6 @@ public class Atom implements IObservable{
 	
 	public int getAtomID() {
 		return this.atomID;
-	}
-	
-	
-	@Override
-	public void add(IObserver o) {
-		this.observers.add(o);
-	}
-	
-	
-	@Override
-	public void remove(IObserver o) {
-		this.observers.remove(o);		
-	}
-	
-	
-	@Override
-	public void publish() {
-		for(IObserver o: this.observers) o.update();
 	}
 	
 }

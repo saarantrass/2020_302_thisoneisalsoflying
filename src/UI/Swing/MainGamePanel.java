@@ -2,18 +2,16 @@ package UI.Swing;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
-import java.awt.GridBagLayout;
 import java.awt.Image;
 
 import javax.swing.JPanel;
 
 import Domain.Game;
 import Domain.GameObjects.Molecule;
+import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
 import UI.IObserver;
-import UI.GameObjectImages.GameObjectImage;
-import UI.GameObjectImages.MoleculeImage;
-import UI.GameObjectImages.ReactionBlockerImage;
+import UI.GameObjectImages.GameObjectImageCreator;
 import UI.GameObjectImages.ShooterImage;
 
 @SuppressWarnings("serial")
@@ -44,8 +42,6 @@ public class MainGamePanel extends JPanel implements IObserver{
 		game.getGC().shooter.add(shooterImage);
 		this.setOpaque(false);
 		this.setFocusable(false);
-		
-		
 	}
 	
 	
@@ -53,32 +49,28 @@ public class MainGamePanel extends JPanel implements IObserver{
 	public void paint(Graphics g) {
 		shooterImage.paint(g);
 		
-		for (Molecule mol: Game.getInstance().onScreenMoleculeList) {
-			MoleculeImage img = new MoleculeImage(mol, mol.moleculeID, mol.getCoordinate().x,mol.getCoordinate().y);
-			img.paint(g);
-			//Image moleculeImage = new GameObjectImage.getMoleculeImage(molecule.moleculeID);
-			//g.drawImage(moleculeImage, molecule.getCoordinate().x, molecule.getCoordinate().y, this);
+		for (Molecule molecule: Game.getInstance().onScreenMoleculeList) {
+			Image image = GameObjectImageCreator.getInstance().getMoleculeImage(molecule.moleculeID, false);
+			g.drawImage(image, molecule.getCoordinate().x, molecule.getCoordinate().y, null);
 		}
-		for (ReactionBlocker mol: Game.getInstance().onScreenReactionBlockerList) {
-			ReactionBlockerImage img = new ReactionBlockerImage(mol, mol.reactionBlockerID, mol.getCoordinate().x,mol.getCoordinate().y);
-			img.paint(g);
+		
+		for (ReactionBlocker reactionBlocker: Game.getInstance().onScreenReactionBlockerList) {
+			Image image = GameObjectImageCreator.getInstance().getRBImage(reactionBlocker.reactionBlockerID);
+			g.drawImage(image, reactionBlocker.getCoordinate().x, reactionBlocker.getCoordinate().y, null);
 		}
-		//System.out.println(this.getWidth());
-		//System.out.println(this.getHeight());
+		
+		for (PowerUp powerUp: Game.getInstance().onScreenPowerUpList) {
+			Image image = GameObjectImageCreator.getInstance().getPowerUpImage(powerUp.powerUpID);
+			g.drawImage(image, powerUp.getCoordinate().x, powerUp.getCoordinate().y, null);
+		}
+		
 		super.paint(g);
 	}
 
 
 	@Override
 	public void update() {
-		/*if(Game.getInstance().isPaused) {
-			PausePanel panel = new PausePanel();
-			this.add(panel);
-			System.out.print("heloo");
-			panel.setVisible(true);
-			
-		}*/
-		
+		repaint();	
 	}
 	
 }
