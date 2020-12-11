@@ -57,7 +57,7 @@ public class GameController {
 		
 	}
 	public void resumeGame() {
-		
+		Game.getInstance().resumeGame();
 	}
 	public void shoot() {
 		Game.getInstance().shoot();
