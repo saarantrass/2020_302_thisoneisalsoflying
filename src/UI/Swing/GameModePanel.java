@@ -8,25 +8,27 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
-
 import Domain.GameController;
 import UI.ImageResizer;
+import UI.GameObjectImages.GameObjectImageCreator;
+
 
 @SuppressWarnings("serial")
-public class GameModePanel extends ModePanel {
+public class GameModePanel extends JPanel {
 	
 	private GameController GC;
+	private boolean isPaused = false;
 	
 	private JLabel background  = new Background();
 	
@@ -61,14 +63,15 @@ public class GameModePanel extends ModePanel {
 	private JLabel sigmaAtomLabel = new JLabel();
 	private JLabel currentSigmaAtomLabel = new JLabel();
 	
-	MainGamePanel mainGamePanel = MainGamePanel.getInstance();
-	
+	private MainGamePanel mainGamePanel = MainGamePanel.getInstance();
+	private PausePanel pausePanel = new PausePanel();
 	
 	public GameModePanel(GameController GC) {
 		
 		setFocusTraversalKeysEnabled(false);
 		
 		this.GC = GC;
+		
 		
 		this.setLayout(new GridBagLayout());
 		this.setSidePanelImages();
@@ -110,28 +113,28 @@ public class GameModePanel extends ModePanel {
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		alphaPUButton.addActionListener(this.actionListener);
+		alphaPUButton.addActionListener(this.powerUpButtonListener);
 		powerUpPanel.add(alphaPUButton, c);
 		c.gridx = 1;
 		powerUpPanel.add(currentAlphaPULabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 1;
-		betaPUButton.addActionListener(this.actionListener);
+		betaPUButton.addActionListener(this.powerUpButtonListener);
 		powerUpPanel.add(betaPUButton, c);
 		c.gridx = 1;
 		powerUpPanel.add(currentBetaPULabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 2;
-		gammaPUButton.addActionListener(this.actionListener);
+		gammaPUButton.addActionListener(this.powerUpButtonListener);
 		powerUpPanel.add(gammaPUButton, c);
 		c.gridx = 1;
 		powerUpPanel.add(currentGammaPULabel, c);
 		
 		c.gridx = 0;
 		c.gridy = 3;
-		sigmaPUButton.addActionListener(this.actionListener);
+		sigmaPUButton.addActionListener(this.powerUpButtonListener);
 		powerUpPanel.add(sigmaPUButton, c);
 		c.gridx = 1;
 		powerUpPanel.add(currentSigmaPULabel, c);
@@ -173,9 +176,12 @@ public class GameModePanel extends ModePanel {
 		/*
 		 * side panel design
 		 */
-		sidePanel.setMaximumSize(new Dimension(100, this.getHeight()));
-		sidePanel.setMinimumSize(new Dimension(100, this.getHeight()));
-		sidePanel.setPreferredSize(new Dimension(100, this.getHeight()));
+		//Dimension screenSize = ScreenCoordinator.getInstance().getMainFrame().getSize();
+		
+		sidePanel.setMaximumSize(new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight()));
+		sidePanel.setMinimumSize(new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight()));
+		sidePanel.setPreferredSize(new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight()));
+		sidePanel.setSize((new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight())));
 		sidePanel.setBorder(new LineBorder(new Color(0.0f, 0.0f, 0.0f, 0.5f), 2));
 		sidePanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
 		sidePanel.setLayout(new GridLayout(3,0));
@@ -188,16 +194,17 @@ public class GameModePanel extends ModePanel {
 		
 		this.add(background);
 		this.setFocusable(true);
-		this.addKeyListener(keyListener);
+		this.addKeyListener(this.runningModeListener);
 		
+		GameObjectImageCreator.getInstance().setLengthUnit(GC.settings.getLengthUnit());
 		this.mainGamePanel.initialize();
 	}
 	
 	private void setCurrentAtomNumbers() {
-		//currentAlphaAtomLabel.setText(GC.settings.getAtomNumber());
-		//currentBetaAtomLabel.setText(GC.settings.getAtomNumber());
-		//currentGammaAtomLabel.setText(GC.settings.getAtomNumber());
-		//currentSigmaAtomLabel.setText(GC.settings.getAtomNumber());
+		currentAlphaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
+		currentBetaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
+		currentGammaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
+		currentSigmaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
 	}
 
 	private void setSidePanelImages() {
@@ -238,18 +245,30 @@ public class GameModePanel extends ModePanel {
 		}
 	}
 	
+	public void displayPausePanel() {
+		pausePanel.addKeyListener(pausePanelListener);
+		this.mainGamePanel.add(pausePanel);
+		this.mainGamePanel.validate();
+		this.mainGamePanel.repaint();
+	}
 	
-	private KeyListener keyListener = new KeyListener() {
+	public void removePausePanel() {
+		pausePanel.removeKeyListener(pausePanelListener);
+		this.mainGamePanel.remove(pausePanel);
+		this.mainGamePanel.validate();
+		this.mainGamePanel.repaint();
+	}
+	
+	
+	private KeyListener runningModeListener = new KeyListener() {
 		
 		@Override
 		public void keyPressed(KeyEvent e) {
-			//System.out.println(e);
 			
 			switch(e.getKeyCode()) {
 			
 				case KeyEvent.VK_UP: //shoot atom-powerUp
-					//GC.shootAtom();
-					//GC.shootPowerUp();
+					//GC.shoot();
 					break;
 			
 				case KeyEvent.VK_LEFT: //move shooter left
@@ -269,20 +288,14 @@ public class GameModePanel extends ModePanel {
 					break;
 					
 				case KeyEvent.VK_C: //change atom on shooter
+					GC.changeAtomOnBarrel();
 					break;
 					
 				case KeyEvent.VK_P: //pause game
 					GC.pauseGame();
-					break;
-					
-				case KeyEvent.VK_R: //resume game
-					GC.resumeGame();
-					break;
-				
-				case KeyEvent.VK_S: //save game
-					break;
-					
-				case KeyEvent.VK_L: //load game
+					displayPausePanel();
+					pausePanel.requestFocus();
+					isPaused = true;
 					break;
 					
 				case KeyEvent.VK_B: //use blender
@@ -296,49 +309,65 @@ public class GameModePanel extends ModePanel {
 		}
 		
 		@Override
-		public void keyTyped(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+		public void keyTyped(KeyEvent e) {}
 
 		@Override
-		public void keyReleased(KeyEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+		public void keyReleased(KeyEvent e) {}
 
 	};
 	
+	private KeyListener pausePanelListener = new KeyListener() {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			
+			if(e.getKeyCode() == KeyEvent.VK_R) {
+				GC.resumeGame();
+				removePausePanel();
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+				isPaused = false;
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_S) {
+				//save game
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_L) {
+				//load game
+			}
+			
+		}
+		
+		@Override
+		public void keyTyped(KeyEvent e) {}
+
+		@Override
+		public void keyReleased(KeyEvent e) {}
+		
+	};
 	
-	private ActionListener actionListener = new ActionListener() {
+	
+	private ActionListener powerUpButtonListener = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(e.getSource() == alphaPUButton) {
-				
-				
-			} else if(e.getSource() == betaPUButton) {
-				
-			} else if(e.getSource() == gammaPUButton) {
-				
-			} else if(e.getSource() == sigmaPUButton) {
-				
+			if(isPaused) {
+				pausePanel.requestFocus();
+			} else {
+				if(e.getSource() == alphaPUButton) {
+					
+				} else if(e.getSource() == betaPUButton) {
+					
+				} else if(e.getSource() == gammaPUButton) {
+					
+				} else if(e.getSource() == sigmaPUButton) {
+					
+				}
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();				
 			}
 			
-			ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 		}
 		
 	};
-
-
-	@Override
-	public void removeListeners() {
-		this.removeKeyListener(keyListener);
-		this.alphaPUButton.removeActionListener(actionListener);
-		this.betaPUButton.removeActionListener(actionListener);
-		this.gammaPUButton.removeActionListener(actionListener);
-		this.sigmaPUButton.removeActionListener(actionListener);
-		this.setFocusable(false);
-	}
 	
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Domain.GameObjects.Atom;
+import Domain.GameObjects.FallingObjectFactory;
 import Domain.GameObjects.Molecule;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
@@ -18,7 +19,7 @@ public class Game implements IObservable{
 	private Thread mainGameLoop;
 	private static Game game_instance = null;
 	private List<IObserver> observers = new ArrayList<IObserver>();
-	
+	public boolean isPaused = false;
 	public ArrayList<Atom> onScreenAtomList = new ArrayList<>();
 	public ArrayList<Molecule> onScreenMoleculeList = new ArrayList<>();
 	public ArrayList<PowerUp> onScreenPowerUpList = new ArrayList<>();
@@ -37,10 +38,20 @@ public class Game implements IObservable{
 		mainGameLoop = new Thread(() -> {
 			while (true) {
 				//TODO call functions from game controller
-				this.continueGame();
+				if(!this.isPaused) {
+					this.continueGame();
+				}else {
+					try {
+						Thread.sleep(100);
+	                } catch(InterruptedException e) {
+	                    // nothing
+	                }
+				}
+				
 				System.out.println("Mols: " + this.onScreenMoleculeList);
 				System.out.println("Powss: " + this.onScreenPowerUpList);
 				System.out.println("blockers: " + this.onScreenReactionBlockerList);
+				
 				
 				
 				//to prevent crash
@@ -59,6 +70,7 @@ public class Game implements IObservable{
 				
 			}
 		});
+		
 	}
 	
 	
@@ -77,22 +89,24 @@ public class Game implements IObservable{
 			createRandomFallingObject();
 		}
 		moveThemAll();
+		this.publish();
 	}
 	
 	private void createRandomFallingObject() {
-		int next = (int) (Math.random() * 3);
-		int type = (int) ((Math.random() * 4));
+		int next = (int) (Math.random() * 2);
+		int type = (int) (1 + (Math.random() * 3));
+		int xCoord = (int) (Math.random() * (screenSize.width * 7 / 8)) - 30;
 		switch (next) {
 		case 0:
-			Molecule newMol = new Molecule(type , new Point(100, 0), true, false);
+			Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, 0), true, false);
 			onScreenMoleculeList.add(newMol);
 			break;
 		case 1:
-			PowerUp newPw = new PowerUp(type, new Point(0,0));
+			PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, 0));
 			onScreenPowerUpList.add(newPw);
 			break;
 		case 2:
-			ReactionBlocker bl = new ReactionBlocker(type, new Point(0,0));
+			ReactionBlocker bl = FallingObjectFactory.getInstance().getNewReactionBlocker(type, new Point(xCoord, 0));
 			onScreenReactionBlockerList.add(bl);
 			break;
 
@@ -138,9 +152,15 @@ public class Game implements IObservable{
 		this.barrelAtom = null;
 		this.barrelPowerUp = new PowerUp(type, new Point(0,0), true); //TODO Inventory checks and coordinates to shooter end
 	}
+
+
+	public void pauseGame() {
+		this.isPaused = true;
+	}
 	
-	@SuppressWarnings("deprecation")
-	public void pauseGame() {this.mainGameLoop.stop();}
+	public void resumeGame() {
+		this.isPaused = false;
+	}
 	
 	public void startGame(GameController GC){
 		this.GC = GC;
@@ -150,7 +170,6 @@ public class Game implements IObservable{
 	@Override
 	public void add(IObserver o) {
 		this.observers.add(o);
-		publish(); //tODO
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package Domain;
 
 public class Settings {
 	
-	private double lengthUnit;
+	private int lengthUnit;
 	private int difficultyLevel;
 	private boolean isLinear;
 	private boolean isSpinning;
@@ -12,10 +12,10 @@ public class Settings {
 	private int reactionBlockerNumber;
 	private float atomSpeed;
 	
-	public double getLengthUnit() {
+	public int getLengthUnit() {
 		return lengthUnit;
 	}
-	public void setLengthUnit(double lengthUnit) {
+	public void setLengthUnit(int lengthUnit) {
 		this.lengthUnit = lengthUnit;
 	}
 	public int getDifficultyLevel() {

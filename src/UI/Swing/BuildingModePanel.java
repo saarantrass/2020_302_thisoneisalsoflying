@@ -1,8 +1,10 @@
 package UI.Swing;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -19,7 +21,7 @@ import javax.swing.border.TitledBorder;
 import Domain.GameController;
 
 @SuppressWarnings("serial")
-public class BuildingModePanel extends ModePanel{
+public class BuildingModePanel extends JPanel{
 
 	private GameController GC;
 	
@@ -41,7 +43,7 @@ public class BuildingModePanel extends ModePanel{
 	private JTextField moleculeNumberField = new JTextField("100", 5);
 	private JTextField RBNumberField = new JTextField("10", 5);
 	private JTextField PUNumberField = new JTextField("20", 5);
-	private JTextField unitLengthField = new JTextField("10", 5);
+	private JTextField unitLengthField = new JTextField(5);
 	
 	private JCheckBox linearCheckBox = new JCheckBox("Linear");
 	
@@ -133,6 +135,7 @@ public class BuildingModePanel extends ModePanel{
 		difficultyLevelGroup.add(hardButton);
 		easyButton.setSelected(true);
 		
+		unitLengthField.setText(Integer.toString((int)(this.background.getHeight() / 10)));
 		c.gridx = 0;
 		c.gridy = 0;
 		gameEssentialsPanel.add(unitLengthLabel, c);
@@ -233,13 +236,5 @@ public class BuildingModePanel extends ModePanel{
 		}
 		
 	};
-
-
-	@Override
-	public void removeListeners() {
-		linearCheckBox.removeItemListener(this.itemListener);
-		startGameButton.removeActionListener(this.actionListener);
-		this.setFocusable(false);
-	}
 
 }

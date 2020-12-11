@@ -22,8 +22,8 @@ public class Inventory {
 		inventoryPowerUp.put(2, 0);
 		inventoryPowerUp.put(3, 0);
 	}
-	public boolean checkAtomAvailability(int num) {
-		if(inventoryAtom.get(num)>0) {
+	public boolean checkAtomAvailability(int num, int howmany) {
+		if(inventoryAtom.get(num) > howmany) {
 			return true;
 		}else {
 			return false;
