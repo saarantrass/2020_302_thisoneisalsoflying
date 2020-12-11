@@ -4,7 +4,6 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 
@@ -22,16 +21,19 @@ public class ShooterImage extends Canvas implements IObserver{
 	
 	private static final String SHOOTER_IMAGE = "../../Images/shooter.png";
 	private Shooter shooter;
-	private int L = (int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 10); //TODO
+	private int L;
 	
-	public ShooterImage(Shooter shooter, int x, int y) {
+	
+	public ShooterImage(Shooter shooter, int x, int y, int L) {
 		super();
 		this.x = x;
 		this.y = y;
+		this.L = L;
 		this.shooter = shooter;
 		this.shooter.add(this);
 		this.image = new ImageIcon(getClass().getResource(SHOOTER_IMAGE)).getImage();
 		this.image = ImageResizer.getResizedImage(image, L/2, L);
+		System.out.println(image.getWidth(this) + " shooter w/h " + image.getHeight(this));
 	}
 	
 	

@@ -39,7 +39,7 @@ public class MainGamePanel extends JPanel implements IObserver{
 	
 	public void initialize() {
 		this.game = Game.getInstance();
-		this.shooterImage = new ShooterImage(game.getGC().shooter, game.getGC().shooter.getCoordinate().x, game.getGC().shooter.getCoordinate().y);
+		this.shooterImage = new ShooterImage(game.getGC().shooter, game.getGC().shooter.getCoordinate().x, game.getGC().shooter.getCoordinate().y, game.getGC().settings.getLengthUnit());
 		game.getGC().shooter.add(shooterImage);
 		this.setOpaque(false);
 		this.setFocusable(false);

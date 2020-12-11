@@ -2,6 +2,7 @@ package UI.Swing;
 
 import Domain.GameController;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -16,17 +17,12 @@ public class ScreenCoordinator { //singleton
 	private JPanel currentPanel;
 	private GameController GC;
 	private static ScreenCoordinator screen_coordinator = null;
-	
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	
 	private ScreenCoordinator() {
 		this.mainFrame = new ScreenFrame();
-		//this.mainFrame.setFocusable(true);
-		// TODO change coordinates
-		int xShooter = screenSize.width * 7/16;
-		int yShooter = screenSize.height - 150;
-		this.GC = new GameController(new Point(xShooter, yShooter));
+		this.GC = new GameController();
 	}
 	
 	
@@ -46,6 +42,9 @@ public class ScreenCoordinator { //singleton
 	
 	
 	public void startGame() {
+		int xShooter = this.mainFrame.getSize().width * 7/16;
+		int yShooter = this.mainFrame.getHeight() - 23 - this.GC.settings.getLengthUnit();
+		GC.setInitialShooterCoordinate(new Point(xShooter, yShooter));
 		Game.getInstance().startGame(this.GC);
 		this.gameScreen();
 	}
@@ -74,6 +73,10 @@ public class ScreenCoordinator { //singleton
 	
 	public JPanel getCurrentPanel() {
 		return this.currentPanel;
+	}
+	
+	public ScreenFrame getMainFrame() {
+		return this.mainFrame;
 	}
 
 	
