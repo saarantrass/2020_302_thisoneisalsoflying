@@ -8,7 +8,7 @@ public class Molecule {
 	private boolean isSpinning;
 	private boolean isLinear;
 	//TODO change speed to true
-	private int xSpeed = 10;
+	private int xSpeed = 0;
 	private int ySpeed = 5;
 	
 	public Molecule (int moleculeID, Point coordinate,boolean isSpinning, boolean isLinear) {

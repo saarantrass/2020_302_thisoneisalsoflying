@@ -8,8 +8,8 @@ public class PowerUp {
 	private Point coordinate;
 	private boolean isThrown;
 	//TODO change speed to true
-	private int xSpeed = 1;
-	private int ySpeed = 1;
+	private int xSpeed = 0;
+	private int ySpeed = 5;
 	
 	
 	public PowerUp(int powerUpID, Point coordinate, boolean isThrown) {
