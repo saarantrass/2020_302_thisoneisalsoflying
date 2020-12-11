@@ -15,7 +15,7 @@ public class ScreenFrame extends JFrame{
 		super("this one is also flying");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(1400, 800);
-		this.setResizable(false);
+		//this.setResizable(false);
 		this.setLayout(new BorderLayout());
 	}
 
