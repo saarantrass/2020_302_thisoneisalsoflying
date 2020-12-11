@@ -1,10 +1,8 @@
 package UI.Swing;
 
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -106,7 +104,7 @@ public class BuildingModePanel extends JPanel{
 		alphaBetaStructurePanel.setOpaque(false);
 		
 		
-		linearCheckBox.addItemListener(this.itemListener);
+		linearCheckBox.addItemListener(this.checkBoxListener);
 		
 		statSpinGroup.add(stationaryButton);
 		statSpinGroup.add(spinningButton);
@@ -165,7 +163,7 @@ public class BuildingModePanel extends JPanel{
 		c.gridy = 2;
 		settingsPanel.add(gameEssentialsPanel, c);
 		
-		startGameButton.addActionListener(this.actionListener);
+		startGameButton.addActionListener(this.buttonListener);
 		
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridy = 3;
@@ -203,7 +201,7 @@ public class BuildingModePanel extends JPanel{
 	}
 	
 	
-	private ItemListener itemListener = new ItemListener() {
+	private ItemListener checkBoxListener = new ItemListener() {
 
 		@Override
 		public void itemStateChanged(ItemEvent e) {
@@ -224,7 +222,7 @@ public class BuildingModePanel extends JPanel{
 	};
 	
 	
-	private ActionListener actionListener = new ActionListener() {
+	private ActionListener buttonListener = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
