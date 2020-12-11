@@ -6,13 +6,12 @@ import java.util.List;
 import Domain.IObservable;
 import UI.IObserver;
 
-public class Molecule implements IObservable{
+public class Molecule {
 	
 	public int moleculeID;
 	private Point coordinate;
 	private boolean isSpinning;
 	private boolean isLinear;
-	private List<IObserver> observers = new ArrayList<IObserver>();
 	//TODO change speed to true
 	private int xSpeed = 10;
 	private int ySpeed = 5;
@@ -32,7 +31,6 @@ public class Molecule implements IObservable{
 		//TODO check screen borders
 		this.coordinate.x += xSpeed;
 		this.coordinate.y += ySpeed;
-		publish();
 	}
 	
 	public void setCoordinate(Point coordinate) {
@@ -66,24 +64,6 @@ public class Molecule implements IObservable{
 	
 	public int getMoleculeID() {
 		return this.moleculeID;
-	}
-
-
-	@Override
-	public void add(IObserver o) {
-		this.observers.add(o);
-	}
-
-
-	@Override
-	public void remove(IObserver o) {
-		this.observers.remove(o);
-	}
-
-
-	@Override
-	public void publish() {
-		for(IObserver o: this.observers) o.update();
 	}
 	
 }

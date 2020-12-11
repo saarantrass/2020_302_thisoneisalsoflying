@@ -44,6 +44,7 @@ public class Game implements IObservable{
 				System.out.println("blockers: " + this.onScreenReactionBlockerList);
 				
 				
+				
 				//to prevent crash
 				try {
 					Thread.sleep(100);
@@ -78,6 +79,7 @@ public class Game implements IObservable{
 			createRandomFallingObject();
 		}
 		moveThemAll();
+		this.publish();
 	}
 	
 	private void createRandomFallingObject() {
@@ -144,15 +146,11 @@ public class Game implements IObservable{
 	@SuppressWarnings("deprecation")
 	public void pauseGame() {
 		this.isPaused = true;
-		this.mainGameLoop.stop();
-		publish();
 	}
 	
 	@SuppressWarnings("removal")
 	public void resumeGame() {
 		this.isPaused = false;
-		this.mainGameLoop.resume();
-		publish();
 	}
 	
 	public void startGame(GameController GC){
@@ -163,7 +161,6 @@ public class Game implements IObservable{
 	@Override
 	public void add(IObserver o) {
 		this.observers.add(o);
-		publish(); //tODO
 	}
 
 	@Override

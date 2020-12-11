@@ -25,7 +25,6 @@ public class AtomImage extends GameObjectImage{
 		super(type, x, y);
 		setImageName(type);
 		this.atom = atom;
-		this.atom.add(this);
 		this.image = new ImageIcon(getClass().getResource(this.imageName)).getImage();
 		this.image = ImageResizer.getResizedImage(image, L / 10, L / 10);
 	}
