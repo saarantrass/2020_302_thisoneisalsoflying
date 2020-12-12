@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import Domain.GameObjects.Atom;
@@ -16,6 +17,7 @@ import UI.IObserver;
 
 public class Game implements IObservable{
 	
+	private GameController GC;
 	private Thread mainGameLoop;
 	private static Game game_instance = null;
 	private List<IObserver> observers = new ArrayList<IObserver>();
@@ -30,7 +32,7 @@ public class Game implements IObservable{
 	
 	private int timer = 0;
 	
-	private GameController GC;
+	
 	
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //TODO
 	
@@ -48,15 +50,16 @@ public class Game implements IObservable{
 	                }
 				}
 				
+				/*
 				System.out.println("Mols: " + this.onScreenMoleculeList);
 				System.out.println("Powss: " + this.onScreenPowerUpList);
 				System.out.println("blockers: " + this.onScreenReactionBlockerList);
-				
+				*/
 				
 				
 				//to prevent crash
 				try {
-					Thread.sleep(100);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
                     while (true) {
                         try {
@@ -84,11 +87,14 @@ public class Game implements IObservable{
 	}
 	
 	public void continueGame() {
+		
 		this.timer++;
 		if(this.timer % 20 == 0) {
 			createRandomFallingObject();
 		}
+		//System.out.println(this.GC.shooter.getCoordinate());
 		moveThemAll();
+		//collisionHandler();
 		this.publish();
 	}
 	
@@ -130,22 +136,74 @@ public class Game implements IObservable{
 		}
 	}
 	
+	private void collisionHandler() {
+		
+		//Atom - Molecule
+		LinkedList<Integer> toBeRemovedAtoms = new LinkedList<>();
+		LinkedList<Integer> toBeRemovedMolecules = new LinkedList<>();
+		
+		for(int i = onScreenAtomList.size(); i>0; i--) {
+			for(int j = onScreenAtomList.size(); j>0; j--) {
+				
+					Atom a = onScreenAtomList.get(i);
+					Molecule m = onScreenMoleculeList.get(j);
+					Point acord = a.getCoordinate();
+					Point mcord = m.getCoordinate();
+					Double distance = Point.distance(acord.getX(), acord.getY(), mcord.getX(), mcord.getY());
+					if(distance <= 30) {
+						toBeRemovedAtoms.add(i);
+						toBeRemovedMolecules.add(j);
+					}
+				
+				
+			}
+		}
+		
+		for(int i : toBeRemovedAtoms) {
+			onScreenAtomList.remove(i);
+		}
+		
+		for(int i : toBeRemovedMolecules) {
+			onScreenMoleculeList.remove(i);
+		}
+		
+	}
+	
 	public void shoot() {
 		if(this.barrelAtom != null) {
-			this.onScreenAtomList.add(this.barrelAtom);
+			Atom curr = this.barrelAtom;
+			Shooter sh = GC.shooter;			
+			double currAngle = sh.getAngle();
+			System.out.println(currAngle);
+			int ySpeed = curr.ySpeed;
+			curr.xSpeed = -(int) ((double) ySpeed * Math.sin(currAngle));
+			curr.ySpeed = (int) ((double) ySpeed * Math.cos(currAngle));
+			//sh.inventory.removeInventoryAtom(curr.atomID);
+			this.onScreenAtomList.add(curr);
+			/*
+			int type = (int) (1 + (Math.random() * 3));
+			while(sh.inventory.getInventoryAtomCount(type) <= 0) {
+				type = (int) (1 + (Math.random() * 3));
+			}
+			*/
 			this.barrelAtom = null;
-			//TODO get 1 more random atom to barrel
-		}else {
+			Point xy = new Point((int) sh.getCoordinate().getX(), (int)sh.getCoordinate().getY());
+			this.barrelAtom = new Atom(1, xy);
+		}
+		/*
+		else {
 			this.onScreenPowerUpList.add(this.barrelPowerUp);
 			this.barrelPowerUp = null;
 			//TODO get 1 more random atom to barrel
 		}
+		*/
 	}
 	
 	public void getRandomAtomToBarrel() {
-		int type = (int) ((Math.random() * 4));
+		int type = (int) (1 + (Math.random() * 3));
 		this.barrelPowerUp = null;
-		this.barrelAtom = new Atom(type, new Point(0,0)); //TODO Inventory checks and coordinates to shooter end
+		Point xy = new Point((int) this.GC.shooter.getCoordinate().getX(), (int)this.GC.shooter.getCoordinate().getY());
+		this.barrelAtom = new Atom(type, xy); //TODO Inventory checks and coordinates to shooter end
 	}
 	
 	public void getPowerUpToBarrel(int type) {
@@ -164,6 +222,9 @@ public class Game implements IObservable{
 	
 	public void startGame(GameController GC){
 		this.GC = GC;
+		if(this.barrelAtom == null) {
+			getRandomAtomToBarrel();
+		}
 		mainGameLoop.start();
 	}
 

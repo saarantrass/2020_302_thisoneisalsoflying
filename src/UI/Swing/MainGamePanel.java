@@ -3,9 +3,7 @@ package UI.Swing;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
-
 import javax.swing.JPanel;
-
 import Domain.Game;
 import Domain.GameObjects.Atom;
 import Domain.GameObjects.Molecule;
@@ -18,8 +16,7 @@ import UI.GameObjectImages.ShooterImage;
 @SuppressWarnings("serial")
 public class MainGamePanel extends JPanel implements IObserver{
 	
-	public ShooterImage shooterImage; //TODO
-	private Game game;
+	public ShooterImage shooterImage;
 	private static MainGamePanel main_game_panel = null;
 	
 	
@@ -37,18 +34,25 @@ public class MainGamePanel extends JPanel implements IObserver{
 		return main_game_panel;
 	}
 	
-	public void initialize() {
-		this.game = Game.getInstance();
-		this.shooterImage = new ShooterImage(game.getGC().shooter, game.getGC().shooter.getCoordinate().x, game.getGC().shooter.getCoordinate().y, game.getGC().settings.getLengthUnit());
-		game.getGC().shooter.add(shooterImage);
+	public void initialize() { //TODO GAME???
+		this.shooterImage = new ShooterImage(Game.getInstance().getGC().shooter, Game.getInstance().getGC().shooter.getCoordinate().x, Game.getInstance().getGC().shooter.getCoordinate().y, Game.getInstance().getGC().settings.getLengthUnit());
+		Game.getInstance().getGC().shooter.add(shooterImage);
 		this.setOpaque(false);
 		this.setFocusable(false);
 	}
 	
 	
 	@Override
-	public void paint(Graphics g) {
-		shooterImage.paint(g);
+	public void paint(Graphics g) { //TODO ATOM MOLECULE VS OLABİLİR Mİ?? BURDA
+		
+		if(Game.getInstance().barrelAtom != null) {
+			Image image = GameObjectImageCreator.getInstance().getAtomImage(Game.getInstance().barrelAtom.atomID);
+			g.drawImage(image, Game.getInstance().barrelAtom.getCoordinate().x, Game.getInstance().barrelAtom.getCoordinate().y, null);
+		}
+		/*else if (Game.getInstance().barrelPowerUp != null) {
+			Image image = GameObjectImageCreator.getInstance().getAtomImage(Game.getInstance().barrelPowerUp.powerUpID);
+			g.drawImage(image, Game.getInstance().barrelPowerUp.getCoordinate().x, Game.getInstance().barrelPowerUp.getCoordinate().y, null);
+		}*/
 		
 		for(Atom atom: Game.getInstance().onScreenAtomList) {
 			Image image = GameObjectImageCreator.getInstance().getAtomImage(atom.atomID);
@@ -70,6 +74,7 @@ public class MainGamePanel extends JPanel implements IObserver{
 			g.drawImage(image, powerUp.getCoordinate().x, powerUp.getCoordinate().y, null);
 		}
 		
+		shooterImage.paint(g);
 		super.paint(g);
 	}
 

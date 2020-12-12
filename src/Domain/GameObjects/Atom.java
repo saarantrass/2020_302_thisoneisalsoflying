@@ -7,8 +7,8 @@ public class Atom {
 	public int atomID;
 	private Point coordinate;
 	//TODO change speed to true
-	private int xSpeed = 1;
-	private int ySpeed = 1;
+	public int xSpeed = 0;
+	public int ySpeed = -10;
 	
 	
 	public Atom (int atomID, Point coordinate) {
