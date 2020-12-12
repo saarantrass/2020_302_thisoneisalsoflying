@@ -18,12 +18,13 @@ public class Shooter implements IObservable{
 	private boolean isMoving = false;
 	private boolean isRotating = false;
 	private List<IObserver> observers = new ArrayList<IObserver>();
+	public Inventory inventory;
 	
 	
 	public Shooter(Point coordinate) {
 		this.coordinate = coordinate;
 		this.speed = this.L/10;
-		
+		this.inventory = new Inventory();
 		this.moveThread.start();
 		this.rotateThread.start();
 		

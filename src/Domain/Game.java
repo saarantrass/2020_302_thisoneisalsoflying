@@ -11,10 +11,12 @@ import Domain.GameObjects.FallingObjectFactory;
 import Domain.GameObjects.Molecule;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
+import Domain.Player.Shooter;
 import UI.IObserver;
 
 public class Game implements IObservable{
 	
+	private GameController GC;
 	private Thread mainGameLoop;
 	private static Game game_instance = null;
 	private List<IObserver> observers = new ArrayList<IObserver>();
@@ -24,12 +26,12 @@ public class Game implements IObservable{
 	public ArrayList<PowerUp> onScreenPowerUpList = new ArrayList<>();
 	public ArrayList<ReactionBlocker> onScreenReactionBlockerList = new ArrayList<>();
 	
-	public Atom barrelAtom = null; //TODO add coordinate change when shooter moves
+	public Atom barrelAtom = new Atom(1, GC.shooter.getCoordinate()); //TODO add coordinate change when shooter moves
 	public PowerUp barrelPowerUp = null; 
 	
 	private int timer = 0;
 	
-	private GameController GC;
+	
 	
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //TODO
 	
@@ -47,10 +49,11 @@ public class Game implements IObservable{
 	                }
 				}
 				
+				/*
 				System.out.println("Mols: " + this.onScreenMoleculeList);
 				System.out.println("Powss: " + this.onScreenPowerUpList);
 				System.out.println("blockers: " + this.onScreenReactionBlockerList);
-				
+				*/
 				
 				
 				//to prevent crash
@@ -88,6 +91,7 @@ public class Game implements IObservable{
 			createRandomFallingObject();
 		}
 		moveThemAll();
+		collisionHandler();
 		this.publish();
 	}
 	
@@ -129,16 +133,42 @@ public class Game implements IObservable{
 		}
 	}
 	
+	private void collisionHandler() {
+		
+		//Atom - Molecule
+		for(Atom a : onScreenAtomList) {
+			for(Molecule m : onScreenMoleculeList) {
+				Point acord = a.getCoordinate();
+				Point mcord = m.getCoordinate();
+				Double distance = Point.distance(acord.getX(), acord.getY(), mcord.getX(), mcord.getY());
+				if(distance <= 30) {
+					onScreenAtomList.remove(a);
+					onScreenMoleculeList.remove(m);
+				}
+			}
+		}
+		
+	}
+	
 	public void shoot() {
 		if(this.barrelAtom != null) {
-			this.onScreenAtomList.add(this.barrelAtom);
-			this.barrelAtom = null;
-			//TODO get 1 more random atom to barrel
-		}else {
+			Atom curr = this.barrelAtom;
+			Shooter sh = GC.shooter;
+			sh.inventory.removeInventoryAtom(curr.atomID);
+			this.onScreenAtomList.add(curr);
+			int type = (int) (1 + (Math.random() * 3));
+			while(sh.inventory.getInventoryAtomCount(type) <= 0) {
+				type = (int) (1 + (Math.random() * 3));
+			}
+			this.barrelAtom = new Atom(type, sh.getCoordinate());
+		}
+		/*
+		else {
 			this.onScreenPowerUpList.add(this.barrelPowerUp);
 			this.barrelPowerUp = null;
 			//TODO get 1 more random atom to barrel
 		}
+		*/
 	}
 	
 	public void getRandomAtomToBarrel() {
