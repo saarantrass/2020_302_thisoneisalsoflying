@@ -11,6 +11,7 @@ public class Settings {
 	private int powerUpNumber;
 	private int reactionBlockerNumber;
 	private static Settings settings = null;
+	public double timeRemaining = 10000; // TODO change the default value and set from setSettings
 
 	
 	private Settings() {}

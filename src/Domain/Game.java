@@ -40,9 +40,13 @@ public class Game implements IObservable{
 		mainGameLoop = new Thread(() -> {
 			while (true) {
 				//TODO call functions from game controller
-				if(!this.isPaused) {
+				if (this.GC.settings.timeRemaining <= 0) {
+					this.finishGame();
+				} else if (!this.isPaused) {
 					this.continueGame();
-				}else {
+
+					this.GC.settings.timeRemaining -= 10;
+				} else {
 					try {
 						Thread.sleep(100);
 	                } catch(InterruptedException e) {
@@ -246,6 +250,11 @@ public class Game implements IObservable{
 	
 	public GameController getGC() {
 		return GC;
+	}
+	
+	private void finishGame() {
+		// The time is finished, have to make isPaused = false in GameModePanel to stop shooter
+		// TODO write code to display Game Over screen
 	}
 	
 	
