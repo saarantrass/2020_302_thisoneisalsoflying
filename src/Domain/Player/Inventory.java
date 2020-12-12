@@ -7,15 +7,14 @@ public class Inventory {
 	private HashMap<Integer, Integer> inventoryAtom;
 	private HashMap<Integer, Integer> inventoryPowerUp;
 	
-	public Inventory(HashMap<Integer, Integer> inventoryAtom, HashMap<Integer, Integer> inventoryPoweUp) {
-		
+	public Inventory() {
 		this.inventoryAtom = new HashMap<Integer, Integer>();
 		this.inventoryPowerUp = new HashMap<Integer, Integer>();
 		
-		inventoryAtom.put(0, 0);
-		inventoryAtom.put(1, 0);
-		inventoryAtom.put(2, 0);
-		inventoryAtom.put(3, 0);
+		inventoryAtom.put(1, 100);
+		inventoryAtom.put(2, 100);
+		inventoryAtom.put(3, 100);
+		inventoryAtom.put(4, 100);
 		
 		inventoryPowerUp.put(0, 0);
 		inventoryPowerUp.put(1, 0);
@@ -33,6 +32,10 @@ public class Inventory {
 	public void addInventoryAtom(int type) {
 		int curr = this.inventoryAtom.get(type);
 		this.inventoryAtom.replace(type, curr+1);
+	}
+	
+	public int getInventoryAtomCount(int type) {
+		return this.inventoryAtom.get(type);
 	}
 	
 	public void addInventoryPowerUp(int type) {
