@@ -12,6 +12,7 @@ public class GameController {
 	public GameController() {
 		this.player = new Player();
 		this.shooter = new Shooter(null);
+		this.settings = Settings.getInstance();
 	}
 	
 	
@@ -21,7 +22,7 @@ public class GameController {
 	
 	
 	public void editInBuildMode(int atomNumber, int moleculeNumber, int reactionBlockerNumber, int powerUpNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel) {
-		this.settings = new Settings(atomNumber, moleculeNumber, reactionBlockerNumber, powerUpNumber, isLinear, isSpinning,  lengthUnit, difficultyLevel);
+		this.settings.setSettings(atomNumber, moleculeNumber, reactionBlockerNumber, powerUpNumber, isLinear, isSpinning, lengthUnit, difficultyLevel);
 	}
 	
 	

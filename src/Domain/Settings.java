@@ -10,10 +10,22 @@ public class Settings {
 	private int moleculeNumber;
 	private int powerUpNumber;
 	private int reactionBlockerNumber;
-	private float atomSpeed;
+	private static Settings settings = null;
+
+	
+	private Settings() {}
 	
 	
-	public Settings(int atomNumber, int moleculeNumber, int reactionBlockerNumber, int powerUpNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel) {
+	public static Settings getInstance() {
+		if(settings == null) {
+			settings = new Settings();
+		}
+		
+		return settings;
+	}
+	
+		
+	public void setSettings(int atomNumber, int moleculeNumber, int reactionBlockerNumber, int powerUpNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel) {
 		this.atomNumber = atomNumber;
 		this.moleculeNumber = moleculeNumber;
 		this.reactionBlockerNumber = reactionBlockerNumber;
@@ -22,8 +34,8 @@ public class Settings {
 		this.isSpinning = isSpinning;
 		this.lengthUnit = lengthUnit;
 		this.difficultyLevel = difficultyLevel;
+		System.out.println("SETTINGS");
 	}
-	
 	
 	public int getLengthUnit() {
 		return lengthUnit;
