@@ -11,7 +11,6 @@ import Domain.GameObjects.FallingObjectFactory;
 import Domain.GameObjects.Molecule;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
-import Domain.Player.Shooter;
 import UI.IObserver;
 
 public class Game implements IObservable{
@@ -30,7 +29,6 @@ public class Game implements IObservable{
 	
 	private int timer = 0;
 	
-	private Shooter shooter;
 	private GameController GC;
 	
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //TODO
@@ -182,10 +180,6 @@ public class Game implements IObservable{
 	@Override
 	public void publish() {
 		for(IObserver o: this.observers) o.update();
-	}
-
-	public Shooter getShooter() {
-		return shooter;
 	}
 	
 	public GameController getGC() {

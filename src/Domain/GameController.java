@@ -24,6 +24,7 @@ public class GameController {
 		this.settings = new Settings(atomNumber, moleculeNumber, reactionBlockerNumber, powerUpNumber, isLinear, isSpinning,  lengthUnit, difficultyLevel);
 	}
 	
+	
 	public void startGame() {
 		Game.getInstance().startGame(this);
 	}
@@ -39,9 +40,19 @@ public class GameController {
 	}
 	
 	
+	public void stopMoveShooter() {
+		shooter.stopMove();
+	}
+	
+	
 	public void rotateShooter(int direction) {
 		shooter.rotate(direction);
 		
+	}
+	
+	
+	public void stopRotateShooter() {
+		shooter.stopRotate();
 	}
 	
 	

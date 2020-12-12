@@ -347,6 +347,20 @@ public class GameModePanel extends JPanel implements IObserver{
 			firstEventCode = secondEventCode;
 			secondEventCode = currentEventCode;
 		}
+		
+		@Override
+		public void keyReleased(KeyEvent e) {
+			System.out.println("KEY RELEASED: " + e.getKeyCode());
+			System.out.println(KeyEvent.VK_LEFT);
+			
+			if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT) {
+				GC.stopMoveShooter();
+			}
+			
+			if(e.getKeyCode() == KeyEvent.VK_A || e.getKeyCode() == KeyEvent.VK_D) {
+				GC.stopRotateShooter();
+			}
+		}
 
 	};
 	
