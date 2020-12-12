@@ -326,7 +326,7 @@ public class GameModePanel extends JPanel implements IObserver{
 					}
 				}
 			} else if(currentEventCode == KeyEvent.VK_UP) { //shoot atom/powerUp
-				//GC.shoot();
+				GC.shoot();
 			} else if(currentEventCode == KeyEvent.VK_LEFT) { //move shooter left
 				GC.moveShooter(0);
 			} else if(currentEventCode == KeyEvent.VK_RIGHT) { //move shooter right
@@ -350,8 +350,8 @@ public class GameModePanel extends JPanel implements IObserver{
 		
 		@Override
 		public void keyReleased(KeyEvent e) {
-			System.out.println("KEY RELEASED: " + e.getKeyCode());
-			System.out.println(KeyEvent.VK_LEFT);
+			//System.out.println("KEY RELEASED: " + e.getKeyCode());
+			//System.out.println(KeyEvent.VK_LEFT);
 			
 			if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				GC.stopMoveShooter();
