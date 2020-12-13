@@ -19,7 +19,7 @@ public class Inventory {
 		inventoryAtom.put(3, Settings.getInstance().getAtomNumber(3));
 		inventoryAtom.put(4, Settings.getInstance().getAtomNumber(4));
 		
-		inventoryPowerUp.put(1, 3);
+		inventoryPowerUp.put(1, 0);
 		inventoryPowerUp.put(2, 0);
 		inventoryPowerUp.put(3, 0);
 		inventoryPowerUp.put(4, 0);
@@ -27,7 +27,7 @@ public class Inventory {
 	
 	
 	public boolean checkAtomAvailability(int id, int howmany) {
-		if(inventoryAtom.get(id) > howmany) {
+		if(inventoryAtom.get(id) >= howmany) {
 			return true;
 		}else {
 			return false;
@@ -36,7 +36,7 @@ public class Inventory {
 	
 	
 	public boolean checkPowerUpAvailability(int id, int howmany) {
-		if(inventoryPowerUp.get(id) > howmany) {
+		if(inventoryPowerUp.get(id) >= howmany) {
 			return true;
 		}else {
 			return false;
@@ -70,8 +70,6 @@ public class Inventory {
 		int curr = this.inventoryAtom.get(type);
 		if(curr > 0) {
 			this.inventoryAtom.replace(type, curr-howmany);
-		}else {
-			//TODO add no more item case
 		}
 	}
 	
@@ -80,8 +78,6 @@ public class Inventory {
 		int curr = this.inventoryPowerUp.get(type);
 		if(curr > 0) {
 			this.inventoryPowerUp.replace(type, curr-1);
-		}else {
-			//TODO add no more item case
 		}
 	}
 	

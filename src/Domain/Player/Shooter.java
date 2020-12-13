@@ -3,6 +3,8 @@ package Domain.Player;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
+
+import Domain.Game;
 import Domain.IObservable;
 import Domain.Settings;
 import UI.IObserver;
@@ -86,21 +88,20 @@ public class Shooter implements IObservable{
 	
 	
 	private Thread moveThread = new Thread(() -> {
-		System.out.println("MOVE THREAD");
 		while(true) {
-			
-			if(this.isMoving) {
-				if(this.moveDirection == 0) { //left
-					if(this.coordinate.x > 0) {
-						this.coordinate.x -= speed;						
+			if(!Game.getInstance().isFinished && !Game.getInstance().isPaused) {
+				if(this.isMoving) {
+					if(this.moveDirection == 0) { //left
+						if(this.coordinate.x > 0) {
+							this.coordinate.x -= speed;						
+						}
+					} else if(moveDirection == 1) { //right
+						if(this.coordinate.x <= (int)(ScreenCoordinator.SCREEN_SIZE.width * 7/8) - L/2) {
+							this.coordinate.x += speed;
+						}
 					}
-				} else if(moveDirection == 1) { //right
-					if(this.coordinate.x <= (int)(ScreenCoordinator.SCREEN_SIZE.width * 7/8) - L/2) {
-						this.coordinate.x += speed;
-					}
+					publish();
 				}
-				publish();
-				
 			} else {
 				try {
 					Thread.sleep(100);
@@ -127,20 +128,21 @@ public class Shooter implements IObservable{
 	
 	
 	private Thread rotateThread = new Thread(() -> {
-		System.out.println("ROTATE THREAD");
 		while(true) {
-			if(this.isRotating) {
-				if(this.rotateDirection == 0) { //left
-					if(this.angle >-90) {
-						this.angle -= 9;
+			if(!Game.getInstance().isFinished && !Game.getInstance().isPaused) {
+				if(this.isRotating) {
+					if(this.rotateDirection == 0) { //left
+						if(this.angle >-90) {
+							this.angle -= 9;
+						}
+					} else if(this.rotateDirection == 1) { //right
+						if(this.angle<90) {
+							this.angle += 9;
+						}
 					}
-				} else if(this.rotateDirection == 1) { //right
-					if(this.angle<90) {
-						this.angle += 9;
-					}
+					
+					publish();
 				}
-				
-				publish();
 			} else {
 				try {
 					Thread.sleep(100);
