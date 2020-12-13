@@ -103,7 +103,7 @@ public class Game implements IObservable{
 	}
 	
 	private void createRandomFallingObject() {
-		int next = (int) (Math.random() * 2);
+		int next = (int) (Math.random() * 3);
 		int type = (int) (1 + (Math.random() * 3));
 		int xCoord = (int) (Math.random() * (screenSize.width * 7 / 8)) - 30;
 		switch (next) {

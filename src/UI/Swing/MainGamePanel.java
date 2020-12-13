@@ -76,6 +76,7 @@ public class MainGamePanel extends JPanel implements IObserver{
 		
 		shooterImage.paint(g);
 		super.paint(g);
+		g.dispose();
 	}
 
 
