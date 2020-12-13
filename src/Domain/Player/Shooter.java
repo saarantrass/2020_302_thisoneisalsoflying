@@ -41,6 +41,11 @@ public class Shooter implements IObservable{
 		return this.coordinate;
 	}
 	
+		
+	public void setCoordinate(Point coordinate) {
+		this.coordinate = coordinate;
+	}
+
 	
 	public Point getBarrelCoordinate() {
 		int dy = 0;
@@ -51,31 +56,24 @@ public class Shooter implements IObservable{
 			dx = (int) (L * Math.sin(radians));
 		}
 		
-		return new Point(this.coordinate.x + L/4 + dx, this.coordinate.y - L/10 + dy);
+		return new Point(this.coordinate.x + L/4-L/20 + dx, this.coordinate.y - L/10 + dy);
 	}
 	
-	
-	public void setCoordinate(Point coordinate) {
-		this.coordinate = coordinate;
-	}
 
-	
 	public void move(int direction) {
 		this.moveDirection = direction;
 		this.isMoving = true;
-	}
-	
-	
-	public void stopMove() {
-		this.isMoving = false;
-	}
-	
+	}	
 	
 	public void rotate(int direction) {
 		this.rotateDirection = direction;
 		this.isRotating = true;
 	}
 	
+	public void stopMove() {
+		this.isMoving = false;
+	}
+
 	
 	public void stopRotate() {
 		this.isRotating = false;

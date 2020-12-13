@@ -2,6 +2,7 @@ package Domain;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import Domain.GameObjects.Atom;
@@ -29,13 +30,12 @@ public class Game implements IObservable{
 
 	public Atom barrelAtom = null;
 	public PowerUp barrelPowerUp = null; 
-	public Shooter shooter;
+	public Shooter shooter = null;
 	
 	private int timer = 0;
 	
 	
 	private Game() {}
-	
 	
 	public static Game getInstance() {
 		if(game_instance == null) {
@@ -61,10 +61,9 @@ public class Game implements IObservable{
 	
 	private Thread mainGameLoop = new Thread(() -> {
 		while (true) {
-			//TODO call functions from game controller
 			if (this.GC.settings.timeRemaining <= 0) {
 				this.finishGame();
-			} else if (!this.isPaused) {
+			} else if (!this.isPaused && !this.isFinished) {
 				this.continueGame();
 				this.GC.settings.timeRemaining -= 100;
 			} else {
@@ -75,8 +74,7 @@ public class Game implements IObservable{
                 }
 			}
 			
-			
-			
+				
 			//to prevent crash
 			try {
 				Thread.sleep(100);
@@ -98,6 +96,7 @@ public class Game implements IObservable{
 	private void continueGame() {
 		
 		this.timer++;
+		//TODO: Adjust this according to the difficulty level
 		if(this.timer % 10 == 0) {
 			createRandomFallingObject();
 		}
@@ -109,27 +108,29 @@ public class Game implements IObservable{
 	
 	
 	private void createRandomFallingObject() {
-		int next = (int) (Math.random() * 3);
-		int type = (int) (1 + (Math.random() * 3));
-		int xCoord = (int) (Math.random() * (ScreenCoordinator.SCREEN_SIZE.getWidth() * 7 / 8)) - 30;
+		Random rn = new Random();
+		int type = rn.nextInt(4)+1;
+		int next = rn.nextInt(3);
+		int xCoord = (int) (Math.random() * (ScreenCoordinator.SCREEN_SIZE.getWidth() * 7 / 8)) - (L/4); //TODO: Random check
 		switch (next) {
 			case 0:
 				if(Settings.getInstance().getMoleculeNumber(type) > 0) {
-					Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, 0), Settings.getInstance().isLinear(), Settings.getInstance().isSpinning());
+					//TODO: shorten the factory.getinstance.blahblah......
+					Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, -L/4), Settings.getInstance().isLinear(), Settings.getInstance().isSpinning());
 					onScreenMoleculeList.add(newMol);
 					Settings.getInstance().decreaseMoleculeNumber(type);
 				}
 				break;
 			case 1:
 				if(Settings.getInstance().getPowerUpNumber(type) > 0) {
-					PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, 0));
+					PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, -L/4));
 					onScreenPowerUpList.add(newPw);
 					Settings.getInstance().decreasePowerUpNumber(type);
 				}
 				break;
 			case 2:
 				if(Settings.getInstance().getReactionBlockerNumber(type) > 0) {
-					ReactionBlocker bl = FallingObjectFactory.getInstance().getNewReactionBlocker(type, new Point(xCoord, 0));
+					ReactionBlocker bl = FallingObjectFactory.getInstance().getNewReactionBlocker(type, new Point(xCoord, -L/4));
 					onScreenReactionBlockerList.add(bl);
 					Settings.getInstance().decreaseReactionBlockerNumber(type);
 				}
@@ -203,7 +204,7 @@ public class Game implements IObservable{
 				if(atom.getAtomID() == molecule.getMoleculeID()) {
 					Point acord = atom.getCoordinate();
 					Point mcord = molecule.getCoordinate();
-					if(mcord.x <= acord.x && acord.x <= (mcord.x + L/4) && mcord.y <= acord.y && acord.y <= (mcord.y + L/4)) {
+					if(mcord.x <= acord.x && acord.x <= (mcord.x + L/4) && mcord.y <= acord.y && acord.y <= (mcord.y + L/4)) {//TODO: Check bounding box
 						this.onScreenAtomList.remove(atom);
 						this.onScreenMoleculeList.remove(molecule);
 						this.shooter.increaseScore(1); //TODO change score
@@ -216,7 +217,7 @@ public class Game implements IObservable{
 		/*
 		 * PowerUp-Shooter Collision
 		 */
-		for(PowerUp pw: this.onScreenPowerUpList) { //TODO when shooter is rotated?
+		for(PowerUp pw: this.onScreenPowerUpList) { //TODO: Include bounding box calculations for when shooter is rotated
 			Point pcord = pw.getCoordinate();
 			Point scord = this.shooter.getCoordinate();
 			if(scord.x <= pcord.x && pcord.x <= (scord.x + L/2) && scord.y <= pcord.y && pcord.y <= (scord.y + L)) {
@@ -249,12 +250,13 @@ public class Game implements IObservable{
 
 	
 	public void getRandomAtomToBarrel() {
-		int type = (int) Math.round((1 + (Math.random() * 3)));
+		Random rn = new Random();
+		int type = rn.nextInt(4)+1;
 		while(!this.shooter.inventory.checkAtomAvailability(type, 1)) {
 			type = (int) (1 + (Math.random() * 3));
 		}
 		this.barrelPowerUp = null;
-		this.barrelAtom = new Atom(type, this.shooter.getBarrelCoordinate());//TODO Inventory checks and coordinates to shooter end
+		this.barrelAtom = new Atom(type, this.shooter.getBarrelCoordinate());
 		this.barrelAtom.setAngle(this.shooter.getAngle());
 	}
 	
@@ -262,7 +264,7 @@ public class Game implements IObservable{
 	public void getPowerUpToBarrel(int type) {
 		if(this.shooter.inventory.checkPowerUpAvailability(type, 1)) {
 			this.barrelAtom = null;
-			this.barrelPowerUp = new PowerUp(type, this.shooter.getBarrelCoordinate(), true); //TODO Inventory checks and coordinates to shooter end			
+			this.barrelPowerUp = new PowerUp(type, this.shooter.getBarrelCoordinate(), true);
 			this.barrelPowerUp.setAngle(this.shooter.getAngle());
 		}
 	}
@@ -281,8 +283,6 @@ public class Game implements IObservable{
 	private void finishGame() {
 		this.isFinished = true;
 		publish();
-		// The time is finished, have to make isPaused = false in GameModePanel to stop shooter
-		// TODO write code to display Game Over screen
 	}
 
 	

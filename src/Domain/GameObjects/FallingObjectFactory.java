@@ -1,8 +1,6 @@
 package Domain.GameObjects;
 import java.awt.Point;
 
-import Domain.GameObjects.*;
-
 public class FallingObjectFactory {
 	private static FallingObjectFactory singleton;
 	
