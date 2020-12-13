@@ -24,11 +24,6 @@ public class GameController {
 	}
 	
 	
-	public int getRandomAtom() {
-		return 0;
-	}
-	
-	
 	public void moveShooter(int direction) {
 		Game.getInstance().shooter.move(direction);
 	}
@@ -51,7 +46,7 @@ public class GameController {
 	
 	
 	public void quitGame() {
-		
+		//TODO
 	}
 	
 	

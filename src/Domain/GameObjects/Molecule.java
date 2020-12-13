@@ -57,6 +57,7 @@ public class Molecule {
 	
 	
 	public void zigzag() {
+		//TODO: Bounce off from the wall
 		if(this.travelled < L * Math.sin(Math.toRadians(45))) {
 			this.travelled += Math.abs(xSpeed);
 		} else {
