@@ -3,6 +3,7 @@ package Domain.GameObjects;
 import java.awt.Point;
 
 import Domain.Settings;
+import UI.Swing.ScreenCoordinator;
 
 public class PowerUp {
 	
@@ -11,6 +12,8 @@ public class PowerUp {
 	private boolean isThrown;
 	private int L;
 	private double speed;
+	private double xSpeed;
+	private double ySpeed;
 	private double angle = 0;
 	
 	
@@ -20,6 +23,8 @@ public class PowerUp {
 		this.isThrown = isThrown;
 		this.L = Settings.getInstance().getLengthUnit();
 		this.speed = L/10;
+		this.xSpeed = speed * Math.sin(Math.toRadians(angle));
+		this.ySpeed = speed * Math.cos(Math.toRadians(angle));
 	}
 	
 	
@@ -35,6 +40,8 @@ public class PowerUp {
 	
 	public void setAngle(double angle) {
 		this.angle = angle;
+		this.xSpeed = speed * Math.sin(Math.toRadians(angle));
+		this.ySpeed = speed * Math.cos(Math.toRadians(angle));
 	}
 	
 	
@@ -43,11 +50,12 @@ public class PowerUp {
 	}
 	
 	public void move() {
-		if(isThrown) { //TODO BOUNDARİES CHECK
-			double speedX = speed * Math.sin(Math.toRadians(angle));
-			double speedY = speed * Math.cos(Math.toRadians(angle));
-			this.coordinate.x += speedX;
-			this.coordinate.y -= speedY;
+		if(isThrown) {
+			if(this.coordinate.x < 0 || this.coordinate.x > (ScreenCoordinator.SCREEN_SIZE.width * 7/8)) {
+				this.xSpeed = -this.xSpeed;
+			}
+			this.coordinate.x += this.xSpeed;
+			this.coordinate.y -= this.ySpeed;
 		} else {
 			this.coordinate.y += speed;
 		}
