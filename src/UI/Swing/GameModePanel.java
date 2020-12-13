@@ -25,7 +25,7 @@ import Domain.GameController;
 import Domain.Settings;
 import UI.IObserver;
 import UI.ImageResizer;
-import UI.GameObjectImages.GameObjectImageCreator;
+import UI.GameObjectImages.GameObjectImageFactory;
 
 
 @SuppressWarnings("serial")
@@ -251,7 +251,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		this.setFocusable(true);
 		this.addKeyListener(this.runningModeListener);
 		
-		GameObjectImageCreator.getInstance().setLengthUnit(GC.settings.getLengthUnit());
+		GameObjectImageFactory.getInstance().setLengthUnit(GC.settings.getLengthUnit());
 		this.mainGamePanel.initialize();
 	}
 	
