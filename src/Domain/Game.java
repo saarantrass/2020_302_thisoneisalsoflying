@@ -195,11 +195,9 @@ public class Game implements IObservable{
 		
 		
 	private void collisionHandler() {
-		
 		/*
 		 * Atom-Molecule Collision
 		 */
-		
 		for(Atom atom : this.onScreenAtomList) {
 			for(Molecule molecule : this.onScreenMoleculeList) {
 				if(atom.getAtomID() == molecule.getMoleculeID()) {
@@ -214,13 +212,35 @@ public class Game implements IObservable{
 			}
 		}
 		
-		//TODO when shooter is rotated?
-		for(PowerUp pw: this.onScreenPowerUpList) {
+		
+		/*
+		 * PowerUp-Shooter Collision
+		 */
+		for(PowerUp pw: this.onScreenPowerUpList) { //TODO when shooter is rotated?
 			Point pcord = pw.getCoordinate();
 			Point scord = this.shooter.getCoordinate();
 			if(scord.x <= pcord.x && pcord.x <= (scord.x + L/2) && scord.y <= pcord.y && pcord.y <= (scord.y + L)) {
 				this.onScreenPowerUpList.remove(pw);
 				this.shooter.inventory.addInventoryPowerUp(pw.getPowerUpID());
+			}
+		}
+		
+		/*
+		 * PowerUp-ReactionBlocker Collision
+		 */
+		for(ReactionBlocker rb: this.onScreenReactionBlockerList) {
+			for(PowerUp pw: this.onScreenPowerUpList) {
+				if(rb.getReactionBlockerID() == pw.getPowerUpID()) {
+					Point pCoord = pw.getCoordinate();
+					Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
+					double distance1 = Math.sqrt((pCoord.x - rCoordCenter.x)*(pCoord.x - rCoordCenter.x) + (pCoord.y - rCoordCenter.y)*(pCoord.y - rCoordCenter.y));
+					double distance2 = Math.sqrt(((pCoord.x + L/10) - rCoordCenter.x)*((pCoord.x + L/10) - rCoordCenter.x) + (pCoord.y - rCoordCenter.y)*(pCoord.y - rCoordCenter.y));
+					double distance3 = Math.sqrt(((pCoord.x + L/10) - rCoordCenter.x)*((pCoord.x + L/10) - rCoordCenter.x) + ((pCoord.y + L/10) - rCoordCenter.y)*((pCoord.y + L/10) - rCoordCenter.y));
+					double distance4 = Math.sqrt((pCoord.x - rCoordCenter.x)*(pCoord.x - rCoordCenter.x) + ((pCoord.y + L/10) - rCoordCenter.y)*((pCoord.y + L/10) - rCoordCenter.y));
+					if(distance1 <= L/2 || distance2 <= L/2 || distance3 <= L/2  || distance4 <= L/2) {
+						this.onScreenReactionBlockerList.remove(rb);
+					}
+				}
 			}
 		}
 		
