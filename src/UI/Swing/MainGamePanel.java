@@ -3,6 +3,8 @@ package UI.Swing;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 import Domain.Game;
 import Domain.Settings;
@@ -19,6 +21,11 @@ public class MainGamePanel extends JPanel implements IObserver{
 	
 	public ShooterImage shooterImage;
 	private static MainGamePanel main_game_panel = null;
+	
+	private ArrayList<Atom> toBeDrawnAtoms = new ArrayList<Atom>();
+	private ArrayList<Molecule> toBeDrawnMolecules = new ArrayList<Molecule>();
+	private ArrayList<PowerUp> toBeDrawnPowerUps = new ArrayList<PowerUp>();
+	private ArrayList<ReactionBlocker> toBeDrawnReactionBlockers = new ArrayList<ReactionBlocker>();
 	
 	
 	private MainGamePanel() {
@@ -43,25 +50,30 @@ public class MainGamePanel extends JPanel implements IObserver{
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public void paint(Graphics g) { //TODO ATOM MOLECULE VS OLABİLİR Mİ?? BURDA
+		this.toBeDrawnAtoms = (ArrayList<Atom>) Game.getInstance().onScreenAtomList.clone();
+		this.toBeDrawnMolecules = (ArrayList<Molecule>) Game.getInstance().onScreenMoleculeList.clone();
+		this.toBeDrawnPowerUps = (ArrayList<PowerUp>) Game.getInstance().onScreenPowerUpList.clone();
+		this.toBeDrawnReactionBlockers = (ArrayList<ReactionBlocker>) Game.getInstance().onScreenReactionBlockerList.clone();
 		
-		for(Atom atom: Game.getInstance().onScreenAtomList) {
+		for(Atom atom: this.toBeDrawnAtoms) {
 			Image image = GameObjectImageCreator.getInstance().getAtomImage(atom.getAtomID());
 			g.drawImage(image, atom.getCoordinate().x, atom.getCoordinate().y, null);
 		}
 		
-		for(Molecule molecule: Game.getInstance().onScreenMoleculeList) {
+		for(Molecule molecule: this.toBeDrawnMolecules) {
 			Image image = GameObjectImageCreator.getInstance().getMoleculeImage(molecule.getMoleculeID(), molecule.isLinear());
 			g.drawImage(image, molecule.getCoordinate().x, molecule.getCoordinate().y, null);
 		}
 		
-		for(ReactionBlocker reactionBlocker: Game.getInstance().onScreenReactionBlockerList) {
+		for(ReactionBlocker reactionBlocker: this.toBeDrawnReactionBlockers) {
 			Image image = GameObjectImageCreator.getInstance().getRBImage(reactionBlocker.getReactionBlockerID());
 			g.drawImage(image, reactionBlocker.getCoordinate().x, reactionBlocker.getCoordinate().y, null);
 		}
 		
-		for(PowerUp powerUp: Game.getInstance().onScreenPowerUpList) {
+		for(PowerUp powerUp: this.toBeDrawnPowerUps) {
 			Image image = GameObjectImageCreator.getInstance().getPowerUpImage(powerUp.getPowerUpID());
 			g.drawImage(image, powerUp.getCoordinate().x, powerUp.getCoordinate().y, null);
 		}

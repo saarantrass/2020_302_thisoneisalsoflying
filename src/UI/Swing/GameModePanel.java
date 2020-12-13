@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -21,6 +22,7 @@ import javax.swing.border.LineBorder;
 
 import Domain.Game;
 import Domain.GameController;
+import Domain.Settings;
 import UI.IObserver;
 import UI.ImageResizer;
 import UI.GameObjectImages.GameObjectImageCreator;
@@ -31,6 +33,7 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	private GameController GC;
 	private boolean isPaused = false;
+	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	
 	private JLabel background  = new Background();
 	
@@ -253,6 +256,10 @@ public class GameModePanel extends JPanel implements IObserver{
 	}
 	
 	private void setSidePanel() {
+		this.currentScoreField.setText(Double.toString(Game.getInstance().shooter.score));
+		this.currentTimeField.setText(df2.format(Settings.getInstance().timeRemaining / 60000));
+		this.currentHealthLabel.setText(Double.toString(Game.getInstance().shooter.health));
+		
 		this.currentAlphaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(1)));
 		this.currentBetaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(2)));
 		this.currentGammaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(3)));

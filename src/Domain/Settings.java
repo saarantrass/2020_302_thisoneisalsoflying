@@ -6,12 +6,30 @@ public class Settings {
 	private int difficultyLevel;
 	private boolean isLinear;
 	private boolean isSpinning;
-	private int atomNumber;
-	private int moleculeNumber;
-	private int powerUpNumber;
-	private int reactionBlockerNumber;
+	
+	private int alphaAtomNumber;
+	private int betaAtomNumber;
+	private int gammaAtomNumber;
+	private int sigmaAtomNumber;
+	
+	
+	private int alphaMoleculeNumber;
+	private int betaMoleculeNumber;
+	private int gammaMoleculeNumber;
+	private int sigmaMoleculeNumber;
+	
+	private int alphaPowerUpNumber;
+	private int betaPowerUpNumber;
+	private int gammaPowerUpNumber;
+	private int sigmaPowerUpNumber;
+	
+	private int alphaReactionBlockerNumber;
+	private int betaReactionBlockerNumber;
+	private int gammaReactionBlockerNumber;
+	private int sigmaReactionBlockerNumber;
+	
 	private static Settings settings = null;
-	public double timeRemaining = 10000; // TODO change the default value and set from setSettings
+	public double timeRemaining = 60000; // TODO change the default value and set from setSettings
 
 	
 	private Settings() {}
@@ -27,10 +45,26 @@ public class Settings {
 	
 		
 	public void setSettings(int atomNumber, int moleculeNumber, int reactionBlockerNumber, int powerUpNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel) {
-		this.atomNumber = atomNumber;
-		this.moleculeNumber = moleculeNumber;
-		this.reactionBlockerNumber = reactionBlockerNumber;
-		this.powerUpNumber = powerUpNumber;
+		this.alphaAtomNumber = atomNumber;
+		this.betaAtomNumber = atomNumber;
+		this.gammaAtomNumber = atomNumber;
+		this.sigmaAtomNumber = atomNumber;
+		
+		this.alphaMoleculeNumber = moleculeNumber;
+		this.betaMoleculeNumber = moleculeNumber;
+		this.gammaMoleculeNumber = moleculeNumber;
+		this.sigmaMoleculeNumber = moleculeNumber;
+		
+		this.alphaReactionBlockerNumber = reactionBlockerNumber;
+		this.betaReactionBlockerNumber = reactionBlockerNumber;
+		this.gammaReactionBlockerNumber = reactionBlockerNumber;
+		this.sigmaReactionBlockerNumber = reactionBlockerNumber;
+		
+		this.alphaPowerUpNumber = powerUpNumber;
+		this.betaPowerUpNumber = powerUpNumber;
+		this.gammaPowerUpNumber = powerUpNumber;
+		this.sigmaPowerUpNumber = powerUpNumber;
+		
 		this.isLinear = isLinear;
 		this.isSpinning = isSpinning;
 		this.lengthUnit = lengthUnit;
@@ -57,22 +91,126 @@ public class Settings {
 	}
 	
 	
-	public int getAtomNumber() {
-		return atomNumber;
+	public void decreaseMoleculeNumber(int type) {
+		switch(type) {
+			case 1:
+				this.alphaMoleculeNumber--;
+				break;
+			case 2:
+				this.betaMoleculeNumber--;
+				break;
+			case 3:
+				this.gammaMoleculeNumber--;
+				break;
+			case 4:
+				this.sigmaMoleculeNumber--;
+				break;
+			default:
+				break;
+		}
 	}
 	
 	
-	public int getMoleculeNumber() {
-		return moleculeNumber;
+	public void decreasePowerUpNumber(int type) {
+		switch(type) {
+			case 1:
+				this.alphaPowerUpNumber--;
+				break;
+			case 2:
+				this.betaPowerUpNumber--;
+				break;
+			case 3:
+				this.gammaPowerUpNumber--;
+				break;
+			case 4:
+				this.sigmaPowerUpNumber--;
+				break;
+			default:
+				break;
+		}
 	}
 	
 	
-	public int getPowerUpNumber() {
-		return powerUpNumber;
+	public void decreaseReactionBlockerNumber(int type) {
+		switch(type) {
+			case 1:
+				this.alphaReactionBlockerNumber--;
+				break;
+			case 2:
+				this.betaReactionBlockerNumber--;
+				break;
+			case 3:
+				this.gammaReactionBlockerNumber--;
+				break;
+			case 4:
+				this.sigmaReactionBlockerNumber--;
+				break;
+			default:
+				break;
+		}
 	}
 	
 	
-	public int getReactionBlockerNumber() {
-		return reactionBlockerNumber;
+	public int getAtomNumber(int type) {
+		switch(type) {
+			case 1:
+				return this.alphaAtomNumber;
+			case 2:
+				return this.betaAtomNumber;
+			case 3:
+				return this.gammaAtomNumber;
+			case 4:
+				return this.sigmaAtomNumber;
+			default:
+				return 0;
+		}
+	}
+	
+	
+	public int getMoleculeNumber(int type) {
+		switch(type) {
+			case 1:
+				return this.alphaMoleculeNumber;
+			case 2:
+				return this.betaMoleculeNumber;
+			case 3:
+				return this.gammaMoleculeNumber;
+			case 4:
+				return this.sigmaMoleculeNumber;
+			default:
+				return 0;
+		}
+	}
+	
+	
+	public int getPowerUpNumber(int type) {
+		switch(type) {
+			case 1:
+				return this.alphaPowerUpNumber;
+			case 2:
+				return this.betaPowerUpNumber;
+			case 3:
+				return this.gammaPowerUpNumber;
+			case 4:
+				return this.sigmaPowerUpNumber;
+			default:
+				return 0;
+		}
+	}
+	
+	
+	public int getReactionBlockerNumber(int type) {
+		switch(type) {
+			case 1:
+				return this.alphaReactionBlockerNumber;
+			case 2:
+				return this.betaReactionBlockerNumber;
+			case 3:
+				return this.gammaReactionBlockerNumber;
+			case 4:
+				return this.sigmaReactionBlockerNumber;
+			default:
+				return 0;
+		}
 	}
 }
