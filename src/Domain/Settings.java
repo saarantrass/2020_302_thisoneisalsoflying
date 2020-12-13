@@ -35,7 +35,6 @@ public class Settings {
 		this.isSpinning = isSpinning;
 		this.lengthUnit = lengthUnit;
 		this.difficultyLevel = difficultyLevel;
-		System.out.println("SETTINGS");
 	}
 	
 	public int getLengthUnit() {
@@ -76,15 +75,4 @@ public class Settings {
 	public int getReactionBlockerNumber() {
 		return reactionBlockerNumber;
 	}
-	
-	
-	/*public float getAtomSpeed() {
-		return atomSpeed;
-	}
-	
-	
-	public void setAtomSpeed(float atomSpeed) {
-		this.atomSpeed = atomSpeed;
-	}*/
-	
 }

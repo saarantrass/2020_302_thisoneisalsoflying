@@ -18,6 +18,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+
+import Domain.Game;
 import Domain.GameController;
 import UI.IObserver;
 import UI.ImageResizer;
@@ -71,7 +73,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		setFocusTraversalKeysEnabled(false);
 		
 		this.GC = GC;
-		
+		Game.getInstance().add(this);
 		
 		this.setLayout(new GridBagLayout());
 		this.setSidePanelImages();
@@ -251,10 +253,18 @@ public class GameModePanel extends JPanel implements IObserver{
 	}
 	
 	private void setSidePanel() {
-		currentAlphaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
-		currentBetaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
-		currentGammaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
-		currentSigmaAtomLabel.setText(Integer.toString(GC.settings.getAtomNumber()));
+		this.currentAlphaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(1)));
+		this.currentBetaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(2)));
+		this.currentGammaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(3)));
+		this.currentSigmaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(4)));
+		
+		this.currentAlphaAtomLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryAtomCount(1)));
+		this.currentBetaAtomLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryAtomCount(2)));
+		this.currentGammaAtomLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryAtomCount(3)));
+		this.currentSigmaAtomLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryAtomCount(4)));
+		
+		this.validate();
+		this.repaint();
 	}
 
 	private void setSidePanelImages() {
@@ -327,6 +337,7 @@ public class GameModePanel extends JPanel implements IObserver{
 				}
 			} else if(currentEventCode == KeyEvent.VK_UP) { //shoot atom/powerUp
 				GC.shoot();
+				//setSidePanel();
 			} else if(currentEventCode == KeyEvent.VK_LEFT) { //move shooter left
 				GC.moveShooter(0);
 			} else if(currentEventCode == KeyEvent.VK_RIGHT) { //move shooter right

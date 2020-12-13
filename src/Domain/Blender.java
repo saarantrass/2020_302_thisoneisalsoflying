@@ -8,10 +8,9 @@ public class Blender {
    protected static void useBlender(int sourceAtom, int goalAtom, Inventory inventory ) {
       
       if(verify(sourceAtom,goalAtom, inventory)) {
-      inventory.addInventoryAtom(goalAtom);
-      inventory.removeInventoryAtom(sourceAtom);
+    	  inventory.addInventoryAtom(goalAtom);
+    	  inventory.removeInventoryAtom(sourceAtom);
       }
-      useBlender(sourceAtom,goalAtom,inventory);
     	
    }
  //-----------------Blend Rules---------------------//
@@ -66,13 +65,12 @@ public class Blender {
 	   return ((sourceAtom == 4 && goalAtom == 3) && inventory.checkAtomAvailability(sourceAtom,1));
    }
    
-    protected static boolean verify(int sourceAtom, int goalAtom, Inventory inventory){
-        if(alphaToBeta(sourceAtom, goalAtom, inventory) || alphaToGamma(sourceAtom, goalAtom, inventory) || alphaToSigma(sourceAtom, goalAtom, inventory) || betaToGamma(sourceAtom, goalAtom, inventory) || betaToSigma(sourceAtom, goalAtom, inventory) || gammaToSigma(sourceAtom, goalAtom, inventory) || betaToAlpha(sourceAtom, goalAtom, inventory) || gammaToAlpha(sourceAtom, goalAtom, inventory) || sigmaToAlpha(sourceAtom, goalAtom, inventory) || gammaToBeta(sourceAtom, goalAtom,  inventory) || sigmaToBeta(sourceAtom, goalAtom, inventory) || sigmaToGamma(sourceAtom, goalAtom, inventory)) {
-        	return true;
-        }else { return false;
-        	
-        }}
-    	
-    
-    
+   protected static boolean verify(int sourceAtom, int goalAtom, Inventory inventory){
+	   if(alphaToBeta(sourceAtom, goalAtom, inventory) || alphaToGamma(sourceAtom, goalAtom, inventory) || alphaToSigma(sourceAtom, goalAtom, inventory) || betaToGamma(sourceAtom, goalAtom, inventory) || betaToSigma(sourceAtom, goalAtom, inventory) || gammaToSigma(sourceAtom, goalAtom, inventory) || betaToAlpha(sourceAtom, goalAtom, inventory) || gammaToAlpha(sourceAtom, goalAtom, inventory) || sigmaToAlpha(sourceAtom, goalAtom, inventory) || gammaToBeta(sourceAtom, goalAtom,  inventory) || sigmaToBeta(sourceAtom, goalAtom, inventory) || sigmaToGamma(sourceAtom, goalAtom, inventory)) {
+		   return true;
+	   }else { 
+		   return false;
+	   }
+   }
+   
 }

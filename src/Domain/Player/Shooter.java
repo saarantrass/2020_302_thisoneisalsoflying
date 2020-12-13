@@ -4,15 +4,16 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import Domain.IObservable;
+import Domain.Settings;
 import UI.IObserver;
 import UI.Swing.ScreenCoordinator;
 
 public class Shooter implements IObservable{
 	
 	private Point coordinate;
-	private int L = 70; //TODO
-	private int speed;
-	private int angle = 0;
+	private int L;
+	private double speed;
+	private double angle = 0;
 	private int moveDirection;
 	private int rotateDirection;
 	private boolean isMoving = false;
@@ -23,6 +24,7 @@ public class Shooter implements IObservable{
 	
 	public Shooter(Point coordinate) {
 		this.coordinate = coordinate;
+		this.L = Settings.getInstance().getLengthUnit();
 		this.speed = this.L/10;
 		this.inventory = new Inventory();
 		this.moveThread.start();
@@ -33,6 +35,11 @@ public class Shooter implements IObservable{
 	
 	public Point getCoordinate() {
 		return this.coordinate;
+	}
+	
+	
+	public Point getBarrelCoordinate() {
+		return new Point(this.coordinate.x + L/4, this.coordinate.y - L/10);
 	}
 	
 	
@@ -163,7 +170,6 @@ public class Shooter implements IObservable{
 	
 	@Override
 	public void publish() {
-		//System.out.println("shooter");
 		for(IObserver o: this.observers) o.update();
 	}
 	
