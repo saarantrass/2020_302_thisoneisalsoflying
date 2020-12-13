@@ -70,6 +70,7 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	private MainGamePanel mainGamePanel = MainGamePanel.getInstance();
 	private PausePanel pausePanel = new PausePanel();
+	private GameOverPanel gameOverPanel =  new GameOverPanel();
 	
 	public GameModePanel(GameController GC) {
 		
@@ -327,6 +328,12 @@ public class GameModePanel extends JPanel implements IObserver{
 		this.mainGamePanel.repaint();
 	}
 	
+	public void displayGameOverPanel() {
+		this.mainGamePanel.add(gameOverPanel);
+		this.mainGamePanel.validate();
+		this.mainGamePanel.repaint();
+	}
+	
 	private KeyListener runningModeListener = new KeyAdapter() {
 		int firstEventCode = 0; //initially 0 since there is no key event code 0
 		int secondEventCode = 0; //initially 0 since there is no key event code 0
@@ -408,6 +415,10 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	@Override
 	public void update() {
+		if(Game.getInstance().isFinished) {
+			this.displayGameOverPanel();
+			this.gameOverPanel.requestFocus();
+		}
 		this.setSidePanel();
 	}
 	

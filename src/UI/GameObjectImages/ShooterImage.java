@@ -33,7 +33,6 @@ public class ShooterImage extends Canvas implements IObserver{
 		this.shooter.add(this);
 		this.image = new ImageIcon(getClass().getResource(SHOOTER_IMAGE)).getImage();
 		this.image = ImageResizer.getResizedImage(image, L/2, L);
-		System.out.println(image.getWidth(this) + " shooter w/h " + image.getHeight(this));
 	}
 	
 	

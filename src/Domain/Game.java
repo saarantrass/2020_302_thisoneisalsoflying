@@ -1,8 +1,9 @@
 package Domain;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import Domain.GameObjects.Atom;
 import Domain.GameObjects.FallingObjectFactory;
 import Domain.GameObjects.Molecule;
@@ -19,17 +20,13 @@ public class Game implements IObservable{
 	private static Game game_instance = null;
 	private List<IObserver> observers = new ArrayList<IObserver>();
 	public boolean isPaused = false;
+	public boolean isFinished = false;
 	
-	public ArrayList<Atom> onScreenAtomList = new ArrayList<>();
-	public ArrayList<Molecule> onScreenMoleculeList = new ArrayList<>();
-	public ArrayList<PowerUp> onScreenPowerUpList = new ArrayList<>();
-	public ArrayList<ReactionBlocker> onScreenReactionBlockerList = new ArrayList<>();
-	
-	public LinkedList<Atom> toBeRemovedAtomList = new LinkedList<Atom>();
-	public LinkedList<Molecule> toBeRemovedMoleculeList = new LinkedList<Molecule>();
-	public LinkedList<PowerUp> toBeRemovedPowerUpList = new LinkedList<PowerUp>();
-	public LinkedList<ReactionBlocker> toBeRemovedReactionBlockerList = new LinkedList<ReactionBlocker>();
-	
+	public CopyOnWriteArrayList<Atom> onScreenAtomList = new CopyOnWriteArrayList<>();
+	public CopyOnWriteArrayList<Molecule> onScreenMoleculeList = new CopyOnWriteArrayList<>();
+	public CopyOnWriteArrayList<PowerUp> onScreenPowerUpList = new CopyOnWriteArrayList<>();
+	public CopyOnWriteArrayList<ReactionBlocker> onScreenReactionBlockerList = new CopyOnWriteArrayList<>();
+
 	public Atom barrelAtom = null;
 	public PowerUp barrelPowerUp = null; 
 	public Shooter shooter;
@@ -106,30 +103,8 @@ public class Game implements IObservable{
 		}
 		
 		moveThemAll();
-		this.removeOutBoundaryGameObjects();
 		collisionHandler();
-		this.removeOutBoundaryGameObjects();
 		this.publish();
-	}
-	
-	
-	private void removeOutBoundaryGameObjects() {
-		for(Atom atom : this.toBeRemovedAtomList) {
-			this.onScreenAtomList.remove(atom);
-		}
-		for(Molecule mol : this.toBeRemovedMoleculeList) {
-			this.onScreenMoleculeList.remove(mol);
-		}
-		for(ReactionBlocker rb : this.toBeRemovedReactionBlockerList) {
-			this.onScreenReactionBlockerList.remove(rb);
-		}
-		for(PowerUp pw: this.toBeRemovedPowerUpList) {
-			this.onScreenPowerUpList.remove(pw);
-		}
-		this.toBeRemovedAtomList.clear();
-		this.toBeRemovedMoleculeList.clear();
-		this.toBeRemovedPowerUpList.clear();
-		this.toBeRemovedReactionBlockerList.clear();
 	}
 	
 	
@@ -171,25 +146,25 @@ public class Game implements IObservable{
 		for(Atom atom : onScreenAtomList) {
 			atom.move();
 			if(atom.getCoordinate().y <= 0) {
-				this.toBeRemovedAtomList.add(atom);
+				this.onScreenAtomList.remove(atom);
 			}
 		}
 		for(Molecule mol : onScreenMoleculeList) {
 			mol.move();
 			if(mol.getCoordinate().y >= ScreenCoordinator.SCREEN_SIZE.height) {
-				this.toBeRemovedMoleculeList.add(mol);
+				this.onScreenMoleculeList.remove(mol);
 			}
 		}
 		for(ReactionBlocker rb : onScreenReactionBlockerList) {
 			rb.move();
 			if(rb.getCoordinate().y >= ScreenCoordinator.SCREEN_SIZE.height) {
-				this.toBeRemovedReactionBlockerList.add(rb);
+				this.onScreenReactionBlockerList.remove(rb);
 			}
 		}
 		for(PowerUp pw: onScreenPowerUpList) {
 			pw.move();
 			if(pw.getCoordinate().y >= ScreenCoordinator.SCREEN_SIZE.height) {
-				this.toBeRemovedPowerUpList.add(pw);
+				this.onScreenPowerUpList.remove(pw);
 			}
 		}
 		
@@ -216,13 +191,14 @@ public class Game implements IObservable{
 			this.onScreenPowerUpList.add(this.barrelPowerUp);
 			getRandomAtomToBarrel();
 		}
-		//this.publish();
 	}
 		
 		
 	private void collisionHandler() {
 		
-		//Atom - Molecule
+		/*
+		 * Atom-Molecule Collision
+		 */
 		
 		for(Atom atom : this.onScreenAtomList) {
 			for(Molecule molecule : this.onScreenMoleculeList) {
@@ -230,8 +206,8 @@ public class Game implements IObservable{
 					Point acord = atom.getCoordinate();
 					Point mcord = molecule.getCoordinate();
 					if(mcord.x <= acord.x && acord.x <= (mcord.x + L/4) && mcord.y <= acord.y && acord.y <= (mcord.y + L/4)) {
-						toBeRemovedAtomList.add(atom);
-						toBeRemovedMoleculeList.add(molecule);
+						this.onScreenAtomList.remove(atom);
+						this.onScreenMoleculeList.remove(molecule);
 						this.shooter.increaseScore(1); //TODO change score
 					}
 				}
@@ -239,14 +215,14 @@ public class Game implements IObservable{
 		}
 		
 		//TODO when shooter is rotated?
-		/*for(PowerUp pw: this.onScreenPowerUpList) {
+		for(PowerUp pw: this.onScreenPowerUpList) {
 			Point pcord = pw.getCoordinate();
 			Point scord = this.shooter.getCoordinate();
 			if(scord.x <= pcord.x && pcord.x <= (scord.x + L/2) && scord.y <= pcord.y && pcord.y <= (scord.y + L)) {
-				toBeRemovedPowerUpList.add(pw);
+				this.onScreenPowerUpList.remove(pw);
 				this.shooter.inventory.addInventoryPowerUp(pw.getPowerUpID());
 			}
-		}*/
+		}
 		
 		
 	}
@@ -254,14 +230,12 @@ public class Game implements IObservable{
 	
 	public void getRandomAtomToBarrel() {
 		int type = (int) Math.round((1 + (Math.random() * 3)));
-		if(this.shooter.inventory.checkAtomAvailability(type, 1)) {
-			this.barrelPowerUp = null;
-			this.barrelAtom = new Atom(type, this.shooter.getBarrelCoordinate());//TODO Inventory checks and coordinates to shooter end
-			this.barrelAtom.setAngle(this.shooter.getAngle());
-		} else {
+		while(!this.shooter.inventory.checkAtomAvailability(type, 1)) {
 			type = (int) (1 + (Math.random() * 3));
 		}
-		//this.publish();
+		this.barrelPowerUp = null;
+		this.barrelAtom = new Atom(type, this.shooter.getBarrelCoordinate());//TODO Inventory checks and coordinates to shooter end
+		this.barrelAtom.setAngle(this.shooter.getAngle());
 	}
 	
 	
@@ -271,7 +245,6 @@ public class Game implements IObservable{
 			this.barrelPowerUp = new PowerUp(type, this.shooter.getBarrelCoordinate(), true); //TODO Inventory checks and coordinates to shooter end			
 			this.barrelPowerUp.setAngle(this.shooter.getAngle());
 		}
-		//this.publish();
 	}
 
 
@@ -286,6 +259,7 @@ public class Game implements IObservable{
 	
 	
 	private void finishGame() {
+		this.isFinished = true;
 		publish();
 		// The time is finished, have to make isPaused = false in GameModePanel to stop shooter
 		// TODO write code to display Game Over screen
