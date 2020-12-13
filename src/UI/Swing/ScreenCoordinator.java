@@ -1,9 +1,7 @@
 package UI.Swing;
 
 import Domain.GameController;
-
 import java.awt.Dimension;
-import java.awt.Point;
 import javax.swing.JPanel;
 
 public class ScreenCoordinator { //singleton
@@ -36,9 +34,6 @@ public class ScreenCoordinator { //singleton
 	
 	
 	public void startGame() {
-		int xShooter = SCREEN_SIZE.width * 7/16;
-		int yShooter = SCREEN_SIZE.height - this.GC.settings.getLengthUnit();
-		GC.setInitialShooterCoordinate(new Point(xShooter, yShooter));
 		GC.startGame();
 		this.gameScreen();
 	}

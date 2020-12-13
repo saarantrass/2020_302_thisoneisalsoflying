@@ -1,10 +1,6 @@
 package Domain;
-
-import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.Toolkit;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import Domain.GameObjects.Atom;
@@ -14,72 +10,28 @@ import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
 import Domain.Player.Shooter;
 import UI.IObserver;
+import UI.Swing.ScreenCoordinator;
 
 public class Game implements IObservable{
 	
 	private GameController GC;
-	private Thread mainGameLoop;
 	private static Game game_instance = null;
 	private List<IObserver> observers = new ArrayList<IObserver>();
 	public boolean isPaused = false;
+	
 	public ArrayList<Atom> onScreenAtomList = new ArrayList<>();
 	public ArrayList<Molecule> onScreenMoleculeList = new ArrayList<>();
 	public ArrayList<PowerUp> onScreenPowerUpList = new ArrayList<>();
 	public ArrayList<ReactionBlocker> onScreenReactionBlockerList = new ArrayList<>();
 	
-	public Atom barrelAtom = null; //TODO add coordinate change when shooter moves
+	public Atom barrelAtom = null;
 	public PowerUp barrelPowerUp = null; 
+	public Shooter shooter;
 	
 	private int timer = 0;
 	
 	
-	
-	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //TODO
-	
-	private Game() {
-		mainGameLoop = new Thread(() -> {
-			while (true) {
-				//TODO call functions from game controller
-				if (this.GC.settings.timeRemaining <= 0) {
-					this.finishGame();
-				} else if (!this.isPaused) {
-					this.continueGame();
-
-					this.GC.settings.timeRemaining -= 10;
-				} else {
-					try {
-						Thread.sleep(100);
-	                } catch(InterruptedException e) {
-	                    // nothing
-	                }
-				}
-				
-				/*
-				System.out.println("Mols: " + this.onScreenMoleculeList);
-				System.out.println("Powss: " + this.onScreenPowerUpList);
-				System.out.println("blockers: " + this.onScreenReactionBlockerList);
-				*/
-				
-				
-				//to prevent crash
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-                    while (true) {
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e2) {
-                            break;
-                        }
-                    }
-				}
-				//to prevent crash
-				
-			}
-		});
-		
-	}
-	
+	private Game() {}
 	
 	
 	public static Game getInstance() {
@@ -90,10 +42,65 @@ public class Game implements IObservable{
 		return game_instance;
 	}
 	
+	
+	public void startGame(GameController GC){
+		this.GC = GC;
+		int xShooter = ScreenCoordinator.SCREEN_SIZE.width * 7/16;
+		int yShooter = ScreenCoordinator.SCREEN_SIZE.height - this.GC.settings.getLengthUnit();
+		this.shooter = new Shooter(new Point(xShooter,  yShooter));
+		if(this.barrelAtom == null) {
+			getRandomAtomToBarrel();
+		}
+		mainGameLoop.start();
+	}
+	
+	
+	private Thread mainGameLoop = new Thread(() -> {
+		while (true) {
+			//TODO call functions from game controller
+			if (this.GC.settings.timeRemaining <= 0) {
+				this.finishGame();
+			} else if (!this.isPaused) {
+				this.continueGame();
+
+				this.GC.settings.timeRemaining -= 10;
+			} else {
+				try {
+					Thread.sleep(100);
+                } catch(InterruptedException e) {
+                    // nothing
+                }
+			}
+			
+			/*
+			System.out.println("Mols: " + this.onScreenMoleculeList);
+			System.out.println("Powss: " + this.onScreenPowerUpList);
+			System.out.println("blockers: " + this.onScreenReactionBlockerList);
+			*/
+			
+			
+			//to prevent crash
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+                while (true) {
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e2) {
+                        break;
+                    }
+                }
+			}
+			//to prevent crash
+			
+		}
+	});
+	
+	
 	public void continueGame() {
 		
 		this.timer++;
-		if(this.timer % 20 == 0) {
+		if(this.timer % 10 == 0) {
 			createRandomFallingObject();
 		}
 		//System.out.println(this.GC.shooter.getCoordinate());
@@ -102,10 +109,11 @@ public class Game implements IObservable{
 		this.publish();
 	}
 	
+	
 	private void createRandomFallingObject() {
 		int next = (int) (Math.random() * 3);
 		int type = (int) (1 + (Math.random() * 3));
-		int xCoord = (int) (Math.random() * (screenSize.width * 7 / 8)) - 30;
+		int xCoord = (int) (Math.random() * (ScreenCoordinator.SCREEN_SIZE.getWidth() * 7 / 8)) - 30;
 		switch (next) {
 		case 0:
 			Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, 0), true, false);
@@ -125,22 +133,47 @@ public class Game implements IObservable{
 		}
 	}
 	
+	
 	private void moveThemAll() {
+		
 		for(Atom atom : onScreenAtomList) {
 			atom.move();
 		}
 		for(Molecule mol : onScreenMoleculeList) {
 			mol.move();
 		}
-		for(ReactionBlocker bl : onScreenReactionBlockerList) {
-			bl.move();
+		for(ReactionBlocker rb : onScreenReactionBlockerList) {
+			rb.move();
 		}
 		for(PowerUp pw: onScreenPowerUpList) {
 			pw.move();
 		}
+		
+		if(this.barrelAtom != null) {
+			this.barrelAtom.setCoordinate(shooter.getBarrelCoordinate());
+		} else if(this.barrelPowerUp != null) {
+			this.barrelPowerUp.setCoordinate(shooter.getBarrelCoordinate());
+		}
 	}
 	
-	private void collisionHandler() {
+	
+	public void shoot() {
+		if(this.barrelAtom != null) {
+			this.barrelAtom.setAngle(this.shooter.getAngle());
+			this.shooter.inventory.removeInventoryAtom(this.barrelAtom.atomID);
+			this.onScreenAtomList.add(this.barrelAtom);
+			getRandomAtomToBarrel();
+		} else if(this.barrelPowerUp != null) {
+			this.barrelPowerUp.setAngle(this.shooter.getAngle());
+			this.shooter.inventory.removeInventoryPowerUp(this.barrelPowerUp.powerUpID);
+			this.onScreenPowerUpList.add(this.barrelPowerUp);
+			getRandomAtomToBarrel();
+		}
+		this.publish();
+	}
+		
+		
+	/*private void collisionHandler() {
 		
 		//Atom - Molecule
 		LinkedList<Integer> toBeRemovedAtoms = new LinkedList<>();
@@ -171,29 +204,9 @@ public class Game implements IObservable{
 			onScreenMoleculeList.remove(i);
 		}
 		
-	}
+	}*/
 	
-	public void shoot() {
-		if(this.barrelAtom != null) {
-			Atom curr = this.barrelAtom;
-			Shooter sh = GC.shooter;			
-			double currAngle = sh.getAngle();
-			System.out.println(currAngle);
-			int ySpeed = curr.ySpeed;
-			curr.xSpeed = -(int) ((double) ySpeed * Math.sin(currAngle));
-			curr.ySpeed = (int) ((double) ySpeed * Math.cos(currAngle));
-			//sh.inventory.removeInventoryAtom(curr.atomID);
-			this.onScreenAtomList.add(curr);
-			/*
-			int type = (int) (1 + (Math.random() * 3));
-			while(sh.inventory.getInventoryAtomCount(type) <= 0) {
-				type = (int) (1 + (Math.random() * 3));
-			}
-			*/
-			this.barrelAtom = null;
-			Point xy = new Point((int) sh.getCoordinate().getX(), (int)sh.getCoordinate().getY());
-			this.barrelAtom = new Atom(1, xy);
-		}
+	
 		/*
 		else {
 			this.onScreenPowerUpList.add(this.barrelPowerUp);
@@ -201,18 +214,24 @@ public class Game implements IObservable{
 			//TODO get 1 more random atom to barrel
 		}
 		*/
-	}
+
 	
 	public void getRandomAtomToBarrel() {
-		int type = (int) (1 + (Math.random() * 3));
-		this.barrelPowerUp = null;
-		Point xy = new Point((int) this.GC.shooter.getCoordinate().getX(), (int)this.GC.shooter.getCoordinate().getY());
-		this.barrelAtom = new Atom(type, xy); //TODO Inventory checks and coordinates to shooter end
+		int type = (int) Math.round((1 + (Math.random() * 3)));
+		if(this.shooter.inventory.checkAtomAvailability(type, 1)) {
+			this.barrelPowerUp = null;
+			this.barrelAtom = new Atom(type, this.shooter.getBarrelCoordinate()); //TODO Inventory checks and coordinates to shooter end
+		} else {
+			type = (int) (1 + (Math.random() * 3));
+		}
 	}
 	
+	
 	public void getPowerUpToBarrel(int type) {
-		this.barrelAtom = null;
-		this.barrelPowerUp = new PowerUp(type, new Point(0,0), true); //TODO Inventory checks and coordinates to shooter end
+		if(this.shooter.inventory.checkPowerUpAvailability(type, 1)) {
+			this.barrelAtom = null;
+			this.barrelPowerUp = new PowerUp(type, this.shooter.getBarrelCoordinate(), true); //TODO Inventory checks and coordinates to shooter end			
+		}
 	}
 
 
@@ -220,43 +239,34 @@ public class Game implements IObservable{
 		this.isPaused = true;
 	}
 	
+	
 	public void resumeGame() {
 		this.isPaused = false;
 	}
 	
-	public void startGame(GameController GC){
-		this.GC = GC;
-		if(this.barrelAtom == null) {
-			getRandomAtomToBarrel();
-		}
-		mainGameLoop.start();
+	
+	private void finishGame() {
+		// The time is finished, have to make isPaused = false in GameModePanel to stop shooter
+		// TODO write code to display Game Over screen
 	}
 
+	
 	@Override
 	public void add(IObserver o) {
 		this.observers.add(o);
 	}
 
+	
 	@Override
 	public void remove(IObserver o) {
 		this.observers.remove(o);
 		
 	}
 
+	
 	@Override
 	public void publish() {
 		for(IObserver o: this.observers) o.update();
 	}
-	
-	public GameController getGC() {
-		return GC;
-	}
-	
-	private void finishGame() {
-		// The time is finished, have to make isPaused = false in GameModePanel to stop shooter
-		// TODO write code to display Game Over screen
-	}
-	
-	
 
 }

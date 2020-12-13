@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.JPanel;
 import Domain.Game;
+import Domain.Settings;
 import Domain.GameObjects.Atom;
 import Domain.GameObjects.Molecule;
 import Domain.GameObjects.PowerUp;
@@ -35,8 +36,8 @@ public class MainGamePanel extends JPanel implements IObserver{
 	}
 	
 	public void initialize() { //TODO GAME???
-		this.shooterImage = new ShooterImage(Game.getInstance().getGC().shooter, Game.getInstance().getGC().shooter.getCoordinate().x, Game.getInstance().getGC().shooter.getCoordinate().y, Game.getInstance().getGC().settings.getLengthUnit());
-		Game.getInstance().getGC().shooter.add(shooterImage);
+		this.shooterImage = new ShooterImage(Game.getInstance().shooter, Game.getInstance().shooter.getCoordinate().x, Game.getInstance().shooter.getCoordinate().y, Settings.getInstance().getLengthUnit());
+		Game.getInstance().shooter.add(shooterImage);
 		this.setOpaque(false);
 		this.setFocusable(false);
 	}
@@ -44,15 +45,6 @@ public class MainGamePanel extends JPanel implements IObserver{
 	
 	@Override
 	public void paint(Graphics g) { //TODO ATOM MOLECULE VS OLABİLİR Mİ?? BURDA
-		
-		if(Game.getInstance().barrelAtom != null) {
-			Image image = GameObjectImageCreator.getInstance().getAtomImage(Game.getInstance().barrelAtom.atomID);
-			g.drawImage(image, Game.getInstance().barrelAtom.getCoordinate().x, Game.getInstance().barrelAtom.getCoordinate().y, null);
-		}
-		/*else if (Game.getInstance().barrelPowerUp != null) {
-			Image image = GameObjectImageCreator.getInstance().getAtomImage(Game.getInstance().barrelPowerUp.powerUpID);
-			g.drawImage(image, Game.getInstance().barrelPowerUp.getCoordinate().x, Game.getInstance().barrelPowerUp.getCoordinate().y, null);
-		}*/
 		
 		for(Atom atom: Game.getInstance().onScreenAtomList) {
 			Image image = GameObjectImageCreator.getInstance().getAtomImage(atom.atomID);
@@ -72,6 +64,14 @@ public class MainGamePanel extends JPanel implements IObserver{
 		for(PowerUp powerUp: Game.getInstance().onScreenPowerUpList) {
 			Image image = GameObjectImageCreator.getInstance().getPowerUpImage(powerUp.powerUpID);
 			g.drawImage(image, powerUp.getCoordinate().x, powerUp.getCoordinate().y, null);
+		}
+		
+		if(Game.getInstance().barrelAtom != null) {
+			Image image = GameObjectImageCreator.getInstance().getAtomImage(Game.getInstance().barrelAtom.atomID);
+			g.drawImage(image, Game.getInstance().barrelAtom.getCoordinate().x, Game.getInstance().barrelAtom.getCoordinate().y, null);
+		} else if (Game.getInstance().barrelPowerUp != null) {
+			Image image = GameObjectImageCreator.getInstance().getAtomImage(Game.getInstance().barrelPowerUp.powerUpID);
+			g.drawImage(image, Game.getInstance().barrelPowerUp.getCoordinate().x, Game.getInstance().barrelPowerUp.getCoordinate().y, null);
 		}
 		
 		shooterImage.paint(g);

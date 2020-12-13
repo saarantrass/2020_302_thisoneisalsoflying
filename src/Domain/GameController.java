@@ -1,23 +1,16 @@
 package Domain;
 
-import java.awt.Point;
-import Domain.Player.*;
-
 public class GameController {
-	public Player player;
-	public Shooter shooter;
 	public Settings settings;
 	
 	
 	public GameController() {
-		this.player = new Player();
-		this.shooter = new Shooter(null);
 		this.settings = Settings.getInstance();
 	}
 	
 	
 	public void useBlender(int source, int goal) {
-		System.out.println(source + " blender " + goal);
+		Blender.useBlender(source, goal, Game.getInstance().shooter.inventory);
 	}
 	
 	
@@ -37,23 +30,23 @@ public class GameController {
 	
 	
 	public void moveShooter(int direction) {
-		shooter.move(direction);
+		Game.getInstance().shooter.move(direction);
 	}
 	
 	
 	public void stopMoveShooter() {
-		shooter.stopMove();
+		Game.getInstance().shooter.stopMove();
 	}
 	
 	
 	public void rotateShooter(int direction) {
-		shooter.rotate(direction);
+		Game.getInstance().shooter.rotate(direction);
 		
 	}
 	
 	
 	public void stopRotateShooter() {
-		shooter.stopRotate();
+		Game.getInstance().shooter.stopRotate();
 	}
 	
 	
@@ -84,10 +77,5 @@ public class GameController {
 	
 	public void pauseGame() {
 		Game.getInstance().pauseGame();	
-	}
-	
-	
-	public void setInitialShooterCoordinate(Point coordinate) {
-		shooter.setCoordinate(coordinate);
 	}
 }

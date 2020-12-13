@@ -7,6 +7,7 @@ public class PowerUp {
 	public int powerUpID;
 	private Point coordinate;
 	private boolean isThrown;
+	private double angle;
 	//TODO change speed to true
 	private int xSpeed = 0;
 	private int ySpeed = 5;
@@ -26,6 +27,11 @@ public class PowerUp {
 	
 	public Point getCoordinate() {
 		return coordinate;
+	}
+	
+	
+	public void setAngle(double angle) {
+		this.angle = angle;
 	}
 	
 	
