@@ -40,8 +40,16 @@ public class Shooter implements IObservable{
 	}
 	
 	
-	public Point getBarrelCoordinate() { //TODO FIX THIS
-		return new Point(this.coordinate.x + L/4, this.coordinate.y - L/10);
+	public Point getBarrelCoordinate() {
+		int dy = 0;
+		int dx = 0;
+		if (this.angle != 0) {
+			double radians = Math.toRadians(this.angle);
+			dy = (int) (L * (1 - Math.cos(radians)));
+			dx = (int) (L * Math.sin(radians));
+		}
+		
+		return new Point(this.coordinate.x + L/4 + dx, this.coordinate.y - L/10 + dy);
 	}
 	
 	
