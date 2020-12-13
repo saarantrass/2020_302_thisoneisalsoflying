@@ -194,7 +194,7 @@ public class Game implements IObservable{
 		if(this.barrelAtom != null) {
 			
 			this.barrelAtom.setAngle(this.shooter.getAngle());
-			this.shooter.inventory.removeInventoryAtom(this.barrelAtom.getAtomID());
+			this.shooter.inventory.removeInventoryAtom(this.barrelAtom.getAtomID(),1);
 			this.onScreenAtomList.add(this.barrelAtom);
 			getRandomAtomToBarrel();
 			
