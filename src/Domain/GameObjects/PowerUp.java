@@ -6,7 +6,7 @@ import Domain.Settings;
 
 public class PowerUp {
 	
-	public int powerUpID;
+	private int powerUpID;
 	private Point coordinate;
 	private boolean isThrown;
 	private int L;
@@ -43,13 +43,13 @@ public class PowerUp {
 	}
 	
 	public void move() {
-		if(isThrown) {
+		if(isThrown) { //TODO BOUNDARİES CHECK
 			double speedX = speed * Math.sin(Math.toRadians(angle));
 			double speedY = speed * Math.cos(Math.toRadians(angle));
 			this.coordinate.x += speedX;
 			this.coordinate.y -= speedY;
-		}else {
-			this.coordinate.x += speed;
+		} else {
+			this.coordinate.y += speed;
 		}
 	}
 	

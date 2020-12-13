@@ -337,7 +337,6 @@ public class GameModePanel extends JPanel implements IObserver{
 				}
 			} else if(currentEventCode == KeyEvent.VK_UP) { //shoot atom/powerUp
 				GC.shoot();
-				//setSidePanel();
 			} else if(currentEventCode == KeyEvent.VK_LEFT) { //move shooter left
 				GC.moveShooter(0);
 			} else if(currentEventCode == KeyEvent.VK_RIGHT) { //move shooter right

@@ -38,7 +38,7 @@ public class Shooter implements IObservable{
 	}
 	
 	
-	public Point getBarrelCoordinate() {
+	public Point getBarrelCoordinate() { //TODO FIX THIS
 		return new Point(this.coordinate.x + L/4, this.coordinate.y - L/10);
 	}
 	
