@@ -51,7 +51,7 @@ public class ReactionBlocker {
 	}
 	public void zigzag() {
 		if(travelled<Settings.getInstance().getLengthUnit()) {
-			travelled += xSpeed;
+			travelled += Math.abs(xSpeed);
 		}else {
 			this.xSpeed = -xSpeed;
 			travelled = 0;
