@@ -2,28 +2,31 @@ package Domain.GameObjects;
 import java.awt.Point;
 
 import Domain.Settings;
+import UI.Swing.ScreenCoordinator;
 
 public class Molecule {
 	
-	public int moleculeID;
+	private int moleculeID;
 	private Point coordinate;
-	private boolean isSpinning;
 	private boolean isLinear;
-	//TODO change speed to true
-	private int xSpeed = 3;
-	private int ySpeed = 3;
+	private boolean isSpinning;
+	private int L;
+	private double speed;
+	private double xSpeed;
+	private double ySpeed;
 	private int travelled = 0;
 	
-	public Molecule (int moleculeID, Point coordinate,boolean isSpinning, boolean isLinear) {
+	public Molecule (int moleculeID, Point coordinate, boolean isLinear, boolean isSpinning) {
 		this.moleculeID = moleculeID;
 		this.coordinate = coordinate;
-		this.isSpinning = isSpinning;
 		this.isLinear = isLinear;
+		this.isSpinning = isSpinning;
+		this.L = Settings.getInstance().getLengthUnit();
+		this.speed = L/10;
+		this.xSpeed = this.speed * Math.sin(Math.toRadians(45));
+		this.ySpeed = this.speed * Math.cos(Math.toRadians(45));
 	}
 	
-	public Molecule (int moleculeID, Point coordinate) {
-		this(moleculeID, coordinate, false, false);
-	}
 	
 	public void move() {
 		//TODO check screen borders
@@ -32,39 +35,38 @@ public class Molecule {
 				zigzag();
 				break;
 			case 2:
-				if(this.coordinate.y<175) {
-					this.coordinate.y += ySpeed;
+				if(this.coordinate.y < ScreenCoordinator.SCREEN_SIZE.getHeight()/4) {
+					this.coordinate.y += this.speed;
 				}else {
 					zigzag();
 				}
 				break;
 			case 3:
-				if(this.coordinate.y<350) {
-					this.coordinate.y += ySpeed;
+				if(this.coordinate.y < ScreenCoordinator.SCREEN_SIZE.getHeight()/2) {
+					this.coordinate.y += this.speed;
 				}else {
 					zigzag();
 				}
 				break;
 			case 4:
-				this.coordinate.y += ySpeed;
+				this.coordinate.y += this.speed;
 				break;
 		}
 
 	}
+	
+	
 	public void zigzag() {
-		if(travelled<Settings.getInstance().getLengthUnit()) {
-			travelled += Math.abs(xSpeed);
-		}else {
-			this.xSpeed = -this.xSpeed;
-			travelled = 0;
+		if(this.travelled < L * Math.sin(Math.toRadians(45))) {
+			this.travelled += Math.abs(xSpeed);
+		} else {
+			xSpeed = -xSpeed;
+			this.travelled = 0;
 		}
-		this.coordinate.x += this.xSpeed;
-		this.coordinate.y += this.ySpeed;
+		this.coordinate.x += xSpeed;
+		this.coordinate.y += ySpeed;
 	}
 	
-	public void setCoordinate(Point coordinate) {
-		this.coordinate = coordinate;
-	}
 	
 	public Point getCoordinate() {
 		return this.coordinate;
@@ -76,18 +78,8 @@ public class Molecule {
 	}
 	
 	
-	public void setSpinning(boolean isSpinning) {
-		this.isSpinning = isSpinning;
-	}
-	
-	
 	public boolean isLinear() {
 		return isLinear;
-	}
-	
-	
-	public void setLinear(boolean isLinear) {
-		this.isLinear = isLinear;
 	}
 	
 	

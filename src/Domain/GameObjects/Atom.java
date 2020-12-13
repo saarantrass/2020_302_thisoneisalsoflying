@@ -3,11 +3,10 @@ package Domain.GameObjects;
 import java.awt.Point;
 
 import Domain.Settings;
-import UI.Swing.ScreenCoordinator;
 
 public class Atom {
 	
-	public int atomID;
+	private int atomID;
 	private Point coordinate;
 	private int L;
 	private double speed;
@@ -28,6 +27,7 @@ public class Atom {
 	public void move() {
 		double speedX = speed * Math.sin(Math.toRadians(angle));
 		double speedY = speed * Math.cos(Math.toRadians(angle));
+		//TODO BOUNDARİES CHECK
 		/*if(this.coordinate.x <= -1 || this.coordinate.x >= (ScreenCoordinator.SCREEN_SIZE.width * 7/8)) {
 			speedX = -speedX;
 		}*/
