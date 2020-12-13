@@ -2,21 +2,24 @@ package Domain.GameObjects;
 
 import java.awt.Point;
 
+import Domain.Settings;
+
 public class PowerUp {
 	
 	public int powerUpID;
 	private Point coordinate;
 	private boolean isThrown;
-	private double angle;
-	//TODO change speed to true
-	private int xSpeed = 0;
-	private int ySpeed = 5;
+	private int L;
+	private double speed;
+	private double angle = 0;
 	
 	
 	public PowerUp(int powerUpID, Point coordinate, boolean isThrown) {
 		this.powerUpID = powerUpID;
 		this.coordinate = coordinate;
 		this.isThrown = isThrown;
+		this.L = Settings.getInstance().getLengthUnit();
+		this.speed = L/10;
 	}
 	
 	
@@ -40,9 +43,14 @@ public class PowerUp {
 	}
 	
 	public void move() {
-		//TODO check screen borders
-		this.coordinate.x += xSpeed;
-		this.coordinate.y += ySpeed;
+		if(isThrown) {
+			double speedX = speed * Math.sin(Math.toRadians(angle));
+			double speedY = speed * Math.cos(Math.toRadians(angle));
+			this.coordinate.x += speedX;
+			this.coordinate.y -= speedY;
+		}else {
+			this.coordinate.x += speed;
+		}
 	}
 	
 	

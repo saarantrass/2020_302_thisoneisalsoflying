@@ -224,6 +224,7 @@ public class Game implements IObservable{
 		} else {
 			type = (int) (1 + (Math.random() * 3));
 		}
+		this.publish();
 	}
 	
 	
@@ -232,6 +233,7 @@ public class Game implements IObservable{
 			this.barrelAtom = null;
 			this.barrelPowerUp = new PowerUp(type, this.shooter.getBarrelCoordinate(), true); //TODO Inventory checks and coordinates to shooter end			
 		}
+		this.publish();
 	}
 
 

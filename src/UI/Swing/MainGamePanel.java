@@ -70,7 +70,7 @@ public class MainGamePanel extends JPanel implements IObserver{
 			Image image = GameObjectImageCreator.getInstance().getAtomImage(Game.getInstance().barrelAtom.atomID);
 			g.drawImage(image, Game.getInstance().barrelAtom.getCoordinate().x, Game.getInstance().barrelAtom.getCoordinate().y, null);
 		} else if (Game.getInstance().barrelPowerUp != null) {
-			Image image = GameObjectImageCreator.getInstance().getAtomImage(Game.getInstance().barrelPowerUp.powerUpID);
+			Image image = GameObjectImageCreator.getInstance().getPowerUpImage(Game.getInstance().barrelPowerUp.powerUpID);
 			g.drawImage(image, Game.getInstance().barrelPowerUp.getCoordinate().x, Game.getInstance().barrelPowerUp.getCoordinate().y, null);
 		}
 		
