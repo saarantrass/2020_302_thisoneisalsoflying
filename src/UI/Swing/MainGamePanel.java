@@ -13,7 +13,7 @@ import Domain.GameObjects.Molecule;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
 import UI.IObserver;
-import UI.GameObjectImages.GameObjectImageCreator;
+import UI.GameObjectImages.GameObjectImageFactory;
 import UI.GameObjectImages.ShooterImage;
 
 @SuppressWarnings("serial")
@@ -59,30 +59,30 @@ public class MainGamePanel extends JPanel implements IObserver{
 		this.toBeDrawnReactionBlockers = (ArrayList<ReactionBlocker>) Game.getInstance().onScreenReactionBlockerList.clone();
 		
 		for(Atom atom: this.toBeDrawnAtoms) {
-			Image image = GameObjectImageCreator.getInstance().getAtomImage(atom.getAtomID());
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Atom", atom.getAtomID(), false);
 			g.drawImage(image, atom.getCoordinate().x, atom.getCoordinate().y, null);
 		}
 		
 		for(Molecule molecule: this.toBeDrawnMolecules) {
-			Image image = GameObjectImageCreator.getInstance().getMoleculeImage(molecule.getMoleculeID(), molecule.isLinear());
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Molecule", molecule.getMoleculeID(), molecule.isLinear());
 			g.drawImage(image, molecule.getCoordinate().x, molecule.getCoordinate().y, null);
 		}
 		
 		for(ReactionBlocker reactionBlocker: this.toBeDrawnReactionBlockers) {
-			Image image = GameObjectImageCreator.getInstance().getRBImage(reactionBlocker.getReactionBlockerID());
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("ReactionBlocker", reactionBlocker.getReactionBlockerID(), false);
 			g.drawImage(image, reactionBlocker.getCoordinate().x, reactionBlocker.getCoordinate().y, null);
 		}
 		
 		for(PowerUp powerUp: this.toBeDrawnPowerUps) {
-			Image image = GameObjectImageCreator.getInstance().getPowerUpImage(powerUp.getPowerUpID());
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("PowerUp", powerUp.getPowerUpID(), false);
 			g.drawImage(image, powerUp.getCoordinate().x, powerUp.getCoordinate().y, null);
 		}
 		
 		if(Game.getInstance().barrelAtom != null) {
-			Image image = GameObjectImageCreator.getInstance().getAtomImage(Game.getInstance().barrelAtom.getAtomID());
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Atom", Game.getInstance().barrelAtom.getAtomID(), false);
 			g.drawImage(image, Game.getInstance().barrelAtom.getCoordinate().x, Game.getInstance().barrelAtom.getCoordinate().y, null);
 		} else if (Game.getInstance().barrelPowerUp != null) {
-			Image image = GameObjectImageCreator.getInstance().getPowerUpImage(Game.getInstance().barrelPowerUp.getPowerUpID());
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("PowerUp", Game.getInstance().barrelPowerUp.getPowerUpID(), false);
 			g.drawImage(image, Game.getInstance().barrelPowerUp.getCoordinate().x, Game.getInstance().barrelPowerUp.getCoordinate().y, null);
 		}
 		
