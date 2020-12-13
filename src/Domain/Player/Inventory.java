@@ -14,10 +14,10 @@ public class Inventory {
 		this.inventoryAtom = new HashMap<Integer, Integer>();
 		this.inventoryPowerUp = new HashMap<Integer, Integer>();
 		
-		inventoryAtom.put(1, Settings.getInstance().getAtomNumber());
-		inventoryAtom.put(2, Settings.getInstance().getAtomNumber());
-		inventoryAtom.put(3, Settings.getInstance().getAtomNumber());
-		inventoryAtom.put(4, Settings.getInstance().getAtomNumber());
+		inventoryAtom.put(1, Settings.getInstance().getAtomNumber(1));
+		inventoryAtom.put(2, Settings.getInstance().getAtomNumber(2));
+		inventoryAtom.put(3, Settings.getInstance().getAtomNumber(3));
+		inventoryAtom.put(4, Settings.getInstance().getAtomNumber(4));
 		
 		inventoryPowerUp.put(1, 3);
 		inventoryPowerUp.put(2, 0);

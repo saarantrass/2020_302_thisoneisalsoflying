@@ -69,7 +69,7 @@ public class Game implements IObservable{
 				this.finishGame();
 			} else if (!this.isPaused) {
 				this.continueGame();
-				this.GC.settings.timeRemaining -= 10;
+				this.GC.settings.timeRemaining -= 100;
 			} else {
 				try {
 					Thread.sleep(100);
@@ -77,6 +77,7 @@ public class Game implements IObservable{
                     // nothing
                 }
 			}
+			
 			
 			
 			//to prevent crash
@@ -105,6 +106,7 @@ public class Game implements IObservable{
 		}
 		
 		moveThemAll();
+		this.removeOutBoundaryGameObjects();
 		collisionHandler();
 		this.removeOutBoundaryGameObjects();
 		this.publish();
@@ -137,16 +139,25 @@ public class Game implements IObservable{
 		int xCoord = (int) (Math.random() * (ScreenCoordinator.SCREEN_SIZE.getWidth() * 7 / 8)) - 30;
 		switch (next) {
 			case 0:
-				Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, 0), Settings.getInstance().isLinear(), Settings.getInstance().isSpinning());
-				onScreenMoleculeList.add(newMol);
+				if(Settings.getInstance().getMoleculeNumber(type) > 0) {
+					Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, 0), Settings.getInstance().isLinear(), Settings.getInstance().isSpinning());
+					onScreenMoleculeList.add(newMol);
+					Settings.getInstance().decreaseMoleculeNumber(type);
+				}
 				break;
 			case 1:
-				PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, 0));
-				onScreenPowerUpList.add(newPw);
+				if(Settings.getInstance().getPowerUpNumber(type) > 0) {
+					PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, 0));
+					onScreenPowerUpList.add(newPw);
+					Settings.getInstance().decreasePowerUpNumber(type);
+				}
 				break;
 			case 2:
-				ReactionBlocker bl = FallingObjectFactory.getInstance().getNewReactionBlocker(type, new Point(xCoord, 0));
-				onScreenReactionBlockerList.add(bl);
+				if(Settings.getInstance().getReactionBlockerNumber(type) > 0) {
+					ReactionBlocker bl = FallingObjectFactory.getInstance().getNewReactionBlocker(type, new Point(xCoord, 0));
+					onScreenReactionBlockerList.add(bl);
+					Settings.getInstance().decreaseReactionBlockerNumber(type);
+				}
 				break;
 
 			default:
@@ -205,7 +216,7 @@ public class Game implements IObservable{
 			this.onScreenPowerUpList.add(this.barrelPowerUp);
 			getRandomAtomToBarrel();
 		}
-		this.publish();
+		//this.publish();
 	}
 		
 		
@@ -221,10 +232,23 @@ public class Game implements IObservable{
 					if(mcord.x <= acord.x && acord.x <= (mcord.x + L/4) && mcord.y <= acord.y && acord.y <= (mcord.y + L/4)) {
 						toBeRemovedAtomList.add(atom);
 						toBeRemovedMoleculeList.add(molecule);
+						this.shooter.increaseScore(1); //TODO change score
 					}
 				}
 			}
 		}
+		
+		//TODO when shooter is rotated?
+		/*for(PowerUp pw: this.onScreenPowerUpList) {
+			Point pcord = pw.getCoordinate();
+			Point scord = this.shooter.getCoordinate();
+			if(scord.x <= pcord.x && pcord.x <= (scord.x + L/2) && scord.y <= pcord.y && pcord.y <= (scord.y + L)) {
+				toBeRemovedPowerUpList.add(pw);
+				this.shooter.inventory.addInventoryPowerUp(pw.getPowerUpID());
+			}
+		}*/
+		
+		
 	}
 
 	
@@ -232,11 +256,12 @@ public class Game implements IObservable{
 		int type = (int) Math.round((1 + (Math.random() * 3)));
 		if(this.shooter.inventory.checkAtomAvailability(type, 1)) {
 			this.barrelPowerUp = null;
-			this.barrelAtom = new Atom(type, this.shooter.getBarrelCoordinate()); //TODO Inventory checks and coordinates to shooter end
+			this.barrelAtom = new Atom(type, this.shooter.getBarrelCoordinate());//TODO Inventory checks and coordinates to shooter end
+			this.barrelAtom.setAngle(this.shooter.getAngle());
 		} else {
 			type = (int) (1 + (Math.random() * 3));
 		}
-		this.publish();
+		//this.publish();
 	}
 	
 	
@@ -244,8 +269,9 @@ public class Game implements IObservable{
 		if(this.shooter.inventory.checkPowerUpAvailability(type, 1)) {
 			this.barrelAtom = null;
 			this.barrelPowerUp = new PowerUp(type, this.shooter.getBarrelCoordinate(), true); //TODO Inventory checks and coordinates to shooter end			
+			this.barrelPowerUp.setAngle(this.shooter.getAngle());
 		}
-		this.publish();
+		//this.publish();
 	}
 
 
@@ -260,6 +286,7 @@ public class Game implements IObservable{
 	
 	
 	private void finishGame() {
+		publish();
 		// The time is finished, have to make isPaused = false in GameModePanel to stop shooter
 		// TODO write code to display Game Over screen
 	}

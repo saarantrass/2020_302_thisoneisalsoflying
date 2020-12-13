@@ -19,8 +19,10 @@ public class Shooter implements IObservable{
 	private boolean isMoving = false;
 	private boolean isRotating = false;
 	private List<IObserver> observers = new ArrayList<IObserver>();
-	public Inventory inventory;
 	
+	public Inventory inventory;
+	public double health = 100;
+	public double score = 0;
 	
 	public Shooter(Point coordinate) {
 		this.coordinate = coordinate;
@@ -154,6 +156,11 @@ public class Shooter implements IObservable{
 				//to prevent crash
 		}
 	});
+	
+	
+	public void increaseScore(double points) {
+		this.score += points;
+	}
 	
 	
 	@Override

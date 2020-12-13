@@ -3,6 +3,7 @@ package Domain.GameObjects;
 import java.awt.Point;
 
 import Domain.Settings;
+import UI.Swing.ScreenCoordinator;
 
 public class Atom {
 	
@@ -10,7 +11,9 @@ public class Atom {
 	private Point coordinate;
 	private int L;
 	private double speed;
-	private double angle = 0;
+	private double xSpeed;
+	private double ySpeed;
+	private double angle;
 	
 	
 	public Atom (int atomID, Point coordinate) {
@@ -25,18 +28,17 @@ public class Atom {
 	}
 	
 	public void move() {
-		double speedX = speed * Math.sin(Math.toRadians(angle));
-		double speedY = speed * Math.cos(Math.toRadians(angle));
-		//TODO BOUNDARİES CHECK
-		/*if(this.coordinate.x <= -1 || this.coordinate.x >= (ScreenCoordinator.SCREEN_SIZE.width * 7/8)) {
-			speedX = -speedX;
-		}*/
-		this.coordinate.x += speedX;
-		this.coordinate.y -= speedY;
+		if(this.coordinate.x < 0 || this.coordinate.x > (ScreenCoordinator.SCREEN_SIZE.width * 7/8)) {
+			this.xSpeed = -this.xSpeed;
+		}
+		this.coordinate.x += this.xSpeed;
+		this.coordinate.y -= this.ySpeed;
 	}
 	
 	public void setAngle(double angle) {
 		this.angle = angle;
+		this.xSpeed = speed * Math.sin(Math.toRadians(this.angle));
+		this.ySpeed = speed * Math.cos(Math.toRadians(this.angle));
 	}
 	
 	public Point getCoordinate() {
