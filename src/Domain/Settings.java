@@ -29,7 +29,7 @@ public class Settings {
 	private int sigmaReactionBlockerNumber;
 	
 	private static Settings settings = null;
-	public double timeRemaining = 60000; // TODO change the default value and set from setSettings
+	public double timeRemaining = 600000; // TODO change the default value and set from setSettings
 
 	
 	private Settings() {}
