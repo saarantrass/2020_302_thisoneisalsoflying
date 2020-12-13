@@ -8,8 +8,62 @@ public class Blender {
    protected static void useBlender(int sourceAtom, int goalAtom, Inventory inventory ) {
       
       if(verify(sourceAtom,goalAtom, inventory)) {
-    	  inventory.addInventoryAtom(goalAtom);
-    	  inventory.removeInventoryAtom(sourceAtom);
+    	  if(sourceAtom == 1 && goalAtom == 2) {
+    		  inventory.addInventoryAtom(goalAtom,1);
+    	      inventory.removeInventoryAtom(sourceAtom,2);
+    	  }
+    	  if(sourceAtom == 1 && goalAtom == 3) {
+    		  inventory.addInventoryAtom(goalAtom,1);
+    	      inventory.removeInventoryAtom(sourceAtom,3);
+    	  }
+    	  if(sourceAtom == 1 && goalAtom == 4) {
+    		  inventory.addInventoryAtom(goalAtom,1);
+    	      inventory.removeInventoryAtom(sourceAtom,4);
+    	  }
+    	  if(sourceAtom == 2 && goalAtom == 3) {
+    		  inventory.addInventoryAtom(goalAtom,1);
+    	      inventory.removeInventoryAtom(sourceAtom,2);
+    	  }
+    	  if(sourceAtom == 2 && goalAtom == 4) {
+    		  inventory.addInventoryAtom(goalAtom,1);
+    	      inventory.removeInventoryAtom(sourceAtom,3);
+    	  }
+    	  if(sourceAtom == 3 && goalAtom == 4) {
+    		  inventory.addInventoryAtom(goalAtom,1);
+    	      inventory.removeInventoryAtom(sourceAtom,2);
+    	  }
+    	  
+    	  
+    	  
+    	  
+    	  
+    	  if(sourceAtom == 2 && goalAtom == 1) {
+    		  inventory.addInventoryAtom(goalAtom,2);
+    	      inventory.removeInventoryAtom(sourceAtom,1);
+    	  }
+    	  
+    	  if(sourceAtom == 3 && goalAtom == 1) {
+    		  inventory.addInventoryAtom(goalAtom,3);
+    	      inventory.removeInventoryAtom(sourceAtom,1);
+    	  }
+    	  if(sourceAtom == 4 && goalAtom == 1) {
+    		  inventory.addInventoryAtom(goalAtom,4);
+    	      inventory.removeInventoryAtom(sourceAtom,1);
+    	  }
+    	  if(sourceAtom == 3 && goalAtom == 2) {
+    		  inventory.addInventoryAtom(goalAtom,2);
+    	      inventory.removeInventoryAtom(sourceAtom,1);
+    	  }
+    	  if(sourceAtom == 4 && goalAtom == 2) {
+    		  inventory.addInventoryAtom(goalAtom,3);
+    	      inventory.removeInventoryAtom(sourceAtom,1);
+    	  }
+    	  if(sourceAtom == 4 && goalAtom == 3) {
+    		  inventory.addInventoryAtom(goalAtom,3);
+    	      inventory.removeInventoryAtom(sourceAtom,2);
+    	  }
+    	  
+    	  
       }
     	
    }

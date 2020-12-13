@@ -54,9 +54,9 @@ public class Inventory {
 	}
 	
 	
-	public void addInventoryAtom(int type) {
+	public void addInventoryAtom(int type, int howmany) {
 		int curr = this.inventoryAtom.get(type);
-		this.inventoryAtom.replace(type, curr+1);
+		this.inventoryAtom.replace(type, curr+howmany);
 	}
 	
 	
@@ -66,10 +66,10 @@ public class Inventory {
 	}
 	
 	
-	public void removeInventoryAtom(int type) {
+	public void removeInventoryAtom(int type, int howmany) {
 		int curr = this.inventoryAtom.get(type);
 		if(curr > 0) {
-			this.inventoryAtom.replace(type, curr-1);
+			this.inventoryAtom.replace(type, curr-howmany);
 		}else {
 			//TODO add no more item case
 		}
