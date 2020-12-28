@@ -6,17 +6,17 @@ import javax.swing.JPanel;
 
 public class ScreenCoordinator { //singleton
 	
-	private ScreenFrame mainFrame;
+	private ScreenFrame mainFrame = new ScreenFrame();
+	private Background background = new Background();
 	private JPanel currentPanel;
-	private GameController GC;
+	private GameController GC = new GameController();
 	private GameModePanel gameModePanel;
 	private static ScreenCoordinator screen_coordinator = null;
 	public static final Dimension SCREEN_SIZE = new Dimension(1350,800);
 	
 	
 	private ScreenCoordinator() {
-		this.mainFrame = new ScreenFrame();
-		this.GC = new GameController();
+		mainFrame.setContentPane(background);
 	}
 	
 	
@@ -30,6 +30,7 @@ public class ScreenCoordinator { //singleton
 	
 	
 	public void initialize() {
+		//this.mainMenuScreen(); //to start with main menu uncomment this and comment below code
 		this.buildingModeScreen();
 	}
 	
@@ -41,10 +42,19 @@ public class ScreenCoordinator { //singleton
 	}
 	
 	
+	public void mainMenuScreen() {
+		clean();
+		currentPanel = new MainMenuPanel(this.GC);
+		mainFrame.getContentPane().add(currentPanel);
+		mainFrame.pack();
+		mainFrame.setVisible(true);
+	}
+	
+	
 	public void buildingModeScreen() {
 		clean();
 		currentPanel = new BuildingModePanel(this.GC);
-		mainFrame.setContentPane(currentPanel);
+		mainFrame.getContentPane().add(currentPanel);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
 	}
@@ -53,7 +63,7 @@ public class ScreenCoordinator { //singleton
 	public void gameScreen() {
 		clean();
 		currentPanel = this.gameModePanel;
-		mainFrame.setContentPane(currentPanel);
+		mainFrame.getContentPane().add(currentPanel);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
 	}
@@ -70,9 +80,7 @@ public class ScreenCoordinator { //singleton
 
 	
 	public void clean() {
-		if(currentPanel != null) {
-			mainFrame.remove(currentPanel);
-		}
+		mainFrame.getContentPane().removeAll();
 	}
 	
 }

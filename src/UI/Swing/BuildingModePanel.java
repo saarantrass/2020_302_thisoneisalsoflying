@@ -23,8 +23,6 @@ public class BuildingModePanel extends JPanel{
 
 	private GameController GC;
 	
-	private JLabel background = new Background();
-	
 	private JPanel settingsPanel = new JPanel(new GridBagLayout());
 	private JPanel atomNumbersPanel = new JPanel(new GridBagLayout());
 	private JPanel moleculeNumbersPanel = new JPanel(new GridBagLayout());
@@ -299,7 +297,7 @@ public class BuildingModePanel extends JPanel{
 		difficultyLevelGroup.add(hardButton);
 		easyButton.setSelected(true);
 		
-		unitLengthField.setText(Integer.toString((int)(this.background.getHeight() / 10)));
+		unitLengthField.setText(Integer.toString((int)(ScreenCoordinator.SCREEN_SIZE.getHeight() / 10)));
 		c.gridx = 0;
 		c.gridy = 0;
 		gameEssentialsPanel.add(unitLengthLabel, c);
@@ -362,8 +360,8 @@ public class BuildingModePanel extends JPanel{
 		
 		settingsPanel.setOpaque(false);
 		
-		background.add(settingsPanel);
-		this.add(background);
+		this.setOpaque(false);
+		this.add(settingsPanel);
 	}
 	
 	
