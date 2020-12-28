@@ -35,8 +35,6 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	private GameController GC;
 	
-	private JLabel background  = new Background();
-	
 	private JPanel sidePanel = new JPanel(new GridBagLayout());
 	private JPanel playerPanel = new JPanel(new GridBagLayout());
 	private JPanel shieldPanel = new JPanel(new GridBagLayout());
@@ -90,7 +88,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		this.GC = GC;
 		Game.getInstance().add(this);
 		
-		this.setLayout(new GridBagLayout());
+		this.setLayout(new BorderLayout());
 		this.setSidePanelImages();
 		this.setSidePanel();
 		
@@ -253,13 +251,14 @@ public class GameModePanel extends JPanel implements IObserver{
 		/*
 		 * side panel design
 		 */
-		sidePanel.setMaximumSize((new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight())));
-		sidePanel.setMinimumSize((new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight())));
-		sidePanel.setPreferredSize((new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight())));
-		sidePanel.setSize((new Dimension((int) (this.background.getWidth() / 8), this.background.getHeight())));
+		Dimension screenSize = ScreenCoordinator.SCREEN_SIZE;
+		
+		sidePanel.setMaximumSize(new Dimension((int) (screenSize.getWidth() / 8), (int) screenSize.getHeight()));
+		sidePanel.setMinimumSize(new Dimension((int) (screenSize.getWidth() / 8), (int) screenSize.getHeight()));
+		sidePanel.setPreferredSize(new Dimension((int) (screenSize.getWidth() / 8), (int) screenSize.getHeight()));
+		sidePanel.setSize(new Dimension((int) (screenSize.getWidth() / 8), (int) screenSize.getHeight()));
 		sidePanel.setBorder(new LineBorder(new Color(0.0f, 0.0f, 0.0f, 0.5f), 2));
 		sidePanel.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
-		sidePanel.setLayout(new GridBagLayout());
 		
 		c.insets = new Insets(0, 0, 0, 0);
 		c.fill = GridBagConstraints.BOTH;
@@ -279,10 +278,9 @@ public class GameModePanel extends JPanel implements IObserver{
 		c.gridy = 3;
 		sidePanel.add(atomPanel, c);
 		
-		background.add(mainGamePanel);
-		background.add(sidePanel, BorderLayout.LINE_END);
-		
-		this.add(background);
+		this.setOpaque(false);
+		this.add(mainGamePanel);
+		this.add(sidePanel, BorderLayout.LINE_END);
 		this.setFocusable(true);
 		this.addKeyListener(this.runningModeListener);
 		
@@ -290,7 +288,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		this.mainGamePanel.initialize();
 	}
 	
-	private void setSidePanel() {
+	private void setSidePanel() { //TODO GET ALL FROM SETTİNGS
 		this.currentScoreField.setText(Double.toString(Game.getInstance().shooter.score));
 		
 		int minutes = (int) Math.floor((Settings.getInstance().timeRemaining / 1000) / 60);
@@ -373,6 +371,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		pausePanel.removeKeyListener(pausePanelListener);
 		pausePanel.removeQuitButtonListener(quitButtonListener);
 		this.mainGamePanel.remove(pausePanel);
+		ScreenCoordinator.getInstance().gameScreen();
 		this.mainGamePanel.validate();
 		this.mainGamePanel.repaint();
 	}
@@ -386,6 +385,7 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	public void removeQuitPanel() {
 		this.mainGamePanel.remove(quitPanel);
+		ScreenCoordinator.getInstance().gameScreen();
 		this.mainGamePanel.validate();
 		this.mainGamePanel.repaint();
 	}
@@ -454,18 +454,24 @@ public class GameModePanel extends JPanel implements IObserver{
 		public void keyPressed(KeyEvent e) {
 			
 			if(e.getKeyCode() == KeyEvent.VK_R) {
-				GC.resumeGame();
 				removePausePanel();
-				ScreenCoordinator.getInstance().gameScreen();
+				GC.resumeGame();
 				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
 			if(e.getKeyCode() == KeyEvent.VK_S) {
+				removePausePanel();
 				GC.saveGame();
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
-			if(e.getKeyCode() == KeyEvent.VK_L) {
+			if(e.getKeyCode() == KeyEvent.VK_L) { //TODO
+				removePausePanel();
+				GC.quitGame();
 				GC.loadGame();
+				ScreenCoordinator.getInstance().startGame();
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+				
 			}
 			
 		}
@@ -517,15 +523,19 @@ public class GameModePanel extends JPanel implements IObserver{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(e.getActionCommand().equals("Save & Quit")) {
+			if(e.getActionCommand().equals("Save & Quit")) { //TODO
+				removeQuitPanel();
 				GC.saveGame();
-				System.exit(0);
-				//TODO ana ekrana gidebilir
+				GC.quitGame();
+				ScreenCoordinator.getInstance().initialize();
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
-			if(e.getActionCommand().equals("Quit")) {
-				System.exit(0);
-				//TODO ana ekrana gidebilir
+			if(e.getActionCommand().equals("Quit")) { //TODO
+				removeQuitPanel();
+				GC.quitGame();
+				ScreenCoordinator.getInstance().initialize();
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
 			if(e.getActionCommand().equals("Back")) {

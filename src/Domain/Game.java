@@ -297,6 +297,11 @@ public class Game implements IObservable{
 		this.isFinished = true;
 		publish();
 	}
+	
+	
+	public void quitGame() {
+		game_instance = null;
+	}
 
 
 	@Override

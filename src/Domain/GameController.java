@@ -54,13 +54,15 @@ public class GameController {
 	}
 	
 	
-	public void loadGame(){
+	public void loadGame(){ //TODO need to set settings - no need to set inventory
 		System.out.println("loadGame GC");
+		//uncomment the code below to get load work - an example set of settings
+		//this.editInBuildMode(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, false, false, 80, 1);
 	}
 	
 	
 	public void quitGame() {
-		//TODO
+		Game.getInstance().quitGame();
 	}
 	
 	
