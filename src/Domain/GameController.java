@@ -14,8 +14,8 @@ public class GameController {
 	}
 	
 	
-	public void editInBuildMode(int atomNumber, int moleculeNumber, int reactionBlockerNumber, int powerUpNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel) {
-		this.settings.setSettings(atomNumber, moleculeNumber, reactionBlockerNumber, powerUpNumber, isLinear, isSpinning, lengthUnit, difficultyLevel);
+	public void editInBuildMode(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel) {
+		this.settings.setSettings(aAtomNumber, bAtomNumber, gAtomNumber, sAtomNumber, aMoleculeNumber, bMoleculeNumber, gMoleculeNumber, sMoleculeNumber, aRBNumber, bRBNumber, gRBNumber, sRBNumber, aPUNumber, bPUNumber, gPUNumber, sPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, lengthUnit, difficultyLevel);
 	}
 	
 	
@@ -36,12 +36,16 @@ public class GameController {
 	
 	public void rotateShooter(int direction) {
 		Game.getInstance().shooter.rotate(direction);
-		
 	}
 	
 	
 	public void stopRotateShooter() {
 		Game.getInstance().shooter.stopRotate();
+	}
+	
+	
+	public void addShield(int type) {
+		//TODO
 	}
 	
 	

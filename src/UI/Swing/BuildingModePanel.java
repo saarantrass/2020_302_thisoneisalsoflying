@@ -26,21 +26,67 @@ public class BuildingModePanel extends JPanel{
 	private JLabel background = new Background();
 	
 	private JPanel settingsPanel = new JPanel(new GridBagLayout());
-	private JPanel gameObjectNumbersPanel = new JPanel(new GridBagLayout());
+	private JPanel atomNumbersPanel = new JPanel(new GridBagLayout());
+	private JPanel moleculeNumbersPanel = new JPanel(new GridBagLayout());
+	private JPanel RBNumbersPanel = new JPanel(new GridBagLayout());
+	private JPanel PUNumbersPanel = new JPanel(new GridBagLayout());
+	private JPanel shieldNumbersPanel = new JPanel(new GridBagLayout());
 	private JPanel alphaBetaStructurePanel = new JPanel(new GridBagLayout());
 	private JPanel gameEssentialsPanel = new JPanel(new GridBagLayout());
 	
-	private JLabel atomNumberLabel = new JLabel("Atom number (for each type): ");
-	private JLabel moleculeNumberLabel = new JLabel("Molecule number (for each type): ");
-	private JLabel RBNumberLabel = new JLabel("Reaction blocker number (for each type): ");
-	private JLabel PUNumberLabel = new JLabel("PowerUp number (for each type): ");
+	private JLabel alphaAtomNumberLabel = new JLabel("Alpha Atom number: ");
+	private JLabel betaAtomNumberLabel = new JLabel("Beta Atom number: ");
+	private JLabel gammaAtomNumberLabel = new JLabel("Gamma Atom number: ");
+	private JLabel sigmaAtomNumberLabel = new JLabel("Sigma Atom number: ");
+	
+	private JLabel alphaMoleculeNumberLabel = new JLabel("Alpha- Molecule number: ");
+	private JLabel betaMoleculeNumberLabel = new JLabel("Beta- Molecule number: ");
+	private JLabel gammaMoleculeNumberLabel = new JLabel("Gamma- Molecule number: ");
+	private JLabel sigmaMoleculeNumberLabel = new JLabel("Sigma- Molecule number: ");
+	
+	private JLabel alphaRBNumberLabel = new JLabel("Alpha-b Reaction Blocker number: ");
+	private JLabel betaRBNumberLabel = new JLabel("Beta-b Reaction Blocker number: ");
+	private JLabel gammaRBNumberLabel = new JLabel("Gamma-b Reaction Blocker number: ");
+	private JLabel sigmaRBNumberLabel = new JLabel("Sigma-b Reaction Blocker number: ");
+	
+	private JLabel alphaPUNumberLabel = new JLabel("+Alpha-b PowerUp number: ");
+	private JLabel betaPUNumberLabel = new JLabel("+Beta-b PowerUp number: ");
+	private JLabel gammaPUNumberLabel = new JLabel("+Gamma-b PowerUp number: ");
+	private JLabel sigmaPUNumberLabel = new JLabel("+Sigma-b PowerUp number: ");
+	
+	private JLabel etaNumberLabel = new JLabel("Eta Shield number: ");
+	private JLabel lotaNumberLabel = new JLabel("Lota Shield number: ");
+	private JLabel thetaNumberLabel = new JLabel("Theta Shield number: ");
+	private JLabel zetaNumberLabel = new JLabel("Zeta Shield number: ");
+	
 	private JLabel unitLengthLabel = new JLabel("Unit length L: ");
 	private JLabel difficultyLevelLabel = new JLabel("Difficulty level:");
 	
-	private JTextField atomNumberField = new JTextField("100", 5);
-	private JTextField moleculeNumberField = new JTextField("100", 5);
-	private JTextField RBNumberField = new JTextField("10", 5);
-	private JTextField PUNumberField = new JTextField("20", 5);
+	private JTextField alphaAtomNumberField = new JTextField("100", 5);
+	private JTextField betaAtomNumberField = new JTextField("100", 5);
+	private JTextField gammaAtomNumberField = new JTextField("100", 5);
+	private JTextField sigmaAtomNumberField = new JTextField("100", 5);
+	
+	private JTextField alphaMoleculeNumberField = new JTextField("100", 5);
+	private JTextField betaMoleculeNumberField = new JTextField("100", 5);
+	private JTextField gammaMoleculeNumberField = new JTextField("100", 5);
+	private JTextField sigmaMoleculeNumberField = new JTextField("100", 5);
+	
+	private JTextField alphaRBNumberField = new JTextField("10", 5);
+	private JTextField betaRBNumberField = new JTextField("10", 5);
+	private JTextField gammaRBNumberField = new JTextField("10", 5);
+	private JTextField sigmaRBNumberField = new JTextField("10", 5);
+	
+	private JTextField alphaPUNumberField = new JTextField("20", 5);
+	private JTextField betaPUNumberField = new JTextField("20", 5);
+	private JTextField gammaPUNumberField = new JTextField("20", 5);
+	private JTextField sigmaPUNumberField = new JTextField("20", 5);
+	
+	private JTextField etaNumberField = new JTextField("20", 5); //TODO DEFAULT VALUES ??
+	private JTextField lotaNumberField = new JTextField("20", 5);
+	private JTextField thetaNumberField = new JTextField("20", 5);
+	private JTextField zetaNumberField = new JTextField("20", 5);
+	
 	private JTextField unitLengthField = new JTextField(5);
 	
 	private JCheckBox linearCheckBox = new JCheckBox("Linear");
@@ -64,10 +110,10 @@ public class BuildingModePanel extends JPanel{
 		this.setLayout(new GridBagLayout());
 		
 		/*
-		 * game object numbers panel design
+		 * atom numbers panel design
 		 */
-		gameObjectNumbersPanel.setBorder(new TitledBorder("Game Object Numbers"));
-		gameObjectNumbersPanel.setOpaque(false);
+		atomNumbersPanel.setBorder(new TitledBorder("Atom Numbers"));
+		atomNumbersPanel.setOpaque(false);
 		
 		GridBagConstraints c = new GridBagConstraints();
 		c.anchor = GridBagConstraints.BASELINE_LEADING;
@@ -75,27 +121,147 @@ public class BuildingModePanel extends JPanel{
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		gameObjectNumbersPanel.add(atomNumberLabel, c);
+		atomNumbersPanel.add(alphaAtomNumberLabel, c);
 		c.gridx = 1;
-		gameObjectNumbersPanel.add(atomNumberField, c);
+		atomNumbersPanel.add(alphaAtomNumberField, c);
 		
 		c.gridx = 0;
 		c.gridy = 1;
-		gameObjectNumbersPanel.add(moleculeNumberLabel, c);
+		atomNumbersPanel.add(betaAtomNumberLabel, c);
 		c.gridx = 1;
-		gameObjectNumbersPanel.add(moleculeNumberField, c);
+		atomNumbersPanel.add(betaAtomNumberField, c);
 		
 		c.gridx = 0;
 		c.gridy = 2;
-		gameObjectNumbersPanel.add(RBNumberLabel, c);
+		atomNumbersPanel.add(gammaAtomNumberLabel, c);
 		c.gridx = 1;
-		gameObjectNumbersPanel.add(RBNumberField, c);
+		atomNumbersPanel.add(gammaAtomNumberField, c);
 		
 		c.gridx = 0;
 		c.gridy = 3;
-		gameObjectNumbersPanel.add(PUNumberLabel, c);
+		atomNumbersPanel.add(sigmaAtomNumberLabel, c);
 		c.gridx = 1;
-		gameObjectNumbersPanel.add(PUNumberField, c);
+		atomNumbersPanel.add(sigmaAtomNumberField, c);
+		
+		/*
+		 * molecule numbers panel design
+		 */
+		moleculeNumbersPanel.setBorder(new TitledBorder("Molecule Numbers"));
+		moleculeNumbersPanel.setOpaque(false);
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		moleculeNumbersPanel.add(alphaMoleculeNumberLabel, c);
+		c.gridx = 1;
+		moleculeNumbersPanel.add(alphaMoleculeNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		moleculeNumbersPanel.add(betaMoleculeNumberLabel, c);
+		c.gridx = 1;
+		moleculeNumbersPanel.add(betaMoleculeNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		moleculeNumbersPanel.add(gammaMoleculeNumberLabel, c);
+		c.gridx = 1;
+		moleculeNumbersPanel.add(gammaMoleculeNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 3;
+		moleculeNumbersPanel.add(sigmaMoleculeNumberLabel, c);
+		c.gridx = 1;
+		moleculeNumbersPanel.add(sigmaMoleculeNumberField, c);
+		
+		/*
+		 * reaction blocker numbers panel design
+		 */
+		RBNumbersPanel.setBorder(new TitledBorder("Reaction Blocker Numbers"));
+		RBNumbersPanel.setOpaque(false);
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		RBNumbersPanel.add(alphaRBNumberLabel, c);
+		c.gridx = 1;
+		RBNumbersPanel.add(alphaRBNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		RBNumbersPanel.add(betaRBNumberLabel, c);
+		c.gridx = 1;
+		RBNumbersPanel.add(betaRBNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		RBNumbersPanel.add(gammaRBNumberLabel, c);
+		c.gridx = 1;
+		RBNumbersPanel.add(gammaRBNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 3;
+		RBNumbersPanel.add(sigmaRBNumberLabel, c);
+		c.gridx = 1;
+		RBNumbersPanel.add(sigmaRBNumberField, c);
+		
+		/*
+		 * power-up numbers panel design
+		 */
+		PUNumbersPanel.setBorder(new TitledBorder("PowerUp Numbers"));
+		PUNumbersPanel.setOpaque(false);
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		PUNumbersPanel.add(alphaPUNumberLabel, c);
+		c.gridx = 1;
+		PUNumbersPanel.add(alphaPUNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		PUNumbersPanel.add(betaPUNumberLabel, c);
+		c.gridx = 1;
+		PUNumbersPanel.add(betaPUNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		PUNumbersPanel.add(gammaPUNumberLabel, c);
+		c.gridx = 1;
+		PUNumbersPanel.add(gammaPUNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 3;
+		PUNumbersPanel.add(sigmaPUNumberLabel, c);
+		c.gridx = 1;
+		PUNumbersPanel.add(sigmaPUNumberField, c);
+		
+		/*
+		 * shield numbers panel design
+		 */
+		shieldNumbersPanel.setBorder(new TitledBorder("Shield Numbers"));
+		shieldNumbersPanel.setOpaque(false);
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		shieldNumbersPanel.add(etaNumberLabel, c);
+		c.gridx = 1;
+		shieldNumbersPanel.add(etaNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		shieldNumbersPanel.add(lotaNumberLabel, c);
+		c.gridx = 1;
+		shieldNumbersPanel.add(lotaNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		shieldNumbersPanel.add(thetaNumberLabel, c);
+		c.gridx = 1;
+		shieldNumbersPanel.add(thetaNumberField, c);
+		
+		c.gridx = 0;
+		c.gridy = 3;
+		shieldNumbersPanel.add(zetaNumberLabel, c);
+		c.gridx = 1;
+		shieldNumbersPanel.add(zetaNumberField, c);
 		
 		/*
 		 * alpha beta structure panel design
@@ -153,20 +319,45 @@ public class BuildingModePanel extends JPanel{
 		/*
 		 * settings panel design
 		 */
+		JPanel firstLinePanel = new JPanel(new GridBagLayout());
+		JPanel secondLinePanel = new JPanel(new GridBagLayout());
+		firstLinePanel.setOpaque(false);
+		secondLinePanel.setOpaque(false);
+		
+		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 0;
-		settingsPanel.add(gameObjectNumbersPanel, c);
+		firstLinePanel.add(atomNumbersPanel, c);
+		
+		c.gridx = 1;
+		firstLinePanel.add(moleculeNumbersPanel, c);
+		
+		c.gridx = 2;
+		firstLinePanel.add(RBNumbersPanel, c);
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		secondLinePanel.add(PUNumbersPanel, c);
+		
+		c.gridx = 1;
+		secondLinePanel.add(shieldNumbersPanel, c);
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		settingsPanel.add(firstLinePanel, c);
 		
 		c.gridy = 1;
-		settingsPanel.add(alphaBetaStructurePanel, c);
+		settingsPanel.add(secondLinePanel, c);
 		
 		c.gridy = 2;
+		settingsPanel.add(alphaBetaStructurePanel, c);
+		
+		c.gridy = 3;
 		settingsPanel.add(gameEssentialsPanel, c);
 		
 		startGameButton.addActionListener(this.buttonListener);
 		
-		c.anchor = GridBagConstraints.CENTER;
-		c.gridy = 3;
+		c.gridy = 4;
 		settingsPanel.add(startGameButton, c);
 		
 		settingsPanel.setOpaque(false);
@@ -177,10 +368,31 @@ public class BuildingModePanel extends JPanel{
 	
 	
 	public void setSettings() {
-		int atomNumber = Integer.parseInt(atomNumberField.getText());
-		int moleculeNumber = Integer.parseInt(moleculeNumberField.getText());
-		int reactionBlockerNumber = Integer.parseInt(RBNumberField.getText());
-		int powerUpNumber = Integer.parseInt(PUNumberField.getText());
+		int alphaAtomNumber = Integer.parseInt(alphaAtomNumberField.getText());
+		int betaAtomNumber = Integer.parseInt(betaAtomNumberField.getText());
+		int gammaAtomNumber = Integer.parseInt(gammaAtomNumberField.getText());
+		int sigmaAtomNumber = Integer.parseInt(sigmaAtomNumberField.getText());
+		
+		int alphaMoleculeNumber = Integer.parseInt(alphaMoleculeNumberField.getText());
+		int betaMoleculeNumber = Integer.parseInt(betaMoleculeNumberField.getText());
+		int gammaMoleculeNumber = Integer.parseInt(gammaMoleculeNumberField.getText());
+		int sigmaMoleculeNumber = Integer.parseInt(sigmaMoleculeNumberField.getText());
+		
+		int alphaRBNumber = Integer.parseInt(alphaRBNumberField.getText());
+		int betaRBNumber = Integer.parseInt(betaRBNumberField.getText());
+		int gammaRBNumber = Integer.parseInt(gammaRBNumberField.getText());
+		int sigmaRBNumber = Integer.parseInt(sigmaRBNumberField.getText());
+		
+		int alphaPUNumber = Integer.parseInt(alphaPUNumberField.getText());
+		int betaPUNumber = Integer.parseInt(betaPUNumberField.getText());
+		int gammaPUNumber = Integer.parseInt(gammaPUNumberField.getText());
+		int sigmaPUNumber = Integer.parseInt(sigmaPUNumberField.getText());
+		
+		int etaNumber = Integer.parseInt(etaNumberField.getText());
+		int lotaNumber = Integer.parseInt(lotaNumberField.getText());
+		int thetaNumber = Integer.parseInt(thetaNumberField.getText());
+		int zetaNumber = Integer.parseInt(zetaNumberField.getText());
+		
 		boolean isLinear = linearCheckBox.isSelected();
 		
 		boolean isSpinning = false;
@@ -197,7 +409,7 @@ public class BuildingModePanel extends JPanel{
 		else if(hardButton.isSelected())
 			difficultyLevel = 3;
 		
-		GC.editInBuildMode(atomNumber, moleculeNumber, reactionBlockerNumber, powerUpNumber, isLinear, isSpinning, L, difficultyLevel);
+		GC.editInBuildMode(alphaAtomNumber, betaAtomNumber, gammaAtomNumber, sigmaAtomNumber, alphaMoleculeNumber, betaMoleculeNumber, gammaMoleculeNumber, sigmaMoleculeNumber, alphaRBNumber, betaRBNumber, gammaRBNumber, sigmaRBNumber, alphaPUNumber, betaPUNumber, gammaPUNumber, sigmaPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, L, difficultyLevel);
 	}
 	
 	
