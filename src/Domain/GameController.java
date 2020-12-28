@@ -49,6 +49,16 @@ public class GameController {
 	}
 	
 	
+	public void saveGame() {
+		System.out.println("saveGame GC");
+	}
+	
+	
+	public void loadGame(){
+		System.out.println("loadGame GC");
+	}
+	
+	
 	public void quitGame() {
 		//TODO
 	}

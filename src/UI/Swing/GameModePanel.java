@@ -34,7 +34,6 @@ import UI.GameObjectImages.GameObjectImageFactory;
 public class GameModePanel extends JPanel implements IObserver{
 	
 	private GameController GC;
-	private boolean isPaused = false;
 	
 	private JLabel background  = new Background();
 	
@@ -82,6 +81,7 @@ public class GameModePanel extends JPanel implements IObserver{
 	private MainGamePanel mainGamePanel = MainGamePanel.getInstance();
 	private PausePanel pausePanel = new PausePanel();
 	private GameOverPanel gameOverPanel =  new GameOverPanel();
+	private QuitPanel quitPanel;
 	
 	public GameModePanel(GameController GC) {
 		
@@ -93,6 +93,8 @@ public class GameModePanel extends JPanel implements IObserver{
 		this.setLayout(new GridBagLayout());
 		this.setSidePanelImages();
 		this.setSidePanel();
+		
+		quitPanel = new QuitPanel(quitPanelButtonsListener);
 		
 		/*
 		 * player panel design
@@ -133,12 +135,8 @@ public class GameModePanel extends JPanel implements IObserver{
 		alphaPULabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(!isPaused) {
-					GC.getPowerUpOnBarrel(1);
-					ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
-				} else {
-					pausePanel.requestFocus();
-				}
+				GC.getPowerUpOnBarrel(1);
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 		});
 		powerUpPanel.add(alphaPULabel, c);
@@ -150,12 +148,8 @@ public class GameModePanel extends JPanel implements IObserver{
 		betaPULabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(!isPaused) {
-					GC.getPowerUpOnBarrel(2);
-					ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
-				} else {
-					pausePanel.requestFocus();
-				}
+				GC.getPowerUpOnBarrel(2);
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 		});
 		powerUpPanel.add(betaPULabel, c);
@@ -167,12 +161,8 @@ public class GameModePanel extends JPanel implements IObserver{
 		gammaPULabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(!isPaused) {
-					GC.getPowerUpOnBarrel(3);
-					ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
-				} else {
-					pausePanel.requestFocus();
-				}
+				GC.getPowerUpOnBarrel(3);
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 		});
 		powerUpPanel.add(gammaPULabel, c);
@@ -184,12 +174,8 @@ public class GameModePanel extends JPanel implements IObserver{
 		sigmaPULabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if(!isPaused) {
-					GC.getPowerUpOnBarrel(4);
-					ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
-				} else {
-					pausePanel.requestFocus();
-				}
+				GC.getPowerUpOnBarrel(4);
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 		});
 		powerUpPanel.add(sigmaPULabel, c);
@@ -370,7 +356,9 @@ public class GameModePanel extends JPanel implements IObserver{
 	}
 	
 	public void displayPausePanel() {
+		ScreenCoordinator.getInstance().setCurrentPanel(pausePanel);
 		pausePanel.addKeyListener(pausePanelListener);
+		pausePanel.addQuitButtonListener(quitButtonListener);
 		this.mainGamePanel.add(pausePanel);
 		this.mainGamePanel.validate();
 		this.mainGamePanel.repaint();
@@ -378,12 +366,27 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	public void removePausePanel() {
 		pausePanel.removeKeyListener(pausePanelListener);
+		pausePanel.removeQuitButtonListener(quitButtonListener);
 		this.mainGamePanel.remove(pausePanel);
 		this.mainGamePanel.validate();
 		this.mainGamePanel.repaint();
 	}
 	
+	public void displayQuitPanel() {
+		ScreenCoordinator.getInstance().setCurrentPanel(quitPanel);
+		this.mainGamePanel.add(quitPanel);
+		this.mainGamePanel.validate();
+		this.mainGamePanel.repaint();
+	}
+	
+	public void removeQuitPanel() {
+		this.mainGamePanel.remove(quitPanel);
+		this.mainGamePanel.validate();
+		this.mainGamePanel.repaint();
+	}
+	
 	public void displayGameOverPanel() {
+		ScreenCoordinator.getInstance().setCurrentPanel(gameOverPanel);
 		this.mainGamePanel.add(gameOverPanel);
 		this.mainGamePanel.validate();
 		this.mainGamePanel.repaint();
@@ -419,8 +422,7 @@ public class GameModePanel extends JPanel implements IObserver{
 			} else if(currentEventCode == KeyEvent.VK_P) { //pause game
 				GC.pauseGame();
 				displayPausePanel();
-				pausePanel.requestFocus();
-				isPaused = true;
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
 			firstEventCode = secondEventCode;
@@ -429,8 +431,6 @@ public class GameModePanel extends JPanel implements IObserver{
 		
 		@Override
 		public void keyReleased(KeyEvent e) {
-			//System.out.println("KEY RELEASED: " + e.getKeyCode());
-			//System.out.println(KeyEvent.VK_LEFT);
 			
 			if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT) {
 				GC.stopMoveShooter();
@@ -451,16 +451,16 @@ public class GameModePanel extends JPanel implements IObserver{
 			if(e.getKeyCode() == KeyEvent.VK_R) {
 				GC.resumeGame();
 				removePausePanel();
+				ScreenCoordinator.getInstance().gameScreen();
 				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
-				isPaused = false;
 			}
 			
 			if(e.getKeyCode() == KeyEvent.VK_S) {
-				//save game
+				GC.saveGame();
 			}
 			
 			if(e.getKeyCode() == KeyEvent.VK_L) {
-				//load game
+				GC.loadGame();
 			}
 			
 		}
@@ -491,6 +491,43 @@ public class GameModePanel extends JPanel implements IObserver{
 				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
+		}
+		
+	};
+	
+	private ActionListener quitButtonListener = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getActionCommand().equals("Quit Game")) {
+				removePausePanel();
+				displayQuitPanel();
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+			}
+		}
+		
+	};
+	
+	private ActionListener quitPanelButtonsListener = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getActionCommand().equals("Save & Quit")) {
+				GC.saveGame();
+				System.exit(0);
+				//TODO ana ekrana gidebilir
+			}
+			
+			if(e.getActionCommand().equals("Quit")) {
+				System.exit(0);
+				//TODO ana ekrana gidebilir
+			}
+			
+			if(e.getActionCommand().equals("Back")) {
+				removeQuitPanel();
+				displayPausePanel();
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+			}
 		}
 		
 	};

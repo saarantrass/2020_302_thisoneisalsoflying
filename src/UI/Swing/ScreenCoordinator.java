@@ -9,6 +9,7 @@ public class ScreenCoordinator { //singleton
 	private ScreenFrame mainFrame;
 	private JPanel currentPanel;
 	private GameController GC;
+	private GameModePanel gameModePanel;
 	private static ScreenCoordinator screen_coordinator = null;
 	public static final Dimension SCREEN_SIZE = new Dimension(1350,800);
 	
@@ -35,6 +36,7 @@ public class ScreenCoordinator { //singleton
 	
 	public void startGame() {
 		GC.startGame();
+		this.gameModePanel = new GameModePanel(this.GC);
 		this.gameScreen();
 	}
 	
@@ -50,10 +52,15 @@ public class ScreenCoordinator { //singleton
 	
 	public void gameScreen() {
 		clean();
-		currentPanel = new GameModePanel(this.GC);
+		currentPanel = this.gameModePanel;
 		mainFrame.setContentPane(currentPanel);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
+	}
+	
+	
+	public void setCurrentPanel(JPanel currentPanel) {
+		this.currentPanel = currentPanel;
 	}
 	
 	
