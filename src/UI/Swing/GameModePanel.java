@@ -292,9 +292,14 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	private void setSidePanel() {
 		this.currentScoreField.setText(Double.toString(Game.getInstance().shooter.score));
+		
 		int minutes = (int) Math.floor((Settings.getInstance().timeRemaining / 1000) / 60);
         int seconds = (int) Math.floor((Settings.getInstance().timeRemaining / 1000) % 60);
-		this.currentTimeField.setText(Integer.toString(minutes) + ":" + Integer.toString(seconds));
+        if(seconds < 10) {
+        	this.currentTimeField.setText(Integer.toString(minutes) + ":0" + Integer.toString(seconds));
+        } else {
+        	this.currentTimeField.setText(Integer.toString(minutes) + ":" + Integer.toString(seconds));
+        }
 		this.currentHealthLabel.setText(Double.toString(Game.getInstance().shooter.health));
 		
 		this.currentEtaShieldLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryShieldCount(1)));
