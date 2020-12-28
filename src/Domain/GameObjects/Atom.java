@@ -15,12 +15,18 @@ public class Atom {
 	private double ySpeed;
 	private double angle;
 	
+	private int neutron;
+	private int proton;
 	
-	public Atom (int atomID, Point coordinate) {
+	
+	public Atom (int atomID, Point coordinate, int neutron) {
 		this.atomID = atomID;
 		this.coordinate = coordinate;
 		this.L = Settings.getInstance().getLengthUnit();
 		this.speed = L/10;
+		this.proton=8;
+		for(int i=1;i<atomID;i++) {this.proton *= 2;}
+		this.neutron = neutron;
 	}
 	
 	public void setCoordinate(Point coordinate) {
@@ -50,4 +56,23 @@ public class Atom {
 		return this.atomID;
 	}
 	
+	public double getEfficiency() {
+		double eff = 0.0;
+		switch (atomID) {
+			case 1:
+				eff = 0.85*(1- (Math.abs(neutron-proton)/proton));
+				break;
+			case 2:
+				eff = 0.9 - (0.5*(Math.abs(neutron-proton)/proton));
+				break;
+			case 3:
+				eff = 0.8 + (Math.abs(neutron-proton)/(2*proton));
+				break;
+			case 4:
+				eff = (1.7)/2 + (Math.abs(neutron-proton)/proton);
+				break;
+		}
+		
+		return eff;
+	}
 }
