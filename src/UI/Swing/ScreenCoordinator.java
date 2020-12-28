@@ -10,7 +10,7 @@ public class ScreenCoordinator { //singleton
 	private JPanel currentPanel;
 	private GameController GC;
 	private static ScreenCoordinator screen_coordinator = null;
-	public static final Dimension SCREEN_SIZE = new Dimension(1200,700);
+	public static final Dimension SCREEN_SIZE = new Dimension(1350,800);
 	
 	
 	private ScreenCoordinator() {

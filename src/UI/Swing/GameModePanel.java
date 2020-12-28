@@ -7,15 +7,17 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.text.DecimalFormat;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
@@ -33,12 +35,12 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	private GameController GC;
 	private boolean isPaused = false;
-	private static DecimalFormat df2 = new DecimalFormat("#.##");
 	
 	private JLabel background  = new Background();
 	
 	private JPanel sidePanel = new JPanel(new GridBagLayout());
 	private JPanel playerPanel = new JPanel(new GridBagLayout());
+	private JPanel shieldPanel = new JPanel(new GridBagLayout());
 	private JPanel powerUpPanel = new JPanel(new GridBagLayout());
 	private JPanel atomPanel = new JPanel(new GridBagLayout());
 	
@@ -49,6 +51,15 @@ public class GameModePanel extends JPanel implements IObserver{
 	private JLabel healthLabel = new JLabel("Health: ");
 	private JLabel currentHealthLabel = new JLabel();
 	private JLabel blenderLabel = new JLabel();
+	
+	private JButton etaShieldButton = new JButton("Eta Shield");
+	private JLabel currentEtaShieldLabel = new JLabel();
+	private JButton lotaShieldButton = new JButton("Lota Shield");
+	private JLabel currentLotaShieldLabel = new JLabel();
+	private JButton thetaShieldButton = new JButton("Theta Shield");
+	private JLabel currentThetaShieldLabel = new JLabel();
+	private JButton zetaShieldButton = new JButton("Zeta Shield");
+	private JLabel currentZetaShieldLabel = new JLabel();
 	
 	private JLabel alphaPULabel = new JLabel();
 	private JLabel currentAlphaPULabel = new JLabel("0");
@@ -186,6 +197,40 @@ public class GameModePanel extends JPanel implements IObserver{
 		powerUpPanel.add(currentSigmaPULabel, c);
 		
 		/*
+		 * shield panel design
+		 */
+		shieldPanel.setBorder(new LineBorder(new Color(0.0f, 0.0f, 0.0f, 0.5f), 2));
+		shieldPanel.setOpaque(false);
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		etaShieldButton.addActionListener(shieldButtonListener);
+		shieldPanel.add(etaShieldButton, c);
+		c.gridx = 1;
+		shieldPanel.add(currentEtaShieldLabel, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		lotaShieldButton.addActionListener(shieldButtonListener);
+		shieldPanel.add(lotaShieldButton, c);
+		c.gridx = 1;
+		shieldPanel.add(currentLotaShieldLabel, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		thetaShieldButton.addActionListener(shieldButtonListener);
+		shieldPanel.add(thetaShieldButton, c);
+		c.gridx = 1;
+		shieldPanel.add(currentThetaShieldLabel, c);
+		
+		c.gridx = 0;
+		c.gridy = 3;
+		zetaShieldButton.addActionListener(shieldButtonListener);
+		shieldPanel.add(zetaShieldButton, c);
+		c.gridx = 1;
+		shieldPanel.add(currentZetaShieldLabel, c);
+		
+		/*
 		 * atom panel design
 		 */
 		atomPanel.setBorder(new LineBorder(new Color(0.0f, 0.0f, 0.0f, 0.5f), 2));
@@ -243,6 +288,9 @@ public class GameModePanel extends JPanel implements IObserver{
 		sidePanel.add(powerUpPanel, c);
 		
 		c.gridy = 2;
+		sidePanel.add(shieldPanel, c);
+		
+		c.gridy = 3;
 		sidePanel.add(atomPanel, c);
 		
 		background.add(mainGamePanel);
@@ -263,6 +311,11 @@ public class GameModePanel extends JPanel implements IObserver{
 		this.currentTimeField.setText(Integer.toString(minutes) + ":" + Integer.toString(seconds));
 		this.currentHealthLabel.setText(Double.toString(Game.getInstance().shooter.health));
 		
+		this.currentEtaShieldLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryShieldCount(1)));
+		this.currentLotaShieldLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryShieldCount(2)));
+		this.currentThetaShieldLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryShieldCount(3)));
+		this.currentZetaShieldLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryShieldCount(4)));
+		
 		this.currentAlphaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(1)));
 		this.currentBetaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(2)));
 		this.currentGammaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(3)));
@@ -282,33 +335,33 @@ public class GameModePanel extends JPanel implements IObserver{
 			Dimension screenSize = ScreenCoordinator.SCREEN_SIZE;
 			
 		    Image img = ImageIO.read(getClass().getResource("../../Images/powerups/+alpha-b.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1700), (int) (img.getHeight(this) * screenSize.getHeight()/1700));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
 		    alphaPULabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+beta-b.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1700), (int) (img.getHeight(this) * screenSize.getHeight()/1700));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
 		    betaPULabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+gamma-b.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1700), (int) (img.getHeight(this) * screenSize.getHeight()/1700));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
 		    gammaPULabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+sigma-b.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1700), (int) (img.getHeight(this) * screenSize.getHeight()/1700));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
 		    sigmaPULabel.setIcon(new ImageIcon(img));
 		    
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/alpha.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1000), (int) (img.getHeight(this) * screenSize.getHeight()/1000));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
 		    alphaAtomLabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/beta.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1000), (int) (img.getHeight(this) * screenSize.getHeight()/1000));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
 		    betaAtomLabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/gamma.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1000), (int) (img.getHeight(this) * screenSize.getHeight()/1000));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
 		    gammaAtomLabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/sigma.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1000), (int) (img.getHeight(this) * screenSize.getHeight()/1000));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
 		    sigmaAtomLabel.setIcon(new ImageIcon(img));
 		    
 		    img = ImageIO.read(getClass().getResource("../../Images/mixer.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/6000), (int) (img.getHeight(this) * screenSize.getHeight()/6000));
+		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/8000), (int) (img.getHeight(this) * screenSize.getHeight()/8000));
 		    blenderLabel.setIcon(new ImageIcon(img));
 			
 		} catch (Exception ex) {
@@ -408,6 +461,34 @@ public class GameModePanel extends JPanel implements IObserver{
 			
 			if(e.getKeyCode() == KeyEvent.VK_L) {
 				//load game
+			}
+			
+		}
+		
+	};
+	
+	private ActionListener shieldButtonListener = new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() == etaShieldButton) {
+				GC.addShield(1);
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+			}
+			
+			if(e.getSource() == lotaShieldButton) {
+				GC.addShield(2);
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+			}
+			
+			if(e.getSource() == thetaShieldButton) {
+				GC.addShield(3);
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+			}
+			
+			if(e.getSource() == zetaShieldButton) {
+				GC.addShield(4);
+				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
 		}

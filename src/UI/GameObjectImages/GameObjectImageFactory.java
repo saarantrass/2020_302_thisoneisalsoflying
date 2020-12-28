@@ -18,7 +18,7 @@ public class GameObjectImageFactory {
 	private static final String ALPHA_MOLECULE_IMAGE = "../../Images/molecules/alpha-1.png";
 	private static final String ALPHA_LINEAR_MOLECULE_IMAGE = "../../Images/molecules/alpha-2.png";
 	private static final String BETA_MOLECULE_IMAGE = "../../Images/molecules/beta-1.png";
-	private static final String BETA_LINEAR_MOLECULE_IMAGE = "../../Images/molecules/beta-1.png";
+	private static final String BETA_LINEAR_MOLECULE_IMAGE = "../../Images/molecules/beta-2.png";
 	private static final String GAMMA_MOLECULE_IMAGE = "../../Images/molecules/gamma-.png";
 	private static final String SIGMA_MOLECULE_IMAGE = "../../Images/molecules/sigma-.png";
 	
