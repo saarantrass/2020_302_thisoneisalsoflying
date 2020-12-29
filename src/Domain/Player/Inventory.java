@@ -1,14 +1,17 @@
 package Domain.Player;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import Domain.Settings;
+import Domain.GameObjects.Atom;
 
 public class Inventory {
 	
 	private HashMap<Integer, Integer> inventoryAtom;
 	private HashMap<Integer, Integer> inventoryPowerUp;
 	private HashMap<Integer, Integer> inventoryShield;
+	//private HashMap<Integer, ArrayList<Atom>> ýnv;//TODO
 	
 	
 	public Inventory() {
