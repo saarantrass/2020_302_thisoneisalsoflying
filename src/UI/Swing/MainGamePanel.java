@@ -11,6 +11,7 @@ import Domain.GameObjects.Atom;
 import Domain.GameObjects.Molecule;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
+import Domain.GameObjects.Throwable;
 import UI.IObserver;
 import UI.GameObjectImages.GameObjectImageFactory;
 import UI.GameObjectImages.ShooterImage;
@@ -47,7 +48,7 @@ public class MainGamePanel extends JPanel implements IObserver{
 	@Override
 	public void paint(Graphics g) { //TODO ATOM MOLECULE VS OLABİLİR Mİ?? BURDA
 		
-		for(Atom atom: Game.getInstance().onScreenAtomList) {
+		for(Throwable atom: Game.getInstance().onScreenAtomList) {
 			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Atom", atom.getAtomID(), false);
 			g.drawImage(image, atom.getCoordinate().x, atom.getCoordinate().y, null);
 		}

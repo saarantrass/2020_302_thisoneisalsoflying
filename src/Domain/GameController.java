@@ -45,7 +45,7 @@ public class GameController {
 	
 	
 	public void addShield(int type) {
-		//TODO
+		Game.getInstance().addShield(type);
 	}
 	
 	

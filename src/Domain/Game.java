@@ -11,6 +11,8 @@ import Domain.GameObjects.FallingObjectFactory;
 import Domain.GameObjects.Molecule;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
+import Domain.GameObjects.ShieldedAtom;
+import Domain.GameObjects.Throwable;
 import Domain.Player.Shooter;
 import UI.IObserver;
 import UI.Swing.ScreenCoordinator;
@@ -24,12 +26,12 @@ public class Game implements IObservable{
 	public boolean isPaused = false;
 	public boolean isFinished = false;
 
-	public CopyOnWriteArrayList<Atom> onScreenAtomList = new CopyOnWriteArrayList<>();
+	public CopyOnWriteArrayList<Throwable> onScreenAtomList = new CopyOnWriteArrayList<>();
 	public CopyOnWriteArrayList<Molecule> onScreenMoleculeList = new CopyOnWriteArrayList<>();
 	public CopyOnWriteArrayList<PowerUp> onScreenPowerUpList = new CopyOnWriteArrayList<>();
 	public CopyOnWriteArrayList<ReactionBlocker> onScreenReactionBlockerList = new CopyOnWriteArrayList<>();
 
-	public Atom barrelAtom = null;
+	public Throwable barrelAtom = null;
 	public PowerUp barrelPowerUp = null; 
 	public Shooter shooter = null;
 
@@ -145,7 +147,7 @@ public class Game implements IObservable{
 
 	private void moveThemAll() {
 
-		for(Atom atom : onScreenAtomList) {
+		for(Throwable atom : onScreenAtomList) {
 			atom.move();
 			if(atom.getCoordinate().y <= 0) {
 				this.onScreenAtomList.remove(atom);
@@ -180,6 +182,7 @@ public class Game implements IObservable{
 
 	public void shoot() {
 		if(this.barrelAtom != null) {
+			System.out.println(this.barrelAtom.getEfficiency());
 
 			this.barrelAtom.setAngle(this.shooter.getAngle());
 			this.shooter.inventory.removeInventoryAtom(this.barrelAtom.getAtomID(),1);
@@ -200,7 +203,7 @@ public class Game implements IObservable{
 		/*
 		 * Atom-Molecule Collision
 		 */
-		for(Atom atom : this.onScreenAtomList) {
+		for(Throwable atom : this.onScreenAtomList) {
 			for(Molecule molecule : this.onScreenMoleculeList) {
 				if(atom.getAtomID() == molecule.getMoleculeID()) {
 					Point acord = atom.getCoordinate();
@@ -250,14 +253,21 @@ public class Game implements IObservable{
 	}
 
 
+	public void addShield(int type) {
+		ShieldedAtom at = new ShieldedAtom(this.barrelAtom);
+		at.addShield(type);
+		this.barrelAtom=at;
+		this.shooter.inventory.removeInventoryShield(type);
+	}
+	
 	public void getRandomAtomToBarrel() {
 		Random rn = new Random();
 		int type = rn.nextInt(4)+1;
 		int neutron = getRandomNeutron(type);
-		System.out.println("neutron is "+neutron+" type is"+type);
 		while(!this.shooter.inventory.checkAtomAvailability(type, 1)) {
 			type = (int) (1 + (Math.random() * 3));
 		}
+
 		this.barrelPowerUp = null;
 		this.barrelAtom = new Atom(type, this.shooter.getBarrelCoordinate(),neutron);
 		this.barrelAtom.setAngle(this.shooter.getAngle());
@@ -321,5 +331,6 @@ public class Game implements IObservable{
 	public void publish() {
 		for(IObserver o: this.observers) o.update();
 	}
+
 
 }

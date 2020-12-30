@@ -5,7 +5,7 @@ import java.awt.Point;
 import Domain.Settings;
 import UI.Swing.ScreenCoordinator;
 
-public class Atom {
+public class Atom extends Throwable {
 	
 	private int atomID;
 	private Point coordinate;
@@ -24,6 +24,7 @@ public class Atom {
 		this.coordinate = coordinate;
 		this.L = Settings.getInstance().getLengthUnit();
 		this.speed = L/10;
+		
 		this.proton=8;
 		for(int i=1;i<atomID;i++) {this.proton *= 2;}
 		this.neutron = neutron;
@@ -74,5 +75,18 @@ public class Atom {
 		}
 		
 		return eff;
+	}
+	
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+	public double getSpeed() {
+		return this.speed;
+	}
+	public int getNeutron() {
+		return this.neutron;
+	}
+	public int getProton() {
+		return this.proton;
 	}
 }
