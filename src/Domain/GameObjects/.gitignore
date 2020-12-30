@@ -5,3 +5,8 @@
 /ReactionBlocker.class
 /AtomShield.class
 /IEfficiency.class
+/AtomDecorator.class
+/Efficiency.class
+/Throwable.class
+/Shield.class
+/ShieldedAtom.class
