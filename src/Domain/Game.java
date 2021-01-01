@@ -12,17 +12,20 @@ import Domain.GameObjects.Molecule;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
 import Domain.Player.Shooter;
+import Domain.SaveLoad.FileSaveLoadAdapter;
+import Domain.SaveLoad.ISaveLoadAdapter;
 import UI.IObserver;
 import UI.Swing.ScreenCoordinator;
 
 public class Game implements IObservable{
 
 	private GameController GC;
-	private int L;
+	public int L;
 	private static Game game_instance = null;
 	private List<IObserver> observers = new ArrayList<IObserver>();
 	public boolean isPaused = false;
 	public boolean isFinished = false;
+	ISaveLoadAdapter saveLoadService;
 
 	public CopyOnWriteArrayList<Atom> onScreenAtomList = new CopyOnWriteArrayList<>();
 	public CopyOnWriteArrayList<Molecule> onScreenMoleculeList = new CopyOnWriteArrayList<>();
@@ -285,6 +288,8 @@ public class Game implements IObservable{
 	}
 	public void pauseGame() {
 		this.isPaused = true;
+		saveLoadService = new FileSaveLoadAdapter();
+		saveLoadService.save();
 	}
 
 

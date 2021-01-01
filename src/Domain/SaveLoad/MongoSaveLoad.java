@@ -17,6 +17,7 @@ public class MongoSaveLoad {
 			this.db = mongoClient.getDB("main");
 			this.collection = db.getCollection("savedGames");
 			this.status = true;
+			
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

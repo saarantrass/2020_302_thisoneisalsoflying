@@ -5,9 +5,11 @@ import com.mongodb.*;
 public class MongoSaveLoadAdapter implements ISaveLoadAdapter {
 
 	private MongoSaveLoad mongoSaveLoad;
+	private SaveObject currSave;
 	
 	public MongoSaveLoadAdapter() {
 		mongoSaveLoad = new MongoSaveLoad();
+		currSave = new SaveObject();
 	}
 	
 	@Override
