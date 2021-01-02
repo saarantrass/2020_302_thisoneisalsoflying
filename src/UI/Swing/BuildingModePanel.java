@@ -405,7 +405,7 @@ public class BuildingModePanel extends JPanel{
 		if(mediumButton.isSelected())
 			difficultyLevel = 2;
 		else if(hardButton.isSelected())
-			difficultyLevel = 3;
+			difficultyLevel = 4;
 		
 		GC.editInBuildMode(alphaAtomNumber, betaAtomNumber, gammaAtomNumber, sigmaAtomNumber, alphaMoleculeNumber, betaMoleculeNumber, gammaMoleculeNumber, sigmaMoleculeNumber, alphaRBNumber, betaRBNumber, gammaRBNumber, sigmaRBNumber, alphaPUNumber, betaPUNumber, gammaPUNumber, sigmaPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, L, difficultyLevel);
 	}

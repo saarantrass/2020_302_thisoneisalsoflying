@@ -102,8 +102,9 @@ public class Game implements IObservable{
 	private void continueGame() {
 
 		this.timer++;
-		//TODO: Adjust this according to the difficulty level
-		if(this.timer % 10 == 0) {
+		//TODO: Adjust this according to the difficulty level/check if correct
+		//TODO: settings.getins yerine baþta initialize etsek ya?
+		if(this.timer % (10/Settings.getInstance().getDifficultyLevel()) == 0) {
 			createRandomFallingObject();
 		}
 
@@ -212,9 +213,10 @@ public class Game implements IObservable{
 					Point acord = atom.getCoordinate();
 					Point mcord = molecule.getCoordinate();
 					if(mcord.x <= acord.x && acord.x <= (mcord.x + L/4) && mcord.y <= acord.y && acord.y <= (mcord.y + L/4)) {//TODO: Check bounding box
+						double score = atom.getEfficiency();
 						this.onScreenAtomList.remove(atom);
 						this.onScreenMoleculeList.remove(molecule);
-						this.shooter.increaseScore(1); //TODO change score
+						this.shooter.increaseScore(score); //TODO change score/check here
 					}
 				}
 			}
