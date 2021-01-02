@@ -30,6 +30,10 @@ public class Molecule {
 	
 	public void move() {
 		//TODO check screen borders
+		/*if(this.coordinate.x < 0 || this.coordinate.x > (ScreenCoordinator.SCREEN_SIZE.width * 7/8)) {
+			this.xSpeed = -this.xSpeed;
+			this.travelled = 0;
+		}*/
 		switch(moleculeID) {
 			case 1:
 				zigzag();
@@ -58,6 +62,7 @@ public class Molecule {
 	
 	public void zigzag() {
 		//TODO: Bounce off from the wall
+		
 		if(this.travelled < L * Math.sin(Math.toRadians(45))) {
 			this.travelled += Math.abs(xSpeed);
 		} else {
