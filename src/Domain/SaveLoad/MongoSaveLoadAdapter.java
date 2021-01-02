@@ -13,14 +13,12 @@ public class MongoSaveLoadAdapter implements ISaveLoadAdapter {
 	
 	@Override
 	public void save() {
-		System.out.println("INSIDE SAVE");
 		this.mongoSaveLoad.insert(currSave.toDBObject());
 	}
 
 	@Override
 	public void load() {
 		// TODO Auto-generated method stub
-
 	}
 
 }

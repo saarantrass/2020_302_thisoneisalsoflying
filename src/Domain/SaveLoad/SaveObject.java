@@ -11,8 +11,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
 
 public class SaveObject {
 	public Game currGame;
