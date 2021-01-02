@@ -25,7 +25,9 @@ public class ShieldedAtom extends AtomDecorator {
 	public double getEfficiency() {
 		return this.efficiency;
 	}
-
+	private void setEfficiency(double eff) {
+		this.efficiency = eff;
+	}
 	public void addShield(int type) {
 		double effFactor = 0.0;
 		double speedFactor = 0.0;
@@ -55,7 +57,7 @@ public class ShieldedAtom extends AtomDecorator {
 			speedFactor = 0.11;
 			break;
 		}
-		this.efficiency +=this.efficiency*effFactor;
+		setEfficiency(this.efficiency+this.efficiency*effFactor);
 		this.setSpeed(atom.getSpeed()*(1-speedFactor));
 	}
 

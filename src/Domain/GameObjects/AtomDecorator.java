@@ -6,4 +6,5 @@ public abstract class AtomDecorator extends Throwable{
 		this.atom = atom;
 	}
 	public abstract double getEfficiency();
+	public abstract void addShield(int type);
 }
