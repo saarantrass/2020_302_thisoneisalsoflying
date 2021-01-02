@@ -1,6 +1,5 @@
 package Domain.SaveLoad;
 
-import com.mongodb.*;
 
 public class MongoSaveLoadAdapter implements ISaveLoadAdapter {
 
@@ -8,15 +7,14 @@ public class MongoSaveLoadAdapter implements ISaveLoadAdapter {
 	private SaveObject currSave;
 	
 	public MongoSaveLoadAdapter() {
-		mongoSaveLoad = new MongoSaveLoad();
-		currSave = new SaveObject();
+		this.mongoSaveLoad = new MongoSaveLoad();
+		this.currSave = new SaveObject();
 	}
 	
 	@Override
 	public void save() {
-		// TODO arrange DBObject to save
-		//mongoSaveLoad.getCollection().insert(null);
-		
+		System.out.println("INSIDE SAVE");
+		this.mongoSaveLoad.insert(currSave.toDBObject());
 	}
 
 	@Override

@@ -16,6 +16,7 @@ import Domain.GameObjects.Throwable;
 import Domain.Player.Shooter;
 import Domain.SaveLoad.FileSaveLoadAdapter;
 import Domain.SaveLoad.ISaveLoadAdapter;
+import Domain.SaveLoad.MongoSaveLoadAdapter;
 import UI.IObserver;
 import UI.Swing.ScreenCoordinator;
 
@@ -28,6 +29,7 @@ public class Game implements IObservable{
 	public boolean isPaused = false;
 	public boolean isFinished = false;
 	ISaveLoadAdapter saveLoadService;
+	ISaveLoadAdapter mongoLoadService;
 
 	public CopyOnWriteArrayList<Throwable> onScreenAtomList = new CopyOnWriteArrayList<>();
 	public CopyOnWriteArrayList<Molecule> onScreenMoleculeList = new CopyOnWriteArrayList<>();
@@ -300,6 +302,8 @@ public class Game implements IObservable{
 		this.isPaused = true;
 		saveLoadService = new FileSaveLoadAdapter();
 		saveLoadService.save();
+		this.mongoLoadService = new MongoSaveLoadAdapter();
+		this.mongoLoadService.save();
 	}
 
 
