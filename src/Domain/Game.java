@@ -13,6 +13,7 @@ import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
 import Domain.GameObjects.ShieldedAtom;
 import Domain.GameObjects.Throwable;
+import Domain.Player.Player;
 import Domain.Player.Shooter;
 import Domain.SaveLoad.FileSaveLoadAdapter;
 import Domain.SaveLoad.ISaveLoadAdapter;
@@ -37,6 +38,7 @@ public class Game implements IObservable{
 	public Throwable barrelAtom = null;
 	public PowerUp barrelPowerUp = null; 
 	public Shooter shooter = null;
+	public Player player = null;
 
 	private int timer = 0;
 
@@ -58,6 +60,7 @@ public class Game implements IObservable{
 		int xShooter = ScreenCoordinator.SCREEN_SIZE.width * 7/16;
 		int yShooter = ScreenCoordinator.SCREEN_SIZE.height - this.GC.settings.getLengthUnit();
 		this.shooter = new Shooter(new Point(xShooter,  yShooter));
+		this.player = new Player();
 		if(this.barrelAtom == null) {
 			getRandomAtomToBarrel();
 		}
@@ -216,7 +219,7 @@ public class Game implements IObservable{
 						double score = atom.getEfficiency();
 						this.onScreenAtomList.remove(atom);
 						this.onScreenMoleculeList.remove(molecule);
-						this.shooter.increaseScore(score); //TODO change score/check here
+						this.player.increaseScore(score); //TODO change score/check here
 					}
 				}
 			}

@@ -289,7 +289,7 @@ public class GameModePanel extends JPanel implements IObserver{
 	}
 	
 	private void setSidePanel() { //TODO GET ALL FROM SETTİNGS
-		this.currentScoreField.setText(Double.toString(Game.getInstance().shooter.score));
+		this.currentScoreField.setText(Double.toString(Game.getInstance().player.getScore()));
 		
 		int minutes = (int) Math.floor((Settings.getInstance().timeRemaining / 1000) / 60);
         int seconds = (int) Math.floor((Settings.getInstance().timeRemaining / 1000) % 60);
@@ -298,7 +298,7 @@ public class GameModePanel extends JPanel implements IObserver{
         } else {
         	this.currentTimeField.setText(Integer.toString(minutes) + ":" + Integer.toString(seconds));
         }
-		this.currentHealthLabel.setText(Double.toString(Game.getInstance().shooter.health));
+		this.currentHealthLabel.setText(Double.toString(Game.getInstance().player.getHealth()));
 		
 		this.currentEtaShieldLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryShieldCount(1)));
 		this.currentLotaShieldLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryShieldCount(2)));
