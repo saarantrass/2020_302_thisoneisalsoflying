@@ -1,31 +1,32 @@
 package Domain.SaveLoad;
 
-import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import com.mongodb.*;
+import org.bson.Document;
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 public class MongoSaveLoad {
 	
 	private MongoClient mongoClient;
-	private DB db;
-	private DBCollection collection;
-	public boolean status = false;
+	private MongoDatabase db;
+	private MongoCollection<Document> collection;
 	
 	public MongoSaveLoad() {
-		try {
-			this.mongoClient = new MongoClient(new MongoClientURI("mongodb+srv://admin:toiaf123456@kuvid.0aptg.mongodb.net/test"));
-			this.db = mongoClient.getDB("main");
-			this.collection = db.getCollection("savedGames");
-			this.status = true;
-			
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			this.status = false;
-		}
+		// Mongo Connection setup
+		Logger mongoLogger = Logger.getLogger("org.mongodb.driver");
+		mongoLogger.setLevel(Level.SEVERE); // e.g. or Log.WARNING, etc.	
+		this.mongoClient = MongoClients.create("mongodb+srv://admin:toiaf123456@kuvid.0aptg.mongodb.net/"); // uri connection to the server
+		
+		this.db = mongoClient.getDatabase("main");
+		this.collection = db.getCollection("savedGames");
 	}
 
-	public DBCollection getCollection() {
-		return this.collection;
+	public void insert(Document obj) {
+		this.collection.insertOne(obj);
 	}
 }

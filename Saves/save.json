@@ -1,1 +1,107 @@
-{"L":80,"isPaused":true,"isFinished":false,"onScreenAtomList":[{"atomID":3,"coordinate":{"x":738,"y":427},"L":80,"speed":8.0,"xSpeed":3.631923997916374,"ySpeed":7.128052193506943,"angle":27.0,"neutron":33,"proton":32},{"atomID":2,"coordinate":{"x":793,"y":482},"L":80,"speed":8.0,"xSpeed":4.702282018339785,"ySpeed":6.47213595499958,"angle":36.0,"neutron":17,"proton":16},{"atomID":4,"coordinate":{"x":785,"y":496},"L":80,"speed":8.0,"xSpeed":4.702282018339785,"ySpeed":6.47213595499958,"angle":36.0,"neutron":63,"proton":64},{"atomID":3,"coordinate":{"x":781,"y":503},"L":80,"speed":8.0,"xSpeed":4.702282018339785,"ySpeed":6.47213595499958,"angle":36.0,"neutron":29,"proton":32},{"atomID":4,"coordinate":{"x":773,"y":517},"L":80,"speed":8.0,"xSpeed":4.702282018339785,"ySpeed":6.47213595499958,"angle":36.0,"neutron":67,"proton":64},{"atomID":4,"coordinate":{"x":769,"y":524},"L":80,"speed":8.0,"xSpeed":4.702282018339785,"ySpeed":6.47213595499958,"angle":36.0,"neutron":64,"proton":64},{"atomID":1,"coordinate":{"x":606,"y":536},"L":80,"speed":8.0,"xSpeed":0.0,"ySpeed":8.0,"angle":0.0,"neutron":7,"proton":8},{"atomID":1,"coordinate":{"x":552,"y":544},"L":80,"speed":8.0,"xSpeed":-1.251475720321847,"ySpeed":7.901506724761102,"angle":-9.0,"neutron":7,"proton":8},{"atomID":4,"coordinate":{"x":494,"y":568},"L":80,"speed":8.0,"xSpeed":-3.631923997916374,"ySpeed":7.128052193506943,"angle":-27.0,"neutron":67,"proton":64},{"atomID":1,"coordinate":{"x":469,"y":601},"L":80,"speed":8.0,"xSpeed":-4.702282018339785,"ySpeed":6.47213595499958,"angle":-36.0,"neutron":9,"proton":8},{"atomID":3,"coordinate":{"x":430,"y":664},"L":80,"speed":8.0,"xSpeed":-6.47213595499958,"ySpeed":4.702282018339785,"angle":-54.0,"neutron":29,"proton":32},{"atomID":4,"coordinate":{"x":452,"y":654},"L":80,"speed":8.0,"xSpeed":-5.65685424949238,"ySpeed":5.656854249492381,"angle":-45.0,"neutron":67,"proton":64},{"atomID":2,"coordinate":{"x":494,"y":636},"L":80,"speed":8.0,"xSpeed":-4.702282018339785,"ySpeed":6.47213595499958,"angle":-36.0,"neutron":16,"proton":16},{"atomID":2,"coordinate":{"x":534,"y":624},"L":80,"speed":8.0,"xSpeed":-2.472135954999579,"ySpeed":7.608452130361228,"angle":-18.0,"neutron":15,"proton":16},{"atomID":1,"coordinate":{"x":574,"y":632},"L":80,"speed":8.0,"xSpeed":-1.251475720321847,"ySpeed":7.901506724761102,"angle":-9.0,"neutron":9,"proton":8},{"atomID":4,"coordinate":{"x":615,"y":640},"L":80,"speed":8.0,"xSpeed":1.251475720321847,"ySpeed":7.901506724761102,"angle":9.0,"neutron":64,"proton":64},{"atomID":3,"coordinate":{"x":644,"y":659},"L":80,"speed":8.0,"xSpeed":2.472135954999579,"ySpeed":7.608452130361228,"angle":18.0,"neutron":33,"proton":32},{"atomID":4,"coordinate":{"x":660,"y":672},"L":80,"speed":8.0,"xSpeed":3.631923997916374,"ySpeed":7.128052193506943,"angle":27.0,"neutron":64,"proton":64}],"onScreenMoleculeList":[{"moleculeID":3,"coordinate":{"x":463,"y":260},"isLinear":false,"isSpinning":false,"L":80,"speed":8.0,"xSpeed":5.65685424949238,"ySpeed":5.656854249492381,"travelled":0},{"moleculeID":3,"coordinate":{"x":147,"y":100},"isLinear":false,"isSpinning":false,"L":80,"speed":8.0,"xSpeed":5.65685424949238,"ySpeed":5.656854249492381,"travelled":0}],"onScreenPowerUpList":[{"powerUpID":4,"coordinate":{"x":773,"y":180},"isThrown":false,"L":80,"speed":8.0,"xSpeed":0.0,"ySpeed":8.0,"angle":0.0}],"onScreenReactionBlockerList":[{"reactionBlockerID":2,"coordinate":{"x":527,"y":20},"L":80,"speed":8.0,"xSpeed":5.65685424949238,"ySpeed":5.656854249492381,"travelled":0}],"barrelAtom":"{\"atomID\":3,\"coordinate\":{\"x\":662,\"y\":735},\"L\":80,\"speed\":8.0,\"xSpeed\":3.631923997916374,\"ySpeed\":7.128052193506943,\"angle\":27.0,\"neutron\":29,\"proton\":32}","barrelPowerUp":"null","shooter":{"coordinate":"{\"x\":590,\"y\":720}","health":100.0,"score":0.0,"inventory":"{\"inventoryAtom\":{\"1\":96,\"2\":97,\"3\":96,\"4\":93},\"inventoryPowerUp\":{\"1\":0,\"2\":0,\"3\":0,\"4\":0},\"inventoryShield\":{\"1\":20,\"2\":20,\"3\":20,\"4\":20}}"},"settings":"{\"lengthUnit\":80,\"difficultyLevel\":1,\"isLinear\":false,\"isSpinning\":false,\"alphaAtomNumber\":100,\"betaAtomNumber\":100,\"gammaAtomNumber\":100,\"sigmaAtomNumber\":100,\"alphaMoleculeNumber\":100,\"betaMoleculeNumber\":100,\"gammaMoleculeNumber\":98,\"sigmaMoleculeNumber\":100,\"alphaPowerUpNumber\":20,\"betaPowerUpNumber\":20,\"gammaPowerUpNumber\":20,\"sigmaPowerUpNumber\":19,\"alphaReactionBlockerNumber\":10,\"betaReactionBlockerNumber\":9,\"gammaReactionBlockerNumber\":10,\"sigmaReactionBlockerNumber\":10,\"etaNumber\":20,\"lotaNumber\":20,\"thetaNumber\":20,\"zetaNumber\":20,\"timeRemaining\":595600.0}"}
+{
+  "L": 80,
+  "isPaused": true,
+  "isFinished": false,
+  "onScreenAtomList": [
+  ],
+  "onScreenMoleculeList": [
+  ],
+  "onScreenPowerUpList": [
+  ],
+  "onScreenReactionBlockerList": [
+    {
+      "reactionBlockerID": 1,
+      "coordinate": {
+        "x": 690,
+        "y": 83
+      },
+      "L": 80,
+      "speed": 8.0,
+      "xSpeed": -5.65685424949238,
+      "ySpeed": 5.656854249492381,
+      "travelled": 35
+    },
+    {
+      "reactionBlockerID": 3,
+      "coordinate": {
+        "x": 229,
+        "y": 60
+      },
+      "L": 80,
+      "speed": 8.0,
+      "xSpeed": 5.65685424949238,
+      "ySpeed": 5.656854249492381,
+      "travelled": 0
+    }
+  ],
+  "barrelAtom": {
+    "atomID": 1,
+    "coordinate": {
+      "x": 614,
+      "y": 712
+    },
+    "L": 80,
+    "speed": 8.0,
+    "xSpeed": 0.0,
+    "ySpeed": 8.0,
+    "angle": 0.0,
+    "neutron": 7,
+    "proton": 8
+  },
+  "barrelPowerUp": null,
+  "shooter": {
+    "coordinate": {
+      "x": 598,
+      "y": 720
+    },
+    "health": 100.0,
+    "score": 0.0,
+    "inventory": {
+      "inventoryAtom": {
+        "1": 100,
+        "2": 100,
+        "3": 100,
+        "4": 100
+      },
+      "inventoryPowerUp": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0
+      },
+      "inventoryShield": {
+        "1": 20,
+        "2": 20,
+        "3": 20,
+        "4": 20
+      }
+    }
+  },
+  "settings": {
+    "lengthUnit": 80,
+    "difficultyLevel": 1,
+    "isLinear": false,
+    "isSpinning": false,
+    "alphaAtomNumber": 100,
+    "betaAtomNumber": 100,
+    "gammaAtomNumber": 100,
+    "sigmaAtomNumber": 100,
+    "alphaMoleculeNumber": 100,
+    "betaMoleculeNumber": 100,
+    "gammaMoleculeNumber": 100,
+    "sigmaMoleculeNumber": 100,
+    "alphaPowerUpNumber": 20,
+    "betaPowerUpNumber": 20,
+    "gammaPowerUpNumber": 20,
+    "sigmaPowerUpNumber": 20,
+    "alphaReactionBlockerNumber": 9,
+    "betaReactionBlockerNumber": 10,
+    "gammaReactionBlockerNumber": 9,
+    "sigmaReactionBlockerNumber": 10,
+    "etaNumber": 20,
+    "lotaNumber": 20,
+    "thetaNumber": 20,
+    "zetaNumber": 20,
+    "timeRemaining": 597100.0
+  }
+}

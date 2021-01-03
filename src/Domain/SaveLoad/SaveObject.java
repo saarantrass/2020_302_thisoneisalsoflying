@@ -2,9 +2,13 @@ package Domain.SaveLoad;
 
 import Domain.Game;
 import Domain.Settings;
+
+import org.bson.Document;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -23,7 +27,6 @@ public class SaveObject {
 		JsonObject save = new JsonObject();
 		Gson gsonBuilder = new GsonBuilder().create();
 		JsonParser jsonParser = new JsonParser();
-		
 		
 		//Start - Game
 		save.addProperty("L", this.currGame.L);
@@ -46,32 +49,39 @@ public class SaveObject {
 		JsonArray onScreenReactionBlockerListJsonArray = jsonParser.parse(onScreenReactionBlockerList).getAsJsonArray();
 		save.add("onScreenReactionBlockerList", onScreenReactionBlockerListJsonArray);
 		
-		String barrelAtom = gsonBuilder.toJson(this.currGame.barrelAtom);
-		save.addProperty("barrelAtom", barrelAtom);
+		JsonElement barrelAtomElement = jsonParser.parse(gsonBuilder.toJson(this.currGame.barrelAtom));
+		JsonObject barrelAtom = barrelAtomElement.isJsonObject() ? barrelAtomElement.getAsJsonObject() : null;
+		save.add("barrelAtom", barrelAtom);
 		
-		String barrelPowerUp = gsonBuilder.toJson(this.currGame.barrelPowerUp);
-		save.addProperty("barrelPowerUp", barrelPowerUp);
+		JsonElement barrelPowerUpElement = jsonParser.parse(gsonBuilder.toJson(this.currGame.barrelPowerUp));
+		JsonObject barrelPowerUp = barrelPowerUpElement.isJsonObject() ? barrelAtomElement.getAsJsonObject() : null;
+		save.add("barrelPowerUp", barrelPowerUp);
 		//End - Game
 		
 		//Start - Shooter
 		JsonObject shooter = new JsonObject();
 		
-		shooter.addProperty("coordinate", gsonBuilder.toJson(this.currGame.shooter.getCoordinate()));
+		JsonElement coorElement = jsonParser.parse(gsonBuilder.toJson(this.currGame.shooter.getCoordinate()));
+		shooter.add("coordinate", coorElement.isJsonObject() ? coorElement.getAsJsonObject() : null);
 		shooter.addProperty("health", this.currGame.shooter.health);
 		shooter.addProperty("score", this.currGame.shooter.score);
 		
-		String inventory = gsonBuilder.toJson(this.currGame.shooter.inventory);
-		shooter.addProperty("inventory", inventory);
+		JsonElement inventory = jsonParser.parse(gsonBuilder.toJson(this.currGame.shooter.inventory));
+		shooter.add("inventory", inventory.isJsonObject() ? inventory.getAsJsonObject() : null);
 		
 		save.add("shooter", shooter);
 		//End - Shooter
 		
 		//Start - Settings
 		String settings = gsonBuilder.toJson(this.currSettings);
-		save.addProperty("settings", settings);
+		save.add("settings", jsonParser.parse(settings).getAsJsonObject());
 		//End - Settings
 		
 		return save;
+	}
+	
+	public Document toDBObject() {
+		return Document.parse(this.generateSaveJson().toString());
 	}
 
 }
