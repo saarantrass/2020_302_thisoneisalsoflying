@@ -1,4 +1,4 @@
-package Domain.GameObjects;
+package Domain.GameObjects.Atoms;
 import java.awt.Point;
 
 public abstract class Throwable {

@@ -1,5 +1,6 @@
 package UI.Swing;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -60,7 +61,7 @@ public class BuildingModePanel extends JPanel{
 	private JLabel unitLengthLabel = new JLabel("Unit length L: ");
 	private JLabel difficultyLevelLabel = new JLabel("Difficulty level:");
 	
-	private JTextField alphaAtomNumberField = new JTextField("100", 5);
+	private JTextField alphaAtomNumberField = new JTextField("100", 5);//Lower bounddan düþük yazýnca sistem kabul ediyor,it shouldnt aq
 	private JTextField betaAtomNumberField = new JTextField("100", 5);
 	private JTextField gammaAtomNumberField = new JTextField("100", 5);
 	private JTextField sigmaAtomNumberField = new JTextField("100", 5);
@@ -391,6 +392,7 @@ public class BuildingModePanel extends JPanel{
 		int thetaNumber = Integer.parseInt(thetaNumberField.getText());
 		int zetaNumber = Integer.parseInt(zetaNumberField.getText());
 		
+		Dimension screenSize = ScreenCoordinator.SCREEN_SIZE;
 		boolean isLinear = linearCheckBox.isSelected();
 		
 		boolean isSpinning = false;
@@ -407,7 +409,7 @@ public class BuildingModePanel extends JPanel{
 		else if(hardButton.isSelected())
 			difficultyLevel = 4;
 		
-		GC.editInBuildMode(alphaAtomNumber, betaAtomNumber, gammaAtomNumber, sigmaAtomNumber, alphaMoleculeNumber, betaMoleculeNumber, gammaMoleculeNumber, sigmaMoleculeNumber, alphaRBNumber, betaRBNumber, gammaRBNumber, sigmaRBNumber, alphaPUNumber, betaPUNumber, gammaPUNumber, sigmaPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, L, difficultyLevel);
+		GC.editInBuildMode(alphaAtomNumber, betaAtomNumber, gammaAtomNumber, sigmaAtomNumber, alphaMoleculeNumber, betaMoleculeNumber, gammaMoleculeNumber, sigmaMoleculeNumber, alphaRBNumber, betaRBNumber, gammaRBNumber, sigmaRBNumber, alphaPUNumber, betaPUNumber, gammaPUNumber, sigmaPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, L, difficultyLevel, screenSize);
 	}
 	
 	

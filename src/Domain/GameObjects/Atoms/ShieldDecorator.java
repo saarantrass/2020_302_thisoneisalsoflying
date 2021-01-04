@@ -1,10 +1,15 @@
-package Domain.GameObjects;
+package Domain.GameObjects.Atoms;
 
-public abstract class AtomDecorator extends Throwable{
-	Throwable atom;
-	public AtomDecorator(Throwable atom) {
+public abstract class ShieldDecorator extends Throwable{
+	private double efficiency;
+	public Throwable atom;
+	public ShieldDecorator(Throwable atom) {
 		this.atom = atom;
+		this.efficiency=atom.getEfficiency();
+		this.atom=atom;
 	}
-	public abstract double getEfficiency();
+	public double getEfficiency() {
+		return this.efficiency;
+	}
 	public abstract void addShield(int type);
 }

@@ -1,20 +1,24 @@
-package Domain.GameObjects;
+package Domain.GameObjects.Molecules;
 import java.awt.Point;
 
 import Domain.Settings;
+import Domain.GameObjects.IFallingBehaviour;
 import UI.Swing.ScreenCoordinator;
 
-public class Molecule {
+public abstract class Molecule implements IFallingBehaviour{
 	
 	private int moleculeID;
-	private Point coordinate;
+	protected Point coordinate;
 	private boolean isLinear;
 	private boolean isSpinning;
-	private int L;
-	private double speed;
-	private double xSpeed;
-	private double ySpeed;
-	private int travelled = 0;
+	protected int L;
+	protected double speed;
+	protected double xSpeed;
+	protected double ySpeed;
+	protected double travelled = 0.0;
+	
+
+	protected IFallingBehaviour fallingBehaviour;
 	
 	public Molecule (int moleculeID, Point coordinate, boolean isLinear, boolean isSpinning) {
 		this.moleculeID = moleculeID;
@@ -26,58 +30,39 @@ public class Molecule {
 		this.xSpeed = this.speed * Math.sin(Math.toRadians(45));
 		this.ySpeed = this.speed * Math.cos(Math.toRadians(45));
 	}
-	
+
+	public void setFallingStrategy(IFallingBehaviour fallingBehaviour) {
+		this.fallingBehaviour = fallingBehaviour;
+	}
 	
 	public void move() {
 		//TODO check screen borders
 		/*if(this.coordinate.x < 0 || this.coordinate.x > (ScreenCoordinator.SCREEN_SIZE.width * 7/8)) {
 			this.xSpeed = -this.xSpeed;
 			this.travelled = 0;
-		}*/
-		switch(moleculeID) {
-			case 1:
-				zigzag();
-				break;
-			case 2:
-				if(this.coordinate.y < ScreenCoordinator.SCREEN_SIZE.getHeight()/4) {
-					this.coordinate.y += this.speed;
-				}else {
-					zigzag();
-				}
-				break;
-			case 3:
-				if(this.coordinate.y < ScreenCoordinator.SCREEN_SIZE.getHeight()/2) {
-					this.coordinate.y += this.speed;
-				}else {
-					zigzag();
-				}
-				break;
-			case 4:
-				this.coordinate.y += this.speed;
-				break;
 		}
+		*/
+		setFallingStrategy(fallingBehaviour);
+		fallingBehaviour.move();
+	}
+	
 
-	}
-	
-	
-	public void zigzag() {
-		//TODO: Bounce off from the wall
-		
-		if(this.travelled < L * Math.sin(Math.toRadians(45))) {
-			this.travelled += Math.abs(xSpeed);
-		} else {
-			xSpeed = -xSpeed;
-			this.travelled = 0;
-		}
-		this.coordinate.x += xSpeed;
-		this.coordinate.y += ySpeed;
-	}
-	
 	
 	public Point getCoordinate() {
 		return this.coordinate;
 	}
 	
+	public void setCoordinate(Point coordinate) {
+		this.coordinate = coordinate;
+	}
+	
+	public void setSpeed(double speed) {
+		this.speed = speed;
+	}
+	
+	public double getSpeed() {
+		return this.speed;
+	}
 	
 	public boolean isSpinning() {
 		return isSpinning;
@@ -93,4 +78,28 @@ public class Molecule {
 		return this.moleculeID;
 	}
 	
+	public double getxSpeed() {
+		return xSpeed;
+	}
+	
+	public void setxSpeed(double xSpeed) {
+		this.xSpeed = xSpeed;
+	}
+	
+	public double getySpeed() {
+		return ySpeed;
+	}
+	
+	public double getTravelled() {
+		return travelled;
+	}
+	
+	public void setTravelled(double travelled) {
+		this.travelled = travelled;
+	}
+	
+	public int getL() {
+		return L;
+	}
+
 }
