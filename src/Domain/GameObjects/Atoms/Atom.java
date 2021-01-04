@@ -1,4 +1,4 @@
-package Domain.GameObjects;
+package Domain.GameObjects.Atoms;
 
 import java.awt.Point;
 
@@ -17,7 +17,7 @@ public class Atom extends Throwable {
 	
 	private int neutron;
 	private int proton;
-	
+	//TODO: typelara böl
 	
 	public Atom (int atomID, Point coordinate, int neutron) {
 		this.atomID = atomID;

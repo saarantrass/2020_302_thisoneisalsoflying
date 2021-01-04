@@ -1,5 +1,7 @@
 package Domain;
 
+import java.awt.Dimension;
+
 public class Settings {
 	
 	private int lengthUnit;
@@ -34,7 +36,7 @@ public class Settings {
 	
 	private static Settings settings = null;
 	public double timeRemaining = 600000; // TODO change the default value and set from setSettings
-
+	private Dimension screenSize;
 	
 	private Settings() {}
 	
@@ -48,7 +50,7 @@ public class Settings {
 	}
 	
 		
-	public void setSettings(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel) {
+	public void setSettings(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel, Dimension screenSize) {
 		this.alphaAtomNumber = aAtomNumber;
 		this.betaAtomNumber = bAtomNumber;
 		this.gammaAtomNumber = gAtomNumber;
@@ -78,6 +80,7 @@ public class Settings {
 		this.isSpinning = isSpinning;
 		this.lengthUnit = lengthUnit;
 		this.difficultyLevel = difficultyLevel;
+		this.screenSize = screenSize;
 	}
 	
 	public int getLengthUnit() {
@@ -99,6 +102,9 @@ public class Settings {
 		return isSpinning;
 	}
 	
+	public Dimension getScreenSize() {
+		return this.screenSize;
+	}
 	
 	public void decreaseMoleculeNumber(int type) {
 		switch(type) {

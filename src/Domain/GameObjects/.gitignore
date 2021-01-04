@@ -10,3 +10,6 @@
 /Throwable.class
 /Shield.class
 /ShieldedAtom.class
+/IFallingBehaviour.class
+/LinearStrategy.class
+/ZigZagStrategy.class
