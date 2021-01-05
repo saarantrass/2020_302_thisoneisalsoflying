@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import Domain.GameObjects.Atom;
 import Domain.GameObjects.FallingObjectFactory;
-import Domain.GameObjects.Molecule;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
-import Domain.GameObjects.ShieldedAtom;
-import Domain.GameObjects.Throwable;
+import Domain.GameObjects.Atoms.Atom;
+import Domain.GameObjects.Atoms.ShieldDecorator;
+import Domain.GameObjects.Atoms.Throwable;
+import Domain.GameObjects.Molecules.Molecule;
 import Domain.Player.Player;
 import Domain.Player.Shooter;
 import Domain.SaveLoad.FileSaveLoadAdapter;
@@ -191,7 +191,6 @@ public class Game implements IObservable{
 
 	public void shoot() {
 		if(this.barrelAtom != null) {
-			System.out.println(this.barrelAtom.getEfficiency());
 
 			this.barrelAtom.setAngle(this.shooter.getAngle());
 			this.shooter.inventory.removeInventoryAtom(this.barrelAtom.getAtomID(),1);
@@ -209,6 +208,8 @@ public class Game implements IObservable{
 
 
 	private void collisionHandler() {
+		//TODO: reaction blocker blocks the atom-molecule unification!!!!
+		//TODO: powerup baþka reactiona deðince yok oluyormuþ
 		/*
 		 * Atom-Molecule Collision
 		 */
@@ -264,8 +265,9 @@ public class Game implements IObservable{
 
 
 	public void addShield(int type) {
-		ShieldedAtom at = new ShieldedAtom(this.barrelAtom);
+		ShieldDecorator at = FallingObjectFactory.getInstance().addNewShield(type,this.barrelAtom);
 		at.addShield(type);
+		System.out.println(at.getEfficiency());
 		this.barrelAtom=at;
 		this.shooter.inventory.removeInventoryShield(type);
 	}

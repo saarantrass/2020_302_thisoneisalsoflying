@@ -1,5 +1,7 @@
 package Domain;
 
+import java.awt.Dimension;
+
 public class GameController {
 	public Settings settings;
 	
@@ -8,14 +10,8 @@ public class GameController {
 		this.settings = Settings.getInstance();
 	}
 	
-	
-	public void useBlender(int source, int goal) {
-		Blender.useBlender(source, goal, Game.getInstance().shooter.inventory);
-	}
-	
-	
-	public void editInBuildMode(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel) {
-		this.settings.setSettings(aAtomNumber, bAtomNumber, gAtomNumber, sAtomNumber, aMoleculeNumber, bMoleculeNumber, gMoleculeNumber, sMoleculeNumber, aRBNumber, bRBNumber, gRBNumber, sRBNumber, aPUNumber, bPUNumber, gPUNumber, sPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, lengthUnit, difficultyLevel);
+	public void editInBuildMode(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel,Dimension screenSize) {
+		this.settings.setSettings(aAtomNumber, bAtomNumber, gAtomNumber, sAtomNumber, aMoleculeNumber, bMoleculeNumber, gMoleculeNumber, sMoleculeNumber, aRBNumber, bRBNumber, gRBNumber, sRBNumber, aPUNumber, bPUNumber, gPUNumber, sPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, lengthUnit, difficultyLevel, screenSize);
 	}
 	
 	
@@ -34,7 +30,7 @@ public class GameController {
 	}
 	
 	
-	public void rotateShooter(int direction) {
+	public void rotateShooter(int direction) {//TODO: 10 derece dönüyormuþ
 		Game.getInstance().shooter.rotate(direction);
 	}
 	
@@ -44,8 +40,28 @@ public class GameController {
 	}
 	
 	
+	public void useBlender(int source, int goal) {
+		Blender.useBlender(source, goal, Game.getInstance().shooter.inventory);
+	}
+	
+	
 	public void addShield(int type) {
 		Game.getInstance().addShield(type);
+	}
+	
+	
+	public void shoot() {
+		Game.getInstance().shoot();
+	}
+	
+	
+	public void changeAtomOnBarrel() {
+		Game.getInstance().getRandomAtomToBarrel();
+	}
+	
+	
+	public void getPowerUpOnBarrel(int type) {
+		Game.getInstance().getPowerUpToBarrel(type);
 	}
 	
 	
@@ -69,22 +85,6 @@ public class GameController {
 	public void resumeGame() {
 		Game.getInstance().resumeGame();
 	}
-	
-	
-	public void shoot() {
-		Game.getInstance().shoot();
-	}
-	
-	
-	public void changeAtomOnBarrel() {
-		Game.getInstance().getRandomAtomToBarrel();
-	}
-	
-	
-	public void getPowerUpOnBarrel(int type) {
-		Game.getInstance().getPowerUpToBarrel(type);
-	}
-	
 	
 	public void pauseGame() {
 		Game.getInstance().pauseGame();	
