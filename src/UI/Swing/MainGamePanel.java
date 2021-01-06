@@ -9,7 +9,6 @@ import Domain.Game;
 import Domain.Settings;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
-import Domain.GameObjects.Atoms.Atom;
 import Domain.GameObjects.Atoms.Throwable;
 import Domain.GameObjects.Molecules.Molecule;
 import UI.IObserver;

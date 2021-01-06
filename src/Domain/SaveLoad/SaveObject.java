@@ -63,8 +63,8 @@ public class SaveObject {
 		
 		JsonElement coorElement = jsonParser.parse(gsonBuilder.toJson(this.currGame.shooter.getCoordinate()));
 		shooter.add("coordinate", coorElement.isJsonObject() ? coorElement.getAsJsonObject() : null);
-		shooter.addProperty("health", this.currGame.player.health);
-		shooter.addProperty("score", this.currGame.player.score);
+		shooter.addProperty("health", this.currGame.player.getHealth());
+		shooter.addProperty("score", this.currGame.player.getScore());
 		
 		JsonElement inventory = jsonParser.parse(gsonBuilder.toJson(this.currGame.shooter.inventory));
 		shooter.add("inventory", inventory.isJsonObject() ? inventory.getAsJsonObject() : null);

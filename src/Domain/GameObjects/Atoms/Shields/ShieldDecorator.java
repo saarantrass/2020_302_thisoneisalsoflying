@@ -1,35 +1,22 @@
-package Domain.GameObjects.Atoms;
+package Domain.GameObjects.Atoms.Shields;
 
 import java.awt.Point;
 
-public class LotaShield extends ShieldDecorator {
+
+import Domain.GameObjects.Atoms.Throwable;
+
+public abstract class ShieldDecorator extends Throwable{
 	private double efficiency;
-	private Throwable atom;
-
-	private static double LOTA_EFF = 0.1;
-	public LotaShield(Throwable atom) {
-		super(atom);
+	public Throwable atom;
+	public ShieldDecorator(Throwable atom) {
+		this.atom = atom;
 		this.efficiency=atom.getEfficiency();
-		this.atom=atom;
 	}
-
-	@Override
 	public double getEfficiency() {
-		return this.efficiency;	
+		return this.efficiency;
 	}
-	
-	private void setEfficiency(double eff) {
-		this.efficiency = eff;
-	}
-
+	public abstract void addShield(int type);
 	@Override
-	public void addShield(int type) {
-		double effFactor = (1 - this.efficiency) * LOTA_EFF;
-		double speedFactor = 0.07;
-		setEfficiency(this.efficiency+this.efficiency*effFactor);
-		this.setSpeed(atom.getSpeed()*(1-speedFactor));
-	}
-
 	public void setSpeed(double speed) {atom.setSpeed(speed);}
 	@Override
 	public double getSpeed() {return atom.getSpeed();}
@@ -47,5 +34,4 @@ public class LotaShield extends ShieldDecorator {
 	public int getNeutron() {return atom.getNeutron();}
 	@Override
 	public int getProton() {return atom.getProton();}
-
 }

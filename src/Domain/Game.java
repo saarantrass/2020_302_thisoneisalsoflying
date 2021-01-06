@@ -6,12 +6,13 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
+import Domain.GameObjects.AtomFactory;
 import Domain.GameObjects.FallingObjectFactory;
 import Domain.GameObjects.PowerUp;
 import Domain.GameObjects.ReactionBlocker;
 import Domain.GameObjects.Atoms.Atom;
-import Domain.GameObjects.Atoms.ShieldDecorator;
 import Domain.GameObjects.Atoms.Throwable;
+import Domain.GameObjects.Atoms.Shields.ShieldDecorator;
 import Domain.GameObjects.Molecules.Molecule;
 import Domain.Player.Player;
 import Domain.Player.Shooter;
@@ -265,7 +266,7 @@ public class Game implements IObservable{
 
 
 	public void addShield(int type) {
-		ShieldDecorator at = FallingObjectFactory.getInstance().addNewShield(type,this.barrelAtom);
+		ShieldDecorator at = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
 		at.addShield(type);
 		System.out.println(at.getEfficiency());
 		this.barrelAtom=at;
@@ -275,13 +276,12 @@ public class Game implements IObservable{
 	public void getRandomAtomToBarrel() {
 		Random rn = new Random();
 		int type = rn.nextInt(4)+1;
-		int neutron = getRandomNeutron(type);
 		while(!this.shooter.inventory.checkAtomAvailability(type, 1)) {
 			type = (int) (1 + (Math.random() * 3));
 		}
 
 		this.barrelPowerUp = null;
-		this.barrelAtom = new Atom(type, this.shooter.getBarrelCoordinate(),neutron);
+		this.barrelAtom = AtomFactory.getInstance().getNewAtom(type, this.shooter.getBarrelCoordinate());
 		this.barrelAtom.setAngle(this.shooter.getAngle());
 	}
 
@@ -294,17 +294,7 @@ public class Game implements IObservable{
 		}
 	}
 
-	public int getRandomNeutron(int type) {
-		Random rn = new Random();
-		List<Integer> list = null;
-		switch(type) {
-		case 1:		list = Arrays.asList(7,8,9);			break;
-		case 2:		list = Arrays.asList(15,16,17,18,21);	break;
-		case 3:		list = Arrays.asList(29,32,33);			break;
-		case 4:		list = Arrays.asList(63,64,67);			break;
-		}
-		return list.get(rn.nextInt(list.size()));
-	}
+
 	public void pauseGame() {
 		this.isPaused = true;
 		saveLoadService = new FileSaveLoadAdapter();
