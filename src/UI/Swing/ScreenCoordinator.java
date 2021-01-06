@@ -12,7 +12,7 @@ public class ScreenCoordinator { //singleton
 	private GameController GC = new GameController();
 	private GameModePanel gameModePanel;
 	private static ScreenCoordinator screen_coordinator = null;
-	public static final Dimension SCREEN_SIZE = new Dimension(1350,800);
+	public static final Dimension SCREEN_SIZE = new Dimension(1350,835);
 	
 	
 	private ScreenCoordinator() {
@@ -30,7 +30,6 @@ public class ScreenCoordinator { //singleton
 	
 	
 	public void initialize() {
-		//this.mainMenuScreen(); //to start with main menu uncomment this and comment below code
 		this.buildingModeScreen();
 	}
 	
@@ -39,15 +38,6 @@ public class ScreenCoordinator { //singleton
 		GC.startGame();
 		this.gameModePanel = new GameModePanel(this.GC);
 		this.gameScreen();
-	}
-	
-	
-	public void mainMenuScreen() {
-		clean();
-		currentPanel = new MainMenuPanel(this.GC);
-		mainFrame.getContentPane().add(currentPanel);
-		mainFrame.pack();
-		mainFrame.setVisible(true);
 	}
 	
 	

@@ -10,8 +10,9 @@ public class GameController {
 		this.settings = Settings.getInstance();
 	}
 	
-	public void editInBuildMode(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel,Dimension screenSize) {
+	public void editInBuildMode(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel,Dimension screenSize, String playerName) {
 		this.settings.setSettings(aAtomNumber, bAtomNumber, gAtomNumber, sAtomNumber, aMoleculeNumber, bMoleculeNumber, gMoleculeNumber, sMoleculeNumber, aRBNumber, bRBNumber, gRBNumber, sRBNumber, aPUNumber, bPUNumber, gPUNumber, sPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, lengthUnit, difficultyLevel, screenSize);
+		//TODO WHERE TO PUT PLAYER NAME?
 	}
 	
 	
@@ -30,7 +31,7 @@ public class GameController {
 	}
 	
 	
-	public void rotateShooter(int direction) {//TODO: 10 derece dönüyormuþ
+	public void rotateShooter(int direction) {//TODO: 10 derece dï¿½nï¿½yormuï¿½
 		Game.getInstance().shooter.rotate(direction);
 	}
 	
@@ -70,10 +71,8 @@ public class GameController {
 	}
 	
 	
-	public void loadGame(){ //TODO need to set settings - no need to set inventory
+	public void loadGame(){
 		System.out.println("loadGame GC");
-		//uncomment the code below to get load work - an example set of settings
-		//this.editInBuildMode(10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, false, false, 80, 1);
 	}
 	
 	

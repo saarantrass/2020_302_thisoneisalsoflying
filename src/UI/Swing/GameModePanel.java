@@ -460,17 +460,11 @@ public class GameModePanel extends JPanel implements IObserver{
 			}
 			
 			if(e.getKeyCode() == KeyEvent.VK_S) {
-				removePausePanel();
 				GC.saveGame();
-				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
 			if(e.getKeyCode() == KeyEvent.VK_L) { //TODO
-				removePausePanel();
-				GC.quitGame();
 				GC.loadGame();
-				ScreenCoordinator.getInstance().startGame();
-				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 				
 			}
 			
