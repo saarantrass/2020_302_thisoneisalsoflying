@@ -1,8 +1,8 @@
 package Domain.Player;
 
 public class Player {
-	private double score;
-	private double health;
+	public double score;
+	public double health;
 	public Player() {
 		this.score = 0;
 		this.health = 100;

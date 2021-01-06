@@ -58,10 +58,11 @@ public class BuildingModePanel extends JPanel{
 	private JLabel thetaNumberLabel = new JLabel("Theta Shield number: ");
 	private JLabel zetaNumberLabel = new JLabel("Zeta Shield number: ");
 	
+	private JLabel playerNameLabel = new JLabel("Player Name: ");
 	private JLabel unitLengthLabel = new JLabel("Unit length L: ");
 	private JLabel difficultyLevelLabel = new JLabel("Difficulty level:");
 	
-	private JTextField alphaAtomNumberField = new JTextField("100", 5);//Lower bounddan düþük yazýnca sistem kabul ediyor,it shouldnt aq
+	private JTextField alphaAtomNumberField = new JTextField("100", 5);//Lower bounddan dï¿½ï¿½ï¿½k yazï¿½nca sistem kabul ediyor,it shouldnt aq
 	private JTextField betaAtomNumberField = new JTextField("100", 5);
 	private JTextField gammaAtomNumberField = new JTextField("100", 5);
 	private JTextField sigmaAtomNumberField = new JTextField("100", 5);
@@ -86,6 +87,7 @@ public class BuildingModePanel extends JPanel{
 	private JTextField thetaNumberField = new JTextField("20", 5);
 	private JTextField zetaNumberField = new JTextField("20", 5);
 	
+	private JTextField playerNameField = new JTextField(15);
 	private JTextField unitLengthField = new JTextField(5);
 	
 	private JCheckBox linearCheckBox = new JCheckBox("Linear");
@@ -318,12 +320,21 @@ public class BuildingModePanel extends JPanel{
 		/*
 		 * settings panel design
 		 */
+		JPanel playerNamePanel = new JPanel(new GridBagLayout());
 		JPanel firstLinePanel = new JPanel(new GridBagLayout());
 		JPanel secondLinePanel = new JPanel(new GridBagLayout());
+		playerNamePanel.setOpaque(false);
 		firstLinePanel.setOpaque(false);
 		secondLinePanel.setOpaque(false);
 		
 		c.anchor = GridBagConstraints.CENTER;
+		c.gridx = 0;
+		c.gridy = 0;
+		playerNamePanel.add(playerNameLabel, c);
+		
+		c.gridx = 1;
+		playerNamePanel.add(playerNameField, c);
+		
 		c.gridx = 0;
 		c.gridy = 0;
 		firstLinePanel.add(atomNumbersPanel, c);
@@ -343,20 +354,23 @@ public class BuildingModePanel extends JPanel{
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		settingsPanel.add(firstLinePanel, c);
+		settingsPanel.add(playerNamePanel);
 		
 		c.gridy = 1;
-		settingsPanel.add(secondLinePanel, c);
+		settingsPanel.add(firstLinePanel, c);
 		
 		c.gridy = 2;
-		settingsPanel.add(alphaBetaStructurePanel, c);
+		settingsPanel.add(secondLinePanel, c);
 		
 		c.gridy = 3;
+		settingsPanel.add(alphaBetaStructurePanel, c);
+		
+		c.gridy = 4;
 		settingsPanel.add(gameEssentialsPanel, c);
 		
 		startGameButton.addActionListener(this.buttonListener);
 		
-		c.gridy = 4;
+		c.gridy = 5;
 		settingsPanel.add(startGameButton, c);
 		
 		settingsPanel.setOpaque(false);
@@ -392,7 +406,6 @@ public class BuildingModePanel extends JPanel{
 		int thetaNumber = Integer.parseInt(thetaNumberField.getText());
 		int zetaNumber = Integer.parseInt(zetaNumberField.getText());
 		
-		Dimension screenSize = ScreenCoordinator.SCREEN_SIZE;
 		boolean isLinear = linearCheckBox.isSelected();
 		
 		boolean isSpinning = false;
@@ -409,7 +422,10 @@ public class BuildingModePanel extends JPanel{
 		else if(hardButton.isSelected())
 			difficultyLevel = 4;
 		
-		GC.editInBuildMode(alphaAtomNumber, betaAtomNumber, gammaAtomNumber, sigmaAtomNumber, alphaMoleculeNumber, betaMoleculeNumber, gammaMoleculeNumber, sigmaMoleculeNumber, alphaRBNumber, betaRBNumber, gammaRBNumber, sigmaRBNumber, alphaPUNumber, betaPUNumber, gammaPUNumber, sigmaPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, L, difficultyLevel, screenSize);
+		Dimension screenSize = ScreenCoordinator.SCREEN_SIZE;
+		String playerName = playerNameField.getText();
+				
+		GC.editInBuildMode(alphaAtomNumber, betaAtomNumber, gammaAtomNumber, sigmaAtomNumber, alphaMoleculeNumber, betaMoleculeNumber, gammaMoleculeNumber, sigmaMoleculeNumber, alphaRBNumber, betaRBNumber, gammaRBNumber, sigmaRBNumber, alphaPUNumber, betaPUNumber, gammaPUNumber, sigmaPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, L, difficultyLevel, screenSize, playerName);
 	}
 	
 	
