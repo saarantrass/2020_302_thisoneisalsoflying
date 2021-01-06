@@ -10,6 +10,7 @@ public class AlphaMolecule extends Molecule {
 		setFallingStrategy(new ZigZagStrategy(this));
 	}
 
-	
+	@Override
+	public void updateFallingStrategy() {}
 
 }

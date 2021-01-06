@@ -1,8 +1,6 @@
 package Domain.GameObjects.Molecules;
 
 import java.awt.Point;
-
-import Domain.GameObjects.IFallingBehaviour;
 import Domain.GameObjects.LinearStrategy;
 
 public class SigmaMolecule extends Molecule {
@@ -13,8 +11,5 @@ public class SigmaMolecule extends Molecule {
 	}
 
 	@Override
-	public void setFallingStrategy(IFallingBehaviour fallingBehaviour) {
-		this.fallingBehaviour = fallingBehaviour;
-	}
-
+	public void updateFallingStrategy() {}
 }

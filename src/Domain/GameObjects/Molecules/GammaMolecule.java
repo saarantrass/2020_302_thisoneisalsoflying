@@ -1,9 +1,7 @@
 package Domain.GameObjects.Molecules;
 
 import java.awt.Point;
-
 import Domain.Settings;
-import Domain.GameObjects.IFallingBehaviour;
 import Domain.GameObjects.LinearStrategy;
 import Domain.GameObjects.ZigZagStrategy;
 
@@ -14,7 +12,7 @@ public class GammaMolecule extends Molecule {
 		setFallingStrategy(new LinearStrategy(this));
 	}
 	@Override
-	public void setFallingStrategy(IFallingBehaviour fallingBehaviour) {
+	public void updateFallingStrategy() {
 		if(this.getCoordinate().y < Settings.getInstance().getScreenSize().getHeight()/2) {
 			this.fallingBehaviour = new LinearStrategy(this);
 		}else {

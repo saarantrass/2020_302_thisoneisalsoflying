@@ -1,11 +1,9 @@
 package Domain.GameObjects.Atoms;
 
 import java.awt.Point;
-
 import Domain.Settings;
-import UI.Swing.ScreenCoordinator;
 
-public class Atom extends Throwable {
+public abstract class Atom extends Throwable {
 	
 	private int atomID;
 	private Point coordinate;
@@ -14,28 +12,27 @@ public class Atom extends Throwable {
 	private double xSpeed;
 	private double ySpeed;
 	private double angle;
-	
 	private int neutron;
 	private int proton;
-	//TODO: typelara böl
 	
 	public Atom (int atomID, Point coordinate, int neutron) {
 		this.atomID = atomID;
 		this.coordinate = coordinate;
 		this.L = Settings.getInstance().getLengthUnit();
 		this.speed = L/10;
-		
 		this.proton=8;
 		for(int i=1;i<atomID;i++) {this.proton *= 2;}
 		this.neutron = neutron;
 	}
 	
-	public void setCoordinate(Point coordinate) {
-		this.coordinate = coordinate;
+	public int getAtomID() {
+		return this.atomID;
 	}
 	
+	public abstract double getEfficiency() ;
+
 	public void move() {
-		if(this.coordinate.x < 0 || this.coordinate.x > (ScreenCoordinator.SCREEN_SIZE.width * 7/8)) {
+		if(this.coordinate.x < 0 || this.coordinate.x > (Settings.getInstance().getScreenSize().getWidth() * 7/8)) {
 			this.xSpeed = -this.xSpeed;
 		}
 		this.coordinate.x += this.xSpeed;
@@ -52,29 +49,8 @@ public class Atom extends Throwable {
 		return this.coordinate;
 	}
 	
-	
-	public int getAtomID() {
-		return this.atomID;
-	}
-	
-	public double getEfficiency() {
-		double eff = 0.0;
-		switch (atomID) {
-			case 1:
-				eff = 0.85*(1- (Math.abs(neutron-proton)/proton));
-				break;
-			case 2:
-				eff = 0.9 - (0.5*(Math.abs(neutron-proton)/proton));
-				break;
-			case 3:
-				eff = 0.8 + (Math.abs(neutron-proton)/(2*proton));
-				break;
-			case 4:
-				eff = (1.7)/2 + (Math.abs(neutron-proton)/proton);
-				break;
-		}
-		
-		return eff;
+	public void setCoordinate(Point coordinate) {
+		this.coordinate = coordinate;
 	}
 	
 	public void setSpeed(double speed) {

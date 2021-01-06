@@ -3,7 +3,6 @@ import java.awt.Point;
 
 import Domain.Settings;
 import Domain.GameObjects.IFallingBehaviour;
-import UI.Swing.ScreenCoordinator;
 
 public abstract class Molecule implements IFallingBehaviour{
 	
@@ -34,6 +33,7 @@ public abstract class Molecule implements IFallingBehaviour{
 	public void setFallingStrategy(IFallingBehaviour fallingBehaviour) {
 		this.fallingBehaviour = fallingBehaviour;
 	}
+	public abstract void updateFallingStrategy() ;
 	
 	public void move() {
 		//TODO check screen borders
@@ -42,7 +42,7 @@ public abstract class Molecule implements IFallingBehaviour{
 			this.travelled = 0;
 		}
 		*/
-		setFallingStrategy(fallingBehaviour);
+		this.updateFallingStrategy();
 		fallingBehaviour.move();
 	}
 	
@@ -101,5 +101,7 @@ public abstract class Molecule implements IFallingBehaviour{
 	public int getL() {
 		return L;
 	}
+
+	
 
 }
