@@ -84,6 +84,7 @@ public class FallingObjectFactory {
 			return new GammaReactionBlocker(type, coords);
 		case 4:
 			return new SigmaReactionBlocker(type, coords);
+		}
 		return null;
 	}
 
