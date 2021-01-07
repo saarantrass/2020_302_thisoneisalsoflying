@@ -5,7 +5,7 @@ import java.awt.Point;
 import Domain.GameObjects.Molecules.Molecule;
 
 public class ZigZagStrategy implements IFallingBehaviour{
-	private Molecule mol;
+	private transient Molecule mol;
 	public ZigZagStrategy(Molecule mol) {
 		this.mol = mol;
 	}
