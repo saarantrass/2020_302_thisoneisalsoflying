@@ -4,7 +4,6 @@ import static junit.framework.TestCase.*;
 
 import java.awt.Point;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
 import Domain.GameObjects.FallingObjectFactory;
