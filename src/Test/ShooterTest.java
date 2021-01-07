@@ -10,6 +10,13 @@ import org.junit.jupiter.api.Test;
 import Domain.Settings;
 import Domain.Player.Shooter;
 
+/**
+ * ShooterTest class tests move and rotate functionalities of the class Shooter using Black Box Testing 
+ * by testing the boundaries of the actions.
+ * Additionally, it tests the constructor of the Shooter class and getters and setters of the related attributes.
+ * @author dogademirturk
+ *
+ */
 public class ShooterTest {
 	
 	private Dimension screenSize = new Dimension(1200, 500);
