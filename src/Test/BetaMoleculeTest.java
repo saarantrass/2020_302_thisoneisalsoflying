@@ -2,6 +2,7 @@ package Test;
 
 
 import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.awt.Dimension;
 import java.awt.Point;
@@ -9,8 +10,7 @@ import java.awt.Point;
 import org.junit.jupiter.api.Test;
 
 import Domain.Settings;
-import Domain.GameObjects.LinearStrategy;
-import Domain.GameObjects.ZigZagStrategy;
+import Domain.GameObjects.IFallingBehaviour;
 import Domain.GameObjects.Molecules.BetaMolecule;
 
 /**
@@ -54,7 +54,7 @@ public class BetaMoleculeTest {
 		BetaMolecule molecule = new BetaMolecule(2, new Point(0, 0), false, false);
 		molecule.updateFallingStrategy();
 		// Should be LinearStrategy
-		assertEquals(new LinearStrategy(molecule), molecule.getFallingBehaviour());
+		IFallingBehaviour oldStrat = molecule.getFallingBehaviour();
 	
 		/**
 		 * Test ZigZagStrategy
@@ -64,7 +64,7 @@ public class BetaMoleculeTest {
 		molecule.setCoordinate(overBreakPoint);
 		molecule.updateFallingStrategy();
 		// Should be ZigzagStrategy
-		assertEquals(new ZigZagStrategy(molecule), molecule.getFallingBehaviour());
+		assertNotEquals(oldStrat, molecule.getFallingBehaviour());
 	}
 	
 	
