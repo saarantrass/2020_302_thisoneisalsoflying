@@ -1,7 +1,7 @@
 package Domain.GameObjects.Atoms.Shields;
 
 
-import Domain.GameObjects.Atoms.Throwable;
+import Domain.GameObjects.Throwable;
 
 public class LotaShield extends ShieldDecorator {
 	private double updatedEfficiency;

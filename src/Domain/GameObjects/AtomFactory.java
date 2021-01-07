@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 import Domain.GameObjects.Atoms.*;
-import Domain.GameObjects.Atoms.Throwable;
 import Domain.GameObjects.Atoms.Shields.EtaShield;
 import Domain.GameObjects.Atoms.Shields.LotaShield;
 import Domain.GameObjects.Atoms.Shields.ShieldDecorator;

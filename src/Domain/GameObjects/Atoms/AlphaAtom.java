@@ -11,6 +11,7 @@ public class AlphaAtom extends Atom{
 	
 	@Override
 	public double getEfficiency() {
-		return ALPHA_STABILITY*(1- (Math.abs(this.getNeutron()-this.getProton())/this.getProton()));
+		double constant = ((double)Math.abs(this.getNeutron()-this.getProton())/(double)this.getProton());
+		return ALPHA_STABILITY*(1- constant);
 	}
 }

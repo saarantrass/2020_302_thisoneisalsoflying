@@ -1,6 +1,6 @@
 package Domain.GameObjects.Atoms.Shields;
 
-import Domain.GameObjects.Atoms.Throwable;
+import Domain.GameObjects.Throwable;
 
 public class EtaShield extends ShieldDecorator  {
 	private double updatedEfficiency;
@@ -12,20 +12,30 @@ public class EtaShield extends ShieldDecorator  {
 
 	@Override
 	public double getEfficiency() {
+	System.out.println("our eff"+this.updatedEfficiency);
 		return this.updatedEfficiency;
 	}
-	private void setEfficiency(double eff) {
+	public void setEfficiency(double eff) {
+		/***
+		 * REQUIRES: New efficiency
+		 * EFFECTS: Updated efficiency of Throwable
+		 */
 		this.updatedEfficiency = eff;
 	}
 
 	@Override
 	public void addShield(int type) {
+		/***
+		 * REQUIRES: Type of the Shield
+		 * MODIFIES: Speed of Throwable
+		 * EFFECTS: Updated efficiency of Throwable
+		 */
 		double effFactor = 0.0;
 		double speedFactor = 0.0;
 		if(this.getProton()!= this.getNeutron()) {
-			effFactor = (1 - this.getEfficiency())*Math.abs(this.getNeutron()-this.getProton())/this.getProton();
+			effFactor = (1 - this.updatedEfficiency)*(double)Math.abs(this.getNeutron()-this.getProton())/(double)this.getProton();
 		}else {
-			effFactor = (1 - this.getEfficiency()) * ETA_EFF;
+			effFactor = (1 - this.updatedEfficiency) * ETA_EFF;
 		}
 		speedFactor = 0.05;
 		setEfficiency(this.updatedEfficiency+this.updatedEfficiency*effFactor);

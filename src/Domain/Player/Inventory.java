@@ -1,10 +1,7 @@
 package Domain.Player;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-
 import Domain.Settings;
-import Domain.GameObjects.Atoms.Atom;
 
 public class Inventory {
 	
