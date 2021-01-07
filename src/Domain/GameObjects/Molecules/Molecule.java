@@ -102,6 +102,8 @@ public abstract class Molecule implements IFallingBehaviour{
 		return L;
 	}
 
-	
+	public IFallingBehaviour getFallingBehaviour() {
+		return fallingBehaviour;
+	}
 
 }
