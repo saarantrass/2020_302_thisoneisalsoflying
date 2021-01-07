@@ -2,16 +2,15 @@ package Domain.GameObjects;
 
 import java.awt.Point;
 
-import Domain.GameObjects.Molecules.Molecule;
 
-public class LinearStrategy implements IFallingBehaviour{
-	private transient Molecule mol;
-	public LinearStrategy(Molecule mol) {
-		this.mol = mol;
+public class LinearStrategy implements IMovingBehaviour{
+	private transient FallingObject obj;
+	public LinearStrategy(FallingObject obj) {
+		this.obj = obj;
 	}
 	@Override
 	public void move() {
-		mol.setCoordinate(new Point(mol.getCoordinate().x, (int) (mol.getCoordinate().y + mol.getSpeed())));
+		obj.setCoordinate(new Point(obj.getCoordinate().x, (int) (obj.getCoordinate().y + obj.getSpeed())));
 	}
 
 

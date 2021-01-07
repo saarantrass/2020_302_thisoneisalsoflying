@@ -1,4 +1,4 @@
-package Domain.GameObjects.Atoms;
+package Domain.GameObjects;
 import java.awt.Point;
 
 public abstract class Throwable {
@@ -13,4 +13,8 @@ public abstract class Throwable {
 	public abstract double getSpeed() ;
 	public abstract int getNeutron() ;
 	public abstract int getProton() ;
+	public abstract double getxSpeed();
+	public abstract void setxSpeed(double xSpeed) ;
+	public abstract double getySpeed() ;
+	public abstract void setySpeed(double ySpeed) ;
 }

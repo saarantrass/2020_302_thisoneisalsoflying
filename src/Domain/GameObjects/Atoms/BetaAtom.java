@@ -11,6 +11,7 @@ public class BetaAtom extends Atom{
 	
 	@Override
 	public double getEfficiency() {
-		return BETA_STABILITY - (0.5*(Math.abs(this.getNeutron()-this.getProton())/this.getProton()));
+		double constant = (0.5*((double)Math.abs(this.getNeutron()-this.getProton())/(double)this.getProton()));
+		return (BETA_STABILITY -constant);
 	}
 }
