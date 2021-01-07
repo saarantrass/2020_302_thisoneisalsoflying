@@ -1,1 +1,883 @@
-{"L":80,"isPaused":true,"isFinished":false,"onScreenAtomList":[{"atomID":1,"coordinate":{"x":606,"y":448},"L":80,"speed":8.0,"xSpeed":0.0,"ySpeed":8.0,"angle":0.0,"neutron":7,"proton":8},{"atomID":2,"coordinate":{"x":649,"y":464},"L":80,"speed":8.0,"xSpeed":1.251475720321847,"ySpeed":7.901506724761102,"angle":9.0,"neutron":21,"proton":16},{"atomID":3,"coordinate":{"x":690,"y":475},"L":80,"speed":8.0,"xSpeed":2.472135954999579,"ySpeed":7.608452130361228,"angle":18.0,"neutron":33,"proton":32},{"atomID":4,"coordinate":{"x":729,"y":488},"L":80,"speed":8.0,"xSpeed":3.631923997916374,"ySpeed":7.128052193506943,"angle":27.0,"neutron":67,"proton":64},{"atomID":4,"coordinate":{"x":797,"y":573},"L":80,"speed":8.0,"xSpeed":5.65685424949238,"ySpeed":5.656854249492381,"angle":45.0,"neutron":64,"proton":64},{"atomID":3,"coordinate":{"x":826,"y":614},"L":80,"speed":8.0,"xSpeed":6.47213595499958,"ySpeed":4.702282018339785,"angle":54.0,"neutron":32,"proton":32},{"atomID":3,"coordinate":{"x":749,"y":559},"L":80,"speed":8.0,"xSpeed":4.702282018339785,"ySpeed":6.47213595499958,"angle":36.0,"neutron":29,"proton":32},{"atomID":3,"coordinate":{"x":674,"y":539},"L":80,"speed":8.0,"xSpeed":2.472135954999579,"ySpeed":7.608452130361228,"angle":18.0,"neutron":33,"proton":32},{"atomID":2,"coordinate":{"x":639,"y":544},"L":80,"speed":8.0,"xSpeed":1.251475720321847,"ySpeed":7.901506724761102,"angle":9.0,"neutron":17,"proton":16},{"atomID":3,"coordinate":{"x":566,"y":552},"L":80,"speed":8.0,"xSpeed":-1.251475720321847,"ySpeed":7.901506724761102,"angle":-9.0,"neutron":33,"proton":32},{"atomID":2,"coordinate":{"x":528,"y":571},"L":80,"speed":8.0,"xSpeed":-2.472135954999579,"ySpeed":7.608452130361228,"angle":-18.0,"neutron":18,"proton":16},{"atomID":1,"coordinate":{"x":485,"y":601},"L":80,"speed":8.0,"xSpeed":-4.702282018339785,"ySpeed":6.47213595499958,"angle":-36.0,"neutron":7,"proton":8},{"atomID":1,"coordinate":{"x":460,"y":645},"L":80,"speed":8.0,"xSpeed":-5.65685424949238,"ySpeed":5.656854249492381,"angle":-45.0,"neutron":8,"proton":8},{"atomID":2,"coordinate":{"x":431,"y":703},"L":80,"speed":8.0,"xSpeed":-7.128052193506942,"ySpeed":3.6319239979163744,"angle":-63.0,"neutron":18,"proton":16},{"atomID":2,"coordinate":{"x":458,"y":684},"L":80,"speed":8.0,"xSpeed":-6.47213595499958,"ySpeed":4.702282018339785,"angle":-54.0,"neutron":21,"proton":16},{"atomID":1,"coordinate":{"x":509,"y":657},"L":80,"speed":8.0,"xSpeed":-4.702282018339785,"ySpeed":6.47213595499958,"angle":-36.0,"neutron":7,"proton":8},{"atomID":2,"coordinate":{"x":558,"y":651},"L":80,"speed":8.0,"xSpeed":-2.472135954999579,"ySpeed":7.608452130361228,"angle":-18.0,"neutron":21,"proton":16},{"atomID":3,"coordinate":{"x":606,"y":664},"L":80,"speed":8.0,"xSpeed":0.0,"ySpeed":8.0,"angle":0.0,"neutron":32,"proton":32},{"atomID":3,"coordinate":{"x":623,"y":672},"L":80,"speed":8.0,"xSpeed":1.251475720321847,"ySpeed":7.901506724761102,"angle":9.0,"neutron":33,"proton":32},{"atomID":2,"coordinate":{"x":638,"y":683},"L":80,"speed":8.0,"xSpeed":2.472135954999579,"ySpeed":7.608452130361228,"angle":18.0,"neutron":17,"proton":16}],"onScreenMoleculeList":[{"moleculeID":3,"coordinate":{"x":459,"y":236},"isLinear":false,"isSpinning":false,"L":80,"speed":8.0,"xSpeed":5.65685424949238,"ySpeed":5.656854249492381,"travelled":0},{"moleculeID":3,"coordinate":{"x":1122,"y":-4},"isLinear":false,"isSpinning":false,"L":80,"speed":8.0,"xSpeed":5.65685424949238,"ySpeed":5.656854249492381,"travelled":0}],"onScreenPowerUpList":[],"onScreenReactionBlockerList":[{"reactionBlockerID":2,"coordinate":{"x":231,"y":156},"L":80,"speed":8.0,"xSpeed":5.65685424949238,"ySpeed":5.656854249492381,"travelled":0},{"reactionBlockerID":1,"coordinate":{"x":832,"y":43},"L":80,"speed":8.0,"xSpeed":5.65685424949238,"ySpeed":5.656854249492381,"travelled":60}],"barrelAtom":{"atomID":1,"coordinate":{"x":630,"y":715},"L":80,"speed":8.0,"xSpeed":2.472135954999579,"ySpeed":7.608452130361228,"angle":18.0,"neutron":9,"proton":8},"barrelPowerUp":null,"shooter":{"coordinate":{"x":590,"y":720},"health":100.0,"score":0.0,"inventory":{"inventoryAtom":{"1":96,"2":93,"3":93,"4":98},"inventoryPowerUp":{"1":0,"2":0,"3":0,"4":0},"inventoryShield":{"1":20,"2":20,"3":20,"4":20}}},"settings":{"lengthUnit":80,"difficultyLevel":1,"isLinear":false,"isSpinning":false,"alphaAtomNumber":100,"betaAtomNumber":100,"gammaAtomNumber":100,"sigmaAtomNumber":100,"alphaMoleculeNumber":100,"betaMoleculeNumber":100,"gammaMoleculeNumber":98,"sigmaMoleculeNumber":100,"alphaPowerUpNumber":20,"betaPowerUpNumber":20,"gammaPowerUpNumber":20,"sigmaPowerUpNumber":20,"alphaReactionBlockerNumber":9,"betaReactionBlockerNumber":9,"gammaReactionBlockerNumber":10,"sigmaReactionBlockerNumber":10,"etaNumber":20,"lotaNumber":20,"thetaNumber":20,"zetaNumber":20,"timeRemaining":595900.0}}
+{
+    "L": 83,
+    "isPaused": true,
+    "isFinished": false,
+    "onScreenAtomList": [
+        {
+            "updatedEfficiency": 0.9014062500000001,
+            "efficiency": 0.9,
+            "atom": {
+                "atomID": 4,
+                "coordinate": {
+                    "x": 679,
+                    "y": 165
+                },
+                "L": 83,
+                "speed": 7.6,
+                "xSpeed": -6.771649583831595,
+                "ySpeed": 3.4503277980205556,
+                "angle": 63.0,
+                "neutron": 63,
+                "proton": 64
+            }
+        },
+        {
+            "atomID": 4,
+            "coordinate": {
+                "x": 527,
+                "y": 173
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 63,
+            "proton": 64
+        },
+        {
+            "atomID": 4,
+            "coordinate": {
+                "x": 535,
+                "y": 177
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 64,
+            "proton": 64
+        },
+        {
+            "atomID": 1,
+            "coordinate": {
+                "x": 551,
+                "y": 185
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 7,
+            "proton": 8
+        },
+        {
+            "updatedEfficiency": 0.86275,
+            "efficiency": 0.85,
+            "atom": {
+                "atomID": 1,
+                "coordinate": {
+                    "x": 756,
+                    "y": 209
+                },
+                "L": 83,
+                "speed": 7.4399999999999995,
+                "xSpeed": -6.629088539961456,
+                "ySpeed": 3.377689318062228,
+                "angle": 63.0,
+                "neutron": 9,
+                "proton": 8
+            }
+        },
+        {
+            "atomID": 1,
+            "coordinate": {
+                "x": 615,
+                "y": 217
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 7,
+            "proton": 8
+        },
+        {
+            "atomID": 1,
+            "coordinate": {
+                "x": 623,
+                "y": 221
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 7,
+            "proton": 8
+        },
+        {
+            "updatedEfficiency": 0.9068335140537893,
+            "THETA_EFF": 0.07592793393099201,
+            "efficiency": 0.9,
+            "atom": {
+                "atomID": 2,
+                "coordinate": {
+                    "x": 819,
+                    "y": 245
+                },
+                "L": 83,
+                "speed": 7.28,
+                "xSpeed": -6.486527496091318,
+                "ySpeed": 3.305050838103901,
+                "angle": 63.0,
+                "neutron": 18,
+                "proton": 16
+            }
+        },
+        {
+            "atomID": 3,
+            "coordinate": {
+                "x": 679,
+                "y": 249
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 33,
+            "proton": 32
+        },
+        {
+            "atomID": 3,
+            "coordinate": {
+                "x": 687,
+                "y": 253
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 32,
+            "proton": 32
+        },
+        {
+            "atomID": 3,
+            "coordinate": {
+                "x": 703,
+                "y": 261
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 33,
+            "proton": 32
+        },
+        {
+            "updatedEfficiency": 0.950161015260427,
+            "efficiency": 0.950161015260427,
+            "atom": {
+                "updatedEfficiency": 0.950161015260427,
+                "efficiency": 0.950161015260427,
+                "atom": {
+                    "updatedEfficiency": 0.950161015260427,
+                    "efficiency": 0.950161015260427,
+                    "atom": {
+                        "updatedEfficiency": 0.950161015260427,
+                        "efficiency": 0.950161015260427,
+                        "atom": {
+                            "updatedEfficiency": 0.950161015260427,
+                            "efficiency": 0.950161015260427,
+                            "atom": {
+                                "updatedEfficiency": 0.950161015260427,
+                                "efficiency": 0.950161015260427,
+                                "atom": {
+                                    "updatedEfficiency": 0.950161015260427,
+                                    "efficiency": 0.9478437018846984,
+                                    "atom": {
+                                        "updatedEfficiency": 0.9478437018846984,
+                                        "efficiency": 0.9454251176063204,
+                                        "atom": {
+                                            "updatedEfficiency": 0.9454251176063204,
+                                            "efficiency": 0.9429014469033068,
+                                            "atom": {
+                                                "updatedEfficiency": 0.9429014469033068,
+                                                "efficiency": 0.9369981885860562,
+                                                "atom": {
+                                                    "updatedEfficiency": 0.9369981885860562,
+                                                    "efficiency": 0.9305341543962233,
+                                                    "atom": {
+                                                        "updatedEfficiency": 0.9305341543962233,
+                                                        "efficiency": 0.9234665459501155,
+                                                        "atom": {
+                                                            "updatedEfficiency": 0.9234665459501155,
+                                                            "THETA_EFF": 0.0529676020152498,
+                                                            "efficiency": 0.9195480319438963,
+                                                            "atom": {
+                                                                "updatedEfficiency": 0.9195480319438963,
+                                                                "THETA_EFF": 0.12044079810244596,
+                                                                "efficiency": 0.9096493108177701,
+                                                                "atom": {
+                                                                    "updatedEfficiency": 0.9096493108177701,
+                                                                    "THETA_EFF": 0.10721456464188996,
+                                                                    "efficiency": 0.9,
+                                                                    "atom": {
+                                                                        "atomID": 4,
+                                                                        "coordinate": {
+                                                                            "x": 778,
+                                                                            "y": 690
+                                                                        },
+                                                                        "L": 83,
+                                                                        "speed": 2.06620717516064,
+                                                                        "xSpeed": 1.841004073392948,
+                                                                        "ySpeed": 0.9380384280166163,
+                                                                        "angle": 63.0,
+                                                                        "neutron": 67,
+                                                                        "proton": 64
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "atomID": 2,
+            "coordinate": {
+                "x": 983,
+                "y": 401
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 16,
+            "proton": 16
+        },
+        {
+            "atomID": 2,
+            "coordinate": {
+                "x": 991,
+                "y": 405
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 17,
+            "proton": 16
+        },
+        {
+            "atomID": 3,
+            "coordinate": {
+                "x": 1007,
+                "y": 413
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 33,
+            "proton": 32
+        },
+        {
+            "atomID": 3,
+            "coordinate": {
+                "x": 1015,
+                "y": 417
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 32,
+            "proton": 32
+        },
+        {
+            "atomID": 1,
+            "coordinate": {
+                "x": 1031,
+                "y": 425
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 9,
+            "proton": 8
+        },
+        {
+            "atomID": 4,
+            "coordinate": {
+                "x": 1039,
+                "y": 429
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 67,
+            "proton": 64
+        },
+        {
+            "atomID": 1,
+            "coordinate": {
+                "x": 1055,
+                "y": 437
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 9,
+            "proton": 8
+        },
+        {
+            "updatedEfficiency": 0.9228122717043743,
+            "THETA_EFF": 0.06392836633687121,
+            "efficiency": 0.918,
+            "atom": {
+                "updatedEfficiency": 0.918,
+                "efficiency": 0.9,
+                "atom": {
+                    "atomID": 4,
+                    "coordinate": {
+                        "x": 1094,
+                        "y": 540
+                    },
+                    "L": 83,
+                    "speed": 6.4792000000000005,
+                    "xSpeed": 5.773009471521273,
+                    "ySpeed": 2.941495245912472,
+                    "angle": 63.0,
+                    "neutron": 64,
+                    "proton": 64
+                }
+            }
+        },
+        {
+            "updatedEfficiency": 0.9049423559197766,
+            "THETA_EFF": 0.05491506577529488,
+            "efficiency": 0.9,
+            "atom": {
+                "atomID": 2,
+                "coordinate": {
+                    "x": 1165,
+                    "y": 465
+                },
+                "L": 83,
+                "speed": 7.28,
+                "xSpeed": 6.486527496091318,
+                "ySpeed": 3.305050838103901,
+                "angle": 63.0,
+                "neutron": 21,
+                "proton": 16
+            }
+        },
+        {
+            "updatedEfficiency": 0.909,
+            "efficiency": 0.9,
+            "atom": {
+                "atomID": 2,
+                "coordinate": {
+                    "x": 1159,
+                    "y": 469
+                },
+                "L": 83,
+                "speed": 7.4399999999999995,
+                "xSpeed": 6.629088539961456,
+                "ySpeed": 3.377689318062228,
+                "angle": 63.0,
+                "neutron": 16,
+                "proton": 16
+            }
+        },
+        {
+            "updatedEfficiency": 0.9171018843408799,
+            "efficiency": 0.91313595,
+            "atom": {
+                "updatedEfficiency": 0.91313595,
+                "efficiency": 0.909,
+                "atom": {
+                    "updatedEfficiency": 0.909,
+                    "efficiency": 0.9,
+                    "atom": {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 1039,
+                            "y": 501
+                        },
+                        "L": 83,
+                        "speed": 6.714599999999999,
+                        "xSpeed": 5.982752407315213,
+                        "ySpeed": 3.0483646095511605,
+                        "angle": 63.0,
+                        "neutron": 16,
+                        "proton": 16
+                    }
+                }
+            }
+        },
+        {
+            "updatedEfficiency": 0.8160000000000001,
+            "efficiency": 0.8,
+            "atom": {
+                "atomID": 3,
+                "coordinate": {
+                    "x": 1099,
+                    "y": 509
+                },
+                "L": 83,
+                "speed": 7.4399999999999995,
+                "xSpeed": 6.629088539961456,
+                "ySpeed": 3.377689318062228,
+                "angle": 63.0,
+                "neutron": 32,
+                "proton": 32
+            }
+        },
+        {
+            "atomID": 1,
+            "coordinate": {
+                "x": 1141,
+                "y": 525
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": 7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 8,
+            "proton": 8
+        },
+        {
+            "updatedEfficiency": 0.9451927124651545,
+            "efficiency": 0.9326257141789183,
+            "atom": {
+                "updatedEfficiency": 0.9326257141789183,
+                "efficiency": 0.9174843508138028,
+                "atom": {
+                    "updatedEfficiency": 0.9174843508138028,
+                    "THETA_EFF": 0.12976128279981455,
+                    "efficiency": 0.9064844343672207,
+                    "atom": {
+                        "updatedEfficiency": 0.9064844343672207,
+                        "THETA_EFF": 0.07204927074689645,
+                        "efficiency": 0.9,
+                        "atom": {
+                            "atomID": 4,
+                            "coordinate": {
+                                "x": 919,
+                                "y": 609
+                            },
+                            "L": 83,
+                            "speed": 5.247504080000001,
+                            "xSpeed": 4.675560370985079,
+                            "ySpeed": 2.382316999664511,
+                            "angle": 63.0,
+                            "neutron": 64,
+                            "proton": 64
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "updatedEfficiency": 0.9186969974876469,
+            "THETA_EFF": 0.10226240740137425,
+            "efficiency": 0.9103511660199569,
+            "atom": {
+                "updatedEfficiency": 0.9103511660199569,
+                "THETA_EFF": 0.11501295577729932,
+                "efficiency": 0.9,
+                "atom": {
+                    "atomID": 2,
+                    "coordinate": {
+                        "x": 959,
+                        "y": 565
+                    },
+                    "L": 83,
+                    "speed": 6.6248000000000005,
+                    "xSpeed": 5.902740021443099,
+                    "ySpeed": 3.00759626267455,
+                    "angle": 63.0,
+                    "neutron": 21,
+                    "proton": 16
+                }
+            }
+        },
+        {
+            "updatedEfficiency": 0.924860316147039,
+            "efficiency": 0.9172719,
+            "atom": {
+                "updatedEfficiency": 0.9172719,
+                "efficiency": 0.909,
+                "atom": {
+                    "updatedEfficiency": 0.909,
+                    "efficiency": 0.9,
+                    "atom": {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 939,
+                            "y": 633
+                        },
+                        "L": 83,
+                        "speed": 6.434855999999999,
+                        "xSpeed": 5.733498678212663,
+                        "ySpeed": 2.9213634911920208,
+                        "angle": 63.0,
+                        "neutron": 21,
+                        "proton": 16
+                    }
+                }
+            }
+        },
+        {
+            "updatedEfficiency": 0.9045,
+            "efficiency": 0.9,
+            "atom": {
+                "atomID": 2,
+                "coordinate": {
+                    "x": 979,
+                    "y": 589
+                },
+                "L": 83,
+                "speed": 7.6,
+                "xSpeed": 6.771649583831595,
+                "ySpeed": 3.4503277980205556,
+                "angle": 63.0,
+                "neutron": 16,
+                "proton": 16
+            }
+        },
+        {
+            "updatedEfficiency": 0.9014062500000001,
+            "efficiency": 0.9,
+            "atom": {
+                "atomID": 4,
+                "coordinate": {
+                    "x": 973,
+                    "y": 593
+                },
+                "L": 83,
+                "speed": 7.6,
+                "xSpeed": 6.771649583831595,
+                "ySpeed": 3.4503277980205556,
+                "angle": 63.0,
+                "neutron": 63,
+                "proton": 64
+            }
+        },
+        {
+            "atomID": 3,
+            "coordinate": {
+                "x": 1008,
+                "y": 601
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": 7.128052193506942,
+            "ySpeed": 3.6319239979163744,
+            "angle": 63.0,
+            "neutron": 29,
+            "proton": 32
+        },
+        {
+            "updatedEfficiency": 0.8478982559429482,
+            "THETA_EFF": 0.1202301504415246,
+            "efficiency": 0.8310144,
+            "atom": {
+                "updatedEfficiency": 0.8310144,
+                "efficiency": 0.8160000000000001,
+                "atom": {
+                    "updatedEfficiency": 0.8160000000000001,
+                    "efficiency": 0.8,
+                    "atom": {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 879,
+                            "y": 669
+                        },
+                        "L": 83,
+                        "speed": 6.296472,
+                        "xSpeed": 5.61019763136938,
+                        "ySpeed": 2.8585384698760636,
+                        "angle": 63.0,
+                        "neutron": 29,
+                        "proton": 32
+                    }
+                }
+            }
+        }
+    ],
+    "onScreenMoleculeList": [
+        {
+            "moleculeID": 1,
+            "coordinate": {
+                "x": 389,
+                "y": 558
+            },
+            "isLinear": false,
+            "isSpinning": false,
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -5.65685424949238,
+            "ySpeed": 5.656854249492381,
+            "travelled": 39.597979746446654,
+            "fallingBehaviour": {}
+        },
+        {
+            "moleculeID": 2,
+            "coordinate": {
+                "x": 1072,
+                "y": 392
+            },
+            "isLinear": false,
+            "isSpinning": false,
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -5.65685424949238,
+            "ySpeed": 5.656854249492381,
+            "travelled": 0.0,
+            "fallingBehaviour": {}
+        },
+        {
+            "moleculeID": 2,
+            "coordinate": {
+                "x": 857,
+                "y": 180
+            },
+            "isLinear": false,
+            "isSpinning": false,
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": 5.65685424949238,
+            "ySpeed": 5.656854249492381,
+            "travelled": 0.0,
+            "fallingBehaviour": {}
+        },
+        {
+            "moleculeID": 4,
+            "coordinate": {
+                "x": 634,
+                "y": 100
+            },
+            "isLinear": false,
+            "isSpinning": false,
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": 5.65685424949238,
+            "ySpeed": 5.656854249492381,
+            "travelled": 0.0,
+            "fallingBehaviour": {}
+        },
+        {
+            "moleculeID": 1,
+            "coordinate": {
+                "x": 1058,
+                "y": 8
+            },
+            "isLinear": false,
+            "isSpinning": false,
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": 5.65685424949238,
+            "ySpeed": 5.656854249492381,
+            "travelled": 28.2842712474619,
+            "fallingBehaviour": {}
+        }
+    ],
+    "onScreenPowerUpList": [
+        {
+            "powerUpID": 4,
+            "coordinate": {
+                "x": 901,
+                "y": 820
+            },
+            "isThrown": false,
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": 0.0,
+            "ySpeed": 8.0,
+            "angle": 0.0
+        },
+        {
+            "powerUpID": 2,
+            "coordinate": {
+                "x": 534,
+                "y": 660
+            },
+            "isThrown": false,
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": 0.0,
+            "ySpeed": 8.0,
+            "angle": 0.0
+        },
+        {
+            "powerUpID": 1,
+            "coordinate": {
+                "x": 648,
+                "y": 580
+            },
+            "isThrown": false,
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": 0.0,
+            "ySpeed": 8.0,
+            "angle": 0.0
+        },
+        {
+            "powerUpID": 1,
+            "coordinate": {
+                "x": 155,
+                "y": 420
+            },
+            "isThrown": false,
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": 0.0,
+            "ySpeed": 8.0,
+            "angle": 0.0
+        },
+        {
+            "powerUpID": 2,
+            "coordinate": {
+                "x": 859,
+                "y": 260
+            },
+            "isThrown": false,
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": 0.0,
+            "ySpeed": 8.0,
+            "angle": 0.0
+        }
+    ],
+    "onScreenReactionBlockerList": [
+        {
+            "reactionBlockerID": 2,
+            "coordinate": {
+                "x": 253,
+                "y": 542
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -5.65685424949238,
+            "ySpeed": 5.656854249492381,
+            "travelled": 5
+        },
+        {
+            "reactionBlockerID": 2,
+            "coordinate": {
+                "x": 523,
+                "y": 292
+            },
+            "L": 83,
+            "speed": 8.0,
+            "xSpeed": -5.65685424949238,
+            "ySpeed": 5.656854249492381,
+            "travelled": 15
+        }
+    ],
+    "barrelAtom": {
+        "updatedEfficiency": 0.9094826322895484,
+        "efficiency": 0.9094826322895484,
+        "atom": {
+            "updatedEfficiency": 0.9094826322895484,
+            "efficiency": 0.9094826322895484,
+            "atom": {
+                "updatedEfficiency": 0.9094826322895484,
+                "THETA_EFF": 0.10536258099498204,
+                "efficiency": 0.9,
+                "atom": {
+                    "atomID": 4,
+                    "coordinate": {
+                        "x": 679,
+                        "y": 789
+                    },
+                    "L": 83,
+                    "speed": 5.766488000000001,
+                    "xSpeed": 7.128052193506942,
+                    "ySpeed": 3.6319239979163744,
+                    "angle": 63.0,
+                    "neutron": 63,
+                    "proton": 64
+                }
+            }
+        }
+    },
+    "barrelPowerUp": null,
+    "shooter": {
+        "coordinate": {
+            "x": 590,
+            "y": 752
+        },
+        "health": 100.0,
+        "score": 0.0,
+        "inventory": {
+            "inventoryAtom": {
+                "1": 93,
+                "2": 91,
+                "3": 92,
+                "4": 92
+            },
+            "inventoryPowerUp": {
+                "1": 0,
+                "2": 0,
+                "3": 0,
+                "4": 0
+            },
+            "inventoryShield": {
+                "1": 12,
+                "2": 8,
+                "3": 8,
+                "4": 9
+            }
+        }
+    },
+    "settings": {
+        "lengthUnit": 83,
+        "difficultyLevel": 1,
+        "isLinear": false,
+        "isSpinning": false,
+        "alphaAtomNumber": 100,
+        "betaAtomNumber": 100,
+        "gammaAtomNumber": 100,
+        "sigmaAtomNumber": 100,
+        "alphaMoleculeNumber": 98,
+        "betaMoleculeNumber": 98,
+        "gammaMoleculeNumber": 100,
+        "sigmaMoleculeNumber": 99,
+        "alphaPowerUpNumber": 18,
+        "betaPowerUpNumber": 16,
+        "gammaPowerUpNumber": 20,
+        "sigmaPowerUpNumber": 16,
+        "alphaReactionBlockerNumber": 10,
+        "betaReactionBlockerNumber": 8,
+        "gammaReactionBlockerNumber": 9,
+        "sigmaReactionBlockerNumber": 10,
+        "etaNumber": 20,
+        "lotaNumber": 20,
+        "thetaNumber": 20,
+        "zetaNumber": 20,
+        "timeRemaining": 581600.0,
+        "screenSize": {
+            "width": 1350,
+            "height": 835
+        }
+    }
+}

@@ -16,7 +16,7 @@ public abstract class Molecule implements IFallingBehaviour{
 	protected double ySpeed;
 	protected double travelled = 0.0;
 	
-
+	
 	protected IFallingBehaviour fallingBehaviour;
 	
 	public Molecule (int moleculeID, Point coordinate, boolean isLinear, boolean isSpinning) {
