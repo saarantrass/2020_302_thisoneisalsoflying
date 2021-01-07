@@ -5,6 +5,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import Domain.Player.Player;
+// This is a blackBox Testing.
+//Blackbox testing is a way of testing where you don't care how the program manipulates the input; 
+//you're only checking to see if the outputs are valid for the specified inputs.
+
+
 
 class PlayerTest {
 
@@ -26,6 +31,20 @@ class PlayerTest {
 		
 	}
 	
+	void getHealthTest() {
+		Player p = new Player();
+		p.health = 0;
+		assertNotEquals(p.getHealth(),0);
+		
+		
+	}
+	void getScoreTest() {
+		Player p = new Player();
+		p.score = 0;
+		assertNotEquals(p.getScore(),0);
+		
+		
+	}
 	
 		
 	}
