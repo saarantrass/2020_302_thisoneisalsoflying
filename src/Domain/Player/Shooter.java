@@ -8,7 +8,6 @@ import Domain.Game;
 import Domain.IObservable;
 import Domain.Settings;
 import UI.IObserver;
-import UI.Swing.ScreenCoordinator;
 
 public class Shooter implements IObservable{
 	
@@ -78,6 +77,10 @@ public class Shooter implements IObservable{
 	}
 	
 	
+	public void setAngle(double angle) {
+		this.angle = angle;
+	}
+	
 	public double getAngle() {
 		return this.angle;
 	}
@@ -92,7 +95,7 @@ public class Shooter implements IObservable{
 							this.coordinate.x -= speed;						
 						}
 					} else if(moveDirection == 1) { //right
-						if(this.coordinate.x <= (int)(ScreenCoordinator.SCREEN_SIZE.width * 7/8) - L/2) {
+						if(this.coordinate.x < (int)(Settings.getInstance().getScreenSize().width * 7/8) - L/2) {
 							this.coordinate.x += speed;
 						}
 					}
