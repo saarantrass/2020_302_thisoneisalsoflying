@@ -5,17 +5,12 @@ import java.awt.Point;
 import Domain.GameObjects.Throwable;
 
 public abstract class ShieldDecorator extends Throwable{
-	private double efficiency;
+
 	public Throwable atom;
 	public ShieldDecorator(Throwable atom) {
 		this.atom = atom;
-		this.efficiency=atom.getEfficiency();
 	}
-	public double getEfficiency() {
-		return this.efficiency;
-	}
-
-	public abstract void addShield(int type);
+	public abstract void addShield();
 	@Override
 	public void setSpeed(double speed) {atom.setSpeed(speed);}
 	@Override
