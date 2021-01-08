@@ -90,7 +90,7 @@ public class FallingObjectFactory {
 
 	public static FallingObjectFactory getInstance(){
 		/***
-		* @EFFECTS if singleton is null, this funtion creates an instance of FallingObjectFactory and returns it. Else 
+		* @EFFECTS if singleton is null, this function creates an instance of FallingObjectFactory and returns it. Else 
 		* returns previously created instance.
 		*/
         if (singleton == null){

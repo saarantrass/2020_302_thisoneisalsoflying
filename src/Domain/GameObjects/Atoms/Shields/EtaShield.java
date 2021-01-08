@@ -8,6 +8,7 @@ public class EtaShield extends ShieldDecorator  {
 	public EtaShield(Throwable atom) {
 		super(atom);
 		this.updatedEfficiency = atom.getEfficiency();
+		addShield();
 	}
 
 	@Override
@@ -24,7 +25,7 @@ public class EtaShield extends ShieldDecorator  {
 	}
 
 	@Override
-	public void addShield(int type) {
+	public void addShield() {
 		/***
 		 * REQUIRES: Type of the Shield
 		 * MODIFIES: Speed of Throwable
