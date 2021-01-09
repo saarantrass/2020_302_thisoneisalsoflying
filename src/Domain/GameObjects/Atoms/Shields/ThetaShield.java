@@ -20,7 +20,7 @@ public class ThetaShield extends ShieldDecorator {
 		this.updatedEfficiency = eff;
 	}
 	@Override
-	public void addShield() {
+	public void addShield(int type) {
 		Random rn = new Random();
 		THETA_EFF = rn.nextDouble()*(0.10)+0.05;
 		double effFactor = (1 - this.updatedEfficiency) * THETA_EFF;

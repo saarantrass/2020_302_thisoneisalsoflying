@@ -21,7 +21,7 @@ public class LotaShield extends ShieldDecorator {
 	}
 
 	@Override
-	public void addShield() {
+	public void addShield(int type) {
 		System.out.println("before"+ this.updatedEfficiency);
 		double effFactor = (1 - this.updatedEfficiency) * LOTA_EFF;
 		double speedFactor = 0.07;

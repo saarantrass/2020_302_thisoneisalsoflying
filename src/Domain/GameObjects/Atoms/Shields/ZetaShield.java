@@ -19,7 +19,7 @@ public class ZetaShield extends ShieldDecorator {
 		this.updatedEfficiency = eff;
 	}
 	@Override
-	public void addShield() {
+	public void addShield(int type) {
 		double effFactor = 0.0;
 		double speedFactor = 0.0;
 		if(this.getProton()==this.getNeutron()) {
