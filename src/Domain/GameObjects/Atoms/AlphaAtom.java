@@ -7,11 +7,8 @@ public class AlphaAtom extends Atom{
 	private static double ALPHA_STABILITY = 0.85;
 	public AlphaAtom(int atomID, Point coordinate, int neutron) {
 		super(atomID, coordinate, neutron);
-	}
-	
-	@Override
-	public double getEfficiency() {
+		
 		double constant = ((double)Math.abs(this.getNeutron()-this.getProton())/(double)this.getProton());
-		return ALPHA_STABILITY*(1- constant);
+		this.efficiency = ALPHA_STABILITY*(1- constant);
 	}
 }
