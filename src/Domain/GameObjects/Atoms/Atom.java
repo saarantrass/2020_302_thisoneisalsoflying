@@ -17,7 +17,7 @@ public abstract class Atom extends Throwable {
 	private double angle;
 	private int neutron;
 	private int proton;
-
+	protected double efficiency;
 
 	protected IMovingBehaviour fallingBehaviour;
 	
@@ -30,14 +30,20 @@ public abstract class Atom extends Throwable {
 		for(int i=1;i<atomID;i++) {this.proton *= 2;}
 		this.neutron = neutron;
 		this.fallingBehaviour = new ShootedStrategy(this);
+		this.efficiency = 0;
 	}
 	
 	public int getAtomID() {
 		return this.atomID;
 	}
 	
-	public abstract double getEfficiency() ;
-	
+	public double getEfficiency() {
+		return this.efficiency;
+	}
+
+	public void setEfficiency(double eff) {
+		this.efficiency = eff;	
+	}
 
 	public void move() {
 		fallingBehaviour.move();
