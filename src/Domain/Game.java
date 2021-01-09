@@ -263,7 +263,7 @@ public class Game implements IObservable{
 
 	public void addShield(int type) {
 		ShieldDecorator at = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
-		at.addShield(type);
+		at.addShield();
 		System.out.println(at.getEfficiency());
 		this.barrelAtom=at;
 		this.shooter.inventory.removeInventoryShield(type);

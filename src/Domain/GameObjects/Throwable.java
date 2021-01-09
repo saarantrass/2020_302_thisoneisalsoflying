@@ -4,6 +4,7 @@ import java.awt.Point;
 public abstract class Throwable {
 
 	public abstract double getEfficiency();
+	public abstract void setEfficiency(double eff);
 	public abstract void setCoordinate(Point coordinate) ;
 	public abstract Point getCoordinate() ;
 	public abstract void move() ;

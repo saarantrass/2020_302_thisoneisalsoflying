@@ -10,17 +10,18 @@ public class ThetaShield extends ShieldDecorator {
 	public ThetaShield(Throwable atom) {
 		super(atom);
 		this.updatedEfficiency=atom.getEfficiency();
+		addShield();
 	}
 
 	@Override
 	public double getEfficiency() {
 		return this.updatedEfficiency;
 	}
-	private void setEfficiency(double eff) {
+	public void setEfficiency(double eff) {
 		this.updatedEfficiency = eff;
 	}
 	@Override
-	public void addShield(int type) {
+	public void addShield() {
 		Random rn = new Random();
 		THETA_EFF = rn.nextDouble()*(0.10)+0.05;
 		double effFactor = (1 - this.updatedEfficiency) * THETA_EFF;
