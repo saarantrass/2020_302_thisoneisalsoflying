@@ -16,8 +16,12 @@ import Domain.Player.Shooter;
 
 /**
  * ShooterTest class tests move and rotate functionalities of the class Shooter using Black Box Testing 
- * by testing the boundaries of the actions.
- * Additionally, it tests the constructor of the Shooter class and getters and setters of the related attributes.
+ * by testing the boundaries of the actions. It also tests the move and rotate of the shooter with Glass Box 
+ * Testing by testing the non-boundary cases for both directions after the boundaries are handled by 
+ * Black Box testing.
+ * Additionally, it tests the constructor of the Shooter class, getters and setters of the 
+ * related attributes and getBarrelCoordinate method which calculates the coordinate of the barrel of the 
+ * shooter according to the coordinate and the angle of the shooter and returns it.
  * @author dogademirturk
  *
  */
