@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import Domain.Player.Player;
-// This is a blackBox Testing.
+// This is a Black Box Testing.
 //Blackbox testing is a way of testing where you don't care how the program manipulates the input; 
 //you're only checking to see if the outputs are valid for the specified inputs.
 
