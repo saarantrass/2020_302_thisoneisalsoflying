@@ -1,7 +1,7 @@
 package Domain.GameObjects.Atoms.Shields;
 
 
-import Domain.GameObjects.Atoms.Throwable;
+import Domain.GameObjects.Throwable;
 
 public class ZetaShield extends ShieldDecorator {
 	private double updatedEfficiency;
@@ -9,17 +9,19 @@ public class ZetaShield extends ShieldDecorator {
 	public ZetaShield(Throwable atom) {
 		super(atom);
 		this.updatedEfficiency=atom.getEfficiency();
+		addShield();
 	}
 
 	@Override
 	public double getEfficiency() {
 		return this.updatedEfficiency;
 	}
-	private void setEfficiency(double eff) {
+	@Override
+	public void setEfficiency(double eff) {
 		this.updatedEfficiency = eff;
 	}
 	@Override
-	public void addShield(int type) {
+	public void addShield() {
 		double effFactor = 0.0;
 		double speedFactor = 0.0;
 		if(this.getProton()==this.getNeutron()) {

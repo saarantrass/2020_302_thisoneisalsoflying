@@ -2,6 +2,9 @@ package Domain.GameObjects.Atoms;
 
 import java.awt.Point;
 import Domain.Settings;
+import Domain.GameObjects.IMovingBehaviour;
+import Domain.GameObjects.ShootedStrategy;
+import Domain.GameObjects.Throwable;
 
 public abstract class Atom extends Throwable {
 	
@@ -14,6 +17,9 @@ public abstract class Atom extends Throwable {
 	private double angle;
 	private int neutron;
 	private int proton;
+	protected double efficiency;
+
+	protected IMovingBehaviour fallingBehaviour;
 	
 	public Atom (int atomID, Point coordinate, int neutron) {
 		this.atomID = atomID;
@@ -23,20 +29,24 @@ public abstract class Atom extends Throwable {
 		this.proton=8;
 		for(int i=1;i<atomID;i++) {this.proton *= 2;}
 		this.neutron = neutron;
+		this.fallingBehaviour = new ShootedStrategy(this);
+		this.efficiency = 0;
 	}
 	
 	public int getAtomID() {
 		return this.atomID;
 	}
 	
-	public abstract double getEfficiency() ;
+	public double getEfficiency() {
+		return this.efficiency;
+	}
+
+	public void setEfficiency(double eff) {
+		this.efficiency = eff;	
+	}
 
 	public void move() {
-		if(this.coordinate.x < 0 || this.coordinate.x > (Settings.getInstance().getScreenSize().getWidth() * 7/8)) {
-			this.xSpeed = -this.xSpeed;
-		}
-		this.coordinate.x += this.xSpeed;
-		this.coordinate.y -= this.ySpeed;
+		fallingBehaviour.move();
 	}
 	
 	public void setAngle(double angle) {
@@ -59,9 +69,27 @@ public abstract class Atom extends Throwable {
 	public double getSpeed() {
 		return this.speed;
 	}
+	
+	public double getxSpeed() {
+		return xSpeed;
+	}
+	
+	public void setxSpeed(double xSpeed) {
+		this.xSpeed = xSpeed;
+	}
+	
+	public double getySpeed() {
+		return ySpeed;
+	}
+	
+	public void setySpeed(double ySpeed) {
+		this.ySpeed = ySpeed;
+	}
+	
 	public int getNeutron() {
 		return this.neutron;
 	}
+	
 	public int getProton() {
 		return this.proton;
 	}

@@ -1,27 +1,23 @@
 package Domain;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import Domain.GameObjects.AtomFactory;
 import Domain.GameObjects.FallingObjectFactory;
-import Domain.GameObjects.PowerUp;
-import Domain.GameObjects.ReactionBlocker;
-import Domain.GameObjects.Atoms.Atom;
-import Domain.GameObjects.Atoms.Throwable;
+import Domain.GameObjects.Throwable;
 import Domain.GameObjects.Atoms.Shields.ShieldDecorator;
 import Domain.GameObjects.Molecules.Molecule;
+import Domain.GameObjects.PowerUps.PowerUp;
+import Domain.GameObjects.ReactionBlockers.ReactionBlocker;
 import Domain.Player.Player;
 import Domain.Player.Shooter;
 import Domain.SaveLoad.FileSaveLoadAdapter;
 import Domain.SaveLoad.ISaveLoadAdapter;
 import Domain.SaveLoad.MongoSaveLoadAdapter;
 import UI.IObserver;
-import UI.Swing.ScreenCoordinator;
-
 public class Game implements IObservable{
 
 	private GameController GC;
@@ -60,8 +56,8 @@ public class Game implements IObservable{
 	public void startGame(GameController GC){
 		this.GC = GC;
 		this.L = Settings.getInstance().getLengthUnit();
-		int xShooter = ScreenCoordinator.SCREEN_SIZE.width * 7/16;
-		int yShooter = ScreenCoordinator.SCREEN_SIZE.height - this.GC.settings.getLengthUnit();
+		int xShooter = Settings.getInstance().getScreenSize().width * 7/16;
+		int yShooter = Settings.getInstance().getScreenSize().height - this.GC.settings.getLengthUnit();
 		this.shooter = new Shooter(new Point(xShooter,  yShooter));
 		this.player = new Player();
 		if(this.barrelAtom == null) {
@@ -124,7 +120,7 @@ public class Game implements IObservable{
 		Random rn = new Random();
 		int type = rn.nextInt(4)+1;
 		int next = rn.nextInt(3);
-		int xCoord = (int) (Math.random() * (ScreenCoordinator.SCREEN_SIZE.getWidth() * 7 / 8)) - (L/4); //TODO: Random check
+		int xCoord = (int) (Math.random() * (Settings.getInstance().getScreenSize().width * 7 / 8)) - (L/4); //TODO: Random check
 		switch (next) {
 		case 0:
 			if(Settings.getInstance().getMoleculeNumber(type) > 0) {
@@ -136,7 +132,7 @@ public class Game implements IObservable{
 			break;
 		case 1:
 			if(Settings.getInstance().getPowerUpNumber(type) > 0) {
-				PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, -L/4));
+				PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, -L/4),false);
 				onScreenPowerUpList.add(newPw);
 				Settings.getInstance().decreasePowerUpNumber(type);
 			}
@@ -165,19 +161,19 @@ public class Game implements IObservable{
 		}
 		for(Molecule mol : onScreenMoleculeList) {
 			mol.move();
-			if(mol.getCoordinate().y >= ScreenCoordinator.SCREEN_SIZE.height) {
+			if(mol.getCoordinate().y >= Settings.getInstance().getScreenSize().height) {
 				this.onScreenMoleculeList.remove(mol);
 			}
 		}
 		for(ReactionBlocker rb : onScreenReactionBlockerList) {
 			rb.move();
-			if(rb.getCoordinate().y >= ScreenCoordinator.SCREEN_SIZE.height) {
+			if(rb.getCoordinate().y >= Settings.getInstance().getScreenSize().height) {
 				this.onScreenReactionBlockerList.remove(rb);
 			}
 		}
 		for(PowerUp pw: onScreenPowerUpList) {
 			pw.move();
-			if(pw.getCoordinate().y >= ScreenCoordinator.SCREEN_SIZE.height) {
+			if(pw.getCoordinate().y >= Settings.getInstance().getScreenSize().height) {
 				this.onScreenPowerUpList.remove(pw);
 			}
 		}
@@ -201,7 +197,7 @@ public class Game implements IObservable{
 		} else if(this.barrelPowerUp != null) {
 
 			this.barrelPowerUp.setAngle(this.shooter.getAngle());
-			this.shooter.inventory.removeInventoryPowerUp(this.barrelPowerUp.getPowerUpID());
+			this.shooter.inventory.removeInventoryPowerUp(this.barrelPowerUp.getID());
 			this.onScreenPowerUpList.add(this.barrelPowerUp);
 			getRandomAtomToBarrel();
 		}
@@ -216,7 +212,7 @@ public class Game implements IObservable{
 		 */
 		for(Throwable atom : this.onScreenAtomList) {
 			for(Molecule molecule : this.onScreenMoleculeList) {
-				if(atom.getAtomID() == molecule.getMoleculeID()) {
+				if(atom.getAtomID() == molecule.getID()) {
 					Point acord = atom.getCoordinate();
 					Point mcord = molecule.getCoordinate();
 					if(mcord.x <= acord.x && acord.x <= (mcord.x + L/4) && mcord.y <= acord.y && acord.y <= (mcord.y + L/4)) {//TODO: Check bounding box
@@ -238,7 +234,7 @@ public class Game implements IObservable{
 			Point scord = this.shooter.getCoordinate();
 			if(scord.x <= pcord.x && pcord.x <= (scord.x + L/2) && scord.y <= pcord.y && pcord.y <= (scord.y + L)) {
 				this.onScreenPowerUpList.remove(pw);
-				this.shooter.inventory.addInventoryPowerUp(pw.getPowerUpID());
+				this.shooter.inventory.addInventoryPowerUp(pw.getID());
 			}
 		}
 
@@ -247,7 +243,7 @@ public class Game implements IObservable{
 		 */
 		for(ReactionBlocker rb: this.onScreenReactionBlockerList) {
 			for(PowerUp pw: this.onScreenPowerUpList) {
-				if(rb.getReactionBlockerID() == pw.getPowerUpID()) {
+				if(rb.getID() == pw.getID()) {
 					Point pCoord = pw.getCoordinate();
 					Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
 					double distance1 = Math.sqrt((pCoord.x - rCoordCenter.x)*(pCoord.x - rCoordCenter.x) + (pCoord.y - rCoordCenter.y)*(pCoord.y - rCoordCenter.y));
@@ -267,7 +263,7 @@ public class Game implements IObservable{
 
 	public void addShield(int type) {
 		ShieldDecorator at = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
-		at.addShield(type);
+		at.addShield();
 		System.out.println(at.getEfficiency());
 		this.barrelAtom=at;
 		this.shooter.inventory.removeInventoryShield(type);
@@ -289,7 +285,7 @@ public class Game implements IObservable{
 	public void getPowerUpToBarrel(int type) {
 		if(this.shooter.inventory.checkPowerUpAvailability(type, 1)) {
 			this.barrelAtom = null;
-			this.barrelPowerUp = new PowerUp(type, this.shooter.getBarrelCoordinate(), true);
+			this.barrelPowerUp = FallingObjectFactory.getInstance().getNewPowerUp(type, this.shooter.getBarrelCoordinate(), true);
 			this.barrelPowerUp.setAngle(this.shooter.getAngle());
 		}
 	}
