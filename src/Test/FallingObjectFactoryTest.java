@@ -70,53 +70,67 @@ class FallingObjectFactoryTest {
 	
 	@Test
 	void PowerUpCreationTest() {
+		
 		this.type1p = FallingObjectFactory.getInstance().getNewPowerUp(1, new Point(100,100),false);
 		this.type2p = FallingObjectFactory.getInstance().getNewPowerUp(2, new Point(100,100),false);
 		this.type3p = FallingObjectFactory.getInstance().getNewPowerUp(3, new Point(100,100),false);
 		this.type4p = FallingObjectFactory.getInstance().getNewPowerUp(4, new Point(100,100),false);
 		this.emptyp = FallingObjectFactory.getInstance().getNewPowerUp(5, new Point(100,100),false);
 		
+		
 		assertNotNull("powerup type 1 is created", this.type1p);
 		assertTrue("return type is PowerUp", this.type1p instanceof AlphaPowerUp);
+		
 		
 		assertNotNull("powerup type 2 is created", this.type2p);
 		assertTrue("return type is PowerUp", this.type2p instanceof BetaPowerUp);
 		
+		
 		assertNotNull("powerup type 3 is created", this.type3p);
 		assertTrue("return type is PowerUp", this.type3p instanceof GammaPowerUp);
 		
+		
 		assertNotNull("powerup type 4 is created", this.type4p);
 		assertTrue("return type is PowerUp", this.type4p instanceof SigmaPowerUp);
+		
 		
 		assertNull("no PowerUp is created because invalid type", this.emptyp);
 	}
 	
 	@Test
 	void ReactionBlockerCreationTest() {
+		
 		this.type1b = FallingObjectFactory.getInstance().getNewReactionBlocker(1, new Point(100,100));
 		this.type2b = FallingObjectFactory.getInstance().getNewReactionBlocker(2, new Point(100,100));
 		this.type3b = FallingObjectFactory.getInstance().getNewReactionBlocker(3, new Point(100,100));
 		this.type4b = FallingObjectFactory.getInstance().getNewReactionBlocker(4, new Point(100,100));
 		this.emptyb = FallingObjectFactory.getInstance().getNewReactionBlocker(5, new Point(100,100));
 		
+		
 		assertNotNull("reaction blocker type 1 is created", this.type1b);
 		assertTrue("return type is ReactionBlocker", this.type1b instanceof AlphaReactionBlocker);
+		
 		
 		assertNotNull("reaction blocker type 2 is created", this.type2b);
 		assertTrue("return type is ReactionBlocker", this.type2b instanceof BetaReactionBlocker);
 		
+		
 		assertNotNull("reaction blocker type 3 is created", this.type3b);
 		assertTrue("return type is ReactionBlocker", this.type3b instanceof GammaReactionBlocker);
 		
+		
 		assertNotNull("reaction blocker type 4 is created", this.type4b);
 		assertTrue("return type is ReactionBlocker", this.type4b instanceof SigmaReactionBlocker);
+		
 		
 		assertNull("no ReactionBlocker is created because invalid type", this.emptyb);
 	}
 	
 	@Test
 	void createdObjectCoordinatesTest() {
+		
 		this.coordCheckMol = FallingObjectFactory.getInstance().getNewMolecule(1, new Point(100,100), false, false);
+		
 		
 		assertEquals("created molecule is on true x coord", this.coordCheckMol.getCoordinate().getX(), 100.0);
 		assertEquals("created molecule is on true y coord", this.coordCheckMol.getCoordinate().getY(), 100.0);
