@@ -6,10 +6,8 @@ import static org.junit.Assert.assertNotEquals;
 import java.awt.Dimension;
 import java.awt.Point;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
-import org.junit.jupiter.api.Order;
 
 import Domain.Settings;
 import Domain.Player.Shooter;
@@ -25,19 +23,23 @@ import Domain.Player.Shooter;
  * @author dogademirturk
  *
  */
-@TestMethodOrder(OrderAnnotation.class)
 public class ShooterTest {
 	
-	private Dimension screenSize = new Dimension(1200, 500);
-	private int L = 50;
+	private static Dimension screenSize = new Dimension(1200, 500);
+	private static int L = 50;
+	private static Shooter shooter;
+	
+	@BeforeAll
+	public static void setUp() {
+		Settings.getInstance().setSettings(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, L, 1, screenSize); //set settings to get length unit in the shooter constructor
+		shooter = new Shooter(new Point(screenSize.width/2, screenSize.height));
+	}
 	
 	@Test
-	@Order(1)
 	/**
 	 * test getters and setters of the shooter coordinates and angle
 	 */
 	public void getterSetterTest() {
-		Shooter shooter = new Shooter(new Point(100,100));
 		
 		/*
 		 * test setCoordinate and getCoordinate
@@ -54,7 +56,6 @@ public class ShooterTest {
 	}
 	
 	@Test
-	@Order(2)
 	/**
 	 * test setting initial coordinate of the shooter with constructor
 	 */
@@ -66,83 +67,76 @@ public class ShooterTest {
 	}
 	
 	@Test
-	@Order(3)
 	/**
 	 * test move of the shooter on the boundaries of the screen
 	 */
 	public void moveTest() {
 		
-		Settings.getInstance().setSettings(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, this.L, 1, this.screenSize); //set settings to get length unit in the shooter constructor
-		
 		/*
 		 * test left boundary of the screen
 		 */
-		Point leftBoundary = new Point(0, this.screenSize.height); //left boundary of the screen
-		Shooter shooter = new Shooter(leftBoundary); //initialize shooter on left boundary
+		Point leftBoundary = new Point(0, screenSize.height); //left boundary of the screen
+		shooter.setCoordinate(leftBoundary); //initialize shooter on left boundary
 		shooter.move(0); //move left
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		shooter.stopMove();
 		assertEquals(0, shooter.getCoordinate().x); //BB test left boundary x
-		assertEquals(this.screenSize.height, shooter.getCoordinate().y); //test y - not changed
+		assertEquals(screenSize.height, shooter.getCoordinate().y); //test y - not changed
 		
 		shooter.move(1); //move right
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		shooter.stopMove();
 		assertNotEquals(0, shooter.getCoordinate().x); //GB test - (not boundary case) shooter must move since it is not boundary for right move
-		assertEquals(this.screenSize.height, shooter.getCoordinate().y); //test y - not changed	
+		assertEquals(screenSize.height, shooter.getCoordinate().y); //test y - not changed	
 		
 		/*
 		 * test right boundary of the screen
 		 */
-		Point rightBoundary = new Point((this.screenSize.width * 7/8) - this.L/2, this.screenSize.height); //right boundary of the screen
+		Point rightBoundary = new Point((screenSize.width * 7/8) - L/2, screenSize.height); //right boundary of the screen
 		shooter.setCoordinate(rightBoundary); //set coordinates of the shooter to right boundary
 		shooter.move(1); //move right
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		shooter.stopMove();
-		assertEquals((int) ((this.screenSize.width * 7/8) - this.L/2), shooter.getCoordinate().x); //BB test right boundary x
-		assertEquals(this.screenSize.height, shooter.getCoordinate().y); //test y - not changed
+		assertEquals((int) ((screenSize.width * 7/8) - L/2), shooter.getCoordinate().x); //BB test right boundary x
+		assertEquals(screenSize.height, shooter.getCoordinate().y); //test y - not changed
 		
 		shooter.move(0); //move left
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		shooter.stopMove();
 		assertNotEquals(0, shooter.getCoordinate().x); //GB test - (not boundary case) shooter must move since it is not boundary for left move
-		assertEquals(this.screenSize.height, shooter.getCoordinate().y); //test y - not changed
+		assertEquals(screenSize.height, shooter.getCoordinate().y); //test y - not changed
 		
 	}
 	
 	@Test
-	@Order(4)
 	/**
 	 * test rotate of the shooter on degrees 90 and -90 (maximum and minimum rotate angle)
 	 */
 	public void rotateTest() {
 		
-		Settings.getInstance().setSettings(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, this.L, 1, this.screenSize); //set settings to get length unit in the shooter constructor
-		
 		/*
 		 * test maximum angle (90 degrees) - to right
 		 */
-		Shooter shooter = new Shooter(new Point(100, 100));
 		shooter.setAngle(90);
 		shooter.rotate(1); //rotate right
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -151,7 +145,7 @@ public class ShooterTest {
 		
 		shooter.rotate(0); //rotate left
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -164,7 +158,7 @@ public class ShooterTest {
 		shooter.setAngle(-90);
 		shooter.rotate(0); //rotate left
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -173,7 +167,7 @@ public class ShooterTest {
 		
 		shooter.rotate(1); //rotate right
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -183,26 +177,25 @@ public class ShooterTest {
 	}
 	
 	@Test
-	@Order(5)
 	/**
 	 * test coordinate of the barrel when shooter is initialized, moved and rotated
 	 */
 	public void barrelCoordinateTest() {
-		Settings.getInstance().setSettings(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, this.L, 1, this.screenSize); //set settings to get length unit in the shooter constructor
-		Shooter shooter = new Shooter(new Point(this.screenSize.width/2, this.screenSize.height));
+		shooter.setCoordinate(new Point(screenSize.width/2, screenSize.height));
+		shooter.setAngle(0);
 		
 		/*
 		 * shooter is at its initial position and the angle is 0
 		 */
-		assertEquals((int) (this.screenSize.width/2 + L/4 - L/20), shooter.getBarrelCoordinate().x); //test x
-		assertEquals((int) (this.screenSize.height - L/10), shooter.getBarrelCoordinate().y); //test y
+		assertEquals((int) (screenSize.width/2 + L/4 - L/20), shooter.getBarrelCoordinate().x); //test x
+		assertEquals((int) (screenSize.height - L/10), shooter.getBarrelCoordinate().y); //test y
 		
 		/*
 		 * shooter is moved and the angle is 0 - only x coordinate is changed since shooter moves horizontally
 		 */
 		shooter.move(1);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -215,7 +208,7 @@ public class ShooterTest {
 		 */
 		shooter.rotate(0);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(200);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
