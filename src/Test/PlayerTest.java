@@ -46,6 +46,14 @@ class PlayerTest {
 		
 	}
 	
+	void getScoreTest2() {
+		Player p = new Player();
+		p.score = 100;
+		assertNotEquals(p.getScore(),0);
+		
+		
+	}
+	
 		
 	}
 
