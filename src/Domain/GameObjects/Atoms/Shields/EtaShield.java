@@ -20,6 +20,7 @@ public class EtaShield extends ShieldDecorator  {
 	public double getEfficiency() {
 		return this.updatedEfficiency;
 	}
+	@Override
 	public void setEfficiency(double eff) {
 		/***
 		 * @REQUIRES: New value of the efficiency

@@ -21,17 +21,29 @@ public class EtaShieldTest {
 	ShieldDecorator shieldedAtom;
 	ShieldDecorator shieldedAtom2;
 	ShieldDecorator shieldedAtom3;
-	Method setter;
 	@Before
 	public void setUp(){
+		/***
+		 * atom1, atom2 and shieldedAtom are initialized here to avoid code repetition
+		 * because we use them like this in every test.
+		 * shieldedAtom2 and 3 are not initialized since we initialize
+		 * them differently in different tests.
+		 */
 		atom1 = AtomFactory.getInstance().getNewAtom(1, new Point(0,0));
 		atom2 = AtomFactory.getInstance().getNewAtom(2, new Point(0,0));
 		atom1.setSpeed(10);
+		atom2.setSpeed(20);
 		shieldedAtom = AtomFactory.getInstance().addNewShield(1, atom1);
 	}
 	
 	@Test
 	public void initialTest() {
+		/***
+		 * initial test to check out whether we have initialized our
+		 * atoms and shields correctly.
+		 * All of the abstract and concrete classes one atom or 
+		 * shield may have are tested.
+		 */
 		assertEquals(1, atom1.getAtomID());
 		assertEquals(2, atom2.getAtomID());
 		assertEquals(1, shieldedAtom.getAtomID());
@@ -55,39 +67,60 @@ public class EtaShieldTest {
 	
 	@Test
 	public void setEfficiencyTest() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		/***
+		 * Set efficiency method is tested here.
+		 * Since shield decorator overrides the base efficiency of the shield,
+		 * we use assertNotEquals to show that override
+		 */
 		atom1.setEfficiency(1.7);
 		assertEquals(1.7, atom1.getEfficiency());
 		
 		shieldedAtom.setEfficiency(1.2);
 		assertEquals(1.2, shieldedAtom.getEfficiency());
 		
-		assertNotEquals(atom1.getEfficiency(), shieldedAtom.getEfficiency()); //Since shielded atom overrides the setter
+		assertNotEquals(atom1.getEfficiency(), shieldedAtom.getEfficiency()); 
 		
 		shieldedAtom3 = AtomFactory.getInstance().addNewShield(1, shieldedAtom);
 		
 		shieldedAtom3.setEfficiency(0.7);
 		assertEquals(0.7, shieldedAtom3.getEfficiency());
 		
+		
+		//Since shield decorator overrides the base efficiency of the shield,
+		//we use assertNotEquals to show that override
 		assertNotEquals(atom1.getEfficiency(), shieldedAtom3.getEfficiency());
 		
 	}
 	
 	@Test
 	public void addMoreShieldTest() {
+		/***
+		 * Add shield method is tested here.
+		 * Since shield decorator overrides the base efficiency of the shield,
+		 * we use assertNotEquals to show that override.
+		 * AddShield is not explicitly called here, as it called in the constructor
+		 * when a shielded atom is created.
+		 */
 		
-		double initialEfficiency = shieldedAtom.getEfficiency();
+		assertNotEquals(atom1.getEfficiency(), shieldedAtom.getEfficiency());
+		
 		shieldedAtom2 = AtomFactory.getInstance().addNewShield(1, shieldedAtom);
-		double initialEfficiency2 = shieldedAtom2.getEfficiency();
+		assertNotEquals(shieldedAtom.getEfficiency(), shieldedAtom2.getEfficiency());
+		
 		shieldedAtom3 = AtomFactory.getInstance().addNewShield(1, shieldedAtom2);
 		
-		assertNotEquals(initialEfficiency, shieldedAtom3.getEfficiency());
-		assertNotEquals(initialEfficiency2, shieldedAtom3.getEfficiency());
+		assertNotEquals(shieldedAtom.getEfficiency(), shieldedAtom3.getEfficiency());
+		assertNotEquals(shieldedAtom2.getEfficiency(), shieldedAtom3.getEfficiency());
 		
-		assertNotEquals(atom1.getEfficiency(), shieldedAtom3.getEfficiency());
 	}
 	
 	@Test
 	public void getSpeedTest() {
+		/***
+		 * getSpeed method is tested here.
+		 * The speeds in the setUp step are used to compare.
+		 */
+		
 		assertEquals(atom1.getSpeed(), shieldedAtom.getSpeed());
 		
 		shieldedAtom2 = AtomFactory.getInstance().addNewShield(1, atom2);
@@ -99,6 +132,11 @@ public class EtaShieldTest {
 	
 	@Test
 	public void setSpeedTest() {
+		/***
+		 * setSpeed method is tested here.
+		 * assertEquals are used since the decorator directly changes the
+		 * Throwable's speed.
+		 */
 		shieldedAtom.setSpeed(10);
 		assertEquals(atom1.getSpeed(), shieldedAtom.getSpeed());
 		
