@@ -11,7 +11,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import Domain.Settings;
-import Domain.GameObjects.IFallingBehaviour;
+import Domain.GameObjects.IMovingBehaviour;
 import Domain.GameObjects.Molecules.BetaMolecule;
 
 /**
@@ -45,7 +45,7 @@ public class BetaMoleculeTest {
 		boolean isLinear = false;
 		boolean isSpinning = false;
 		BetaMolecule molecule = new BetaMolecule(moleculeID, coordinate, isLinear, isSpinning);
-		assertEquals(moleculeID, molecule.getMoleculeID());
+		assertEquals(moleculeID, molecule.getID());
 		assertEquals(coordinate.x, molecule.getCoordinate().x);
 		assertEquals(coordinate.y, molecule.getCoordinate().y);
 		assertEquals(isSpinning, molecule.isSpinning());
@@ -96,17 +96,17 @@ public class BetaMoleculeTest {
 		BetaMolecule molecule = new BetaMolecule(2, new Point(0, 0), false, false);
 		molecule.updateFallingStrategy();
 		// Should be LinearStrategy
-		IFallingBehaviour oldStrat = molecule.getFallingBehaviour();
+		IMovingBehaviour oldStrat = molecule.getFallingStrategy();
 	
 		/**
 		 * Test ZigZagStrategy
 		 */
 		// Set height over the breakpoint for Zigzagstrategy
-		Point overBreakPoint = new Point(0, this.screenSize.height / 4 + 10);
+		Point overBreakPoint = new Point(0, screenSize.height / 4 + 10);
 		molecule.setCoordinate(overBreakPoint);
 		molecule.updateFallingStrategy();
 		// Should be ZigzagStrategy
-		assertNotEquals(oldStrat, molecule.getFallingBehaviour());
+		assertNotEquals(oldStrat, molecule.getFallingStrategy());
 	}
 	
 	@Test

@@ -42,6 +42,9 @@ public abstract class FallingObject {
 	public void setFallingStrategy(IMovingBehaviour fallingBehaviour) {
 		this.fallingBehaviour = fallingBehaviour;
 	}
+	public IMovingBehaviour getFallingStrategy() {
+		return this.fallingBehaviour;
+	}
 	public abstract void updateFallingStrategy() ;
 	
 	public void move() {
