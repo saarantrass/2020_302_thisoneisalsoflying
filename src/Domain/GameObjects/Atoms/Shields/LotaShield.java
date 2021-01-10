@@ -1,7 +1,7 @@
 package Domain.GameObjects.Atoms.Shields;
 
 
-import Domain.GameObjects.Atoms.Throwable;
+import Domain.GameObjects.Throwable;
 
 public class LotaShield extends ShieldDecorator {
 	private double updatedEfficiency;
@@ -9,6 +9,7 @@ public class LotaShield extends ShieldDecorator {
 	public LotaShield(Throwable atom) {
 		super(atom);
 		this.updatedEfficiency=atom.getEfficiency();
+		addShield();
 	}
 
 	@Override
@@ -16,12 +17,12 @@ public class LotaShield extends ShieldDecorator {
 		return this.updatedEfficiency;	
 	}
 	
-	private void setEfficiency(double eff) {
+	public void setEfficiency(double eff) {
 		this.updatedEfficiency = eff;
 	}
 
 	@Override
-	public void addShield(int type) {
+	public void addShield() {
 		System.out.println("before"+ this.updatedEfficiency);
 		double effFactor = (1 - this.updatedEfficiency) * LOTA_EFF;
 		double speedFactor = 0.07;

@@ -8,9 +8,7 @@ public class SigmaAtom extends Atom{
 
 	public SigmaAtom(int atomID, Point coordinate, int neutron) {
 		super(atomID, coordinate, neutron);
-	}
-	@Override
-	public double getEfficiency() {
-		return (1 + SIGMA_STABILITY)/2 + ((Math.abs(this.getNeutron()-this.getProton())/(this.getProton())));
+		double constant = ((double)Math.abs(this.getNeutron()-this.getProton())/(double)this.getProton());
+		this.efficiency = (double)((1 + SIGMA_STABILITY)/2) +constant;
 	}
 }

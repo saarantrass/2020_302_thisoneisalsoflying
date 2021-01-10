@@ -37,7 +37,10 @@ public class SaveObject {
 		JsonArray onScreenAtomListJsonArray = jsonParser.parse(onScreenAtomList).getAsJsonArray();
 		save.add("onScreenAtomList", onScreenAtomListJsonArray);
 		
+		
 		String onScreenMoleculeList = gsonBuilder.toJson(this.currGame.onScreenMoleculeList);
+		//System.out.println(onScreenMoleculeList);
+		
 		JsonArray onScreenMoleculeListJsonArray = jsonParser.parse(onScreenMoleculeList).getAsJsonArray();
 		save.add("onScreenMoleculeList", onScreenMoleculeListJsonArray);
 		
