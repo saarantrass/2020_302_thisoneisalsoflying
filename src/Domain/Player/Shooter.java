@@ -65,9 +65,20 @@ public class Shooter implements IObservable{
 		//EFFECTS: sets coordinate of the Shooter to given coordinate
 		this.coordinate = coordinate;
 	}
-
 	
+	/**
+	 * Calculates and returns the coordinate of the barrel according to the coordinate and 
+	 * the angle of the Shooter. Used to determine barrel atom coordinate.
+	 * @return Point: barrel coordinate
+	 */
 	public Point getBarrelCoordinate() {
+		//REQUIRES: shooter coordinate must be not null
+		//EFFECTS: calculates and returns the coordinate of the barrel
+		//calculation is as follows:
+		//if angle is 0: shooter x coordinate + L/4 - L/20 as barrel coordinate x 
+		//					and shooter y coordinate - L/10 as barrel coordinate y
+		//if angle is not 0: shooter x coordinate + L/4 - L/20 + L * sin(a) as barrel coordinate x 
+		//					and shooter y coordinate - L/10 + L * (1 - cos(a)) as barrel coordinate y
 		int dy = 0;
 		int dx = 0;
 		if (this.angle != 0) {
@@ -234,8 +245,12 @@ public class Shooter implements IObservable{
 		}
 	});
 	
-
 	
+	public String toString() {
+		return "Shooter[Coordinate: (" + this.coordinate.x + ", " + this.coordinate.y + 
+				"), Speed: " + this.speed + ", Angle: " + this.angle + "]";
+	}
+
 	
 	@Override
 	public void add(IObserver o) {
