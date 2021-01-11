@@ -67,12 +67,12 @@ public class GameController {
 	
 	
 	public void saveGame() {
-		System.out.println("saveGame GC");
+		Game.getInstance().saveGame();
 	}
 	
 	
 	public void loadGame(){
-		System.out.println("loadGame GC");
+		Game.getInstance().loadGame();
 	}
 	
 	
