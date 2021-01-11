@@ -293,10 +293,18 @@ public class Game implements IObservable{
 
 	public void pauseGame() {
 		this.isPaused = true;
+		
+	}
+	
+	public void saveGame() {
 		saveLoadService = new FileSaveLoadAdapter();
 		saveLoadService.save();
 		this.mongoLoadService = new MongoSaveLoadAdapter();
 		this.mongoLoadService.save();
+	}
+	
+	public void loadGame() {
+		
 	}
 
 
