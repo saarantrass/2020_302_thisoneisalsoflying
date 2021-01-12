@@ -123,13 +123,16 @@ public class Inventory {
 	}
 	
 	public Throwable getRandomAtom() {
-		Random rn = new Random();
-		int type = rn.nextInt(4)+1;
-		while(this.inventoryAtom.get(type).size() < 1) {
-			type = rn.nextInt(4)+1;
+		if(!(this.inventoryAtom.get(1).size() <= 0 && this.inventoryAtom.get(2).size() <= 0 && this.inventoryAtom.get(3).size() <= 0 && this.inventoryAtom.get(4).size() <= 0)) {
+			Random rn = new Random();
+			int type = rn.nextInt(4)+1;
+			while(this.inventoryAtom.get(type).size() < 1) {
+				type = rn.nextInt(4)+1;
+			}
+			Throwable at = this.inventoryAtom.get(type).remove(this.inventoryAtom.get(type).size() - 1);
+			return at;
 		}
-		Throwable at = this.inventoryAtom.get(type).remove(this.inventoryAtom.get(type).size() - 1);
-		return at;
+		return null;
 	}
 	
 	public PowerUp getPowerUp(int type) {
