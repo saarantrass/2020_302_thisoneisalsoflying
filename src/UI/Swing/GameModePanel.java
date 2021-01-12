@@ -433,6 +433,8 @@ public class GameModePanel extends JPanel implements IObserver{
 			} else if(currentEventCode == KeyEvent.VK_C) { //change atom on barrel
 				GC.changeAtomOnBarrel();
 			} else if(currentEventCode == KeyEvent.VK_P) { //pause game
+				GC.stopMoveShooter();
+				GC.stopRotateShooter();
 				GC.pauseGame();
 				displayPausePanel();
 				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
