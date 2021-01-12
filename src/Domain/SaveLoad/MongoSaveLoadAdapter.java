@@ -13,7 +13,7 @@ public class MongoSaveLoadAdapter implements ISaveLoadAdapter {
 	
 	@Override
 	public void save() {
-		this.mongoSaveLoad.insert(currSave.toDBObject());
+		//this.mongoSaveLoad.insert(currSave.toDBObject());
 	}
 
 	@Override
