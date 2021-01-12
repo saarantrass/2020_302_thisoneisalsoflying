@@ -234,13 +234,6 @@ public class Shooter implements IObservable{
 	}
 	
 	
-	public boolean checkAtomLeft() {
-		if(this.inventory.checkAtomAvailability(1, 1) || this.inventory.checkAtomAvailability(2, 1) || this.inventory.checkAtomAvailability(3, 1) || this.inventory.checkAtomAvailability(4, 1))
-			return true;
-		return false;
-	}
-
-	
 	@Override
 	public void add(IObserver o) {
 		this.observers.add(o);

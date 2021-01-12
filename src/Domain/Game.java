@@ -269,7 +269,7 @@ public class Game implements IObservable{
 
 
 	public void addShield(int type) {
-		if(this.shooter.inventory.checkShieldAvailability(type)) {
+		if(this.shooter.inventory.getInventoryShieldCount(type) > 0) {
 			ShieldDecorator at = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
 			at.addShield();
 			//System.out.println(at.getEfficiency());
@@ -288,7 +288,7 @@ public class Game implements IObservable{
 			this.barrelAtom.setCoordinate(this.shooter.getBarrelCoordinate());
 			this.barrelAtom.setAngle(this.shooter.getAngle());
 		}else {
-			//TODO envanter bitti
+			//TODO FINISH GAME???
 		}
 	}
 
