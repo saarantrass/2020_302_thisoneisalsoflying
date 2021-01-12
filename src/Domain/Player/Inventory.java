@@ -1,30 +1,53 @@
 package Domain.Player;
 
+import java.awt.Point;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.concurrent.CopyOnWriteArrayList;
+
 import Domain.Settings;
+import Domain.GameObjects.AtomFactory;
+import Domain.GameObjects.FallingObjectFactory;
+import Domain.GameObjects.Throwable;
+import Domain.GameObjects.Atoms.Atom;
+import Domain.GameObjects.PowerUps.PowerUp;
 
 public class Inventory {
 	
-	private HashMap<Integer, Integer> inventoryAtom;
-	private HashMap<Integer, Integer> inventoryPowerUp;
+	private HashMap<Integer, CopyOnWriteArrayList<Throwable>> inventoryAtom;
+	private HashMap<Integer, CopyOnWriteArrayList<PowerUp>> inventoryPowerUp;
 	private HashMap<Integer, Integer> inventoryShield;
-	//private HashMap<Integer, ArrayList<Atom>> ýnv;//TODO
-	
 	
 	public Inventory() {
-		this.inventoryAtom = new HashMap<Integer, Integer>();
-		this.inventoryPowerUp = new HashMap<Integer, Integer>();
+		this.inventoryAtom = new HashMap<Integer, CopyOnWriteArrayList<Throwable>>();
+		this.inventoryPowerUp = new HashMap<Integer, CopyOnWriteArrayList<PowerUp>>();
 		this.inventoryShield = new HashMap<Integer, Integer>();
 		
-		inventoryAtom.put(1, Settings.getInstance().getAtomNumber(1));
-		inventoryAtom.put(2, Settings.getInstance().getAtomNumber(2));
-		inventoryAtom.put(3, Settings.getInstance().getAtomNumber(3));
-		inventoryAtom.put(4, Settings.getInstance().getAtomNumber(4));
+		inventoryAtom.put(1, new CopyOnWriteArrayList<Throwable>());
+		inventoryAtom.put(2, new CopyOnWriteArrayList<Throwable>());
+		inventoryAtom.put(3, new CopyOnWriteArrayList<Throwable>());
+		inventoryAtom.put(4, new CopyOnWriteArrayList<Throwable>());
 		
-		inventoryPowerUp.put(1, 0);
-		inventoryPowerUp.put(2, 0);
-		inventoryPowerUp.put(3, 0);
-		inventoryPowerUp.put(4, 0);
+		for (int i = 0; i < Settings.getInstance().getAtomNumber(1); i++) {
+			inventoryAtom.get(1).add(AtomFactory.getInstance().getNewAtom(1, new Point(0,0)));
+		}
+		
+		for (int i = 0; i < Settings.getInstance().getAtomNumber(2); i++) {
+			inventoryAtom.get(2).add(AtomFactory.getInstance().getNewAtom(2, new Point(0,0)));
+		}
+		
+		for (int i = 0; i < Settings.getInstance().getAtomNumber(3); i++) {
+			inventoryAtom.get(3).add(AtomFactory.getInstance().getNewAtom(3, new Point(0,0)));
+		}
+		
+		for (int i = 0; i < Settings.getInstance().getAtomNumber(4); i++) {
+			inventoryAtom.get(4).add(AtomFactory.getInstance().getNewAtom(4, new Point(0,0)));
+		}
+		
+		inventoryPowerUp.put(1, new CopyOnWriteArrayList<PowerUp>());
+		inventoryPowerUp.put(2, new CopyOnWriteArrayList<PowerUp>());
+		inventoryPowerUp.put(3, new CopyOnWriteArrayList<PowerUp>());
+		inventoryPowerUp.put(4, new CopyOnWriteArrayList<PowerUp>());
 		
 		inventoryShield.put(1, Settings.getInstance().getShieldNumber(1));
 		inventoryShield.put(2, Settings.getInstance().getShieldNumber(2));
@@ -33,31 +56,13 @@ public class Inventory {
 	}
 	
 	
-	public boolean checkAtomAvailability(int id, int howmany) {
-		if(inventoryAtom.get(id) >= howmany) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	
-	public boolean checkPowerUpAvailability(int id, int howmany) {
-		if(inventoryPowerUp.get(id) >= howmany) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	
-	
 	public int getInventoryAtomCount(int type) {
-		return this.inventoryAtom.get(type);
+		return this.inventoryAtom.get(type).size();
 	}
 	
 	
 	public int getInventoryPowerUpCount(int type) {
-		return this.inventoryPowerUp.get(type);
+		return this.inventoryPowerUp.get(type).size();
 	}
 	
 	
@@ -66,17 +71,24 @@ public class Inventory {
 	}
 	
 	
-	public void addInventoryAtom(int type, int howmany) {
-		int curr = this.inventoryAtom.get(type);
-		this.inventoryAtom.replace(type, curr+howmany);
+	public void addInventoryAtom(int type, int count) {
+		Throwable newAt = AtomFactory.getInstance().getNewAtom(type, new Point(0,0));
+		this.inventoryAtom.get(type).add(newAt);
+	}
+	
+	public void addInventoryAtom(Throwable barrelAtom) {
+		this.inventoryAtom.get(barrelAtom.getAtomID()).add((Atom) barrelAtom);
 	}
 	
 	
 	public void addInventoryPowerUp(int type) {
-		int curr = this.inventoryPowerUp.get(type);
-		this.inventoryPowerUp.replace(type, curr+1);
+		PowerUp newPow = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(0,0), true);
+		this.inventoryPowerUp.get(type).add(newPow);
 	}
 	
+	public void addInventoryPowerUp(PowerUp pw) {
+		this.inventoryPowerUp.get(pw.getID()).add(pw);
+	}
 	
 	public void addInventoryShield(int type) {
 		int curr = this.inventoryShield.get(type);
@@ -84,18 +96,21 @@ public class Inventory {
 	}
 	
 	
-	public void removeInventoryAtom(int type, int howmany) {
-		int curr = this.inventoryAtom.get(type);
-		if(curr > 0) {
-			this.inventoryAtom.replace(type, curr-howmany);
+	public void removeInventoryAtom(int type, int count) {
+		int curr = this.inventoryAtom.get(type).size();
+		if(curr >= count) {
+			for (int i = 0; i < count; i++) {
+				this.inventoryAtom.get(type).remove(this.inventoryAtom.get(type).size()-1);
+			}
+			
 		}
 	}
 	
 	
 	public void removeInventoryPowerUp(int type) {
-		int curr = this.inventoryPowerUp.get(type);
+		int curr = this.inventoryPowerUp.get(type).size();
 		if(curr > 0) {
-			this.inventoryPowerUp.replace(type, curr-1);
+			this.inventoryPowerUp.get(type).remove(curr-1);
 		}
 	}
 	
@@ -105,6 +120,23 @@ public class Inventory {
 		if(curr > 0) {
 			this.inventoryShield.replace(type, curr-1);
 		}
+	}
+	
+	public Throwable getRandomAtom() {
+		Random rn = new Random();
+		int type = rn.nextInt(4)+1;
+		while(this.inventoryAtom.get(type).size() < 1) {
+			type = rn.nextInt(4)+1;
+		}
+		Throwable at = this.inventoryAtom.get(type).remove(this.inventoryAtom.get(type).size() - 1);
+		return at;
+	}
+	
+	public PowerUp getPowerUp(int type) {
+		if(this.inventoryPowerUp.get(type).size() > 0) {
+			PowerUp pw = this.inventoryPowerUp.get(type).remove(this.inventoryPowerUp.get(type).size() - 1);
+			return pw;
+		}else return null;
 	}
 	
 }

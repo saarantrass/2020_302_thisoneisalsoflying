@@ -190,15 +190,17 @@ public class Game implements IObservable{
 		if(this.barrelAtom != null) {
 
 			this.barrelAtom.setAngle(this.shooter.getAngle());
-			this.shooter.inventory.removeInventoryAtom(this.barrelAtom.getAtomID(),1);
+			//this.shooter.inventory.removeInventoryAtom(this.barrelAtom.getAtomID(),1);
 			this.onScreenAtomList.add(this.barrelAtom);
+			this.barrelAtom = null;
 			getRandomAtomToBarrel();
 
 		} else if(this.barrelPowerUp != null) {
 
 			this.barrelPowerUp.setAngle(this.shooter.getAngle());
-			this.shooter.inventory.removeInventoryPowerUp(this.barrelPowerUp.getID());
+			//this.shooter.inventory.removeInventoryPowerUp(this.barrelPowerUp.getID());
 			this.onScreenPowerUpList.add(this.barrelPowerUp);
+			this.barrelPowerUp = null;
 			getRandomAtomToBarrel();
 		}
 	}
@@ -264,28 +266,28 @@ public class Game implements IObservable{
 	public void addShield(int type) {
 		ShieldDecorator at = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
 		at.addShield();
-		System.out.println(at.getEfficiency());
+		//System.out.println(at.getEfficiency());
 		this.barrelAtom=at;
 		this.shooter.inventory.removeInventoryShield(type);
 	}
 	
 	public void getRandomAtomToBarrel() {
-		Random rn = new Random();
-		int type = rn.nextInt(4)+1;
-		while(!this.shooter.inventory.checkAtomAvailability(type, 1)) {
-			type = (int) (1 + (Math.random() * 3));
-		}
-
+		if(this.barrelAtom != null) this.shooter.inventory.addInventoryAtom(this.barrelAtom);
+		else if(this.barrelPowerUp != null) this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
 		this.barrelPowerUp = null;
-		this.barrelAtom = AtomFactory.getInstance().getNewAtom(type, this.shooter.getBarrelCoordinate());
+		this.barrelAtom = this.shooter.inventory.getRandomAtom();
+		this.barrelAtom.setCoordinate(this.shooter.getBarrelCoordinate());
 		this.barrelAtom.setAngle(this.shooter.getAngle());
 	}
 
 
 	public void getPowerUpToBarrel(int type) {
-		if(this.shooter.inventory.checkPowerUpAvailability(type, 1)) {
-			this.barrelAtom = null;
-			this.barrelPowerUp = FallingObjectFactory.getInstance().getNewPowerUp(type, this.shooter.getBarrelCoordinate(), true);
+		if(this.barrelAtom != null) this.shooter.inventory.addInventoryAtom(this.barrelAtom);
+		else if(this.barrelPowerUp != null) this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
+		this.barrelAtom = null;
+		this.barrelPowerUp = this.shooter.inventory.getPowerUp(type);
+		if(this.barrelPowerUp != null) {
+			this.barrelPowerUp.setCoordinate(this.shooter.getBarrelCoordinate());
 			this.barrelPowerUp.setAngle(this.shooter.getAngle());
 		}
 	}
