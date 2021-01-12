@@ -166,36 +166,27 @@ public class Shooter implements IObservable{
 				if(this.isMoving) {
 					if(this.moveDirection == 0) { //left
 						if(this.coordinate.x > 0) {
-							this.coordinate.x -= speed;						
+							if(this.getBarrelCoordinate().x > 0) { //TODO
+								this.coordinate.x -= speed;														
+							}
 						}
 					} else if(moveDirection == 1) { //right
 						if(this.coordinate.x < (int)(Settings.getInstance().getScreenSize().width * 7/8) - L/2) {
-							this.coordinate.x += speed;
+							if(this.getBarrelCoordinate().x < (Settings.getInstance().getScreenSize().width * 7/8 - this.L/10)) { //TODO													
+								this.coordinate.x += speed;
+							}
 						}
 					}
 					publish();
 				}
-			} else {
-				try {
-					Thread.sleep(100);
-                } catch(InterruptedException e) {
-                    // nothing
-                }
-			}
+			} 
 			
-			//to prevent crash
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				while (true) {
-					try {
-						Thread.sleep(100);
-					} catch (InterruptedException e2) {
-						break;
-					}
-				}
+				System.out.println(e);
+				break;
 			}
-				//to prevent crash
 		}
 	});
 	
@@ -211,37 +202,28 @@ public class Shooter implements IObservable{
 				if(this.isRotating) {
 					if(this.rotateDirection == 0) { //left
 						if(this.angle >-90) {
-							this.angle -= 9;
+							if(this.getBarrelCoordinate().x > 0) { //TODO
+								this.angle -= 9;								
+							}
 						}
 					} else if(this.rotateDirection == 1) { //right
 						if(this.angle<90) {
-							this.angle += 9;
+							if(this.getBarrelCoordinate().x < (Settings.getInstance().getScreenSize().width * 7/8 - this.L/10)) { //TODO
+								this.angle += 9;								
+							}
 						}
 					}
 					
 					publish();
 				}
-			} else {
-				try {
-					Thread.sleep(100);
-                } catch(InterruptedException e) {
-                    // nothing
-                }
 			}
 			
-			//to prevent crash
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				while (true) {
-					try {
-						Thread.sleep(100);
-					} catch (InterruptedException e2) {
-						break;
-					}
-				}
+				System.out.println(e);
+				break;
 			}
-				//to prevent crash
 		}
 	});
 	
@@ -249,6 +231,13 @@ public class Shooter implements IObservable{
 	public String toString() {
 		return "Shooter[Coordinate: (" + this.coordinate.x + ", " + this.coordinate.y + 
 				"), Speed: " + this.speed + ", Angle: " + this.angle + "]";
+	}
+	
+	
+	public boolean checkAtomLeft() {
+		if(this.inventory.checkAtomAvailability(1, 1) || this.inventory.checkAtomAvailability(2, 1) || this.inventory.checkAtomAvailability(3, 1) || this.inventory.checkAtomAvailability(4, 1))
+			return true;
+		return false;
 	}
 
 	

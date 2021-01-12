@@ -24,7 +24,6 @@ import javax.swing.border.LineBorder;
 
 import Domain.Game;
 import Domain.GameController;
-import Domain.Settings;
 import UI.IObserver;
 import UI.ImageResizer;
 import UI.GameObjectImages.GameObjectImageFactory;
@@ -79,7 +78,7 @@ public class GameModePanel extends JPanel implements IObserver{
 	private MainGamePanel mainGamePanel = MainGamePanel.getInstance();
 	private PausePanel pausePanel = new PausePanel();
 	private GameOverPanel gameOverPanel =  new GameOverPanel();
-	private QuitPanel quitPanel;
+	private QuitPanel quitPanel = new QuitPanel();
 	
 	public GameModePanel(GameController GC) {
 		
@@ -91,8 +90,6 @@ public class GameModePanel extends JPanel implements IObserver{
 		this.setLayout(new BorderLayout());
 		this.setSidePanelImages();
 		this.setSidePanel();
-		
-		quitPanel = new QuitPanel(quitPanelButtonsListener);
 		
 		/*
 		 * player panel design
@@ -288,11 +285,11 @@ public class GameModePanel extends JPanel implements IObserver{
 		this.mainGamePanel.initialize();
 	}
 	
-	private void setSidePanel() { //TODO GET ALL FROM SETTİNGS
+	private void setSidePanel() {
 		this.currentScoreField.setText(Double.toString(Game.getInstance().player.getScore()));
 		
-		int minutes = (int) Math.floor((Settings.getInstance().timeRemaining / 1000) / 60);
-        int seconds = (int) Math.floor((Settings.getInstance().timeRemaining / 1000) % 60);
+		int minutes = (int) Math.floor((Game.getInstance().getRemainingTime() / 1000) / 60);
+        int seconds = (int) Math.floor((Game.getInstance().getRemainingTime() / 1000) % 60);
         if(seconds < 10) {
         	this.currentTimeField.setText(Integer.toString(minutes) + ":0" + Integer.toString(seconds));
         } else {
@@ -360,16 +357,16 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	public void displayPausePanel() {
 		ScreenCoordinator.getInstance().setCurrentPanel(pausePanel);
-		pausePanel.addKeyListener(pausePanelListener);
-		pausePanel.addQuitButtonListener(quitButtonListener);
+		this.pausePanel.addKeyListener(pausePanelListener);
+		this.pausePanel.addQuitButtonListener(quitButtonsListener);
 		this.mainGamePanel.add(pausePanel);
 		this.mainGamePanel.validate();
 		this.mainGamePanel.repaint();
 	}
 	
 	public void removePausePanel() {
-		pausePanel.removeKeyListener(pausePanelListener);
-		pausePanel.removeQuitButtonListener(quitButtonListener);
+		this.pausePanel.removeKeyListener(pausePanelListener);
+		this.pausePanel.removeQuitButtonListener(quitButtonsListener);
 		this.mainGamePanel.remove(pausePanel);
 		ScreenCoordinator.getInstance().gameScreen();
 		this.mainGamePanel.validate();
@@ -378,12 +375,14 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	public void displayQuitPanel() {
 		ScreenCoordinator.getInstance().setCurrentPanel(quitPanel);
+		this.quitPanel.addQuitButtonListener(quitButtonsListener);
 		this.mainGamePanel.add(quitPanel);
 		this.mainGamePanel.validate();
 		this.mainGamePanel.repaint();
 	}
 	
 	public void removeQuitPanel() {
+		this.quitPanel.removeQuitButtonListener(quitButtonsListener);
 		this.mainGamePanel.remove(quitPanel);
 		ScreenCoordinator.getInstance().gameScreen();
 		this.mainGamePanel.validate();
@@ -392,7 +391,16 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	public void displayGameOverPanel() {
 		ScreenCoordinator.getInstance().setCurrentPanel(gameOverPanel);
+		this.gameOverPanel.addQuitButtonListener(quitButtonsListener);
 		this.mainGamePanel.add(gameOverPanel);
+		this.mainGamePanel.validate();
+		this.mainGamePanel.repaint();
+	}
+	
+	public void removeGameOverPanel() {
+		this.gameOverPanel.removeQuitButtonListener(quitButtonsListener);
+		this.mainGamePanel.remove(gameOverPanel);
+		ScreenCoordinator.getInstance().gameScreen();
 		this.mainGamePanel.validate();
 		this.mainGamePanel.repaint();
 	}
@@ -463,7 +471,7 @@ public class GameModePanel extends JPanel implements IObserver{
 				GC.saveGame();
 			}
 			
-			if(e.getKeyCode() == KeyEvent.VK_L) { //TODO
+			if(e.getKeyCode() == KeyEvent.VK_L) {
 				GC.loadGame();
 				
 			}
@@ -500,7 +508,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		
 	};
 	
-	private ActionListener quitButtonListener = new ActionListener() {
+	private ActionListener quitButtonsListener = new ActionListener() {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -509,14 +517,7 @@ public class GameModePanel extends JPanel implements IObserver{
 				displayQuitPanel();
 				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
-		}
-		
-	};
-	
-	private ActionListener quitPanelButtonsListener = new ActionListener() {
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
+			
 			if(e.getActionCommand().equals("Save & Quit")) { //TODO
 				removeQuitPanel();
 				GC.saveGame();
@@ -527,6 +528,7 @@ public class GameModePanel extends JPanel implements IObserver{
 			
 			if(e.getActionCommand().equals("Quit")) { //TODO
 				removeQuitPanel();
+				removeGameOverPanel();
 				GC.quitGame();
 				ScreenCoordinator.getInstance().initialize();
 				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
@@ -541,14 +543,13 @@ public class GameModePanel extends JPanel implements IObserver{
 		
 	};
 	
-	
 	@Override
 	public void update() {
 		if(Game.getInstance().isFinished) {
 			this.displayGameOverPanel();
-			this.gameOverPanel.requestFocus();
+		} else {
+			this.setSidePanel();			
 		}
-		this.setSidePanel();
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.awt.Point;
 import Domain.GameObjects.FallingObject;
 import Domain.GameObjects.IMovingBehaviour;
 import Domain.GameObjects.LinearStrategy;
+import Domain.GameObjects.ShootedStrategy;
 
 public abstract class PowerUp extends FallingObject implements IMovingBehaviour{
 	public boolean isThrown;
@@ -24,7 +25,7 @@ public abstract class PowerUp extends FallingObject implements IMovingBehaviour{
 	@Override
 	public void updateFallingStrategy() {
 		if (isThrown) {
-			this.fallingBehaviour = new LinearStrategy(this);
+			this.fallingBehaviour = new ShootedStrategy(this);
 		}
 	}
 

@@ -31,7 +31,7 @@ public class GameController {
 	}
 	
 	
-	public void rotateShooter(int direction) {//TODO: 10 derece d�n�yormu�
+	public void rotateShooter(int direction) {
 		Game.getInstance().shooter.rotate(direction);
 	}
 	

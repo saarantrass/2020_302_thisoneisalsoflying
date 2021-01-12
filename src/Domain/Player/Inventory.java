@@ -8,7 +8,7 @@ public class Inventory {
 	private HashMap<Integer, Integer> inventoryAtom;
 	private HashMap<Integer, Integer> inventoryPowerUp;
 	private HashMap<Integer, Integer> inventoryShield;
-	//private HashMap<Integer, ArrayList<Atom>> ýnv;//TODO
+	//private HashMap<Integer, ArrayList<Atom>> ï¿½nv;//TODO
 	
 	
 	public Inventory() {
@@ -46,6 +46,15 @@ public class Inventory {
 		if(inventoryPowerUp.get(id) >= howmany) {
 			return true;
 		}else {
+			return false;
+		}
+	}
+	
+	
+	public boolean checkShieldAvailability(int id) {
+		if(inventoryShield.get(id) > 0) {
+			return true;
+		} else {
 			return false;
 		}
 	}
