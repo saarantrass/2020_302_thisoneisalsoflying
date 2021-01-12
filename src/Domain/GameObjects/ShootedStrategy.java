@@ -23,7 +23,7 @@ public class ShootedStrategy implements IMovingBehaviour{
 			if(mol.getCoordinate().x < 0 || mol.getCoordinate().x > (Settings.getInstance().getScreenSize().getWidth() * 7/8)) {
 				mol.setxSpeed(-mol.getxSpeed());
 			}
-			mol.getCoordinate().x += mol.getxSpeed();
+			mol.getCoordinate().x -= mol.getxSpeed();
 			mol.getCoordinate().y -= mol.getySpeed();
 		}else if (atom != null) {
 			if(atom.getCoordinate().x < 0 || atom.getCoordinate().x > (Settings.getInstance().getScreenSize().getWidth() * 7/8)) {

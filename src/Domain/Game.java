@@ -22,6 +22,7 @@ public class Game implements IObservable{
 
 	private GameController GC;
 	public int L;
+	private int difficultyLevel;
 	private static Game game_instance = null;
 	private List<IObserver> observers = new ArrayList<IObserver>();
 	public boolean isPaused = false;
@@ -56,7 +57,8 @@ public class Game implements IObservable{
 	public void startGame(GameController GC){
 		this.GC = GC;
 		this.L = Settings.getInstance().getLengthUnit();
-		int xShooter = Settings.getInstance().getScreenSize().width * 7/16;
+		this.difficultyLevel = Settings.getInstance().getDifficultyLevel();
+		int xShooter = Settings.getInstance().getScreenSize().width * 7/16 - this.GC.settings.getLengthUnit()/4;
 		int yShooter = Settings.getInstance().getScreenSize().height - this.GC.settings.getLengthUnit();
 		this.shooter = new Shooter(new Point(xShooter,  yShooter));
 		this.player = new Player();
@@ -69,7 +71,7 @@ public class Game implements IObservable{
 
 	private Thread mainGameLoop = new Thread(() -> {
 		while (true) {
-			if (this.GC.settings.timeRemaining <= 0) {
+			if (this.GC.settings.timeRemaining <= 0 || this.player.getHealth() <= 0) {
 				this.finishGame();
 			} else if (!this.isPaused && !this.isFinished) {
 				this.continueGame();
@@ -102,51 +104,54 @@ public class Game implements IObservable{
 
 
 	private void continueGame() {
-
 		this.timer++;
-		//TODO: Adjust this according to the difficulty level/check if correct
-		//TODO: settings.getins yerine baþta initialize etsek ya?
-		if(this.timer % (10/Settings.getInstance().getDifficultyLevel()) == 0) {
+		
+		if(this.timer % (10/this.difficultyLevel) == 0) { //TODO TAM DEÄžÄ°L
 			createRandomFallingObject();
 		}
-
 		moveThemAll();
 		collisionHandler();
+		
 		this.publish();
 	}
 
 
 	private void createRandomFallingObject() {
-		Random rn = new Random();
-		int type = rn.nextInt(4)+1;
-		int next = rn.nextInt(3);
-		int xCoord = (int) (Math.random() * (Settings.getInstance().getScreenSize().width * 7 / 8)) - (L/4); //TODO: Random check
-		switch (next) {
-		case 0:
-			if(Settings.getInstance().getMoleculeNumber(type) > 0) {
-				//TODO: shorten the factory.getinstance.blahblah......
-				Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, -L/4), Settings.getInstance().isLinear(), Settings.getInstance().isSpinning());
-				onScreenMoleculeList.add(newMol);
-				Settings.getInstance().decreaseMoleculeNumber(type);
+		if(Settings.getInstance().checkFallingObjectLeft()) {
+			while(true) {
+				Random rn = new Random();
+				int next = rn.nextInt(3);
+				int type = rn.nextInt(4)+1;
+				int xCoord = (int) (Math.random() * (Settings.getInstance().getScreenSize().width * 7/8 - (L/4))); //TODO: Random check
+				
+				if(next == 0) {
+					if(Settings.getInstance().getMoleculeNumber(type) > 0) {
+						//TODO: shorten the factory.getinstance.blahblah......
+						Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, -L/4), Settings.getInstance().isLinear(), Settings.getInstance().isSpinning());
+						onScreenMoleculeList.add(newMol);
+						Settings.getInstance().decreaseMoleculeNumber(type);
+						break;
+					}
+					
+				} else if(next == 1) {
+					if(Settings.getInstance().getPowerUpNumber(type) > 0) {
+						PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, -L/4),false);
+						onScreenPowerUpList.add(newPw);
+						Settings.getInstance().decreasePowerUpNumber(type);
+						break;
+					}
+					
+				} else if(next == 2) {
+					if(Settings.getInstance().getReactionBlockerNumber(type) > 0) {
+						ReactionBlocker bl = FallingObjectFactory.getInstance().getNewReactionBlocker(type, new Point(xCoord, -L/4));
+						onScreenReactionBlockerList.add(bl);
+						Settings.getInstance().decreaseReactionBlockerNumber(type);
+						break;
+					}
+				}
 			}
-			break;
-		case 1:
-			if(Settings.getInstance().getPowerUpNumber(type) > 0) {
-				PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, -L/4),false);
-				onScreenPowerUpList.add(newPw);
-				Settings.getInstance().decreasePowerUpNumber(type);
-			}
-			break;
-		case 2:
-			if(Settings.getInstance().getReactionBlockerNumber(type) > 0) {
-				ReactionBlocker bl = FallingObjectFactory.getInstance().getNewReactionBlocker(type, new Point(xCoord, -L/4));
-				onScreenReactionBlockerList.add(bl);
-				Settings.getInstance().decreaseReactionBlockerNumber(type);
-			}
-			break;
-
-		default:
-			break;
+		} else {
+			//TODO FINISH GAME?
 		}
 	}
 
@@ -208,7 +213,7 @@ public class Game implements IObservable{
 
 	private void collisionHandler() {
 		//TODO: reaction blocker blocks the atom-molecule unification!!!!
-		//TODO: powerup baþka reactiona deðince yok oluyormuþ
+		//TODO: powerup baï¿½ka reactiona deï¿½ince yok oluyormuï¿½
 		/*
 		 * Atom-Molecule Collision
 		 */
@@ -264,12 +269,15 @@ public class Game implements IObservable{
 
 
 	public void addShield(int type) {
-		ShieldDecorator at = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
-		at.addShield();
-		//System.out.println(at.getEfficiency());
-		this.barrelAtom=at;
-		this.shooter.inventory.removeInventoryShield(type);
+		if(this.shooter.inventory.checkShieldAvailability(type)) {
+			ShieldDecorator at = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
+			at.addShield();
+			//System.out.println(at.getEfficiency());
+			this.barrelAtom=at;
+			this.shooter.inventory.removeInventoryShield(type);
+		}
 	}
+	
 	
 	public void getRandomAtomToBarrel() {
 		if(this.barrelAtom != null) this.shooter.inventory.addInventoryAtom(this.barrelAtom);
@@ -302,12 +310,14 @@ public class Game implements IObservable{
 		
 	}
 	
+	
 	public void saveGame() {
 		saveLoadService = new FileSaveLoadAdapter();
 		saveLoadService.save();
 		this.mongoLoadService = new MongoSaveLoadAdapter();
 		this.mongoLoadService.save();
 	}
+	
 	
 	public void loadGame() {
 		
@@ -328,6 +338,11 @@ public class Game implements IObservable{
 	public void quitGame() {
 		game_instance = null;
 	}
+	
+	
+	public double getRemainingTime() {
+		return Settings.getInstance().timeRemaining;
+	}
 
 
 	@Override
@@ -339,7 +354,6 @@ public class Game implements IObservable{
 	@Override
 	public void remove(IObserver o) {
 		this.observers.remove(o);
-
 	}
 
 
@@ -347,6 +361,5 @@ public class Game implements IObservable{
 	public void publish() {
 		for(IObserver o: this.observers) o.update();
 	}
-
 
 }

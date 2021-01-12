@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
-public class PausePanel extends JPanel { //TODO resize the panel to make it more beautiful
+public class PausePanel extends JPanel {
 	
 	private JLabel pauseLabel = new JLabel("You paused the game. To Continue Press 'R'");
 	private JButton quitButton = new JButton("Quit Game");
