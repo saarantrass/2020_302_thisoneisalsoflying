@@ -276,8 +276,12 @@ public class Game implements IObservable{
 		else if(this.barrelPowerUp != null) this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
 		this.barrelPowerUp = null;
 		this.barrelAtom = this.shooter.inventory.getRandomAtom();
-		this.barrelAtom.setCoordinate(this.shooter.getBarrelCoordinate());
-		this.barrelAtom.setAngle(this.shooter.getAngle());
+		if(this.barrelAtom != null) {
+			this.barrelAtom.setCoordinate(this.shooter.getBarrelCoordinate());
+			this.barrelAtom.setAngle(this.shooter.getAngle());
+		}else {
+			//TODO envanter bitti
+		}
 	}
 
 
