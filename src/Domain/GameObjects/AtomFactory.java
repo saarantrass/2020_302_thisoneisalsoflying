@@ -1,11 +1,6 @@
 package Domain.GameObjects;
 
 import java.awt.Point;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
-
 import Domain.GameObjects.Atoms.*;
 import Domain.GameObjects.Atoms.Shields.EtaShield;
 import Domain.GameObjects.Atoms.Shields.LotaShield;
@@ -18,7 +13,7 @@ public class AtomFactory {
 
 	public AtomFactory() {}
 
-	public ShieldDecorator addNewShield(int type, Throwable atom) {
+	public ShieldDecorator addNewShield(int type, Atom atom) {
 
 		switch (type) {
 		case 1:
@@ -36,34 +31,21 @@ public class AtomFactory {
 		return null;
 	}
 
-	public Throwable getNewAtom(int type, Point coord) {
-		int neutron = getRandomNeutron(type);
+	public Atom getNewAtom(int type, Point coord) {
 		switch (type) {
 		case 1:
-			return new AlphaAtom(type,coord,neutron);
+			return new AlphaAtom(coord);
 
 		case 2:
-			return new BetaAtom(type,coord,neutron);
+			return new BetaAtom(coord);
 
 		case 3:
-			return new GammaAtom(type,coord,neutron);
+			return new GammaAtom(coord);
 
 		case 4:
-			return new SigmaAtom(type,coord,neutron);
+			return new SigmaAtom(coord);
 		}
 		return null;
-	}
-
-	private int getRandomNeutron(int type) {
-		Random rn = new Random();
-		List<Integer> list = null;
-		switch(type) {
-		case 1:		list = Arrays.asList(7,8,9);			break;
-		case 2:		list = Arrays.asList(15,16,17,18,21);	break;
-		case 3:		list = Arrays.asList(29,32,33);			break;
-		case 4:		list = Arrays.asList(63,64,67);			break;
-		}
-		return list.get(rn.nextInt(list.size()));
 	}
 
 	public static AtomFactory getInstance(){

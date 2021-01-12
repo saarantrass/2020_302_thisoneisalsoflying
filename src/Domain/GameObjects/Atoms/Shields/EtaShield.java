@@ -1,6 +1,6 @@
 package Domain.GameObjects.Atoms.Shields;
 
-import Domain.GameObjects.Throwable;
+import Domain.GameObjects.Atoms.Atom;
 
 public class EtaShield extends ShieldDecorator  {
 	/***
@@ -10,7 +10,7 @@ public class EtaShield extends ShieldDecorator  {
 	 */
 	private double updatedEfficiency;
 	private static double ETA_EFF = 0.05;
-	public EtaShield(Throwable atom) {
+	public EtaShield(Atom atom) {
 		super(atom);
 		this.updatedEfficiency = atom.getEfficiency();
 		addShield();

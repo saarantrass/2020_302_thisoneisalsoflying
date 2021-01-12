@@ -1,7 +1,6 @@
 package Test;
 
 import Domain.GameObjects.AtomFactory;
-import Domain.GameObjects.Throwable;
 import Domain.GameObjects.Atoms.*;
 import Domain.GameObjects.Atoms.Shields.EtaShield;
 import Domain.GameObjects.Atoms.Shields.ShieldDecorator;
@@ -16,8 +15,8 @@ import static org.junit.Assert.assertNotEquals;
 import java.awt.Point;
 
 public class EtaShieldTest {
-	Throwable atom1;
-	Throwable atom2;
+	Atom atom1;
+	Atom atom2;
 	ShieldDecorator shieldedAtom;
 	ShieldDecorator shieldedAtom2;
 	ShieldDecorator shieldedAtom3;
@@ -51,17 +50,14 @@ public class EtaShieldTest {
 		assertNotNull("Alpha atom is created", this.atom1);
 		assertTrue("Alpha is Alpha Atom", atom1 instanceof AlphaAtom);
 		assertTrue("Alpha is Atom", atom1 instanceof Atom);
-		assertTrue("Alpha is Throwable", atom1 instanceof Throwable);
 		
 		assertNotNull("Beta Atom is created", this.atom2);
 		assertTrue("Beta is Beta Atom", atom2 instanceof BetaAtom);
 		assertTrue("Beta is Atom", atom2 instanceof Atom);
-		assertTrue("Beta is Throwable", atom2 instanceof Throwable);
 
 		assertNotNull("Eta Shielded atom is created", this.shieldedAtom);
 		assertTrue("Eta Shielded atom is Eta Shield", shieldedAtom instanceof EtaShield);
 		assertTrue("Eta Shielded atom is Shield Decorator", shieldedAtom instanceof ShieldDecorator);
-		assertTrue("Eta Shielded atom is Throwable", shieldedAtom instanceof Throwable);
 		
 	}
 	

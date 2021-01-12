@@ -1,12 +1,12 @@
 package Domain.GameObjects.Atoms.Shields;
 
 
-import Domain.GameObjects.Throwable;
+import Domain.GameObjects.Atoms.Atom;
 
 public class ZetaShield extends ShieldDecorator {
 	private double updatedEfficiency;
 	private static double ZETA_EFF = 0.2;
-	public ZetaShield(Throwable atom) {
+	public ZetaShield(Atom atom) {
 		super(atom);
 		this.updatedEfficiency=atom.getEfficiency();
 		addShield();

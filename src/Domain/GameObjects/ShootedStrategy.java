@@ -2,29 +2,30 @@ package Domain.GameObjects;
 
 
 import Domain.Settings;
+import Domain.GameObjects.Atoms.Atom;
 
 public class ShootedStrategy implements IMovingBehaviour{
-	private transient FallingObject mol;
-	private transient Throwable atom;
+	private transient FallingObject powerUp;
+	private transient Atom atom;
 	
-	public ShootedStrategy(FallingObject mol) {
-		this.mol = mol;
+	public ShootedStrategy(FallingObject powerUp) {
+		this.powerUp = powerUp;
 		this.atom = null;
 	}
 	
-	public ShootedStrategy(Throwable atom) {
-		this.mol = null;
+	public ShootedStrategy(Atom atom) {
+		this.powerUp = null;
 		this.atom = atom;
 	}
 	
 	@Override
 	public void move() {
-		if (mol != null) {
-			if(mol.getCoordinate().x < 0 || mol.getCoordinate().x > (Settings.getInstance().getScreenSize().getWidth() * 7/8)) {
-				mol.setxSpeed(-mol.getxSpeed());
+		if (powerUp != null) {
+			if(powerUp.getCoordinate().x < 0 || powerUp.getCoordinate().x > (Settings.getInstance().getScreenSize().getWidth() * 7/8)) {
+				powerUp.setxSpeed(-powerUp.getxSpeed());
 			}
-			mol.getCoordinate().x += mol.getxSpeed();
-			mol.getCoordinate().y -= mol.getySpeed();
+			powerUp.getCoordinate().x -= powerUp.getxSpeed();
+			powerUp.getCoordinate().y -= powerUp.getySpeed();
 		}else if (atom != null) {
 			if(atom.getCoordinate().x < 0 || atom.getCoordinate().x > (Settings.getInstance().getScreenSize().getWidth() * 7/8)) {
 				atom.setxSpeed(-atom.getxSpeed());

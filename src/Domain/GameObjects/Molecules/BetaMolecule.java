@@ -8,7 +8,7 @@ import Domain.GameObjects.ZigZagStrategy;
 public class BetaMolecule extends Molecule {
 
 	public BetaMolecule(int moleculeID, Point coordinate, boolean isLinear, boolean isSpinning) {
-		super(moleculeID, coordinate, false, false);
+		super(moleculeID, coordinate, isLinear, isSpinning);
 		setFallingStrategy(new LinearStrategy(this));
 	}
 	
