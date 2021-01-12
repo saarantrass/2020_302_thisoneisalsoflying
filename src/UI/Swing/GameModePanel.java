@@ -520,7 +520,7 @@ public class GameModePanel extends JPanel implements IObserver{
 				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
-			if(e.getActionCommand().equals("Save & Quit")) { //TODO
+			if(e.getActionCommand().equals("Save & Quit")) {
 				removeQuitPanel();
 				GC.saveGame();
 				GC.quitGame();
@@ -548,6 +548,8 @@ public class GameModePanel extends JPanel implements IObserver{
 	@Override
 	public void update() {
 		if(Game.getInstance().isFinished) {
+			GC.stopMoveShooter();
+			GC.stopRotateShooter();
 			this.displayGameOverPanel();
 		} else {
 			this.setSidePanel();			
