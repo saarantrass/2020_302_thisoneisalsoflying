@@ -19,13 +19,17 @@ import Domain.SaveLoad.MongoSaveLoadAdapter;
 import UI.IObserver;
 public class Game implements IObservable{
 
-	private GameController GC;
+	private static Game game_instance = null;
+
 	public int L;
 	private int difficultyLevel;
-	private static Game game_instance = null;
+	private int timer = 0;
+	
 	private List<IObserver> observers = new ArrayList<IObserver>();
+	
 	public boolean isPaused = false;
 	public boolean isFinished = false;
+	
 	ISaveLoadAdapter saveLoadService;
 	ISaveLoadAdapter mongoLoadService;
 
@@ -39,7 +43,6 @@ public class Game implements IObservable{
 	public Shooter shooter = null;
 	public Player player = null;
 
-	private int timer = 0;
 
 
 	private Game() {}
@@ -53,28 +56,30 @@ public class Game implements IObservable{
 	}
 
 
-	public void startGame(GameController GC){
-		this.GC = GC;
+	public void startGame(){
 		this.L = Settings.getInstance().getLengthUnit();
 		this.difficultyLevel = Settings.getInstance().getDifficultyLevel();
-		int xShooter = Settings.getInstance().getScreenSize().width * 7/16 - this.GC.settings.getLengthUnit()/4;
-		int yShooter = Settings.getInstance().getScreenSize().height - this.GC.settings.getLengthUnit();
+		
+		int xShooter = Settings.getInstance().getScreenSize().width * 7/16 - Settings.getInstance().getLengthUnit()/4;
+		int yShooter = Settings.getInstance().getScreenSize().height - Settings.getInstance().getLengthUnit();
 		this.shooter = new Shooter(new Point(xShooter,  yShooter));
 		this.player = new Player();
+		
 		if(this.barrelAtom == null) {
 			getRandomAtomToBarrel();
 		}
+		
 		mainGameLoop.start();
 	}
 
 
 	private Thread mainGameLoop = new Thread(() -> {
 		while (true) {
-			if (this.GC.settings.timeRemaining <= 0 || this.player.getHealth() <= 0) {
+			if (Settings.getInstance().timeRemaining <= 0 || this.player.getHealth() <= 0) {
 				this.finishGame();
 			} else if (!this.isPaused && !this.isFinished) {
 				this.continueGame();
-				this.GC.settings.timeRemaining -= 100;
+				Settings.getInstance().timeRemaining -= 100;
 			} else {
 				try {
 					Thread.sleep(100);
@@ -127,11 +132,10 @@ public class Game implements IObservable{
 				Random rn = new Random();
 				int next = rn.nextInt(3);
 				int type = rn.nextInt(4)+1;
-				int xCoord = (int) (Math.random() * (Settings.getInstance().getScreenSize().width * 7/8 - (L/4))); //TODO: Random check
+				int xCoord = (int) (Math.random() * (Settings.getInstance().getScreenSize().width * 7/8 - (L/4)));
 				
 				if(next == 0) {
 					if(Settings.getInstance().getMoleculeNumber(type) > 0) {
-						//TODO: shorten the factory.getinstance.blahblah......
 						Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, -L/4), Settings.getInstance().isLinear(), Settings.getInstance().isSpinning());
 						onScreenMoleculeList.add(newMol);
 						Settings.getInstance().decreaseMoleculeNumber(type);
@@ -405,8 +409,10 @@ public class Game implements IObservable{
 
 
 	private void finishGame() {
-		this.isFinished = true;
-		publish();
+		if(!this.isFinished) {
+			this.isFinished = true;
+			publish();			
+		}
 	}
 	
 	

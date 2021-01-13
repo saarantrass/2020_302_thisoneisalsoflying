@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import UI.ImageResizer;
+import UI.ImageDesigner;
 
 @SuppressWarnings("serial")
 public class Background extends JLabel{
@@ -19,7 +19,7 @@ public class Background extends JLabel{
 		try {
 			Dimension size = ScreenCoordinator.SCREEN_SIZE;
 			bc = ImageIO.read(getClass().getResource("../../Images/kuvid_bc.png"));
-			bc = ImageResizer.getResizedImage(bc, size.width, size.height);
+			bc = ImageDesigner.getResizedImage(bc, size.width, size.height);
 			this.setIcon(new ImageIcon(bc));
 			this.setLayout(new BorderLayout());
 			this.setSize(size);

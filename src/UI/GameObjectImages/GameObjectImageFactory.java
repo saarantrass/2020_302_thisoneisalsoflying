@@ -4,7 +4,7 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-import UI.ImageResizer;
+import UI.ImageDesigner;
 
 public class GameObjectImageFactory {
 	
@@ -51,7 +51,7 @@ public class GameObjectImageFactory {
 		this.L = L;
 	}
 	
-	public Image getGameObjectImage(String gameObjectName, int type, boolean isLinear) {
+	public Image getGameObjectImage(String gameObjectName, int type, boolean isLinear, boolean isSpinning, double angle) {
 		Image image = null;
 		
 		switch(gameObjectName) {
@@ -66,7 +66,7 @@ public class GameObjectImageFactory {
 				} else if(type == 4){
 					image = new ImageIcon(getClass().getResource(SIGMA_ATOM_IMAGE)).getImage();
 				}
-				image = ImageResizer.getResizedImage(image, L / 10, L / 10);
+				image = ImageDesigner.getResizedImage(image, L / 10, L / 10);
 				
 				return image;
 				
@@ -89,7 +89,9 @@ public class GameObjectImageFactory {
 					image = new ImageIcon(getClass().getResource(SIGMA_MOLECULE_IMAGE)).getImage();
 				}
 				
-				image = ImageResizer.getResizedImage(image, L / 4, L / 4);
+				image = ImageDesigner.getResizedImage(image, L / 4, L / 4);
+				if(isSpinning)
+					image = ImageDesigner.getRotatedImage(image, angle, L);
 				
 				return image;
 				
@@ -103,7 +105,7 @@ public class GameObjectImageFactory {
 				} else if(type == 4){
 					image = new ImageIcon(getClass().getResource(SIGMA_RB_IMAGE)).getImage();
 				}
-				image = ImageResizer.getResizedImage(image, L / 4, L / 4);
+				image = ImageDesigner.getResizedImage(image, L / 4, L / 4);
 				
 				return image;
 				
@@ -118,7 +120,7 @@ public class GameObjectImageFactory {
 					image = new ImageIcon(getClass().getResource(SIGMA_POWERUP_IMAGE)).getImage();
 				}
 				
-				image = ImageResizer.getResizedImage(image, L / 4, L / 4);
+				image = ImageDesigner.getResizedImage(image, L / 4, L / 4);
 				
 				return image;
 				

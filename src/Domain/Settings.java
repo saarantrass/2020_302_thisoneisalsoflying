@@ -34,9 +34,10 @@ public class Settings {
 	private int thetaNumber;
 	private int zetaNumber;
 	
-	private static Settings settings = null;
-	public double timeRemaining = 600000;
 	private Dimension screenSize;
+	public double timeRemaining;
+	
+	private static Settings settings = null;
 	
 	private Settings() {}
 	
@@ -81,6 +82,8 @@ public class Settings {
 		this.lengthUnit = lengthUnit;
 		this.difficultyLevel = difficultyLevel;
 		this.screenSize = screenSize;
+		
+		this.timeRemaining = 600000;
 	}
 	
 	

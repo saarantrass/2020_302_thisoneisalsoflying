@@ -25,8 +25,7 @@ import javax.swing.border.LineBorder;
 import Domain.Game;
 import Domain.GameController;
 import UI.IObserver;
-import UI.ImageResizer;
-import UI.GameObjectImages.GameObjectImageFactory;
+import UI.ImageDesigner;
 
 
 @SuppressWarnings("serial")
@@ -275,18 +274,22 @@ public class GameModePanel extends JPanel implements IObserver{
 		c.gridy = 3;
 		sidePanel.add(atomPanel, c);
 		
+		this.pausePanel.addKeyListener(pausePanelListener);
+		this.pausePanel.addQuitButtonListener(quitButtonsListener);
+		this.quitPanel.addQuitButtonListener(quitButtonsListener);
+		this.gameOverPanel.addQuitButtonListener(quitButtonsListener);
+		
 		this.setOpaque(false);
 		this.add(mainGamePanel);
 		this.add(sidePanel, BorderLayout.LINE_END);
 		this.setFocusable(true);
 		this.addKeyListener(this.runningModeListener);
 		
-		GameObjectImageFactory.getInstance().setLengthUnit(GC.settings.getLengthUnit());
 		this.mainGamePanel.initialize();
 	}
 	
 	private void setSidePanel() {
-		this.currentScoreField.setText(Double.toString(Game.getInstance().player.getScore()));
+		this.currentScoreField.setText((int) Math.floor((Game.getInstance().player.getScore())) + "." + (int) ((Game.getInstance().player.getScore() * 100) % 100));
 		
 		int minutes = (int) Math.floor((Game.getInstance().getRemainingTime() / 1000) / 60);
         int seconds = (int) Math.floor((Game.getInstance().getRemainingTime() / 1000) % 60);
@@ -321,33 +324,33 @@ public class GameModePanel extends JPanel implements IObserver{
 			Dimension screenSize = ScreenCoordinator.SCREEN_SIZE;
 			
 		    Image img = ImageIO.read(getClass().getResource("../../Images/powerups/+alpha-b.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
+		    img = ImageDesigner.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
 		    alphaPULabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+beta-b.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
+		    img = ImageDesigner.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
 		    betaPULabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+gamma-b.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
+		    img = ImageDesigner.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
 		    gammaPULabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/powerups/+sigma-b.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
+		    img = ImageDesigner.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/2000), (int) (img.getHeight(this) * screenSize.getHeight()/2000));
 		    sigmaPULabel.setIcon(new ImageIcon(img));
 		    
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/alpha.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
+		    img = ImageDesigner.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
 		    alphaAtomLabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/beta.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
+		    img = ImageDesigner.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
 		    betaAtomLabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/gamma.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
+		    img = ImageDesigner.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
 		    gammaAtomLabel.setIcon(new ImageIcon(img));
 		    img = ImageIO.read(getClass().getResource("../../Images/atoms/sigma.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
+		    img = ImageDesigner.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/1300), (int) (img.getHeight(this) * screenSize.getHeight()/1300));
 		    sigmaAtomLabel.setIcon(new ImageIcon(img));
 		    
 		    img = ImageIO.read(getClass().getResource("../../Images/mixer.png"));
-		    img = ImageResizer.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/8000), (int) (img.getHeight(this) * screenSize.getHeight()/8000));
+		    img = ImageDesigner.getResizedImage(img, (int) (img.getWidth(this) * screenSize.getHeight()/8000), (int) (img.getHeight(this) * screenSize.getHeight()/8000));
 		    blenderLabel.setIcon(new ImageIcon(img));
 			
 		} catch (Exception ex) {
@@ -355,55 +358,24 @@ public class GameModePanel extends JPanel implements IObserver{
 		}
 	}
 	
-	public void displayPausePanel() {
-		ScreenCoordinator.getInstance().setCurrentPanel(pausePanel);
-		this.pausePanel.addKeyListener(pausePanelListener);
-		this.pausePanel.addQuitButtonListener(quitButtonsListener);
-		this.mainGamePanel.add(pausePanel);
+	
+	public void displayPanel(JPanel panel) {
+		ScreenCoordinator.getInstance().setCurrentPanel(panel);
+		this.mainGamePanel.add(panel);
 		this.mainGamePanel.validate();
 		this.mainGamePanel.repaint();
+		panel.requestFocus();
 	}
 	
-	public void removePausePanel() {
-		this.pausePanel.removeKeyListener(pausePanelListener);
-		this.pausePanel.removeQuitButtonListener(quitButtonsListener);
-		this.mainGamePanel.remove(pausePanel);
+	
+	public void removePanel(JPanel panel) {
+		this.mainGamePanel.remove(panel);
 		ScreenCoordinator.getInstance().gameScreen();
 		this.mainGamePanel.validate();
 		this.mainGamePanel.repaint();
+		ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 	}
 	
-	public void displayQuitPanel() {
-		ScreenCoordinator.getInstance().setCurrentPanel(quitPanel);
-		this.quitPanel.addQuitButtonListener(quitButtonsListener);
-		this.mainGamePanel.add(quitPanel);
-		this.mainGamePanel.validate();
-		this.mainGamePanel.repaint();
-	}
-	
-	public void removeQuitPanel() {
-		this.quitPanel.removeQuitButtonListener(quitButtonsListener);
-		this.mainGamePanel.remove(quitPanel);
-		ScreenCoordinator.getInstance().gameScreen();
-		this.mainGamePanel.validate();
-		this.mainGamePanel.repaint();
-	}
-	
-	public void displayGameOverPanel() {
-		ScreenCoordinator.getInstance().setCurrentPanel(gameOverPanel);
-		this.gameOverPanel.addQuitButtonListener(quitButtonsListener);
-		this.mainGamePanel.add(gameOverPanel);
-		this.mainGamePanel.validate();
-		this.mainGamePanel.repaint();
-	}
-	
-	public void removeGameOverPanel() {
-		this.gameOverPanel.removeQuitButtonListener(quitButtonsListener);
-		this.mainGamePanel.remove(gameOverPanel);
-		ScreenCoordinator.getInstance().gameScreen();
-		this.mainGamePanel.validate();
-		this.mainGamePanel.repaint();
-	}
 	
 	private KeyListener runningModeListener = new KeyAdapter() {
 		int firstEventCode = 0; //initially 0 since there is no key event code 0
@@ -436,8 +408,7 @@ public class GameModePanel extends JPanel implements IObserver{
 				GC.stopMoveShooter();
 				GC.stopRotateShooter();
 				GC.pauseGame();
-				displayPausePanel();
-				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+				displayPanel(pausePanel);
 			}
 			
 			firstEventCode = secondEventCode;
@@ -464,9 +435,8 @@ public class GameModePanel extends JPanel implements IObserver{
 		public void keyPressed(KeyEvent e) {
 			
 			if(e.getKeyCode() == KeyEvent.VK_R) {
-				removePausePanel();
+				removePanel(pausePanel);
 				GC.resumeGame();
-				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
 			if(e.getKeyCode() == KeyEvent.VK_S) {
@@ -515,31 +485,27 @@ public class GameModePanel extends JPanel implements IObserver{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand().equals("Quit Game")) {
-				removePausePanel();
-				displayQuitPanel();
-				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+				removePanel(pausePanel);
+				displayPanel(quitPanel);
 			}
 			
-			if(e.getActionCommand().equals("Save & Quit")) {
-				removeQuitPanel();
+			if(e.getActionCommand().equals("Save & Quit")) { //TODO
+				removePanel(quitPanel);
 				GC.saveGame();
 				GC.quitGame();
 				ScreenCoordinator.getInstance().initialize();
-				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
 			if(e.getActionCommand().equals("Quit")) { //TODO
-				removeQuitPanel();
-				removeGameOverPanel();
+				removePanel(quitPanel);
+				removePanel(gameOverPanel);
 				GC.quitGame();
 				ScreenCoordinator.getInstance().initialize();
-				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 			
 			if(e.getActionCommand().equals("Back")) {
-				removeQuitPanel();
-				displayPausePanel();
-				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
+				removePanel(quitPanel);
+				displayPanel(pausePanel);
 			}
 		}
 		
@@ -550,7 +516,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		if(Game.getInstance().isFinished) {
 			GC.stopMoveShooter();
 			GC.stopRotateShooter();
-			this.displayGameOverPanel();
+			this.displayPanel(gameOverPanel);
 		} else {
 			this.setSidePanel();			
 		}

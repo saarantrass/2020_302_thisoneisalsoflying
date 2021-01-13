@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 import Domain.Player.Shooter;
 import UI.IObserver;
-import UI.ImageResizer;
+import UI.ImageDesigner;
 import UI.Swing.MainGamePanel;
 
 @SuppressWarnings("serial")
@@ -32,7 +32,7 @@ public class ShooterImage extends Canvas implements IObserver{
 		this.shooter = shooter;
 		this.shooter.add(this);
 		this.image = new ImageIcon(getClass().getResource(SHOOTER_IMAGE)).getImage();
-		this.image = ImageResizer.getResizedImage(image, L/2, L);
+		this.image = ImageDesigner.getResizedImage(image, L/2, L);
 	}
 	
 	
