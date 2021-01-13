@@ -13,9 +13,9 @@ public class ZigZagStrategy implements IMovingBehaviour{
 	public void move() { //TODO BİR MİKTAR SIKINTI VAR
 		if(obj.getCoordinate().x < 0 || obj.getCoordinate().x > (Settings.getInstance().getScreenSize().getWidth() * 7/8)) {
 			obj.setxSpeed(-obj.getxSpeed());
-			obj.setTravelled(obj.getTravelled() - obj.getL() * Math.sin(Math.toRadians(45)));
+			obj.setTravelled(obj.getTravelled() - obj.getL());
 		}
-		if(obj.getTravelled() < obj.getL() * Math.sin(Math.toRadians(45))) {
+		if(obj.getTravelled() < obj.getL()) {
 			obj.setTravelled(obj.getTravelled() + Math.abs(obj.getxSpeed()));
 		} else {
 			obj.setxSpeed(-obj.getxSpeed());
