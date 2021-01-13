@@ -1,6 +1,7 @@
 package UI.Swing;
 
 import Domain.GameController;
+
 import java.awt.Dimension;
 import javax.swing.JPanel;
 
@@ -59,6 +60,19 @@ public class ScreenCoordinator { //singleton
 		clean();
 		currentPanel = this.gameModePanel;
 		mainFrame.getContentPane().add(currentPanel);
+		mainFrame.pack();
+		mainFrame.setVisible(true);
+		mainFrame.validate();
+		mainFrame.repaint();
+		currentPanel.requestFocus();
+	}
+	
+	
+	public void displayError(String msg) {
+		clean();
+		ErrorPanel error = new ErrorPanel(msg);
+		currentPanel = error;
+		mainFrame.getContentPane().add(error);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
 		mainFrame.validate();
