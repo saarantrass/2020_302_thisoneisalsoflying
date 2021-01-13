@@ -11,7 +11,7 @@ public abstract class PowerUp extends FallingObject implements IMovingBehaviour{
 	public PowerUp(int ID, Point coordinate, boolean isThrown) {
 		super(ID, coordinate);
 		this.isThrown = isThrown;
-		this.fallingBehaviour = new LinearStrategy(this);
+		this.movingBehaviour = new LinearStrategy(this);
 	}
 
 	public boolean isThrown() {
@@ -23,9 +23,9 @@ public abstract class PowerUp extends FallingObject implements IMovingBehaviour{
 	}
 	
 	@Override
-	public void updateFallingStrategy() {
+	public void updateMovingStrategy() {
 		if (isThrown) {
-			this.fallingBehaviour = new ShootedStrategy(this);
+			this.movingBehaviour = new ShootedStrategy(this);
 		}
 	}
 

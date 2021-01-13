@@ -41,7 +41,7 @@ public class BetaMoleculeTest {
 	 */
 	public void constructorTest() {
 		Point coordinate = new Point(100, 100);
-		int moleculeID = 2;
+		int moleculeID = 2; 
 		boolean isLinear = false;
 		boolean isSpinning = false;
 		BetaMolecule molecule = new BetaMolecule(moleculeID, coordinate, isLinear, isSpinning);
@@ -94,9 +94,9 @@ public class BetaMoleculeTest {
 		 * Test LinearStrategy
 		 */
 		BetaMolecule molecule = new BetaMolecule(2, new Point(0, 0), false, false);
-		molecule.updateFallingStrategy();
+		molecule.updateMovingStrategy();
 		// Should be LinearStrategy
-		IMovingBehaviour oldStrat = molecule.getFallingStrategy();
+		IMovingBehaviour oldStrat = molecule.getMovingStrategy();
 	
 		/**
 		 * Test ZigZagStrategy
@@ -104,9 +104,9 @@ public class BetaMoleculeTest {
 		// Set height over the breakpoint for Zigzagstrategy
 		Point overBreakPoint = new Point(0, screenSize.height / 4 + 10);
 		molecule.setCoordinate(overBreakPoint);
-		molecule.updateFallingStrategy();
+		molecule.updateMovingStrategy();
 		// Should be ZigzagStrategy
-		assertNotEquals(oldStrat, molecule.getFallingStrategy());
+		assertNotEquals(oldStrat, molecule.getMovingStrategy());
 	}
 	
 	@Test

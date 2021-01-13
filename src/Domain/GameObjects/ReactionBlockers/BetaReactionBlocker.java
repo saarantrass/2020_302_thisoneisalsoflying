@@ -9,15 +9,15 @@ public class BetaReactionBlocker extends ReactionBlocker {
 
 	public BetaReactionBlocker(int ID, Point coordinate) {
 		super(ID, coordinate);
-		setFallingStrategy(new LinearStrategy(this));
+		setMovingStrategy(new LinearStrategy(this));
 	}
 
 	@Override
-	public void updateFallingStrategy() {
+	public void updateMovingStrategy() {
 		if(this.getCoordinate().y < Settings.getInstance().getScreenSize().getHeight()/4) {
-			this.fallingBehaviour = new LinearStrategy(this);
+			this.movingBehaviour = new LinearStrategy(this);
 		}else {
-			this.fallingBehaviour = new ZigZagStrategy(this);
+			this.movingBehaviour = new ZigZagStrategy(this);
 		}
 	
 	}

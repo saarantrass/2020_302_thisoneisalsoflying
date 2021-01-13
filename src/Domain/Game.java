@@ -217,6 +217,7 @@ public class Game implements IObservable{
 			this.barrelPowerUp = null;
 			getRandomAtomToBarrel();
 		}
+		//System.out.println("shooter coord ve angle "+this.shooter.getCoordinate()+" ang "+shooter.getAngle());
 	}
 
 
@@ -310,6 +311,7 @@ public class Game implements IObservable{
 	public void explosion(ReactionBlocker rb) {
 		Point sCoord = this.shooter.getCoordinate();
 		Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
+		//System.out.println("shooter coord ve angle "+sCoord+" ang "+shooter.getAngle());
 		double distance1 = Math.sqrt((sCoord.x - rCoordCenter.x)*(sCoord.x - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y));
 		double distance2 = Math.sqrt(((sCoord.x + L/10) - rCoordCenter.x)*((sCoord.x + L/10) - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y));
 		double distance3 = Math.sqrt(((sCoord.x + L/10) - rCoordCenter.x)*((sCoord.x + L/10) - rCoordCenter.x) + ((sCoord.y + L/10) - rCoordCenter.y)*((sCoord.y + L/10) - rCoordCenter.y));
@@ -345,7 +347,10 @@ public class Game implements IObservable{
 
 	public void addShield(int type) {
 		if(this.shooter.inventory.getInventoryShieldCount(type) > 0) {
+			//System.out.println("önce speed "+this.barrelAtom.getSpeed()+ " eff "+this.barrelAtom.getEfficiency());
 			this.barrelAtom = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
+
+			//System.out.println("snr speed "+this.barrelAtom.getSpeed()+ " eff "+this.barrelAtom.getEfficiency());
 			this.shooter.inventory.removeInventoryShield(type);
 		}
 	}

@@ -7,9 +7,9 @@ public class SigmaReactionBlocker extends ReactionBlocker {
 
 	public SigmaReactionBlocker(int ID, Point coordinate) {
 		super(ID, coordinate);
-		setFallingStrategy(new LinearStrategy(this));
+		setMovingStrategy(new LinearStrategy(this));
 	}
 
 	@Override
-	public void updateFallingStrategy() {}
+	public void updateMovingStrategy() {}
 }

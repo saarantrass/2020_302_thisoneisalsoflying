@@ -4,7 +4,6 @@ import java.awt.Point;
 import Domain.GameObjects.Atoms.*;
 import Domain.GameObjects.Atoms.Shields.EtaShield;
 import Domain.GameObjects.Atoms.Shields.LotaShield;
-import Domain.GameObjects.Atoms.Shields.AtomDecorator;
 import Domain.GameObjects.Atoms.Shields.ThetaShield;
 import Domain.GameObjects.Atoms.Shields.ZetaShield;
 

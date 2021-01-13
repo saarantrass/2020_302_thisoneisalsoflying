@@ -7,10 +7,10 @@ public class AlphaReactionBlocker extends ReactionBlocker {
 
 	public AlphaReactionBlocker(int ID, Point coordinate) {
 		super(ID, coordinate);
-		setFallingStrategy(new ZigZagStrategy(this));
+		setMovingStrategy(new ZigZagStrategy(this));
 	}
 
 	@Override
-	public void updateFallingStrategy() {}
+	public void updateMovingStrategy() {}
 
 }
