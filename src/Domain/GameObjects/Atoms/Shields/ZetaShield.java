@@ -1,15 +1,13 @@
 package Domain.GameObjects.Atoms.Shields;
-
-
 import Domain.GameObjects.Atoms.Atom;
 
-public class ZetaShield extends ShieldDecorator {
+public class ZetaShield extends AtomDecorator {
 	private double updatedEfficiency;
 	private static double ZETA_EFF = 0.2;
 	public ZetaShield(Atom atom) {
 		super(atom);
 		this.updatedEfficiency=atom.getEfficiency();
-		addShield();
+		updateEfficiency();
 	}
 
 	@Override
@@ -18,10 +16,13 @@ public class ZetaShield extends ShieldDecorator {
 	}
 	@Override
 	public void setEfficiency(double eff) {
+		eff = eff*100;
+		eff = Math.round(eff);
+		eff = eff /100;
 		this.updatedEfficiency = eff;
 	}
 	@Override
-	public void addShield() {
+	public void updateEfficiency() {
 		double effFactor = 0.0;
 		double speedFactor = 0.0;
 		if(this.getProton()==this.getNeutron()) {

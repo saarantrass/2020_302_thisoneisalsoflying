@@ -8,7 +8,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import Domain.GameObjects.AtomFactory;
 import Domain.GameObjects.FallingObjectFactory;
 import Domain.GameObjects.Atoms.Atom;
-import Domain.GameObjects.Atoms.Shields.ShieldDecorator;
+import Domain.GameObjects.Atoms.Shields.AtomDecorator;
 import Domain.GameObjects.Molecules.Molecule;
 import Domain.GameObjects.PowerUps.PowerUp;
 import Domain.GameObjects.ReactionBlockers.ReactionBlocker;

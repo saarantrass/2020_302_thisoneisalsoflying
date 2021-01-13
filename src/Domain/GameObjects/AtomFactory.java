@@ -4,7 +4,7 @@ import java.awt.Point;
 import Domain.GameObjects.Atoms.*;
 import Domain.GameObjects.Atoms.Shields.EtaShield;
 import Domain.GameObjects.Atoms.Shields.LotaShield;
-import Domain.GameObjects.Atoms.Shields.ShieldDecorator;
+import Domain.GameObjects.Atoms.Shields.AtomDecorator;
 import Domain.GameObjects.Atoms.Shields.ThetaShield;
 import Domain.GameObjects.Atoms.Shields.ZetaShield;
 
@@ -13,7 +13,7 @@ public class AtomFactory {
 
 	public AtomFactory() {}
 
-	public ShieldDecorator addNewShield(int type, Atom atom) {
+	public Atom addNewShield(int type, Atom atom) {
 
 		switch (type) {
 		case 1:
@@ -34,16 +34,16 @@ public class AtomFactory {
 	public Atom getNewAtom(int type, Point coord) {
 		switch (type) {
 		case 1:
-			return new AlphaAtom(coord);
+			return new AlphaAtom(type,coord);
 
 		case 2:
-			return new BetaAtom(coord);
+			return new BetaAtom(type,coord);
 
 		case 3:
-			return new GammaAtom(coord);
+			return new GammaAtom(type,coord);
 
 		case 4:
-			return new SigmaAtom(coord);
+			return new SigmaAtom(type,coord);
 		}
 		return null;
 	}

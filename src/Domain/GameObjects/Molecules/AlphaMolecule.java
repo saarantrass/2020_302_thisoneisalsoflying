@@ -12,5 +12,6 @@ public class AlphaMolecule extends Molecule {
 
 	@Override
 	public void updateFallingStrategy() {}
+	
 
 }
