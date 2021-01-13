@@ -8,7 +8,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import Domain.GameObjects.AtomFactory;
 import Domain.GameObjects.FallingObjectFactory;
 import Domain.GameObjects.Atoms.Atom;
-import Domain.GameObjects.Atoms.Shields.AtomDecorator;
 import Domain.GameObjects.Molecules.Molecule;
 import Domain.GameObjects.PowerUps.PowerUp;
 import Domain.GameObjects.ReactionBlockers.ReactionBlocker;
@@ -109,6 +108,12 @@ public class Game implements IObservable{
 		if(this.timer % (10/this.difficultyLevel) == 0) { //TODO TAM DEÄ�Ä°L
 			createRandomFallingObject();
 		}
+		
+		if(this.shooter.inventory.getInventoryAtomCount(1) == 0 && this.shooter.inventory.getInventoryAtomCount(2) == 0 && this.shooter.inventory.getInventoryAtomCount(3) == 0 && this.shooter.inventory.getInventoryAtomCount(4) == 0) {
+			if(this.onScreenAtomList.size() == 0)
+				this.finishGame();
+		}
+		
 		moveThemAll();
 		collisionHandler();
 		
@@ -151,7 +156,8 @@ public class Game implements IObservable{
 				}
 			}
 		} else {
-			//TODO FINISH GAME?
+			if(this.onScreenMoleculeList.size() == 0 && this.onScreenPowerUpList.size() == 0 && this.onScreenReactionBlockerList.size() == 0)
+				this.finishGame();
 		}
 	}
 
@@ -196,7 +202,6 @@ public class Game implements IObservable{
 		if(this.barrelAtom != null) {
 
 			this.barrelAtom.setAngle(this.shooter.getAngle());
-			//this.shooter.inventory.removeInventoryAtom(this.barrelAtom.getAtomID(),1);
 			this.onScreenAtomList.add(this.barrelAtom);
 			this.barrelAtom = null;
 			getRandomAtomToBarrel();
@@ -204,7 +209,6 @@ public class Game implements IObservable{
 		} else if(this.barrelPowerUp != null) {
 
 			this.barrelPowerUp.setAngle(this.shooter.getAngle());
-			//this.shooter.inventory.removeInventoryPowerUp(this.barrelPowerUp.getID());
 			this.onScreenPowerUpList.add(this.barrelPowerUp);
 			this.barrelPowerUp = null;
 			getRandomAtomToBarrel();
@@ -298,6 +302,7 @@ public class Game implements IObservable{
 		}
 	}
 	
+	
 	public void explosion(ReactionBlocker rb) {
 		Point sCoord = this.shooter.getCoordinate();
 		Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
@@ -343,25 +348,32 @@ public class Game implements IObservable{
 	
 	
 	public void getRandomAtomToBarrel() {
-		if(this.barrelAtom != null) this.shooter.inventory.addInventoryAtom(this.barrelAtom);
-		else if(this.barrelPowerUp != null) this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
-		this.barrelPowerUp = null;
+		if(this.barrelAtom != null) 
+			this.shooter.inventory.addInventoryAtom(this.barrelAtom);
+		else if(this.barrelPowerUp != null) 
+			this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
+		
 		this.barrelAtom = this.shooter.inventory.getRandomAtom();
+		
 		if(this.barrelAtom != null) {
+			this.barrelPowerUp = null;
 			this.barrelAtom.setCoordinate(this.shooter.getBarrelCoordinate());
 			this.barrelAtom.setAngle(this.shooter.getAngle());
-		}else {
-			//TODO FINISH GAME???
 		}
 	}
 
 
 	public void getPowerUpToBarrel(int type) {
-		if(this.barrelAtom != null) this.shooter.inventory.addInventoryAtom(this.barrelAtom);
-		else if(this.barrelPowerUp != null) this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
-		this.barrelAtom = null;
-		this.barrelPowerUp = this.shooter.inventory.getPowerUp(type);
-		if(this.barrelPowerUp != null) {
+		PowerUp pw = this.shooter.inventory.getPowerUp(type);
+		
+		if(pw != null) {
+			if(this.barrelAtom != null) 
+				this.shooter.inventory.addInventoryAtom(this.barrelAtom);
+			else if(this.barrelPowerUp != null) 
+				this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
+			
+			this.barrelAtom = null;
+			this.barrelPowerUp = pw;
 			this.barrelPowerUp.setCoordinate(this.shooter.getBarrelCoordinate());
 			this.barrelPowerUp.setAngle(this.shooter.getAngle());
 		}
