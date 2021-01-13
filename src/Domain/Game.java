@@ -8,7 +8,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import Domain.GameObjects.AtomFactory;
 import Domain.GameObjects.FallingObjectFactory;
 import Domain.GameObjects.Atoms.Atom;
-import Domain.GameObjects.Atoms.Shields.ShieldDecorator;
+import Domain.GameObjects.Atoms.Shields.AtomDecorator;
 import Domain.GameObjects.Molecules.Molecule;
 import Domain.GameObjects.PowerUps.PowerUp;
 import Domain.GameObjects.ReactionBlockers.ReactionBlocker;
@@ -263,10 +263,9 @@ public class Game implements IObservable{
 
 
 	public void addShield(int type) {
-		ShieldDecorator at = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
-		at.addShield();
-		System.out.println(at.getEfficiency());
-		this.barrelAtom=at;
+		this.barrelAtom = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
+		System.out.println(this.barrelAtom.getEfficiency());
+		System.out.println(this.barrelAtom.getMovingBehaviour());
 		this.shooter.inventory.removeInventoryShield(type);
 	}
 	
@@ -280,7 +279,7 @@ public class Game implements IObservable{
 		this.barrelPowerUp = null;
 		this.barrelAtom = AtomFactory.getInstance().getNewAtom(type, this.shooter.getBarrelCoordinate());
 		this.barrelAtom.setAngle(this.shooter.getAngle());
-		System.out.println("eff of initial"+this.barrelAtom.getEfficiency()+" neut "+this.barrelAtom.getNeutron()+ " ID "+ this.barrelAtom.getAtomID());
+		System.out.println("eff of initial "+this.barrelAtom.getEfficiency()+" neut "+this.barrelAtom.getNeutron()+ " prot "+this.barrelAtom.getProton()+"  ID "+ this.barrelAtom.getAtomID());
 
 	}
 

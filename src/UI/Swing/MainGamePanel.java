@@ -2,6 +2,7 @@ package UI.Swing;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 
 import javax.swing.JPanel;
@@ -47,14 +48,20 @@ public class MainGamePanel extends JPanel implements IObserver{
 	@Override
 	public void paint(Graphics g) { //TODO ATOM MOLECULE VS OLABİLİR Mİ?? BURDA
 		
+		
 		for(Atom atom: Game.getInstance().onScreenAtomList) {
 			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Atom", atom.getAtomID(), false);
 			g.drawImage(image, atom.getCoordinate().x, atom.getCoordinate().y, null);
 		}
 		
 		for(Molecule molecule: Game.getInstance().onScreenMoleculeList) {
+			Graphics2D g2d = (Graphics2D)g.create();
 			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Molecule", molecule.getID(), molecule.isLinear());
-			g.drawImage(image, molecule.getCoordinate().x, molecule.getCoordinate().y, null);
+			//g.drawImage(image, molecule.getCoordinate().x, molecule.getCoordinate().y, null);
+			g2d.rotate(Math.toRadians(molecule.getAngle()), molecule.getCoordinate().x +molecule.getL()/8, molecule.getCoordinate().y+ +molecule.getL()/8);
+		    g2d.drawImage(image, molecule.getCoordinate().x ,  molecule.getCoordinate().y, null);
+			super.paint(g2d);
+			g2d.dispose();
 		}
 		
 		for(ReactionBlocker reactionBlocker: Game.getInstance().onScreenReactionBlockerList) {

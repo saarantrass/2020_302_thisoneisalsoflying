@@ -2,26 +2,29 @@ package Domain.GameObjects.Atoms.Shields;
 
 import Domain.GameObjects.Atoms.Atom;
 
-public class LotaShield extends ShieldDecorator {
+public class LotaShield extends AtomDecorator {
 	private double updatedEfficiency;
 	private static double LOTA_EFF = 0.1;
 	public LotaShield(Atom atom) {
 		super(atom);
 		this.updatedEfficiency=atom.getEfficiency();
-		addShield();
+		updateEfficiency();
 	}
 
-	@Override
+	@Override 
 	public double getEfficiency() {
 		return this.updatedEfficiency;	
 	}
 	@Override
 	public void setEfficiency(double eff) {
+		eff = eff*100;
+		eff = Math.round(eff);
+		eff = eff /100;
 		this.updatedEfficiency = eff;
 	}
 
 	@Override
-	public void addShield() {
+	public void updateEfficiency() {
 		System.out.println("before"+ this.updatedEfficiency);
 		double effFactor = (1 - this.updatedEfficiency) * LOTA_EFF;
 		double speedFactor = 0.07;

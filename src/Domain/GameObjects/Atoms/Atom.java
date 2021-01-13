@@ -18,18 +18,19 @@ public abstract class Atom{
 	private int proton;
 	protected double efficiency;
 
-	protected IMovingBehaviour fallingBehaviour;
+	protected IMovingBehaviour movingBehaviour;
 	
-	public Atom (Point coordinate) {
+	public Atom (int atomID, Point coordinate) {
 		this.coordinate = coordinate;
 		this.L = Settings.getInstance().getLengthUnit();
-		this.speed = L/10;
+		this.speed = (double)L/10;
 		this.proton = 8;
 		for(int i=1;i<atomID;i++) {this.proton *= 2;}
-		this.fallingBehaviour = new ShootedStrategy(this);
+		this.movingBehaviour = new ShootedStrategy(this);
 		this.efficiency = 0;
 	}
 	
+	public Atom () {}
 	
 	public int getAtomID() {
 		return this.atomID;
@@ -40,11 +41,22 @@ public abstract class Atom{
 	}
 
 	public void setEfficiency(double eff) {
+		eff = eff*100;
+		eff = Math.round(eff);
+		eff = eff /100;
 		this.efficiency = eff;	
 	}
 
 	public void move() {
-		fallingBehaviour.move();
+		this.movingBehaviour.move();
+	}
+	
+	public IMovingBehaviour getMovingBehaviour() {
+		return this.movingBehaviour;
+	}
+	
+	public double getAngle() {
+		return this.angle;
 	}
 	
 	public void setAngle(double angle) {
@@ -61,11 +73,12 @@ public abstract class Atom{
 		this.coordinate = coordinate;
 	}
 	
-	public void setSpeed(double speed) {
-		this.speed = speed;
-	}
 	public double getSpeed() {
 		return this.speed;
+	}
+	
+	public void setSpeed(double speed) {
+		this.speed = speed;
 	}
 	
 	public double getxSpeed() {

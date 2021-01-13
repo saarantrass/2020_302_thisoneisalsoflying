@@ -3,7 +3,7 @@ package Test;
 import Domain.GameObjects.AtomFactory;
 import Domain.GameObjects.Atoms.*;
 import Domain.GameObjects.Atoms.Shields.EtaShield;
-import Domain.GameObjects.Atoms.Shields.ShieldDecorator;
+import Domain.GameObjects.Atoms.Shields.AtomDecorator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -17,9 +17,9 @@ import java.awt.Point;
 public class EtaShieldTest {
 	Atom atom1;
 	Atom atom2;
-	ShieldDecorator shieldedAtom;
-	ShieldDecorator shieldedAtom2;
-	ShieldDecorator shieldedAtom3;
+	Atom shieldedAtom;
+	Atom shieldedAtom2;
+	Atom shieldedAtom3;
 	@Before
 	public void setUp(){
 		/***
@@ -32,7 +32,7 @@ public class EtaShieldTest {
 		atom2 = AtomFactory.getInstance().getNewAtom(2, new Point(0,0));
 		atom1.setSpeed(10);
 		atom2.setSpeed(20);
-		shieldedAtom = AtomFactory.getInstance().addNewShield(1, atom1);
+		shieldedAtom = AtomFactory.getInstance().addNewShield(1, atom1); 
 	}
 	
 	@Test
@@ -57,7 +57,7 @@ public class EtaShieldTest {
 
 		assertNotNull("Eta Shielded atom is created", this.shieldedAtom);
 		assertTrue("Eta Shielded atom is Eta Shield", shieldedAtom instanceof EtaShield);
-		assertTrue("Eta Shielded atom is Shield Decorator", shieldedAtom instanceof ShieldDecorator);
+		assertTrue("Eta Shielded atom is Shield Decorator", shieldedAtom instanceof AtomDecorator);
 		
 	}
 	
@@ -82,8 +82,6 @@ public class EtaShieldTest {
 		assertEquals(0.7, shieldedAtom3.getEfficiency());
 		
 		
-		//Since shield decorator overrides the base efficiency of the shield,
-		//we use assertNotEquals to show that override
 		assertNotEquals(atom1.getEfficiency(), shieldedAtom3.getEfficiency());
 		
 	}
@@ -98,15 +96,15 @@ public class EtaShieldTest {
 		 * when a shielded atom is created.
 		 */
 		
-		assertNotEquals(atom1.getEfficiency(), shieldedAtom.getEfficiency());
+		assertEquals(atom1.getEfficiency(), shieldedAtom.getEfficiency());
 		
 		shieldedAtom2 = AtomFactory.getInstance().addNewShield(1, shieldedAtom);
-		assertNotEquals(shieldedAtom.getEfficiency(), shieldedAtom2.getEfficiency());
+		assertEquals(shieldedAtom.getEfficiency(), shieldedAtom2.getEfficiency());
 		
 		shieldedAtom3 = AtomFactory.getInstance().addNewShield(1, shieldedAtom2);
 		
-		assertNotEquals(shieldedAtom.getEfficiency(), shieldedAtom3.getEfficiency());
-		assertNotEquals(shieldedAtom2.getEfficiency(), shieldedAtom3.getEfficiency());
+		assertEquals(shieldedAtom.getEfficiency(), shieldedAtom3.getEfficiency());
+		assertEquals(shieldedAtom2.getEfficiency(), shieldedAtom3.getEfficiency());
 		
 	}
 	
