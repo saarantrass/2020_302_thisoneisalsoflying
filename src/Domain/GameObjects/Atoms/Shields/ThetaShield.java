@@ -12,7 +12,7 @@ public class ThetaShield extends AtomDecorator {
 	}
 
 	@Override
-	public double getEfficiency() {
+	public double getEfficiency() {  
 		return this.updatedEfficiency;
 	}
 	@Override
@@ -28,7 +28,7 @@ public class ThetaShield extends AtomDecorator {
 		THETA_EFF = rn.nextDouble()*(0.10)+0.05;
 		double effFactor = (1 - this.updatedEfficiency) * THETA_EFF;
 		double speedFactor = 0.09;
-		setEfficiency(this.updatedEfficiency+this.updatedEfficiency*effFactor);
+		this.setEfficiency(this.updatedEfficiency+this.updatedEfficiency*effFactor);
 		this.setSpeed(this.getSpeed()*(1-speedFactor));
 	}
 	

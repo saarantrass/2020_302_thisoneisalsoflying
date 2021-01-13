@@ -8,7 +8,7 @@ public class ZetaShield extends AtomDecorator {
 		super(atom);
 		this.updatedEfficiency=atom.getEfficiency();
 		updateEfficiency();
-	}
+	} 
 
 	@Override
 	public double getEfficiency() {
@@ -21,7 +21,7 @@ public class ZetaShield extends AtomDecorator {
 		eff = eff /100;
 		this.updatedEfficiency = eff;
 	}
-	@Override
+	@Override 
 	public void updateEfficiency() {
 		double effFactor = 0.0;
 		double speedFactor = 0.0;
@@ -29,7 +29,7 @@ public class ZetaShield extends AtomDecorator {
 			effFactor = (1 - this.updatedEfficiency)*ZETA_EFF;
 		}
 		speedFactor = 0.11;
-		setEfficiency(this.updatedEfficiency+this.updatedEfficiency*effFactor);
+		this.setEfficiency(this.updatedEfficiency+this.updatedEfficiency*effFactor);
 		this.setSpeed(this.getSpeed()*(1-speedFactor));
 	}
 }
