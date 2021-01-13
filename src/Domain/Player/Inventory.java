@@ -76,7 +76,7 @@ public class Inventory {
 	}
 	
 	public void addInventoryAtom(Atom barrelAtom) {
-		this.inventoryAtom.get(barrelAtom.getAtomID()).add((Atom) barrelAtom);
+		this.inventoryAtom.get(barrelAtom.getAtomID()).add(barrelAtom);
 	}
 	
 	
