@@ -22,10 +22,10 @@ public class Blender {
    }
    
    protected static boolean verifyBreak(int sourceAtom, int goalAtom, Inventory inventory) {
-	   return (sourceAtom>goalAtom && inventory.checkAtomAvailability(sourceAtom,1)) ;
+	   return (sourceAtom>goalAtom && inventory.getInventoryAtomCount(sourceAtom) >= 1) ;
    }
    protected static boolean verifyBlend(int sourceAtom, int goalAtom, Inventory inventory) {
-	   return (sourceAtom<goalAtom && inventory.checkAtomAvailability(sourceAtom,goalAtom-sourceAtom+1)) ;
+	   return (sourceAtom<goalAtom && inventory.getInventoryAtomCount(sourceAtom) >= (goalAtom-sourceAtom+1)) ;
    }
    
    protected static boolean verify(int sourceAtom, int goalAtom, Inventory inventory){

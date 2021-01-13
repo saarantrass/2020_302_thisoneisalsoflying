@@ -1,5 +1,6 @@
 package UI.Swing;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -25,6 +26,7 @@ public class BuildingModePanel extends JPanel{
 	private GameController GC;
 	
 	private JPanel settingsPanel = new JPanel(new GridBagLayout());
+	private JPanel playerPanel = new JPanel(new GridBagLayout());
 	private JPanel atomNumbersPanel = new JPanel(new GridBagLayout());
 	private JPanel moleculeNumbersPanel = new JPanel(new GridBagLayout());
 	private JPanel RBNumbersPanel = new JPanel(new GridBagLayout());
@@ -82,10 +84,10 @@ public class BuildingModePanel extends JPanel{
 	private JTextField gammaPUNumberField = new JTextField("20", 5);
 	private JTextField sigmaPUNumberField = new JTextField("20", 5);
 	
-	private JTextField etaNumberField = new JTextField("20", 5); //TODO DEFAULT VALUES ??
-	private JTextField lotaNumberField = new JTextField("20", 5);
-	private JTextField thetaNumberField = new JTextField("20", 5);
-	private JTextField zetaNumberField = new JTextField("20", 5);
+	private JTextField etaNumberField = new JTextField("50", 5);
+	private JTextField lotaNumberField = new JTextField("50", 5);
+	private JTextField thetaNumberField = new JTextField("50", 5);
+	private JTextField zetaNumberField = new JTextField("50", 5);
 	
 	private JTextField playerNameField = new JTextField(15);
 	private JTextField unitLengthField = new JTextField(5);
@@ -335,6 +337,10 @@ public class BuildingModePanel extends JPanel{
 		c.gridx = 1;
 		playerNamePanel.add(playerNameField, c);
 		
+		playerPanel.setOpaque(false);
+		c.gridx = 0;
+		playerPanel.add(playerNamePanel, c);
+		
 		c.gridx = 0;
 		c.gridy = 0;
 		firstLinePanel.add(atomNumbersPanel, c);
@@ -354,7 +360,7 @@ public class BuildingModePanel extends JPanel{
 		
 		c.gridx = 0;
 		c.gridy = 0;
-		settingsPanel.add(playerNamePanel);
+		settingsPanel.add(playerPanel);
 		
 		c.gridy = 1;
 		settingsPanel.add(firstLinePanel, c);
@@ -380,7 +386,9 @@ public class BuildingModePanel extends JPanel{
 	}
 	
 	
-	public void setSettings() {
+	public boolean setSettings() {
+		String playerName = playerNameField.getText();
+		
 		int alphaAtomNumber = Integer.parseInt(alphaAtomNumberField.getText());
 		int betaAtomNumber = Integer.parseInt(betaAtomNumberField.getText());
 		int gammaAtomNumber = Integer.parseInt(gammaAtomNumberField.getText());
@@ -423,9 +431,29 @@ public class BuildingModePanel extends JPanel{
 			difficultyLevel = 4;
 		
 		Dimension screenSize = ScreenCoordinator.SCREEN_SIZE;
-		String playerName = playerNameField.getText();
-				
-		GC.editInBuildMode(alphaAtomNumber, betaAtomNumber, gammaAtomNumber, sigmaAtomNumber, alphaMoleculeNumber, betaMoleculeNumber, gammaMoleculeNumber, sigmaMoleculeNumber, alphaRBNumber, betaRBNumber, gammaRBNumber, sigmaRBNumber, alphaPUNumber, betaPUNumber, gammaPUNumber, sigmaPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, L, difficultyLevel, screenSize, playerName);
+		
+		if(playerName.equals("")) {
+			JLabel errorLabel = new JLabel("Enter player name to start!");
+			errorLabel.setForeground(Color.RED);
+			
+			GridBagConstraints c = new GridBagConstraints();
+			c.anchor = GridBagConstraints.CENTER;
+			c.gridx = 0;
+			c.gridy = 1;
+			this.playerPanel.add(errorLabel, c);
+			
+			this.validate();
+			this.repaint();
+			return false;
+		}/* else if(L < 50 || alphaAtomNumber < 10 || betaAtomNumber < 10 || 
+				gammaAtomNumber < 10 || sigmaAtomNumber < 10 || alphaMoleculeNumber < 10 || 
+				betaMoleculeNumber < 10 || sigmaMoleculeNumber < 10) {
+			return false;
+		} */else {
+			GC.editInBuildMode(alphaAtomNumber, betaAtomNumber, gammaAtomNumber, sigmaAtomNumber, alphaMoleculeNumber, betaMoleculeNumber, gammaMoleculeNumber, sigmaMoleculeNumber, alphaRBNumber, betaRBNumber, gammaRBNumber, sigmaRBNumber, alphaPUNumber, betaPUNumber, gammaPUNumber, sigmaPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, L, difficultyLevel, screenSize, playerName);
+			return true;		
+		}
+		
 	}
 	
 	
@@ -455,8 +483,8 @@ public class BuildingModePanel extends JPanel{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(e.getSource() == startGameButton) {
-				setSettings();
-				ScreenCoordinator.getInstance().startGame();
+				if(setSettings())
+					ScreenCoordinator.getInstance().startGame();
 			}
 			ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 		}

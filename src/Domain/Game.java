@@ -22,6 +22,7 @@ public class Game implements IObservable{
 
 	private GameController GC;
 	public int L;
+	private int difficultyLevel;
 	private static Game game_instance = null;
 	private List<IObserver> observers = new ArrayList<IObserver>();
 	public boolean isPaused = false;
@@ -56,7 +57,8 @@ public class Game implements IObservable{
 	public void startGame(GameController GC){
 		this.GC = GC;
 		this.L = Settings.getInstance().getLengthUnit();
-		int xShooter = Settings.getInstance().getScreenSize().width * 7/16;
+		this.difficultyLevel = Settings.getInstance().getDifficultyLevel();
+		int xShooter = Settings.getInstance().getScreenSize().width * 7/16 - this.GC.settings.getLengthUnit()/4;
 		int yShooter = Settings.getInstance().getScreenSize().height - this.GC.settings.getLengthUnit();
 		this.shooter = new Shooter(new Point(xShooter,  yShooter));
 		this.player = new Player();
@@ -69,7 +71,7 @@ public class Game implements IObservable{
 
 	private Thread mainGameLoop = new Thread(() -> {
 		while (true) {
-			if (this.GC.settings.timeRemaining <= 0) {
+			if (this.GC.settings.timeRemaining <= 0 || this.player.getHealth() <= 0) {
 				this.finishGame();
 			} else if (!this.isPaused && !this.isFinished) {
 				this.continueGame();
@@ -102,51 +104,54 @@ public class Game implements IObservable{
 
 
 	private void continueGame() {
-
 		this.timer++;
-		//TODO: Adjust this according to the difficulty level/check if correct
-		//TODO: settings.getins yerine baþta initialize etsek ya?
-		if(this.timer % (10/Settings.getInstance().getDifficultyLevel()) == 0) {
+		
+		if(this.timer % (10/this.difficultyLevel) == 0) { //TODO TAM DEÄžÄ°L
 			createRandomFallingObject();
 		}
-
 		moveThemAll();
 		collisionHandler();
+		
 		this.publish();
 	}
 
 
 	private void createRandomFallingObject() {
-		Random rn = new Random();
-		int type = rn.nextInt(4)+1;
-		int next = rn.nextInt(3);
-		int xCoord = (int) (Math.random() * (Settings.getInstance().getScreenSize().width * 7 / 8)) - (L/4); //TODO: Random check
-		switch (next) {
-		case 0:
-			if(Settings.getInstance().getMoleculeNumber(type) > 0) {
-				//TODO: shorten the factory.getinstance.blahblah......
-				Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, -L/4), Settings.getInstance().isLinear(), Settings.getInstance().isSpinning());
-				onScreenMoleculeList.add(newMol);
-				Settings.getInstance().decreaseMoleculeNumber(type);
+		if(Settings.getInstance().checkFallingObjectLeft()) {
+			while(true) {
+				Random rn = new Random();
+				int next = rn.nextInt(3);
+				int type = rn.nextInt(4)+1;
+				int xCoord = (int) (Math.random() * (Settings.getInstance().getScreenSize().width * 7/8 - (L/4))); //TODO: Random check
+				
+				if(next == 0) {
+					if(Settings.getInstance().getMoleculeNumber(type) > 0) {
+						//TODO: shorten the factory.getinstance.blahblah......
+						Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, -L/4), Settings.getInstance().isLinear(), Settings.getInstance().isSpinning());
+						onScreenMoleculeList.add(newMol);
+						Settings.getInstance().decreaseMoleculeNumber(type);
+						break;
+					}
+					
+				} else if(next == 1) {
+					if(Settings.getInstance().getPowerUpNumber(type) > 0) {
+						PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, -L/4),false);
+						onScreenPowerUpList.add(newPw);
+						Settings.getInstance().decreasePowerUpNumber(type);
+						break;
+					}
+					
+				} else if(next == 2) {
+					if(Settings.getInstance().getReactionBlockerNumber(type) > 0) {
+						ReactionBlocker bl = FallingObjectFactory.getInstance().getNewReactionBlocker(type, new Point(xCoord, -L/4));
+						onScreenReactionBlockerList.add(bl);
+						Settings.getInstance().decreaseReactionBlockerNumber(type);
+						break;
+					}
+				}
 			}
-			break;
-		case 1:
-			if(Settings.getInstance().getPowerUpNumber(type) > 0) {
-				PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, -L/4),false);
-				onScreenPowerUpList.add(newPw);
-				Settings.getInstance().decreasePowerUpNumber(type);
-			}
-			break;
-		case 2:
-			if(Settings.getInstance().getReactionBlockerNumber(type) > 0) {
-				ReactionBlocker bl = FallingObjectFactory.getInstance().getNewReactionBlocker(type, new Point(xCoord, -L/4));
-				onScreenReactionBlockerList.add(bl);
-				Settings.getInstance().decreaseReactionBlockerNumber(type);
-			}
-			break;
-
-		default:
-			break;
+		} else {
+			//TODO FINISH GAME?
 		}
 	}
 
@@ -168,6 +173,7 @@ public class Game implements IObservable{
 		for(ReactionBlocker rb : onScreenReactionBlockerList) {
 			rb.move();
 			if(rb.getCoordinate().y >= Settings.getInstance().getScreenSize().height) {
+				this.explosion(rb);
 				this.onScreenReactionBlockerList.remove(rb);
 			}
 		}
@@ -190,16 +196,17 @@ public class Game implements IObservable{
 		if(this.barrelAtom != null) {
 
 			this.barrelAtom.setAngle(this.shooter.getAngle());
-			System.out.println("eff of barr"+this.barrelAtom.getEfficiency());
-			this.shooter.inventory.removeInventoryAtom(this.barrelAtom.getAtomID(),1);
+			//this.shooter.inventory.removeInventoryAtom(this.barrelAtom.getAtomID(),1);
 			this.onScreenAtomList.add(this.barrelAtom);
+			this.barrelAtom = null;
 			getRandomAtomToBarrel();
 
 		} else if(this.barrelPowerUp != null) {
 
 			this.barrelPowerUp.setAngle(this.shooter.getAngle());
-			this.shooter.inventory.removeInventoryPowerUp(this.barrelPowerUp.getID());
+			//this.shooter.inventory.removeInventoryPowerUp(this.barrelPowerUp.getID());
 			this.onScreenPowerUpList.add(this.barrelPowerUp);
+			this.barrelPowerUp = null;
 			getRandomAtomToBarrel();
 		}
 	}
@@ -207,7 +214,7 @@ public class Game implements IObservable{
 
 	private void collisionHandler() {
 		//TODO: reaction blocker blocks the atom-molecule unification!!!!
-		//TODO: powerup baþka reactiona deðince yok oluyormuþ
+		//TODO: powerup baï¿½ka reactiona deï¿½ince yok oluyormuï¿½
 		/*
 		 * Atom-Molecule Collision
 		 */
@@ -257,38 +264,108 @@ public class Game implements IObservable{
 				}
 			}
 		}
-
-
+		
+		/*
+		 * ReactionBlocker-Atom/Molecule Collision
+		 */
+		for(ReactionBlocker rb: this.onScreenReactionBlockerList) {
+			for(Molecule mol: this.onScreenMoleculeList) {
+				if(rb.getID() == mol.getID()) {
+					Point mCoord = mol.getCoordinate();
+					Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
+					double distance1 = Math.sqrt((mCoord.x - rCoordCenter.x)*(mCoord.x - rCoordCenter.x) + (mCoord.y - rCoordCenter.y)*(mCoord.y - rCoordCenter.y));
+					double distance2 = Math.sqrt(((mCoord.x + L/10) - rCoordCenter.x)*((mCoord.x + L/10) - rCoordCenter.x) + (mCoord.y - rCoordCenter.y)*(mCoord.y - rCoordCenter.y));
+					double distance3 = Math.sqrt(((mCoord.x + L/10) - rCoordCenter.x)*((mCoord.x + L/10) - rCoordCenter.x) + ((mCoord.y + L/10) - rCoordCenter.y)*((mCoord.y + L/10) - rCoordCenter.y));
+					double distance4 = Math.sqrt((mCoord.x - rCoordCenter.x)*(mCoord.x - rCoordCenter.x) + ((mCoord.y + L/10) - rCoordCenter.y)*((mCoord.y + L/10) - rCoordCenter.y));
+					if(distance1 <= L/2 || distance2 <= L/2 || distance3 <= L/2  || distance4 <= L/2) {
+						this.onScreenMoleculeList.remove(mol);
+					}
+				}
+			}
+			for(Throwable atom: this.onScreenAtomList) {
+				if(rb.getID() == atom.getAtomID()) {
+					Point aCoord = atom.getCoordinate();
+					Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
+					double distance1 = Math.sqrt((aCoord.x - rCoordCenter.x)*(aCoord.x - rCoordCenter.x) + (aCoord.y - rCoordCenter.y)*(aCoord.y - rCoordCenter.y));
+					double distance2 = Math.sqrt(((aCoord.x + L/10) - rCoordCenter.x)*((aCoord.x + L/10) - rCoordCenter.x) + (aCoord.y - rCoordCenter.y)*(aCoord.y - rCoordCenter.y));
+					double distance3 = Math.sqrt(((aCoord.x + L/10) - rCoordCenter.x)*((aCoord.x + L/10) - rCoordCenter.x) + ((aCoord.y + L/10) - rCoordCenter.y)*((aCoord.y + L/10) - rCoordCenter.y));
+					double distance4 = Math.sqrt((aCoord.x - rCoordCenter.x)*(aCoord.x - rCoordCenter.x) + ((aCoord.y + L/10) - rCoordCenter.y)*((aCoord.y + L/10) - rCoordCenter.y));
+					if(distance1 <= L/2 || distance2 <= L/2 || distance3 <= L/2  || distance4 <= L/2) {
+						this.onScreenAtomList.remove(atom);
+					}
+				}
+			}
+		}
+	}
+	
+	public void explosion(ReactionBlocker rb) {
+		Point sCoord = this.shooter.getCoordinate();
+		Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
+		double distance1 = Math.sqrt((sCoord.x - rCoordCenter.x)*(sCoord.x - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y));
+		double distance2 = Math.sqrt(((sCoord.x + L/10) - rCoordCenter.x)*((sCoord.x + L/10) - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y));
+		double distance3 = Math.sqrt(((sCoord.x + L/10) - rCoordCenter.x)*((sCoord.x + L/10) - rCoordCenter.x) + ((sCoord.y + L/10) - rCoordCenter.y)*((sCoord.y + L/10) - rCoordCenter.y));
+		double distance4 = Math.sqrt((sCoord.x - rCoordCenter.x)*(sCoord.x - rCoordCenter.x) + ((sCoord.y + L/10) - rCoordCenter.y)*((sCoord.y + L/10) - rCoordCenter.y));
+		if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2  || distance4 <= L*2) {
+			//TODO health azalt
+			this.player.decreaseHealth(10.0); //TODO BU YANLIÅž
+		}
+	
+		for(Molecule mol : this.onScreenMoleculeList) {
+			Point mCoord = mol.getCoordinate();
+			distance1 = Math.sqrt((mCoord.x - rCoordCenter.x)*(mCoord.x - rCoordCenter.x) + (mCoord.y - rCoordCenter.y)*(mCoord.y - rCoordCenter.y));
+			distance2 = Math.sqrt(((mCoord.x + L/10) - rCoordCenter.x)*((mCoord.x + L/10) - rCoordCenter.x) + (mCoord.y - rCoordCenter.y)*(mCoord.y - rCoordCenter.y));
+			distance3 = Math.sqrt(((mCoord.x + L/10) - rCoordCenter.x)*((mCoord.x + L/10) - rCoordCenter.x) + ((mCoord.y + L/10) - rCoordCenter.y)*((mCoord.y + L/10) - rCoordCenter.y));
+			distance4 = Math.sqrt((mCoord.x - rCoordCenter.x)*(mCoord.x - rCoordCenter.x) + ((mCoord.y + L/10) - rCoordCenter.y)*((mCoord.y + L/10) - rCoordCenter.y));
+			if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2  || distance4 <= L*2) {
+				this.onScreenMoleculeList.remove(mol);
+			}
+		}
+		
+		for(Throwable atom : this.onScreenAtomList) {
+			Point aCoord = atom.getCoordinate();
+			distance1 = Math.sqrt((aCoord.x - rCoordCenter.x)*(aCoord.x - rCoordCenter.x) + (aCoord.y - rCoordCenter.y)*(aCoord.y - rCoordCenter.y));
+			distance2 = Math.sqrt(((aCoord.x + L/10) - rCoordCenter.x)*((aCoord.x + L/10) - rCoordCenter.x) + (aCoord.y - rCoordCenter.y)*(aCoord.y - rCoordCenter.y));
+			distance3 = Math.sqrt(((aCoord.x + L/10) - rCoordCenter.x)*((aCoord.x + L/10) - rCoordCenter.x) + ((aCoord.y + L/10) - rCoordCenter.y)*((aCoord.y + L/10) - rCoordCenter.y));
+			distance4 = Math.sqrt((aCoord.x - rCoordCenter.x)*(aCoord.x - rCoordCenter.x) + ((aCoord.y + L/10) - rCoordCenter.y)*((aCoord.y + L/10) - rCoordCenter.y));
+			if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2  || distance4 <= L*2) {
+				this.onScreenAtomList.remove(atom);
+			}
+		}
 	}
 
 
 	public void addShield(int type) {
-		ShieldDecorator at = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
-		at.addShield();
-		System.out.println(at.getEfficiency());
-		this.barrelAtom=at;
-		this.shooter.inventory.removeInventoryShield(type);
+		if(this.shooter.inventory.getInventoryShieldCount(type) > 0) {
+			ShieldDecorator at = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
+			at.addShield();
+			//System.out.println(at.getEfficiency());
+			this.barrelAtom=at;
+			this.shooter.inventory.removeInventoryShield(type);
+		}
 	}
 	
+	
 	public void getRandomAtomToBarrel() {
-		Random rn = new Random();
-		int type = rn.nextInt(4)+1;
-		while(!this.shooter.inventory.checkAtomAvailability(type, 1)) {
-			type = (int) (1 + (Math.random() * 3));
-		}
-
+		if(this.barrelAtom != null) this.shooter.inventory.addInventoryAtom(this.barrelAtom);
+		else if(this.barrelPowerUp != null) this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
 		this.barrelPowerUp = null;
-		this.barrelAtom = AtomFactory.getInstance().getNewAtom(type, this.shooter.getBarrelCoordinate());
-		this.barrelAtom.setAngle(this.shooter.getAngle());
-		System.out.println("eff of initial"+this.barrelAtom.getEfficiency()+" neut "+this.barrelAtom.getNeutron()+ " ID "+ this.barrelAtom.getAtomID());
-
+		this.barrelAtom = this.shooter.inventory.getRandomAtom();
+		if(this.barrelAtom != null) {
+			this.barrelAtom.setCoordinate(this.shooter.getBarrelCoordinate());
+			this.barrelAtom.setAngle(this.shooter.getAngle());
+		}else {
+			//TODO FINISH GAME???
+		}
 	}
 
 
 	public void getPowerUpToBarrel(int type) {
-		if(this.shooter.inventory.checkPowerUpAvailability(type, 1)) {
-			this.barrelAtom = null;
-			this.barrelPowerUp = FallingObjectFactory.getInstance().getNewPowerUp(type, this.shooter.getBarrelCoordinate(), true);
+		if(this.barrelAtom != null) this.shooter.inventory.addInventoryAtom(this.barrelAtom);
+		else if(this.barrelPowerUp != null) this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
+		this.barrelAtom = null;
+		this.barrelPowerUp = this.shooter.inventory.getPowerUp(type);
+		if(this.barrelPowerUp != null) {
+			this.barrelPowerUp.setCoordinate(this.shooter.getBarrelCoordinate());
 			this.barrelPowerUp.setAngle(this.shooter.getAngle());
 		}
 	}
@@ -296,10 +373,20 @@ public class Game implements IObservable{
 
 	public void pauseGame() {
 		this.isPaused = true;
+		
+	}
+	
+	
+	public void saveGame() {
 		saveLoadService = new FileSaveLoadAdapter();
 		saveLoadService.save();
 		this.mongoLoadService = new MongoSaveLoadAdapter();
 		this.mongoLoadService.save();
+	}
+	
+	
+	public void loadGame() {
+		
 	}
 
 
@@ -318,8 +405,9 @@ public class Game implements IObservable{
 		game_instance = null;
 	}
 	
-	public void rotateShooter(int direction) {
-		this.shooter.rotate(direction);
+	
+	public double getRemainingTime() {
+		return Settings.getInstance().timeRemaining;
 	}
 
 
@@ -332,7 +420,6 @@ public class Game implements IObservable{
 	@Override
 	public void remove(IObserver o) {
 		this.observers.remove(o);
-
 	}
 
 
@@ -340,6 +427,5 @@ public class Game implements IObservable{
 	public void publish() {
 		for(IObserver o: this.observers) o.update();
 	}
-
 
 }

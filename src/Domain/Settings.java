@@ -35,7 +35,7 @@ public class Settings {
 	private int zetaNumber;
 	
 	private static Settings settings = null;
-	public double timeRemaining = 600000; // TODO change the default value and set from setSettings
+	public double timeRemaining = 600000;
 	private Dimension screenSize;
 	
 	private Settings() {}
@@ -83,6 +83,7 @@ public class Settings {
 		this.screenSize = screenSize;
 	}
 	
+	
 	public int getLengthUnit() {
 		return lengthUnit;
 	}
@@ -102,9 +103,11 @@ public class Settings {
 		return isSpinning;
 	}
 	
+	
 	public Dimension getScreenSize() {
 		return this.screenSize;
 	}
+	
 	
 	public void decreaseMoleculeNumber(int type) {
 		switch(type) {
@@ -249,6 +252,7 @@ public class Settings {
 		}
 	}
 	
+	
 	public int getShieldNumber(int type) {
 		switch(type) {
 			case 1:
@@ -262,5 +266,14 @@ public class Settings {
 			default:
 				return 0;
 		}
+	}
+
+
+	public boolean checkFallingObjectLeft() {
+		if(this.alphaMoleculeNumber > 0 || this.betaMoleculeNumber > 0 || this.gammaMoleculeNumber > 0 || this.sigmaMoleculeNumber > 0 ||
+				this.alphaPowerUpNumber > 0 || this.betaPowerUpNumber > 0 || this.gammaPowerUpNumber > 0 || this.sigmaPowerUpNumber > 0 ||
+				this.alphaReactionBlockerNumber > 0 || this.betaReactionBlockerNumber > 0 || this.gammaReactionBlockerNumber > 0 || this.sigmaReactionBlockerNumber > 0)
+			return true;
+		return false;
 	}
 }

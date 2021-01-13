@@ -31,8 +31,8 @@ public class GameController {
 	}
 	
 	
-	public void rotateShooter(int direction) {//TODO: 10 derece d�n�yormu�
-		Game.getInstance().rotateShooter(direction);
+	public void rotateShooter(int direction) {
+		Game.getInstance().shooter.rotate(direction);
 	}
 	
 	
@@ -67,12 +67,12 @@ public class GameController {
 	
 	
 	public void saveGame() {
-		System.out.println("saveGame GC");
+		Game.getInstance().saveGame();
 	}
 	
 	
 	public void loadGame(){
-		System.out.println("loadGame GC");
+		Game.getInstance().loadGame();
 	}
 	
 	
