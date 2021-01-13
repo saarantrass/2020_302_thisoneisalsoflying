@@ -7,7 +7,7 @@ import java.awt.Image;
 import javax.swing.JPanel;
 import Domain.Game;
 import Domain.Settings;
-import Domain.GameObjects.Throwable;
+import Domain.GameObjects.Atoms.Atom;
 import Domain.GameObjects.Molecules.Molecule;
 import Domain.GameObjects.PowerUps.PowerUp;
 import Domain.GameObjects.ReactionBlockers.ReactionBlocker;
@@ -47,7 +47,7 @@ public class MainGamePanel extends JPanel implements IObserver{
 	@Override
 	public void paint(Graphics g) { //TODO ATOM MOLECULE VS OLABİLİR Mİ?? BURDA
 		
-		for(Throwable atom: Game.getInstance().onScreenAtomList) {
+		for(Atom atom: Game.getInstance().onScreenAtomList) {
 			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Atom", atom.getAtomID(), false);
 			g.drawImage(image, atom.getCoordinate().x, atom.getCoordinate().y, null);
 		}

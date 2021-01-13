@@ -1,12 +1,11 @@
 package Domain.GameObjects.Atoms.Shields;
 
-
-import Domain.GameObjects.Throwable;
+import Domain.GameObjects.Atoms.Atom;
 
 public class LotaShield extends ShieldDecorator {
 	private double updatedEfficiency;
 	private static double LOTA_EFF = 0.1;
-	public LotaShield(Throwable atom) {
+	public LotaShield(Atom atom) {
 		super(atom);
 		this.updatedEfficiency=atom.getEfficiency();
 		addShield();

@@ -7,7 +7,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import Domain.GameObjects.AtomFactory;
 import Domain.GameObjects.FallingObjectFactory;
-import Domain.GameObjects.Throwable;
+import Domain.GameObjects.Atoms.Atom;
 import Domain.GameObjects.Atoms.Shields.ShieldDecorator;
 import Domain.GameObjects.Molecules.Molecule;
 import Domain.GameObjects.PowerUps.PowerUp;
@@ -30,12 +30,12 @@ public class Game implements IObservable{
 	ISaveLoadAdapter saveLoadService;
 	ISaveLoadAdapter mongoLoadService;
 
-	public CopyOnWriteArrayList<Throwable> onScreenAtomList = new CopyOnWriteArrayList<>();
+	public CopyOnWriteArrayList<Atom> onScreenAtomList = new CopyOnWriteArrayList<>();
 	public CopyOnWriteArrayList<Molecule> onScreenMoleculeList = new CopyOnWriteArrayList<>();
 	public CopyOnWriteArrayList<PowerUp> onScreenPowerUpList = new CopyOnWriteArrayList<>();
 	public CopyOnWriteArrayList<ReactionBlocker> onScreenReactionBlockerList = new CopyOnWriteArrayList<>();
 
-	public Throwable barrelAtom = null;
+	public Atom barrelAtom = null;
 	public PowerUp barrelPowerUp = null; 
 	public Shooter shooter = null;
 	public Player player = null;
@@ -158,7 +158,7 @@ public class Game implements IObservable{
 
 	private void moveThemAll() {
 
-		for(Throwable atom : onScreenAtomList) {
+		for(Atom atom : onScreenAtomList) {
 			atom.move();
 			if(atom.getCoordinate().y <= 0) {
 				this.onScreenAtomList.remove(atom);
@@ -218,7 +218,7 @@ public class Game implements IObservable{
 		/*
 		 * Atom-Molecule Collision
 		 */
-		for(Throwable atom : this.onScreenAtomList) {
+		for(Atom atom : this.onScreenAtomList) {
 			for(Molecule molecule : this.onScreenMoleculeList) {
 				if(atom.getAtomID() == molecule.getID()) {
 					Point acord = atom.getCoordinate();

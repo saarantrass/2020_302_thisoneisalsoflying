@@ -4,34 +4,32 @@ import java.awt.Point;
 import Domain.Settings;
 import Domain.GameObjects.IMovingBehaviour;
 import Domain.GameObjects.ShootedStrategy;
-import Domain.GameObjects.Throwable;
 
-public abstract class Atom extends Throwable {
+public abstract class Atom{
 	
-	private int atomID;
+	protected int atomID;
 	private Point coordinate;
 	private int L;
 	private double speed;
 	private double xSpeed;
 	private double ySpeed;
 	private double angle;
-	private int neutron;
+	protected int neutron;
 	private int proton;
 	protected double efficiency;
 
 	protected IMovingBehaviour fallingBehaviour;
 	
-	public Atom (int atomID, Point coordinate, int neutron) {
-		this.atomID = atomID;
+	public Atom (Point coordinate) {
 		this.coordinate = coordinate;
 		this.L = Settings.getInstance().getLengthUnit();
 		this.speed = L/10;
-		this.proton=8;
+		this.proton = 8;
 		for(int i=1;i<atomID;i++) {this.proton *= 2;}
-		this.neutron = neutron;
 		this.fallingBehaviour = new ShootedStrategy(this);
 		this.efficiency = 0;
 	}
+	
 	
 	public int getAtomID() {
 		return this.atomID;

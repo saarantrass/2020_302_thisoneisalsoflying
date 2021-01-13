@@ -1,13 +1,12 @@
 package Domain.GameObjects.Atoms.Shields;
 
 import java.util.Random;
-
-import Domain.GameObjects.Throwable;
+import Domain.GameObjects.Atoms.Atom;
 
 public class ThetaShield extends ShieldDecorator {
 	private double updatedEfficiency;
 	private double THETA_EFF;
-	public ThetaShield(Throwable atom) {
+	public ThetaShield(Atom atom) {
 		super(atom);
 		this.updatedEfficiency=atom.getEfficiency();
 		addShield();
