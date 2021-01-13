@@ -49,6 +49,9 @@ public class ScreenCoordinator { //singleton
 		mainFrame.getContentPane().add(currentPanel);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
+		mainFrame.validate();
+		mainFrame.repaint();
+		currentPanel.requestFocus();
 	}
 	
 	
@@ -58,6 +61,9 @@ public class ScreenCoordinator { //singleton
 		mainFrame.getContentPane().add(currentPanel);
 		mainFrame.pack();
 		mainFrame.setVisible(true);
+		mainFrame.validate();
+		mainFrame.repaint();
+		currentPanel.requestFocus();
 	}
 	
 	

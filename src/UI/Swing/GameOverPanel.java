@@ -37,7 +37,7 @@ public class GameOverPanel extends JPanel{
 		this.add(gameOverLabel, c);
 		
 		c.gridy = 1;
-		//this.add(quitButton, c); //TODO
+		this.add(quitButton, c);
 		
 		this.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.3f));
 		this.setVisible(true);

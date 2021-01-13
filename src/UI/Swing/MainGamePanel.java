@@ -2,12 +2,10 @@ package UI.Swing;
 
 import java.awt.BorderLayout;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
 
 import javax.swing.JPanel;
 import Domain.Game;
-import Domain.Settings;
 import Domain.GameObjects.Atoms.Atom;
 import Domain.GameObjects.Molecules.Molecule;
 import Domain.GameObjects.PowerUps.PowerUp;
@@ -38,8 +36,9 @@ public class MainGamePanel extends JPanel implements IObserver{
 	}
 	
 	public void initialize() { //TODO GAME???
-		this.shooterImage = new ShooterImage(Game.getInstance().shooter, Game.getInstance().shooter.getCoordinate().x, Game.getInstance().shooter.getCoordinate().y, Settings.getInstance().getLengthUnit());
+		this.shooterImage = new ShooterImage(Game.getInstance().shooter, Game.getInstance().shooter.getCoordinate().x, Game.getInstance().shooter.getCoordinate().y, Game.getInstance().L);
 		Game.getInstance().shooter.add(shooterImage);
+		GameObjectImageFactory.getInstance().setLengthUnit(Game.getInstance().L);
 		this.setOpaque(false);
 		this.setFocusable(false);
 	}
@@ -50,35 +49,30 @@ public class MainGamePanel extends JPanel implements IObserver{
 		
 		
 		for(Atom atom: Game.getInstance().onScreenAtomList) {
-			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Atom", atom.getAtomID(), false);
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Atom", atom.getAtomID(), false, false, 0);
 			g.drawImage(image, atom.getCoordinate().x, atom.getCoordinate().y, null);
 		}
 		
-		for(Molecule molecule: Game.getInstance().onScreenMoleculeList) {
-			Graphics2D g2d = (Graphics2D)g.create();
-			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Molecule", molecule.getID(), molecule.isLinear());
-			//g.drawImage(image, molecule.getCoordinate().x, molecule.getCoordinate().y, null);
-			g2d.rotate(Math.toRadians(molecule.getAngle()), molecule.getCoordinate().x +molecule.getL()/8, molecule.getCoordinate().y+ +molecule.getL()/8);
-		    g2d.drawImage(image, molecule.getCoordinate().x ,  molecule.getCoordinate().y, null);
-			super.paint(g2d);
-			g2d.dispose();
+		for(Molecule molecule: Game.getInstance().onScreenMoleculeList) {			
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Molecule", molecule.getID(), molecule.isLinear(), molecule.isSpinning(), molecule.getAngle());
+			g.drawImage(image, molecule.getCoordinate().x ,  molecule.getCoordinate().y, null);
 		}
 		
 		for(ReactionBlocker reactionBlocker: Game.getInstance().onScreenReactionBlockerList) {
-			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("ReactionBlocker", reactionBlocker.getID(), false);
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("ReactionBlocker", reactionBlocker.getID(), false, false, 0);
 			g.drawImage(image, reactionBlocker.getCoordinate().x, reactionBlocker.getCoordinate().y, null);
 		}
 		
 		for(PowerUp powerUp: Game.getInstance().onScreenPowerUpList) {
-			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("PowerUp", powerUp.getID(), false);
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("PowerUp", powerUp.getID(), false, false, 0);
 			g.drawImage(image, powerUp.getCoordinate().x, powerUp.getCoordinate().y, null);
 		}
 		
 		if(Game.getInstance().barrelAtom != null) {
-			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Atom", Game.getInstance().barrelAtom.getAtomID(), false);
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("Atom", Game.getInstance().barrelAtom.getAtomID(), false, false, 0);
 			g.drawImage(image, Game.getInstance().barrelAtom.getCoordinate().x, Game.getInstance().barrelAtom.getCoordinate().y, null);
 		} else if (Game.getInstance().barrelPowerUp != null) {
-			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("PowerUp", Game.getInstance().barrelPowerUp.getID(), false);
+			Image image = GameObjectImageFactory.getInstance().getGameObjectImage("PowerUp", Game.getInstance().barrelPowerUp.getID(), false, false, 0);
 			g.drawImage(image, Game.getInstance().barrelPowerUp.getCoordinate().x, Game.getInstance().barrelPowerUp.getCoordinate().y, null);
 		}
 		

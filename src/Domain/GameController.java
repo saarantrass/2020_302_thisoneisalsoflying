@@ -3,21 +3,19 @@ package Domain;
 import java.awt.Dimension;
 
 public class GameController {
-	public Settings settings;
 	
 	
-	public GameController() {
-		this.settings = Settings.getInstance();
-	}
+	public GameController() {}
+	
 	
 	public void editInBuildMode(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel,Dimension screenSize, String playerName) {
-		this.settings.setSettings(aAtomNumber, bAtomNumber, gAtomNumber, sAtomNumber, aMoleculeNumber, bMoleculeNumber, gMoleculeNumber, sMoleculeNumber, aRBNumber, bRBNumber, gRBNumber, sRBNumber, aPUNumber, bPUNumber, gPUNumber, sPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, lengthUnit, difficultyLevel, screenSize);
+		Settings.getInstance().setSettings(aAtomNumber, bAtomNumber, gAtomNumber, sAtomNumber, aMoleculeNumber, bMoleculeNumber, gMoleculeNumber, sMoleculeNumber, aRBNumber, bRBNumber, gRBNumber, sRBNumber, aPUNumber, bPUNumber, gPUNumber, sPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, lengthUnit, difficultyLevel, screenSize);
 		//TODO WHERE TO PUT PLAYER NAME?
 	}
 	
 	
 	public void startGame() {
-		Game.getInstance().startGame(this);
+		Game.getInstance().startGame();
 	}
 	
 	
@@ -84,6 +82,7 @@ public class GameController {
 	public void resumeGame() {
 		Game.getInstance().resumeGame();
 	}
+	
 	
 	public void pauseGame() {
 		Game.getInstance().pauseGame();	
