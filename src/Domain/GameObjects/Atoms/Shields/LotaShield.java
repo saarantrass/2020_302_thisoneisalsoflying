@@ -25,12 +25,10 @@ public class LotaShield extends AtomDecorator {
 
 	@Override
 	public void updateEfficiency() {
-		System.out.println("before"+ this.updatedEfficiency);
 		double effFactor = (1 - this.updatedEfficiency) * LOTA_EFF;
 		double speedFactor = 0.07;
-		setEfficiency(this.updatedEfficiency+this.updatedEfficiency*effFactor);
+		this.setEfficiency(this.updatedEfficiency+this.updatedEfficiency*effFactor);
 		this.setSpeed(this.getSpeed()*(1-speedFactor));
-		System.out.println("after"+ this.updatedEfficiency);
 	}
 
 }

@@ -12,8 +12,8 @@ public class EtaShield extends AtomDecorator  {
 	private static double ETA_EFF = 0.05;
 	public EtaShield(Atom atom) {
 		super(atom);
+		this.updatedEfficiency = this.atom.getEfficiency();
 		updateEfficiency();
-		this.updatedEfficiency = atom.getEfficiency();
 	}
 
 	@Override
@@ -46,7 +46,6 @@ public class EtaShield extends AtomDecorator  {
 			effFactor = (1 - this.updatedEfficiency) * ETA_EFF;
 		}
 		speedFactor = 0.05;
-		System.out.println("here"  +this.updatedEfficiency);
 		this.setEfficiency(this.updatedEfficiency+this.updatedEfficiency*effFactor);
 		this.setSpeed(this.getSpeed()*(1-speedFactor));
 		
