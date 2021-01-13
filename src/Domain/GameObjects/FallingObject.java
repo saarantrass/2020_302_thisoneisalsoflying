@@ -90,9 +90,9 @@ public abstract class FallingObject {
 	}
 	
 	public void setAngle(double angle) {
+		this.angle = angle;
 		setxSpeed(speed*Math.sin(Math.toRadians(this.angle)));
 		setySpeed(speed*Math.cos(Math.toRadians(this.angle)));
-		this.angle = angle;
 	}
 	
 	public double getxSpeed() {
