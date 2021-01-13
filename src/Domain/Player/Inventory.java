@@ -8,25 +8,24 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import Domain.Settings;
 import Domain.GameObjects.AtomFactory;
 import Domain.GameObjects.FallingObjectFactory;
-import Domain.GameObjects.Throwable;
 import Domain.GameObjects.Atoms.Atom;
 import Domain.GameObjects.PowerUps.PowerUp;
 
 public class Inventory {
 	
-	private HashMap<Integer, CopyOnWriteArrayList<Throwable>> inventoryAtom;
+	private HashMap<Integer, CopyOnWriteArrayList<Atom>> inventoryAtom;
 	private HashMap<Integer, CopyOnWriteArrayList<PowerUp>> inventoryPowerUp;
 	private HashMap<Integer, Integer> inventoryShield;
 	
 	public Inventory() {
-		this.inventoryAtom = new HashMap<Integer, CopyOnWriteArrayList<Throwable>>();
+		this.inventoryAtom = new HashMap<Integer, CopyOnWriteArrayList<Atom>>();
 		this.inventoryPowerUp = new HashMap<Integer, CopyOnWriteArrayList<PowerUp>>();
 		this.inventoryShield = new HashMap<Integer, Integer>();
 		
-		inventoryAtom.put(1, new CopyOnWriteArrayList<Throwable>());
-		inventoryAtom.put(2, new CopyOnWriteArrayList<Throwable>());
-		inventoryAtom.put(3, new CopyOnWriteArrayList<Throwable>());
-		inventoryAtom.put(4, new CopyOnWriteArrayList<Throwable>());
+		inventoryAtom.put(1, new CopyOnWriteArrayList<Atom>());
+		inventoryAtom.put(2, new CopyOnWriteArrayList<Atom>());
+		inventoryAtom.put(3, new CopyOnWriteArrayList<Atom>());
+		inventoryAtom.put(4, new CopyOnWriteArrayList<Atom>());
 		
 		for (int i = 0; i < Settings.getInstance().getAtomNumber(1); i++) {
 			inventoryAtom.get(1).add(AtomFactory.getInstance().getNewAtom(1, new Point(0,0)));
@@ -72,11 +71,11 @@ public class Inventory {
 	
 	
 	public void addInventoryAtom(int type, int count) {
-		Throwable newAt = AtomFactory.getInstance().getNewAtom(type, new Point(0,0));
+		Atom newAt = AtomFactory.getInstance().getNewAtom(type, new Point(0,0));
 		this.inventoryAtom.get(type).add(newAt);
 	}
 	
-	public void addInventoryAtom(Throwable barrelAtom) {
+	public void addInventoryAtom(Atom barrelAtom) {
 		this.inventoryAtom.get(barrelAtom.getAtomID()).add((Atom) barrelAtom);
 	}
 	
@@ -122,14 +121,14 @@ public class Inventory {
 		}
 	}
 	
-	public Throwable getRandomAtom() {
+	public Atom getRandomAtom() {
 		if(!(this.inventoryAtom.get(1).size() <= 0 && this.inventoryAtom.get(2).size() <= 0 && this.inventoryAtom.get(3).size() <= 0 && this.inventoryAtom.get(4).size() <= 0)) {
 			Random rn = new Random();
 			int type = rn.nextInt(4)+1;
 			while(this.inventoryAtom.get(type).size() < 1) {
 				type = rn.nextInt(4)+1;
 			}
-			Throwable at = this.inventoryAtom.get(type).remove(this.inventoryAtom.get(type).size() - 1);
+			Atom at = this.inventoryAtom.get(type).remove(this.inventoryAtom.get(type).size() - 1);
 			return at;
 		}
 		return null;

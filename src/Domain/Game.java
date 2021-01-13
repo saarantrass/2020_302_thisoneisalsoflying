@@ -106,7 +106,7 @@ public class Game implements IObservable{
 	private void continueGame() {
 		this.timer++;
 		
-		if(this.timer % (10/this.difficultyLevel) == 0) { //TODO TAM DEĞİL
+		if(this.timer % (10/this.difficultyLevel) == 0) { //TODO TAM DEÄ�Ä°L
 			createRandomFallingObject();
 		}
 		moveThemAll();
@@ -214,7 +214,7 @@ public class Game implements IObservable{
 
 	private void collisionHandler() {
 		//TODO: reaction blocker blocks the atom-molecule unification!!!!
-		//TODO: powerup ba�ka reactiona de�ince yok oluyormu�
+		//TODO: powerup baï¿½ka reactiona deï¿½ince yok oluyormuï¿½
 		/*
 		 * Atom-Molecule Collision
 		 */
@@ -282,7 +282,7 @@ public class Game implements IObservable{
 					}
 				}
 			}
-			for(Throwable atom: this.onScreenAtomList) {
+			for(Atom atom: this.onScreenAtomList) {
 				if(rb.getID() == atom.getAtomID()) {
 					Point aCoord = atom.getCoordinate();
 					Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
@@ -307,7 +307,7 @@ public class Game implements IObservable{
 		double distance4 = Math.sqrt((sCoord.x - rCoordCenter.x)*(sCoord.x - rCoordCenter.x) + ((sCoord.y + L/10) - rCoordCenter.y)*((sCoord.y + L/10) - rCoordCenter.y));
 		if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2  || distance4 <= L*2) {
 			//TODO health azalt
-			this.player.decreaseHealth(10.0); //TODO BU YANLIŞ
+			this.player.decreaseHealth(10.0); //TODO BU YANLIÅ�
 		}
 	
 		for(Molecule mol : this.onScreenMoleculeList) {
@@ -319,9 +319,9 @@ public class Game implements IObservable{
 			if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2  || distance4 <= L*2) {
 				this.onScreenMoleculeList.remove(mol);
 			}
-		}
+		} 
 		
-		for(Throwable atom : this.onScreenAtomList) {
+		for(Atom atom : this.onScreenAtomList) {
 			Point aCoord = atom.getCoordinate();
 			distance1 = Math.sqrt((aCoord.x - rCoordCenter.x)*(aCoord.x - rCoordCenter.x) + (aCoord.y - rCoordCenter.y)*(aCoord.y - rCoordCenter.y));
 			distance2 = Math.sqrt(((aCoord.x + L/10) - rCoordCenter.x)*((aCoord.x + L/10) - rCoordCenter.x) + (aCoord.y - rCoordCenter.y)*(aCoord.y - rCoordCenter.y));
