@@ -24,13 +24,11 @@ public class ShootedStrategy implements IMovingBehaviour{
 			if(powerUp.getCoordinate().x < 0 || powerUp.getCoordinate().x > (Settings.getInstance().getScreenSize().getWidth() * 7/8)) {
 				powerUp.setxSpeed(-powerUp.getxSpeed());
 			}
-			powerUp.getCoordinate().x -= powerUp.getxSpeed();
+			powerUp.getCoordinate().x += powerUp.getxSpeed();
 			powerUp.getCoordinate().y -= powerUp.getySpeed();
 		}else if (atom != null) {
-			if(atom.getCoordinate().x < 0) {
-				atom.setxSpeed(Math.abs(atom.getxSpeed()));				
-			} else if(atom.getCoordinate().x > (Settings.getInstance().getScreenSize().getWidth() * 7/8)) {
-				atom.setxSpeed(-Math.abs(atom.getxSpeed()));
+			if(atom.getCoordinate().x < 0 || (atom.getCoordinate().x > (Settings.getInstance().getScreenSize().getWidth() * 7/8))) {
+				atom.setxSpeed(-atom.getxSpeed());
 			}
 			atom.getCoordinate().x += atom.getxSpeed();
 			atom.getCoordinate().y -= atom.getySpeed();

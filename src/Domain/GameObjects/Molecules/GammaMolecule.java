@@ -9,14 +9,14 @@ public class GammaMolecule extends Molecule {
 
 	public GammaMolecule(int moleculeID, Point coordinate, boolean isLinear, boolean isSpinning) {
 		super(moleculeID, coordinate, false, false);
-		setFallingStrategy(new LinearStrategy(this));
+		setMovingStrategy(new LinearStrategy(this));
 	}
 	@Override
-	public void updateFallingStrategy() {
+	public void updateMovingStrategy() {
 		if(this.getCoordinate().y < Settings.getInstance().getScreenSize().getHeight()/2) {
-			this.fallingBehaviour = new LinearStrategy(this);
+			this.movingBehaviour = new LinearStrategy(this);
 		}else {
-			this.fallingBehaviour = new ZigZagStrategy(this);
+			this.movingBehaviour = new ZigZagStrategy(this);
 		}
 	
 	}

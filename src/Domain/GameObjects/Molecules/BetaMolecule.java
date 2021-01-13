@@ -9,20 +9,20 @@ public class BetaMolecule extends Molecule {
 
 	public BetaMolecule(int moleculeID, Point coordinate, boolean isLinear, boolean isSpinning) {
 		super(moleculeID, coordinate, isLinear, isSpinning);
-		setFallingStrategy(new LinearStrategy(this));
+		setMovingStrategy(new LinearStrategy(this));
 	}
 	
 	/**
-	 * Updates the falling strategy of the BetaMolecule
+	 * Updates the Moving strategy of the BetaMolecule
 	 */
 	@Override
-	public void updateFallingStrategy() {
-		// MODIFIES: fallingBehaviour
-		// EFFECTS: changes the falling movement of the molecule
+	public void updateMovingStrategy() {
+		// MODIFIES: MovingBehaviour
+		// EFFECTS: changes the Moving movement of the molecule
 		if(this.getCoordinate().y < Settings.getInstance().getScreenSize().getHeight()/4) {
-			this.fallingBehaviour = new LinearStrategy(this);
+			this.movingBehaviour = new LinearStrategy(this);
 		}else {
-			this.fallingBehaviour = new ZigZagStrategy(this);
+			this.movingBehaviour = new ZigZagStrategy(this);
 		}
 	
 	}

@@ -10,6 +10,9 @@ public class Player {
 	public void increaseScore(double points) {
 		//MODIFIES: score
 		//EFFECTS: score is increased by points.
+		points = points*100;
+		points = Math.round(points);
+		points = points /100;
 		this.score += points;
 	}
 	public void decreaseHealth(double health) {

@@ -27,9 +27,15 @@ public abstract class AtomDecorator extends Atom{
 	@Override
 	public double getSpeed() {return this.atom.getSpeed();}
 	@Override
+	public void setSpeed(double speed) { this.atom.setSpeed(speed);}
+	@Override
 	public double getxSpeed() {return this.atom.getxSpeed();}
 	@Override
+	public void setxSpeed(double speed) {this.atom.setxSpeed(speed);}
+	@Override
 	public double getySpeed() {return this.atom.getySpeed();}
+	@Override
+	public void setySpeed(double speed) {this.atom.setySpeed(speed);}
 	@Override
 	public int getNeutron() {return this.atom.getNeutron();}
 	@Override
@@ -41,5 +47,13 @@ public abstract class AtomDecorator extends Atom{
 	@Override
 	public double getEfficiency() {return this.atom.getEfficiency();}
 	@Override
+	public void setEfficiency(double eff) { 
+		/***
+		 * @REQUIRES: New value of the efficiency
+		 * @EFFECTS: Updated efficiency of Throwable
+		 */
+		this.atom.setEfficiency(eff);}
+	@Override
 	public void move() {this.atom.getMovingBehaviour().move();}
+
 }

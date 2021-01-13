@@ -17,7 +17,7 @@ public abstract class FallingObject {
 	protected double travelled = 0.0;
 	
 
-	protected IMovingBehaviour fallingBehaviour;
+	protected IMovingBehaviour movingBehaviour;
 	
 	public FallingObject (int ID, Point coordinate, boolean isLinear, boolean isSpinning) {
 		this.ID = ID;
@@ -41,20 +41,20 @@ public abstract class FallingObject {
 		this.angle = 0;
 	}
 	
-	public void setFallingStrategy(IMovingBehaviour fallingBehaviour) {
-		this.fallingBehaviour = fallingBehaviour;
+	public void setMovingStrategy(IMovingBehaviour movingBehaviour) {
+		this.movingBehaviour = movingBehaviour;
 	}
 	
-	public IMovingBehaviour getFallingStrategy() {
-		return this.fallingBehaviour;
+	public IMovingBehaviour getMovingStrategy() {
+		return this.movingBehaviour;
 	}
 	
-	public abstract void updateFallingStrategy() ;
+	public abstract void updateMovingStrategy() ;
 	
 	public void move() {
 		updateAngle();
-		this.updateFallingStrategy();
-		fallingBehaviour.move();
+		this.updateMovingStrategy();
+		movingBehaviour.move();
 	}
 		
 	public Point getCoordinate() {
@@ -90,6 +90,8 @@ public abstract class FallingObject {
 	}
 	
 	public void setAngle(double angle) {
+		setxSpeed(speed*Math.sin(Math.toRadians(this.angle)));
+		setySpeed(speed*Math.cos(Math.toRadians(this.angle)));
 		this.angle = angle;
 	}
 	
@@ -103,6 +105,10 @@ public abstract class FallingObject {
 	
 	public double getySpeed() {
 		return ySpeed;
+	}
+	
+	public void setySpeed(double ySpeed) {
+		this.ySpeed = ySpeed;
 	}
 	
 	public double getTravelled() {
@@ -122,5 +128,7 @@ public abstract class FallingObject {
 			this.angle+= 10;
 		}
 	}
+
+
 	
 }

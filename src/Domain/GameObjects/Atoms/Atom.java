@@ -78,6 +78,8 @@ public abstract class Atom{
 	}
 	
 	public void setSpeed(double speed) {
+		setxSpeed(speed*Math.sin(Math.toRadians(this.angle)));
+		setySpeed(speed*Math.cos(Math.toRadians(this.angle)));
 		this.speed = speed;
 	}
 	

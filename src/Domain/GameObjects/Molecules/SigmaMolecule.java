@@ -7,9 +7,9 @@ public class SigmaMolecule extends Molecule {
 
 	public SigmaMolecule(int moleculeID, Point coordinate, boolean isLinear, boolean isSpinning) {
 		super(moleculeID, coordinate, false, false);
-		setFallingStrategy(new LinearStrategy(this));
+		setMovingStrategy(new LinearStrategy(this));
 	}
 
 	@Override
-	public void updateFallingStrategy() {}
+	public void updateMovingStrategy() {}
 }
