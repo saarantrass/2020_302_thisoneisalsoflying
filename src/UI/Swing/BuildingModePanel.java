@@ -1,6 +1,5 @@
 package UI.Swing;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -322,24 +321,19 @@ public class BuildingModePanel extends JPanel{
 		/*
 		 * settings panel design
 		 */
-		JPanel playerNamePanel = new JPanel(new GridBagLayout());
 		JPanel firstLinePanel = new JPanel(new GridBagLayout());
 		JPanel secondLinePanel = new JPanel(new GridBagLayout());
-		playerNamePanel.setOpaque(false);
 		firstLinePanel.setOpaque(false);
 		secondLinePanel.setOpaque(false);
+		playerPanel.setOpaque(false);
 		
 		c.anchor = GridBagConstraints.CENTER;
 		c.gridx = 0;
 		c.gridy = 0;
-		playerNamePanel.add(playerNameLabel, c);
+		playerPanel.add(playerNameLabel, c);
 		
 		c.gridx = 1;
-		playerNamePanel.add(playerNameField, c);
-		
-		playerPanel.setOpaque(false);
-		c.gridx = 0;
-		playerPanel.add(playerNamePanel, c);
+		playerPanel.add(playerNameField, c);
 		
 		c.gridx = 0;
 		c.gridy = 0;
@@ -387,73 +381,67 @@ public class BuildingModePanel extends JPanel{
 	
 	
 	public boolean setSettings() {
-		String playerName = playerNameField.getText();
-		
-		int alphaAtomNumber = Integer.parseInt(alphaAtomNumberField.getText());
-		int betaAtomNumber = Integer.parseInt(betaAtomNumberField.getText());
-		int gammaAtomNumber = Integer.parseInt(gammaAtomNumberField.getText());
-		int sigmaAtomNumber = Integer.parseInt(sigmaAtomNumberField.getText());
-		
-		int alphaMoleculeNumber = Integer.parseInt(alphaMoleculeNumberField.getText());
-		int betaMoleculeNumber = Integer.parseInt(betaMoleculeNumberField.getText());
-		int gammaMoleculeNumber = Integer.parseInt(gammaMoleculeNumberField.getText());
-		int sigmaMoleculeNumber = Integer.parseInt(sigmaMoleculeNumberField.getText());
-		
-		int alphaRBNumber = Integer.parseInt(alphaRBNumberField.getText());
-		int betaRBNumber = Integer.parseInt(betaRBNumberField.getText());
-		int gammaRBNumber = Integer.parseInt(gammaRBNumberField.getText());
-		int sigmaRBNumber = Integer.parseInt(sigmaRBNumberField.getText());
-		
-		int alphaPUNumber = Integer.parseInt(alphaPUNumberField.getText());
-		int betaPUNumber = Integer.parseInt(betaPUNumberField.getText());
-		int gammaPUNumber = Integer.parseInt(gammaPUNumberField.getText());
-		int sigmaPUNumber = Integer.parseInt(sigmaPUNumberField.getText());
-		
-		int etaNumber = Integer.parseInt(etaNumberField.getText());
-		int lotaNumber = Integer.parseInt(lotaNumberField.getText());
-		int thetaNumber = Integer.parseInt(thetaNumberField.getText());
-		int zetaNumber = Integer.parseInt(zetaNumberField.getText());
-		
-		boolean isLinear = linearCheckBox.isSelected();
-		
-		boolean isSpinning = false;
-		if(isLinear) {
-			if(spinningButton.isSelected())
-				isSpinning = true;
-		}
-		
-		int L = Integer.parseInt(unitLengthField.getText());
-		
-		int difficultyLevel = 1;
-		if(mediumButton.isSelected())
-			difficultyLevel = 2;
-		else if(hardButton.isSelected())
-			difficultyLevel = 4;
-		
-		Dimension screenSize = ScreenCoordinator.SCREEN_SIZE;
-		
-		if(playerName.equals("")) {
-			JLabel errorLabel = new JLabel("Enter player name to start!");
-			errorLabel.setForeground(Color.RED);
+		try {
+			String playerName = playerNameField.getText();
 			
-			GridBagConstraints c = new GridBagConstraints();
-			c.anchor = GridBagConstraints.CENTER;
-			c.gridx = 0;
-			c.gridy = 1;
-			this.playerPanel.add(errorLabel, c);
+			int alphaAtomNumber = Integer.parseInt(alphaAtomNumberField.getText());
+			int betaAtomNumber = Integer.parseInt(betaAtomNumberField.getText());
+			int gammaAtomNumber = Integer.parseInt(gammaAtomNumberField.getText());
+			int sigmaAtomNumber = Integer.parseInt(sigmaAtomNumberField.getText());
 			
-			this.validate();
-			this.repaint();
-			return false;
-		}/* else if(L < 50 || alphaAtomNumber < 10 || betaAtomNumber < 10 || 
+			int alphaMoleculeNumber = Integer.parseInt(alphaMoleculeNumberField.getText());
+			int betaMoleculeNumber = Integer.parseInt(betaMoleculeNumberField.getText());
+			int gammaMoleculeNumber = Integer.parseInt(gammaMoleculeNumberField.getText());
+			int sigmaMoleculeNumber = Integer.parseInt(sigmaMoleculeNumberField.getText());
+			
+			int alphaRBNumber = Integer.parseInt(alphaRBNumberField.getText());
+			int betaRBNumber = Integer.parseInt(betaRBNumberField.getText());
+			int gammaRBNumber = Integer.parseInt(gammaRBNumberField.getText());
+			int sigmaRBNumber = Integer.parseInt(sigmaRBNumberField.getText());
+			
+			int alphaPUNumber = Integer.parseInt(alphaPUNumberField.getText());
+			int betaPUNumber = Integer.parseInt(betaPUNumberField.getText());
+			int gammaPUNumber = Integer.parseInt(gammaPUNumberField.getText());
+			int sigmaPUNumber = Integer.parseInt(sigmaPUNumberField.getText());
+			
+			int etaNumber = Integer.parseInt(etaNumberField.getText());
+			int lotaNumber = Integer.parseInt(lotaNumberField.getText());
+			int thetaNumber = Integer.parseInt(thetaNumberField.getText());
+			int zetaNumber = Integer.parseInt(zetaNumberField.getText());
+			
+			boolean isLinear = linearCheckBox.isSelected();
+			
+			boolean isSpinning = false;
+			if(isLinear) {
+				isSpinning = spinningButton.isSelected();
+			}
+			
+			int L = Integer.parseInt(unitLengthField.getText());
+			
+			int difficultyLevel = 1;
+			if(mediumButton.isSelected())
+				difficultyLevel = 2;
+			else if(hardButton.isSelected())
+				difficultyLevel = 4;
+			
+			Dimension screenSize = ScreenCoordinator.SCREEN_SIZE;
+			
+			if(playerName.equals("")) {
+				ScreenCoordinator.getInstance().displayError("Enter player name to start!");
+				return false;
+			} else if(L < 50 || alphaAtomNumber < 10 || betaAtomNumber < 10 || 
 				gammaAtomNumber < 10 || sigmaAtomNumber < 10 || alphaMoleculeNumber < 10 || 
-				betaMoleculeNumber < 10 || sigmaMoleculeNumber < 10) {
+				betaMoleculeNumber < 10 || gammaMoleculeNumber < 10 || sigmaMoleculeNumber < 10) {
+				ScreenCoordinator.getInstance().displayError("Atom and molecule numbers must be greater than 10!");
+				return false;
+			} else {
+				GC.editInBuildMode(alphaAtomNumber, betaAtomNumber, gammaAtomNumber, sigmaAtomNumber, alphaMoleculeNumber, betaMoleculeNumber, gammaMoleculeNumber, sigmaMoleculeNumber, alphaRBNumber, betaRBNumber, gammaRBNumber, sigmaRBNumber, alphaPUNumber, betaPUNumber, gammaPUNumber, sigmaPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, L, difficultyLevel, screenSize, playerName);
+				return true;		
+			}
+		} catch(NumberFormatException e) {
+			ScreenCoordinator.getInstance().displayError("Please enter a valid number!");
 			return false;
-		} */else {
-			GC.editInBuildMode(alphaAtomNumber, betaAtomNumber, gammaAtomNumber, sigmaAtomNumber, alphaMoleculeNumber, betaMoleculeNumber, gammaMoleculeNumber, sigmaMoleculeNumber, alphaRBNumber, betaRBNumber, gammaRBNumber, sigmaRBNumber, alphaPUNumber, betaPUNumber, gammaPUNumber, sigmaPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, L, difficultyLevel, screenSize, playerName);
-			return true;		
 		}
-		
 	}
 	
 	
