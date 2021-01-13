@@ -45,6 +45,8 @@ public abstract class AtomDecorator extends Atom{
 	@Override 
 	public double getAngle() {return this.atom.getAngle();}
 	@Override
+	public void setAngle(double angle) {this.atom.setAngle(angle);}
+	@Override
 	public double getEfficiency() {return this.atom.getEfficiency();}
 	@Override
 	public void setEfficiency(double eff) { 
