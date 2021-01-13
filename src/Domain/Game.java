@@ -173,6 +173,7 @@ public class Game implements IObservable{
 		for(ReactionBlocker rb : onScreenReactionBlockerList) {
 			rb.move();
 			if(rb.getCoordinate().y >= Settings.getInstance().getScreenSize().height) {
+				this.explosion(rb);
 				this.onScreenReactionBlockerList.remove(rb);
 			}
 		}
@@ -263,8 +264,73 @@ public class Game implements IObservable{
 				}
 			}
 		}
-
-
+		
+		/*
+		 * ReactionBlocker-Atom/Molecule Collision
+		 */
+		for(ReactionBlocker rb: this.onScreenReactionBlockerList) {
+			for(Molecule mol: this.onScreenMoleculeList) {
+				if(rb.getID() == mol.getID()) {
+					Point mCoord = mol.getCoordinate();
+					Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
+					double distance1 = Math.sqrt((mCoord.x - rCoordCenter.x)*(mCoord.x - rCoordCenter.x) + (mCoord.y - rCoordCenter.y)*(mCoord.y - rCoordCenter.y));
+					double distance2 = Math.sqrt(((mCoord.x + L/10) - rCoordCenter.x)*((mCoord.x + L/10) - rCoordCenter.x) + (mCoord.y - rCoordCenter.y)*(mCoord.y - rCoordCenter.y));
+					double distance3 = Math.sqrt(((mCoord.x + L/10) - rCoordCenter.x)*((mCoord.x + L/10) - rCoordCenter.x) + ((mCoord.y + L/10) - rCoordCenter.y)*((mCoord.y + L/10) - rCoordCenter.y));
+					double distance4 = Math.sqrt((mCoord.x - rCoordCenter.x)*(mCoord.x - rCoordCenter.x) + ((mCoord.y + L/10) - rCoordCenter.y)*((mCoord.y + L/10) - rCoordCenter.y));
+					if(distance1 <= L/2 || distance2 <= L/2 || distance3 <= L/2  || distance4 <= L/2) {
+						this.onScreenMoleculeList.remove(mol);
+					}
+				}
+			}
+			for(Throwable atom: this.onScreenAtomList) {
+				if(rb.getID() == atom.getAtomID()) {
+					Point aCoord = atom.getCoordinate();
+					Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
+					double distance1 = Math.sqrt((aCoord.x - rCoordCenter.x)*(aCoord.x - rCoordCenter.x) + (aCoord.y - rCoordCenter.y)*(aCoord.y - rCoordCenter.y));
+					double distance2 = Math.sqrt(((aCoord.x + L/10) - rCoordCenter.x)*((aCoord.x + L/10) - rCoordCenter.x) + (aCoord.y - rCoordCenter.y)*(aCoord.y - rCoordCenter.y));
+					double distance3 = Math.sqrt(((aCoord.x + L/10) - rCoordCenter.x)*((aCoord.x + L/10) - rCoordCenter.x) + ((aCoord.y + L/10) - rCoordCenter.y)*((aCoord.y + L/10) - rCoordCenter.y));
+					double distance4 = Math.sqrt((aCoord.x - rCoordCenter.x)*(aCoord.x - rCoordCenter.x) + ((aCoord.y + L/10) - rCoordCenter.y)*((aCoord.y + L/10) - rCoordCenter.y));
+					if(distance1 <= L/2 || distance2 <= L/2 || distance3 <= L/2  || distance4 <= L/2) {
+						this.onScreenAtomList.remove(atom);
+					}
+				}
+			}
+		}
+	}
+	
+	public void explosion(ReactionBlocker rb) {
+		Point sCoord = this.shooter.getCoordinate();
+		Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
+		double distance1 = Math.sqrt((sCoord.x - rCoordCenter.x)*(sCoord.x - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y));
+		double distance2 = Math.sqrt(((sCoord.x + L/10) - rCoordCenter.x)*((sCoord.x + L/10) - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y));
+		double distance3 = Math.sqrt(((sCoord.x + L/10) - rCoordCenter.x)*((sCoord.x + L/10) - rCoordCenter.x) + ((sCoord.y + L/10) - rCoordCenter.y)*((sCoord.y + L/10) - rCoordCenter.y));
+		double distance4 = Math.sqrt((sCoord.x - rCoordCenter.x)*(sCoord.x - rCoordCenter.x) + ((sCoord.y + L/10) - rCoordCenter.y)*((sCoord.y + L/10) - rCoordCenter.y));
+		if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2  || distance4 <= L*2) {
+			//TODO health azalt
+			this.player.decreaseHealth(10.0); //TODO BU YANLIŞ
+		}
+	
+		for(Molecule mol : this.onScreenMoleculeList) {
+			Point mCoord = mol.getCoordinate();
+			distance1 = Math.sqrt((mCoord.x - rCoordCenter.x)*(mCoord.x - rCoordCenter.x) + (mCoord.y - rCoordCenter.y)*(mCoord.y - rCoordCenter.y));
+			distance2 = Math.sqrt(((mCoord.x + L/10) - rCoordCenter.x)*((mCoord.x + L/10) - rCoordCenter.x) + (mCoord.y - rCoordCenter.y)*(mCoord.y - rCoordCenter.y));
+			distance3 = Math.sqrt(((mCoord.x + L/10) - rCoordCenter.x)*((mCoord.x + L/10) - rCoordCenter.x) + ((mCoord.y + L/10) - rCoordCenter.y)*((mCoord.y + L/10) - rCoordCenter.y));
+			distance4 = Math.sqrt((mCoord.x - rCoordCenter.x)*(mCoord.x - rCoordCenter.x) + ((mCoord.y + L/10) - rCoordCenter.y)*((mCoord.y + L/10) - rCoordCenter.y));
+			if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2  || distance4 <= L*2) {
+				this.onScreenMoleculeList.remove(mol);
+			}
+		}
+		
+		for(Throwable atom : this.onScreenAtomList) {
+			Point aCoord = atom.getCoordinate();
+			distance1 = Math.sqrt((aCoord.x - rCoordCenter.x)*(aCoord.x - rCoordCenter.x) + (aCoord.y - rCoordCenter.y)*(aCoord.y - rCoordCenter.y));
+			distance2 = Math.sqrt(((aCoord.x + L/10) - rCoordCenter.x)*((aCoord.x + L/10) - rCoordCenter.x) + (aCoord.y - rCoordCenter.y)*(aCoord.y - rCoordCenter.y));
+			distance3 = Math.sqrt(((aCoord.x + L/10) - rCoordCenter.x)*((aCoord.x + L/10) - rCoordCenter.x) + ((aCoord.y + L/10) - rCoordCenter.y)*((aCoord.y + L/10) - rCoordCenter.y));
+			distance4 = Math.sqrt((aCoord.x - rCoordCenter.x)*(aCoord.x - rCoordCenter.x) + ((aCoord.y + L/10) - rCoordCenter.y)*((aCoord.y + L/10) - rCoordCenter.y));
+			if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2  || distance4 <= L*2) {
+				this.onScreenAtomList.remove(atom);
+			}
+		}
 	}
 
 
