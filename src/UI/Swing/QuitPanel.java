@@ -13,25 +13,17 @@ import javax.swing.border.EtchedBorder;
 @SuppressWarnings("serial")
 public class QuitPanel extends JPanel{
 	
-	public QuitPanel(ActionListener buttonListener) {
+	JButton saveQuitButton = new JButton("Save & Quit");
+	JButton quitWithoutSaveButton = new JButton("Quit");
+	JButton backButton = new JButton("Back");
+	
+	public QuitPanel() {
 		this.setLayout(new GridBagLayout());
 		
 		JPanel container = new JPanel();
 		container.setLayout(new GridBagLayout());
 		container.setBorder(new EtchedBorder());
 		container.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.5f));
-		
-		/*
-		 * buttons design
-		 */
-		JButton saveQuitButton = new JButton("Save & Quit");
-		saveQuitButton.addActionListener(buttonListener);
-		
-		JButton quitWithoutSaveButton = new JButton("Quit");
-		quitWithoutSaveButton.addActionListener(buttonListener);
-		
-		JButton backButton = new JButton("Back");
-		backButton.addActionListener(buttonListener);
 		
 		/*
 		 * add components
@@ -53,5 +45,17 @@ public class QuitPanel extends JPanel{
 		this.add(container);
 		this.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.3f));
 		this.setVisible(true);
+	}
+	
+	public void addQuitButtonListener(ActionListener l) {
+		this.saveQuitButton.addActionListener(l);
+		this.quitWithoutSaveButton.addActionListener(l);
+		this.backButton.addActionListener(l);
+	}
+	
+	public void removeQuitButtonListener(ActionListener l) {
+		this.saveQuitButton.removeActionListener(l);
+		this.quitWithoutSaveButton.removeActionListener(l);
+		this.backButton.removeActionListener(l);
 	}
 }
