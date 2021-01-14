@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import Domain.Player.Shooter;
 import UI.IObserver;
 import UI.ImageDesigner;
-import UI.Swing.MainGamePanel;
 
 @SuppressWarnings("serial")
 public class ShooterImage extends Canvas implements IObserver{
@@ -48,8 +47,6 @@ public class ShooterImage extends Canvas implements IObserver{
 	public void update() {
 		this.x = shooter.getCoordinate().x;
 		this.y = shooter.getCoordinate().y;
-		MainGamePanel.getInstance().repaint();
-		
 	}
 	
 }
