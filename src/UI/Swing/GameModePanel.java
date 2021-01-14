@@ -306,7 +306,7 @@ public class GameModePanel extends JPanel implements IObserver{
         else
         	this.currentTimeField.setText(Integer.toString(minutes) + ":" + Integer.toString(seconds));
         
-		this.currentHealthLabel.setText(Double.toString(this.game.player.getHealth()));
+		this.currentHealthLabel.setText(Double.toString(Math.round(this.game.player.getHealth()))); //TODO KAÇ DECIMAL OLSUN
 		
 		this.currentEtaShieldLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryShieldCount(1)));
 		this.currentLotaShieldLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryShieldCount(2)));

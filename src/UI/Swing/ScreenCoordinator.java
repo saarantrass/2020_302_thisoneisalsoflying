@@ -8,14 +8,18 @@ import javax.swing.JPanel;
 
 public class ScreenCoordinator { //singleton
 	
-	private ScreenFrame mainFrame = new ScreenFrame();
-	private Background background = new Background();
+	private static ScreenCoordinator screen_coordinator = null;
+
 	private JPanel currentPanel;
+	private ScreenFrame mainFrame = new ScreenFrame();
+
 	private GameController GC = new GameController();
+	
+	private Background background = new Background();
 	private GameModePanel gameModePanel;
 	private BuildingModePanel buildingModePanel;
 	private ErrorFrame error;
-	private static ScreenCoordinator screen_coordinator = null;
+	
 	public static final Dimension SCREEN_SIZE = new Dimension(1350,835);
 	
 	

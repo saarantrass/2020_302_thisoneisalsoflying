@@ -37,7 +37,7 @@ public class Settings {
 	private String username;
 	
 	private Dimension screenSize;
-	public double timeRemaining;
+	public int timeRemaining;
 	
 	public static int timeMult = 20;
 	
