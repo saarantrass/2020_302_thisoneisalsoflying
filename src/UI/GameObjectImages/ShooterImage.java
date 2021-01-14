@@ -24,14 +24,12 @@ public class ShooterImage extends Canvas implements IObserver{
 	
 	
 	public ShooterImage(Shooter shooter, int x, int y, int L) {
-		super();
 		this.x = x;
 		this.y = y;
 		this.L = L;
 		this.shooter = shooter;
 		this.shooter.add(this);
-		this.image = new ImageIcon(getClass().getResource(SHOOTER_IMAGE)).getImage();
-		this.image = ImageDesigner.getResizedImage(image, L/2, L);
+		this.image = ImageDesigner.getResizedImage(new ImageIcon(getClass().getResource(SHOOTER_IMAGE)).getImage(), L/2, L);
 	}
 	
 	
