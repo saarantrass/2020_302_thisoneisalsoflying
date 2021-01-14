@@ -405,10 +405,18 @@ public class Game implements IObservable{
 
 
 	public void saveGame() {
-		saveLoadService = new FileSaveLoadAdapter();
-		saveLoadService.save();
-		this.mongoLoadService = new MongoSaveLoadAdapter();
-		this.mongoLoadService.save();
+		// Use env variable to switch between
+		String saveMethod = System.getenv("SAVE_METHOD");
+		if (saveMethod.equalsIgnoreCase("file")) {
+			saveLoadService = new FileSaveLoadAdapter();
+			saveLoadService.save();			
+		} else if (saveMethod.equalsIgnoreCase("mongo")) {
+			this.mongoLoadService = new MongoSaveLoadAdapter();
+			this.mongoLoadService.save();		
+		} else {
+			// Wrong or no env variable set
+			System.out.println("Wrong or no env variable set. Unable to save, please set mongo or file to SAVE_METHOD");
+		}
 	}
 
 
