@@ -1,15 +1,13 @@
 package Domain.SaveLoad;
 
-import Domain.Game;
-
 public class FileSaveLoadAdapter implements ISaveLoadAdapter {
 
 	private FileSaveLoad fileSaveLoad;
 	private SaveObject currSave;
 	
-	public FileSaveLoadAdapter(Game game) {
+	public FileSaveLoadAdapter() {
 		this.fileSaveLoad = new FileSaveLoad();
-		this.currSave = new SaveObject(game);
+		this.currSave = new SaveObject();
 	}
 	
 	@Override
