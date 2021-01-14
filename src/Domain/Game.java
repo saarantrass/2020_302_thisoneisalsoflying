@@ -21,8 +21,6 @@ import Domain.SaveLoad.MongoSaveLoadAdapter;
 import UI.IObserver;
 public class Game implements IObservable{
 
-	private static Game game_instance = null;
-
 	public int L;
 	private int difficultyLevel;
 	private int timer = 0;
@@ -47,16 +45,8 @@ public class Game implements IObservable{
 
 
 
-	private Game() {}
-
-	public static Game getInstance() {
-		if(game_instance == null) {
-			game_instance = new Game();
-		}
-
-		return game_instance;
-	}
-
+	public Game() {}
+	
 
 	public void startGame(){
 		this.L = Settings.getInstance().getLengthUnit();
@@ -417,10 +407,10 @@ public class Game implements IObservable{
 		// Use env variable to switch between
 		String saveMethod = System.getenv("SAVE_METHOD");
 		if (saveMethod.equalsIgnoreCase("file")) {
-			saveLoadService = new FileSaveLoadAdapter();
+			saveLoadService = new FileSaveLoadAdapter(this);
 			saveLoadService.save();			
 		} else if (saveMethod.equalsIgnoreCase("mongo")) {
-			this.mongoLoadService = new MongoSaveLoadAdapter();
+			this.mongoLoadService = new MongoSaveLoadAdapter(this);
 			this.mongoLoadService.save();		
 		} else {
 			// Wrong or no env variable set
@@ -448,7 +438,7 @@ public class Game implements IObservable{
 
 
 	public void quitGame() {
-		game_instance = null;
+		//TODO
 	}
 
 
@@ -463,12 +453,12 @@ public class Game implements IObservable{
 	
 	
 	public void stopMoveShooter() {
-		this.stopMoveShooter();
+		this.shooter.stopMove();
 	}
 	
 	
 	public void rotateShooter(int direction) {
-		this.rotateShooter(direction);
+		this.shooter.rotate(direction);
 	}
 	
 	

@@ -5,14 +5,16 @@ import org.bson.Document;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import Domain.Game;
+
 public class MongoSaveLoadAdapter implements ISaveLoadAdapter {
 
 	private MongoSaveLoad mongoSaveLoad;
 	private SaveObject currSave;
 	
-	public MongoSaveLoadAdapter() {
+	public MongoSaveLoadAdapter(Game game) {
 		this.mongoSaveLoad = new MongoSaveLoad();
-		this.currSave = new SaveObject();
+		this.currSave = new SaveObject(game);
 	}
 	
 	@Override
