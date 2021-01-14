@@ -12,6 +12,7 @@ import Domain.GameObjects.Atoms.Atom;
 import Domain.GameObjects.Molecules.Molecule;
 import Domain.GameObjects.PowerUps.PowerUp;
 import Domain.GameObjects.ReactionBlockers.ReactionBlocker;
+import Domain.Player.Inventory;
 import Domain.Player.Player;
 import Domain.Player.Shooter;
 import Domain.SaveLoad.FileSaveLoadAdapter;
@@ -456,6 +457,31 @@ public class Game implements IObservable{
 	}
 
 
+	public void moveShooter(int direction) {
+		this.shooter.move(direction);
+	}
+	
+	
+	public void stopMoveShooter() {
+		this.stopMoveShooter();
+	}
+	
+	
+	public void rotateShooter(int direction) {
+		this.rotateShooter(direction);
+	}
+	
+	
+	public void stopRotateShooter() {
+		this.shooter.stopRotate();
+	}
+	
+	
+	public Inventory getShooterInventory() {
+		return this.shooter.inventory; //TODO
+	}
+	
+	
 	@Override
 	public void add(IObserver o) {
 		this.observers.add(o);
@@ -472,5 +498,6 @@ public class Game implements IObservable{
 	public void publish() {
 		for(IObserver o: this.observers) o.update();
 	}
+
 
 }
