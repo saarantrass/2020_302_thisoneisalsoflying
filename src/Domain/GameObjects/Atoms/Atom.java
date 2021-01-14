@@ -23,7 +23,7 @@ public abstract class Atom{
 	public Atom (int atomID, Point coordinate) {
 		this.coordinate = coordinate;
 		this.L = Settings.getInstance().getLengthUnit();
-		this.speed = (double)L/10;
+		this.speed = (double) L / Settings.timeMult;
 		this.proton = 8;
 		for(int i=1;i<atomID;i++) {this.proton *= 2;}
 		this.movingBehaviour = new ShootedStrategy(this);
@@ -78,9 +78,9 @@ public abstract class Atom{
 	}
 	
 	public void setSpeed(double speed) {
+		this.speed = speed;
 		setxSpeed(speed*Math.sin(Math.toRadians(this.angle)));
 		setySpeed(speed*Math.cos(Math.toRadians(this.angle)));
-		this.speed = speed;
 	}
 	
 	public double getxSpeed() {

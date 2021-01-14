@@ -8,8 +8,6 @@ import UI.ImageDesigner;
 
 public class GameObjectImageFactory {
 	
-	private static GameObjectImageFactory game_object_image_creator  = null;
-	
 	private static final String ALPHA_ATOM_IMAGE = "../../Images/atoms/alpha.png";
 	private static final String BETA_ATOM_IMAGE = "../../Images/atoms/beta.png";
 	private static final String GAMMA_ATOM_IMAGE = "../../Images/atoms/gamma.png";
@@ -35,21 +33,7 @@ public class GameObjectImageFactory {
 	private int L;
 	
 	
-	private GameObjectImageFactory() {}
-	
-	
-	public static GameObjectImageFactory getInstance() {
-		if(game_object_image_creator == null) {
-			game_object_image_creator = new GameObjectImageFactory();
-		}
-		
-		return game_object_image_creator;
-	}
-	
-	
-	public void setLengthUnit(int L) {
-		this.L = L;
-	}
+	public GameObjectImageFactory(int L) {this.L = L;}
 	
 	public Image getGameObjectImage(String gameObjectName, int type, boolean isLinear, boolean isSpinning, double angle) {
 		Image image = null;

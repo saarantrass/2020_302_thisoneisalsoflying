@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import Domain.Game;
 import Domain.IObservable;
 import Domain.Settings;
 import UI.IObserver;
@@ -40,7 +39,7 @@ public class Shooter implements IObservable{
 		
 		this.coordinate = coordinate;
 		this.L = Settings.getInstance().getLengthUnit();
-		this.speed = this.L/10;
+		this.speed = (double) this.L / Settings.timeMult;
 		this.inventory = new Inventory();
 		this.moveThread.start();
 		this.rotateThread.start();
@@ -162,27 +161,26 @@ public class Shooter implements IObservable{
 	 */
 	private Thread moveThread = new Thread(() -> {
 		while(true) {
-			if(!Game.getInstance().isFinished && !Game.getInstance().isPaused) {
-				if(this.isMoving) {
-					if(this.moveDirection == 0) { //left
-						if(this.coordinate.x > 0) {
-							if(this.getBarrelCoordinate().x > 0) { //TODO
-								this.coordinate.x -= speed;														
-							}
-						}
-					} else if(moveDirection == 1) { //right
-						if(this.coordinate.x < (int)(Settings.getInstance().getScreenSize().width * 7/8) - L/2) {
-							if(this.getBarrelCoordinate().x < (Settings.getInstance().getScreenSize().width * 7/8 - this.L/10)) { //TODO													
-								this.coordinate.x += speed;
-							}
+			
+			if(this.isMoving) {
+				if(this.moveDirection == 0) { //left
+					if(this.coordinate.x > 0) {
+						if(this.getBarrelCoordinate().x > 0) { //TODO
+							this.coordinate.x -= speed;														
 						}
 					}
-					publish();
+				} else if(moveDirection == 1) { //right
+					if(this.coordinate.x < (int)(Settings.getInstance().getScreenSize().width * 7/8) - L/2) {
+						if(this.getBarrelCoordinate().x < (Settings.getInstance().getScreenSize().width * 7/8 - this.L/10)) { //TODO													
+							this.coordinate.x += speed;
+						}
+					}
 				}
-			} 
+				publish();
+			}
 			
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1000 / Settings.timeMult);
 			} catch (InterruptedException e) {
 				System.out.println(e);
 				break;
@@ -198,28 +196,27 @@ public class Shooter implements IObservable{
 	 */
 	private Thread rotateThread = new Thread(() -> {
 		while(true) {
-			if(!Game.getInstance().isFinished && !Game.getInstance().isPaused) {
-				if(this.isRotating) {
-					if(this.rotateDirection == 0) { //left
-						if(this.angle >-90) {
-							if(this.getBarrelCoordinate().x > 0) { //TODO
-								this.angle -= 9;								
-							}
-						}
-					} else if(this.rotateDirection == 1) { //right
-						if(this.angle<90) {
-							if(this.getBarrelCoordinate().x < (Settings.getInstance().getScreenSize().width * 7/8 - this.L/10)) { //TODO
-								this.angle += 9;								
-							}
+			
+			if(this.isRotating) {
+				if(this.rotateDirection == 0) { //left
+					if(this.angle >-90) {
+						if(this.getBarrelCoordinate().x > 0) { //TODO
+							this.angle -= 90 / Settings.timeMult;								
 						}
 					}
-					
-					publish();
+				} else if(this.rotateDirection == 1) { //right
+					if(this.angle<90) {
+						if(this.getBarrelCoordinate().x < (Settings.getInstance().getScreenSize().width * 7/8 - this.L/10)) { //TODO
+							this.angle += 90 / Settings.timeMult;								
+						}
+					}
 				}
+				
+				publish();
 			}
 			
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1000 / Settings.timeMult);
 			} catch (InterruptedException e) {
 				System.out.println(e);
 				break;
