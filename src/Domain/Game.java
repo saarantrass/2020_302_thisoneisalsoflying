@@ -79,10 +79,10 @@ public class Game implements IObservable{
 				this.finishGame();
 			} else if (!this.isPaused && !this.isFinished) {
 				this.continueGame();
-				Settings.getInstance().timeRemaining -= 100;
+				Settings.getInstance().timeRemaining -= 1000 / Settings.timeMult;
 			} else {
 				try {
-					Thread.sleep(100);
+					Thread.sleep(1000 / Settings.timeMult);
 				} catch(InterruptedException e) {
 					// nothing
 				}
@@ -91,11 +91,11 @@ public class Game implements IObservable{
 
 			//to prevent crash
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1000 / Settings.timeMult);
 			} catch (InterruptedException e) {
 				while (true) {
 					try {
-						Thread.sleep(100);
+						Thread.sleep(1000 / Settings.timeMult);
 					} catch (InterruptedException e2) {
 						break;
 					}
@@ -110,7 +110,7 @@ public class Game implements IObservable{
 	private void continueGame() {
 		this.timer++;
 		
-		if(this.timer % (10/this.difficultyLevel) == 0) { //TODO TAM DEÄ�Ä°L
+		if(this.timer % (Settings.timeMult / this.difficultyLevel) == 0) { //TODO TAM DEÄ�Ä°L
 			createRandomFallingObject();
 		}
 		

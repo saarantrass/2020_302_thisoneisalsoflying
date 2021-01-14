@@ -25,20 +25,14 @@ public abstract class FallingObject {
 		this.isLinear = isLinear;
 		this.isSpinning = isSpinning;
 		this.L = Settings.getInstance().getLengthUnit();
-		this.speed =  (double)L/10;
+		this.speed =  (double) L / Settings.timeMult;
 		this.xSpeed = this.speed * Math.sin(Math.toRadians(45));
 		this.ySpeed = this.speed * Math.cos(Math.toRadians(45));
 		this.angle = 0;
 	}
 	
 	public FallingObject (int ID, Point coordinate) {
-		this.ID = ID;
-		this.coordinate = coordinate;
-		this.L = Settings.getInstance().getLengthUnit();
-		this.speed =  (double)L/10;
-		this.xSpeed = this.speed * Math.sin(Math.toRadians(45));
-		this.ySpeed = this.speed * Math.cos(Math.toRadians(45));
-		this.angle = 0;
+		this(ID, coordinate, false, false);
 	}
 	
 	public void setMovingStrategy(IMovingBehaviour movingBehaviour) {

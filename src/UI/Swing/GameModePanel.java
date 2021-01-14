@@ -31,6 +31,7 @@ import UI.ImageDesigner;
 @SuppressWarnings("serial")
 public class GameModePanel extends JPanel implements IObserver{
 	
+	private Game game;
 	private GameController GC;
 	
 	private JPanel sidePanel = new JPanel(new GridBagLayout());
@@ -74,17 +75,20 @@ public class GameModePanel extends JPanel implements IObserver{
 	private JLabel sigmaAtomLabel = new JLabel();
 	private JLabel currentSigmaAtomLabel = new JLabel();
 	
-	private MainGamePanel mainGamePanel = MainGamePanel.getInstance();
+	private MainGamePanel mainGamePanel;
 	private PausePanel pausePanel = new PausePanel();
 	private GameOverPanel gameOverPanel =  new GameOverPanel();
 	private QuitPanel quitPanel = new QuitPanel();
 	
-	public GameModePanel(GameController GC) {
+	public GameModePanel(Game game, GameController GC) {
 		
 		setFocusTraversalKeysEnabled(false);
 		
 		this.GC = GC;
-		Game.getInstance().add(this);
+		this.game = game;
+		this.game.add(this);
+		
+		this.mainGamePanel = new MainGamePanel(this.game);
 		
 		this.setLayout(new BorderLayout());
 		this.setSidePanelImages();
@@ -285,35 +289,34 @@ public class GameModePanel extends JPanel implements IObserver{
 		this.setFocusable(true);
 		this.addKeyListener(this.runningModeListener);
 		
-		this.mainGamePanel.initialize();
 	}
 	
 	private void setSidePanel() {
-		this.currentScoreField.setText((int) Math.floor((Game.getInstance().player.getScore())) + "." + (int) ((Game.getInstance().player.getScore() * 100) % 100));
+		this.currentScoreField.setText((int) Math.floor(this.game.player.getScore()) + "." + (int) (Math.round(this.game.player.getScore() * 100) % 100));
 		
-		int minutes = (int) Math.floor((Game.getInstance().getRemainingTime() / 1000) / 60);
-        int seconds = (int) Math.floor((Game.getInstance().getRemainingTime() / 1000) % 60);
+		int minutes = (int) Math.floor((this.game.getRemainingTime() / 1000) / 60);
+        int seconds = (int) Math.floor((this.game.getRemainingTime() / 1000) % 60);
         if(seconds < 10) {
         	this.currentTimeField.setText(Integer.toString(minutes) + ":0" + Integer.toString(seconds));
         } else {
         	this.currentTimeField.setText(Integer.toString(minutes) + ":" + Integer.toString(seconds));
         }
-		this.currentHealthLabel.setText(Double.toString(Game.getInstance().player.getHealth()));
+		this.currentHealthLabel.setText(Double.toString(this.game.player.getHealth()));
 		
-		this.currentEtaShieldLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryShieldCount(1)));
-		this.currentLotaShieldLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryShieldCount(2)));
-		this.currentThetaShieldLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryShieldCount(3)));
-		this.currentZetaShieldLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryShieldCount(4)));
+		this.currentEtaShieldLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryShieldCount(1)));
+		this.currentLotaShieldLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryShieldCount(2)));
+		this.currentThetaShieldLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryShieldCount(3)));
+		this.currentZetaShieldLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryShieldCount(4)));
 		
-		this.currentAlphaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(1)));
-		this.currentBetaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(2)));
-		this.currentGammaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(3)));
-		this.currentSigmaPULabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryPowerUpCount(4)));
+		this.currentAlphaPULabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryPowerUpCount(1)));
+		this.currentBetaPULabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryPowerUpCount(2)));
+		this.currentGammaPULabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryPowerUpCount(3)));
+		this.currentSigmaPULabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryPowerUpCount(4)));
 		
-		this.currentAlphaAtomLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryAtomCount(1)));
-		this.currentBetaAtomLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryAtomCount(2)));
-		this.currentGammaAtomLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryAtomCount(3)));
-		this.currentSigmaAtomLabel.setText(Integer.toString(Game.getInstance().shooter.inventory.getInventoryAtomCount(4)));
+		this.currentAlphaAtomLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryAtomCount(1)));
+		this.currentBetaAtomLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryAtomCount(2)));
+		this.currentGammaAtomLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryAtomCount(3)));
+		this.currentSigmaAtomLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryAtomCount(4)));
 		
 		this.validate();
 		this.repaint();
@@ -513,7 +516,7 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	@Override
 	public void update() {
-		if(Game.getInstance().isFinished) {
+		if(this.game.isFinished) {
 			GC.stopMoveShooter();
 			GC.stopRotateShooter();
 			this.displayPanel(gameOverPanel);

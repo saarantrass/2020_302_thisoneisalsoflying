@@ -37,6 +37,8 @@ public class Settings {
 	private Dimension screenSize;
 	public double timeRemaining;
 	
+	public static int timeMult = 20;
+	
 	private static Settings settings = null;
 	
 	private Settings() {}

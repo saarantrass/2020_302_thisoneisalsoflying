@@ -1,5 +1,6 @@
 package UI.Swing;
 
+import Domain.Game;
 import Domain.GameController;
 
 import java.awt.Dimension;
@@ -13,6 +14,7 @@ public class ScreenCoordinator { //singleton
 	private GameController GC = new GameController();
 	private GameModePanel gameModePanel;
 	private BuildingModePanel buildingModePanel;
+	private ErrorFrame error;
 	private static ScreenCoordinator screen_coordinator = null;
 	public static final Dimension SCREEN_SIZE = new Dimension(1350,835);
 	
@@ -39,7 +41,7 @@ public class ScreenCoordinator { //singleton
 	
 	public void startGame() {
 		GC.startGame();
-		this.gameModePanel = new GameModePanel(this.GC);
+		this.gameModePanel = new GameModePanel(Game.getInstance(), this.GC);
 		this.gameScreen();
 	}
 	
@@ -69,15 +71,16 @@ public class ScreenCoordinator { //singleton
 	
 	
 	public void displayError(String msg) {
-		clean();
-		ErrorPanel error = new ErrorPanel(msg);
-		currentPanel = error;
-		mainFrame.getContentPane().add(error);
-		mainFrame.pack();
-		mainFrame.setVisible(true);
-		mainFrame.validate();
-		mainFrame.repaint();
-		currentPanel.requestFocus();
+		this.error = new ErrorFrame(msg);
+		this.error.setLocationRelativeTo(this.mainFrame);
+		this.mainFrame.setEnabled(false);
+	}
+	
+	
+	public void removeError() {
+		this.error.setAlwaysOnTop(false);
+		this.error.setVisible(false);
+		this.mainFrame.setEnabled(true);
 	}
 	
 	
