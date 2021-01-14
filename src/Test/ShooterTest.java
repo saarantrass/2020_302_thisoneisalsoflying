@@ -31,7 +31,7 @@ public class ShooterTest {
 	
 	@BeforeAll
 	public static void setUp() {
-		Settings.getInstance().setSettings(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, L, 1, screenSize, "doga"); //set settings to get length unit in the shooter constructor
+		Settings.getInstance().setSettings(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, L, 1, screenSize, ""); //set settings to get length unit in the shooter constructor
 		shooter = new Shooter(new Point(screenSize.width/2, screenSize.height));
 	}
 	
