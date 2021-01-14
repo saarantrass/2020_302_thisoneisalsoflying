@@ -4,8 +4,9 @@ import java.awt.Dimension;
 
 public class GameController {
 	
+	Game game;
 	
-	public GameController() {}
+	public GameController(Game game) {this.game = game;}
 	
 	
 	public void editInBuildMode(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel,Dimension screenSize, String playerName) {
@@ -14,76 +15,76 @@ public class GameController {
 	
 	
 	public void startGame() {
-		Game.getInstance().startGame();
+		this.game.startGame();
 	}
 	
 	
 	public void moveShooter(int direction) {
-		Game.getInstance().moveShooter(direction);
+		this.game.moveShooter(direction);
 	}
 	
 	
 	public void stopMoveShooter() {
-		Game.getInstance().stopMoveShooter();
+		this.game.stopMoveShooter();
 	}
 	
 	
 	public void rotateShooter(int direction) {
-		Game.getInstance().rotateShooter(direction);
+		this.game.rotateShooter(direction);
 	}
 	
 	
 	public void stopRotateShooter() {
-		Game.getInstance().stopRotateShooter();
+		this.game.stopRotateShooter();
 	}
 	
 	
 	public void useBlender(int source, int goal) {
-		Blender.useBlender(source, goal, Game.getInstance().getShooterInventory());
+		Blender.useBlender(source, goal, this.game.getShooterInventory());
 	}
 	
 	
 	public void addShield(int type) {
-		Game.getInstance().addShield(type);
+		this.game.addShield(type);
 	}
 	
 	
 	public void shoot() {
-		Game.getInstance().shoot();
+		this.game.shoot();
 	}
 	
 	
 	public void changeAtomOnBarrel() {
-		Game.getInstance().getRandomAtomToBarrel();
+		this.game.getRandomAtomToBarrel();
 	}
 	
 	
 	public void getPowerUpOnBarrel(int type) {
-		Game.getInstance().getPowerUpToBarrel(type);
+		this.game.getPowerUpToBarrel(type);
 	}
 	
 	
 	public void saveGame() {
-		Game.getInstance().saveGame();
+		this.game.saveGame();
 	}
 	
 	
 	public void loadGame(){
-		Game.getInstance().loadGame();
+		this.game.loadGame();
 	}
 	
 	
 	public void quitGame() {
-		Game.getInstance().quitGame();
+		this.game.quitGame();
 	}
 	
 	
 	public void resumeGame() {
-		Game.getInstance().resumeGame();
+		this.game.resumeGame();
 	}
 	
 	
 	public void pauseGame() {
-		Game.getInstance().pauseGame();	
+		this.game.pauseGame();	
 	}
 }
