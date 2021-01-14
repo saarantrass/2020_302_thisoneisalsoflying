@@ -36,8 +36,6 @@ public class Settings {
 	private int thetaNumber;
 	private int zetaNumber;
 	
-	private String username;
-	
 	private Dimension screenSize;
 	public int timeRemaining;
 	
@@ -92,8 +90,6 @@ public class Settings {
 		this.screenSize = screenSize;
 		
 		this.timeRemaining = 600000;
-		
-		this.username = username;
 	}
 	
 	
@@ -124,10 +120,6 @@ public class Settings {
 	
 	public Dimension getScreenSize() {
 		return this.screenSize;
-	}
-	
-	public String getUsername() {
-		return this.username;
 	}
 	
 	
