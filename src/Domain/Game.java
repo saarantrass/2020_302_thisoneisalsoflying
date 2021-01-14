@@ -2,10 +2,14 @@ package Domain;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 import java.awt.Point;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import com.google.gson.JsonIOException;
+import com.google.gson.JsonSyntaxException;
 
 import Domain.GameObjects.AtomFactory;
 import Domain.GameObjects.FallingObjectFactory;
@@ -413,7 +417,14 @@ public class Game implements IObservable{
 
 
 	public void loadGame() {
-
+		saveLoadService = new FileSaveLoadAdapter();
+		try {
+			System.out.println("burda");
+			saveLoadService.load();
+		} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 

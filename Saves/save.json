@@ -1,1 +1,809 @@
-{"L":83,"isPaused":true,"isFinished":false,"onScreenAtomList":[{"atomID":4,"coordinate":{"x":634,"y":616},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":8.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":634,"y":632},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":8.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":634,"y":648},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":8.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}}],"onScreenMoleculeList":[{"ID":1,"coordinate":{"x":1123,"y":168},"isLinear":false,"isSpinning":false,"L":83,"speed":8.0,"xSpeed":-5.65685424949238,"ySpeed":5.656854249492381,"angle":0.0,"travelled":16.97056274847714,"fallingBehaviour":{}}],"onScreenPowerUpList":[{"isThrown":false,"ID":2,"coordinate":{"x":37,"y":196},"isLinear":false,"isSpinning":false,"L":83,"speed":8.0,"xSpeed":5.65685424949238,"ySpeed":5.656854249492381,"angle":0.0,"travelled":0.0,"fallingBehaviour":{}},{"isThrown":false,"ID":4,"coordinate":{"x":850,"y":116},"isLinear":false,"isSpinning":false,"L":83,"speed":8.0,"xSpeed":5.65685424949238,"ySpeed":5.656854249492381,"angle":0.0,"travelled":0.0,"fallingBehaviour":{}},{"isThrown":false,"ID":2,"coordinate":{"x":448,"y":36},"isLinear":false,"isSpinning":false,"L":83,"speed":8.0,"xSpeed":5.65685424949238,"ySpeed":5.656854249492381,"angle":0.0,"travelled":0.0,"fallingBehaviour":{}}],"onScreenReactionBlockerList":[],"barrelAtom":{"atomID":4,"coordinate":{"x":692,"y":768},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":8.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},"barrelPowerUp":null,"shooter":{"coordinate":{"x":618,"y":752},"health":100.0,"score":0.0,"inventory":{"inventoryAtom":{"1":[{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":9,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":7,"proton":8,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}},{"atomID":1,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":8,"proton":8,"efficiency":0.85,"fallingBehaviour":{}}],"2":[{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":21,"proton":16,"efficiency":0.74375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":17,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":18,"proton":16,"efficiency":0.8375,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":16,"proton":16,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":2,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":15,"proton":16,"efficiency":0.86875,"fallingBehaviour":{}}],"3":[{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":29,"proton":32,"efficiency":0.846875,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":33,"proton":32,"efficiency":0.815625,"fallingBehaviour":{}},{"atomID":3,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":32,"proton":32,"efficiency":0.8,"fallingBehaviour":{}}],"4":[{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":67,"proton":64,"efficiency":0.946875,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":64,"proton":64,"efficiency":0.9,"fallingBehaviour":{}},{"atomID":4,"coordinate":{"x":0,"y":0},"L":83,"speed":8.0,"xSpeed":0.0,"ySpeed":0.0,"angle":0.0,"neutron":63,"proton":64,"efficiency":0.915625,"fallingBehaviour":{}}]},"inventoryPowerUp":{"1":[],"2":[],"3":[],"4":[]},"inventoryShield":{"1":50,"2":50,"3":50,"4":50}}},"settings":{"lengthUnit":83,"difficultyLevel":1,"isLinear":false,"isSpinning":false,"alphaAtomNumber":100,"betaAtomNumber":100,"gammaAtomNumber":100,"sigmaAtomNumber":100,"alphaMoleculeNumber":99,"betaMoleculeNumber":100,"gammaMoleculeNumber":100,"sigmaMoleculeNumber":100,"alphaPowerUpNumber":20,"betaPowerUpNumber":18,"gammaPowerUpNumber":20,"sigmaPowerUpNumber":19,"alphaReactionBlockerNumber":10,"betaReactionBlockerNumber":10,"gammaReactionBlockerNumber":10,"sigmaReactionBlockerNumber":10,"etaNumber":50,"lotaNumber":50,"thetaNumber":50,"zetaNumber":50,"timeRemaining":595400.0,"screenSize":{"width":1350,"height":835}}}
+{
+    "L": 83,
+    "isPaused": true,
+    "isFinished": false,
+    "onScreenAtomList": [{
+        "atomID": 1,
+        "coordinate": {
+            "x": 0,
+            "y": 0
+        },
+        "L": 83,
+        "speed": 4.15,
+        "xSpeed": 0.0,
+        "ySpeed": 0.0,
+        "angle": 0.0,
+        "neutron": 8,
+        "proton": 8,
+        "efficiency": 0.85,
+        "movingBehaviour": {}
+    }],
+    "onScreenMoleculeList": [],
+    "onScreenPowerUpList": [],
+    "onScreenReactionBlockerList": [
+        {
+            "ID": 3,
+            "coordinate": {
+                "x": 866,
+                "y": -5
+            },
+            "isLinear": false,
+            "isSpinning": false,
+            "L": 83,
+            "speed": 4.15,
+            "xSpeed": 2.934493141924172,
+            "ySpeed": 2.9344931419241727,
+            "angle": 0.0,
+            "travelled": 0.0,
+            "movingBehaviour": {}
+        }
+    ],
+    "barrelAtom": {
+        "atomID": 1,
+        "coordinate": {
+            "x": 586,
+            "y": 744
+        },
+        "L": 83,
+        "speed": 4.15,
+        "xSpeed": 0.0,
+        "ySpeed": 4.15,
+        "angle": 0.0,
+        "neutron": 7,
+        "proton": 8,
+        "efficiency": 0.74,
+        "movingBehaviour": {}
+    },
+    "barrelPowerUp": null,
+    "shooter": {
+        "coordinate": {
+            "x": 570,
+            "y": 752
+        },
+        "health": 100.0,
+        "score": 0.0,
+        "inventory": {
+            "inventoryAtom": {
+                "1": [
+                    {
+                        "atomID": 1,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 8,
+                        "proton": 8,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 1,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 8,
+                        "proton": 8,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 1,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 9,
+                        "proton": 8,
+                        "efficiency": 0.74,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 1,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 7,
+                        "proton": 8,
+                        "efficiency": 0.74,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 1,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 8,
+                        "proton": 8,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 1,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 8,
+                        "proton": 8,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 1,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 7,
+                        "proton": 8,
+                        "efficiency": 0.74,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 1,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 8,
+                        "proton": 8,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 1,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 8,
+                        "proton": 8,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 1,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 9,
+                        "proton": 8,
+                        "efficiency": 0.74,
+                        "movingBehaviour": {}
+                    }
+                ],
+                "2": [
+                    {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 21,
+                        "proton": 16,
+                        "efficiency": 0.74,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 16,
+                        "proton": 16,
+                        "efficiency": 0.9,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 18,
+                        "proton": 16,
+                        "efficiency": 0.84,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 16,
+                        "proton": 16,
+                        "efficiency": 0.9,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 15,
+                        "proton": 16,
+                        "efficiency": 0.87,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 15,
+                        "proton": 16,
+                        "efficiency": 0.87,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 15,
+                        "proton": 16,
+                        "efficiency": 0.87,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 15,
+                        "proton": 16,
+                        "efficiency": 0.87,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 17,
+                        "proton": 16,
+                        "efficiency": 0.87,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 17,
+                        "proton": 16,
+                        "efficiency": 0.87,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 2,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 17,
+                        "proton": 16,
+                        "efficiency": 0.87,
+                        "movingBehaviour": {}
+                    }
+                ],
+                "3": [
+                    {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 29,
+                        "proton": 32,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 33,
+                        "proton": 32,
+                        "efficiency": 0.82,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 33,
+                        "proton": 32,
+                        "efficiency": 0.82,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 29,
+                        "proton": 32,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 33,
+                        "proton": 32,
+                        "efficiency": 0.82,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 29,
+                        "proton": 32,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 29,
+                        "proton": 32,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 32,
+                        "proton": 32,
+                        "efficiency": 0.8,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 29,
+                        "proton": 32,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 29,
+                        "proton": 32,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 3,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 29,
+                        "proton": 32,
+                        "efficiency": 0.85,
+                        "movingBehaviour": {}
+                    }
+                ],
+                "4": [
+                    {
+                        "atomID": 4,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 67,
+                        "proton": 64,
+                        "efficiency": 0.95,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 4,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 63,
+                        "proton": 64,
+                        "efficiency": 0.92,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 4,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 67,
+                        "proton": 64,
+                        "efficiency": 0.95,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 4,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 64,
+                        "proton": 64,
+                        "efficiency": 0.9,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 4,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 63,
+                        "proton": 64,
+                        "efficiency": 0.92,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 4,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 67,
+                        "proton": 64,
+                        "efficiency": 0.95,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 4,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 64,
+                        "proton": 64,
+                        "efficiency": 0.9,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 4,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 64,
+                        "proton": 64,
+                        "efficiency": 0.9,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 4,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 63,
+                        "proton": 64,
+                        "efficiency": 0.92,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 4,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 63,
+                        "proton": 64,
+                        "efficiency": 0.92,
+                        "movingBehaviour": {}
+                    },
+                    {
+                        "atomID": 4,
+                        "coordinate": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "L": 83,
+                        "speed": 4.15,
+                        "xSpeed": 0.0,
+                        "ySpeed": 0.0,
+                        "angle": 0.0,
+                        "neutron": 67,
+                        "proton": 64,
+                        "efficiency": 0.95,
+                        "movingBehaviour": {}
+                    }
+                ]
+            },
+            "inventoryPowerUp": {
+                "1": [],
+                "2": [],
+                "3": [],
+                "4": []
+            },
+            "inventoryShield": {
+                "1": 1,
+                "2": 1,
+                "3": 1,
+                "4": 1
+            }
+        }
+    },
+    "settings": {
+        "lengthUnit": 83,
+        "difficultyLevel": 1,
+        "isLinear": false,
+        "isSpinning": false,
+        "alphaAtomNumber": 11,
+        "betaAtomNumber": 11,
+        "gammaAtomNumber": 11,
+        "sigmaAtomNumber": 11,
+        "alphaMoleculeNumber": 11,
+        "betaMoleculeNumber": 11,
+        "gammaMoleculeNumber": 11,
+        "sigmaMoleculeNumber": 11,
+        "alphaPowerUpNumber": 1,
+        "betaPowerUpNumber": 1,
+        "gammaPowerUpNumber": 1,
+        "sigmaPowerUpNumber": 1,
+        "alphaReactionBlockerNumber": 1,
+        "betaReactionBlockerNumber": 1,
+        "gammaReactionBlockerNumber": 0,
+        "sigmaReactionBlockerNumber": 1,
+        "etaNumber": 1,
+        "lotaNumber": 1,
+        "thetaNumber": 1,
+        "zetaNumber": 1,
+        "screenSize": {
+            "width": 1350,
+            "height": 835
+        },
+        "timeRemaining": 598900.0
+    }
+}
