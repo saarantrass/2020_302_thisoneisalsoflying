@@ -1,4 +1,6 @@
 package Domain;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
+
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +26,12 @@ public class Game implements IObservable{
 	public int L;
 	private int difficultyLevel;
 	private int timer = 0;
-	
+
 	private List<IObserver> observers = new ArrayList<IObserver>();
-	
+
 	public boolean isPaused = false;
 	public boolean isFinished = false;
-	
+
 	ISaveLoadAdapter saveLoadService;
 	ISaveLoadAdapter mongoLoadService;
 
@@ -59,16 +61,16 @@ public class Game implements IObservable{
 	public void startGame(){
 		this.L = Settings.getInstance().getLengthUnit();
 		this.difficultyLevel = Settings.getInstance().getDifficultyLevel();
-		
+
 		int xShooter = Settings.getInstance().getScreenSize().width * 7/16 - Settings.getInstance().getLengthUnit()/4;
 		int yShooter = Settings.getInstance().getScreenSize().height - Settings.getInstance().getLengthUnit();
 		this.shooter = new Shooter(new Point(xShooter,  yShooter));
 		this.player = new Player();
-		
+
 		if(this.barrelAtom == null) {
 			getRandomAtomToBarrel();
 		}
-		
+
 		mainGameLoop.start();
 	}
 
@@ -109,19 +111,19 @@ public class Game implements IObservable{
 
 	private void continueGame() {
 		this.timer++;
-		
+
 		if(this.timer % (10/this.difficultyLevel) == 0) { //TODO TAM DEÄ�Ä°L
 			createRandomFallingObject();
 		}
-		
+
 		if(this.shooter.inventory.getInventoryAtomCount(1) == 0 && this.shooter.inventory.getInventoryAtomCount(2) == 0 && this.shooter.inventory.getInventoryAtomCount(3) == 0 && this.shooter.inventory.getInventoryAtomCount(4) == 0) {
 			if(this.onScreenAtomList.size() == 0)
 				this.finishGame();
 		}
-		
+
 		moveThemAll();
 		collisionHandler();
-		
+
 		this.publish();
 	}
 
@@ -133,7 +135,7 @@ public class Game implements IObservable{
 				int next = rn.nextInt(3);
 				int type = rn.nextInt(4)+1;
 				int xCoord = (int) (Math.random() * (Settings.getInstance().getScreenSize().width * 7/8 - (L/4)));
-				
+
 				if(next == 0) {
 					if(Settings.getInstance().getMoleculeNumber(type) > 0) {
 						Molecule newMol = FallingObjectFactory.getInstance().getNewMolecule(type , new Point(xCoord, -L/4), Settings.getInstance().isLinear(), Settings.getInstance().isSpinning());
@@ -141,7 +143,7 @@ public class Game implements IObservable{
 						Settings.getInstance().decreaseMoleculeNumber(type);
 						break;
 					}
-					
+
 				} else if(next == 1) {
 					if(Settings.getInstance().getPowerUpNumber(type) > 0) {
 						PowerUp newPw = FallingObjectFactory.getInstance().getNewPowerUp(type, new Point(xCoord, -L/4),false);
@@ -149,7 +151,7 @@ public class Game implements IObservable{
 						Settings.getInstance().decreasePowerUpNumber(type);
 						break;
 					}
-					
+
 				} else if(next == 2) {
 					if(Settings.getInstance().getReactionBlockerNumber(type) > 0) {
 						ReactionBlocker bl = FallingObjectFactory.getInstance().getNewReactionBlocker(type, new Point(xCoord, -L/4));
@@ -203,6 +205,9 @@ public class Game implements IObservable{
 
 
 	public void shoot() {
+		System.out.println("shooter coord ve angle "+shooter.getCoordinate()+" ang "+shooter.getAngle());
+		System.out.println(shooter.getCoordinate().x-Math.sqrt(5*L*L/16)*Math.sin(Math.toRadians(-shooter.getAngle()+Math.atan(0.5))));
+
 		if(this.barrelAtom != null) {
 
 			this.barrelAtom.setAngle(this.shooter.getAngle());
@@ -267,13 +272,13 @@ public class Game implements IObservable{
 					double distance2 = Math.sqrt(((pCoord.x + L/10) - rCoordCenter.x)*((pCoord.x + L/10) - rCoordCenter.x) + (pCoord.y - rCoordCenter.y)*(pCoord.y - rCoordCenter.y));
 					double distance3 = Math.sqrt(((pCoord.x + L/10) - rCoordCenter.x)*((pCoord.x + L/10) - rCoordCenter.x) + ((pCoord.y + L/10) - rCoordCenter.y)*((pCoord.y + L/10) - rCoordCenter.y));
 					double distance4 = Math.sqrt((pCoord.x - rCoordCenter.x)*(pCoord.x - rCoordCenter.x) + ((pCoord.y + L/10) - rCoordCenter.y)*((pCoord.y + L/10) - rCoordCenter.y));
-					if(distance1 <= L/2 || distance2 <= L/2 || distance3 <= L/2  || distance4 <= L/2) {
+					if(pw.isThrown() && (distance1 <= L/2 || distance2 <= L/2 || distance3 <= L/2  || distance4 <= L/2)) {
 						this.onScreenReactionBlockerList.remove(rb);
 					}
 				}
 			}
 		}
-		
+
 		/*
 		 * ReactionBlocker-Atom/Molecule Collision
 		 */
@@ -306,21 +311,25 @@ public class Game implements IObservable{
 			}
 		}
 	}
-	
-	
+
+
 	public void explosion(ReactionBlocker rb) {
 		Point sCoord = this.shooter.getCoordinate();
+		double sX = sCoord.getX();
+		double sY = sCoord.getY();
 		Point rCoordCenter = new Point(rb.getCoordinate().x + L/20, rb.getCoordinate().y + L/20);
-		//System.out.println("shooter coord ve angle "+sCoord+" ang "+shooter.getAngle());
+
+		double dx = Math.sqrt(5*L*L/16)*Math.sin(Math.toRadians(-shooter.getAngle()+Math.atan(0.5)));  
 		double distance1 = Math.sqrt((sCoord.x - rCoordCenter.x)*(sCoord.x - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y));
 		double distance2 = Math.sqrt(((sCoord.x + L/10) - rCoordCenter.x)*((sCoord.x + L/10) - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y));
 		double distance3 = Math.sqrt(((sCoord.x + L/10) - rCoordCenter.x)*((sCoord.x + L/10) - rCoordCenter.x) + ((sCoord.y + L/10) - rCoordCenter.y)*((sCoord.y + L/10) - rCoordCenter.y));
 		double distance4 = Math.sqrt((sCoord.x - rCoordCenter.x)*(sCoord.x - rCoordCenter.x) + ((sCoord.y + L/10) - rCoordCenter.y)*((sCoord.y + L/10) - rCoordCenter.y));
+
 		if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2  || distance4 <= L*2) {
-			//TODO health azalt
-			this.player.decreaseHealth(10.0); //TODO BU YANLIÅ�
+			double mindist = Math.min(Math.min(distance1, distance2), Math.min(distance3,distance4));
+			this.player.decreaseHealth((double)(Settings.getInstance().getScreenSize().getWidth()/mindist)); 
 		}
-	
+
 		for(Molecule mol : this.onScreenMoleculeList) {
 			Point mCoord = mol.getCoordinate();
 			distance1 = Math.sqrt((mCoord.x - rCoordCenter.x)*(mCoord.x - rCoordCenter.x) + (mCoord.y - rCoordCenter.y)*(mCoord.y - rCoordCenter.y));
@@ -331,7 +340,7 @@ public class Game implements IObservable{
 				this.onScreenMoleculeList.remove(mol);
 			}
 		} 
-		
+
 		for(Atom atom : this.onScreenAtomList) {
 			Point aCoord = atom.getCoordinate();
 			distance1 = Math.sqrt((aCoord.x - rCoordCenter.x)*(aCoord.x - rCoordCenter.x) + (aCoord.y - rCoordCenter.y)*(aCoord.y - rCoordCenter.y));
@@ -354,16 +363,16 @@ public class Game implements IObservable{
 			this.shooter.inventory.removeInventoryShield(type);
 		}
 	}
-	
-	
+
+
 	public void getRandomAtomToBarrel() {
 		if(this.barrelAtom != null) 
 			this.shooter.inventory.addInventoryAtom(this.barrelAtom);
 		else if(this.barrelPowerUp != null) 
 			this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
-		
+
 		this.barrelAtom = this.shooter.inventory.getRandomAtom();
-		
+
 		if(this.barrelAtom != null) {
 			this.barrelPowerUp = null;
 			this.barrelAtom.setCoordinate(this.shooter.getBarrelCoordinate());
@@ -374,13 +383,13 @@ public class Game implements IObservable{
 
 	public void getPowerUpToBarrel(int type) {
 		PowerUp pw = this.shooter.inventory.getPowerUp(type);
-		
+
 		if(pw != null) {
 			if(this.barrelAtom != null) 
 				this.shooter.inventory.addInventoryAtom(this.barrelAtom);
 			else if(this.barrelPowerUp != null) 
 				this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
-			
+
 			this.barrelAtom = null;
 			this.barrelPowerUp = pw;
 			this.barrelPowerUp.setCoordinate(this.shooter.getBarrelCoordinate());
@@ -391,20 +400,20 @@ public class Game implements IObservable{
 
 	public void pauseGame() {
 		this.isPaused = true;
-		
+
 	}
-	
-	
+
+
 	public void saveGame() {
 		saveLoadService = new FileSaveLoadAdapter();
 		saveLoadService.save();
 		this.mongoLoadService = new MongoSaveLoadAdapter();
 		this.mongoLoadService.save();
 	}
-	
-	
+
+
 	public void loadGame() {
-		
+
 	}
 
 
@@ -419,13 +428,13 @@ public class Game implements IObservable{
 			publish();			
 		}
 	}
-	
-	
+
+
 	public void quitGame() {
 		game_instance = null;
 	}
-	
-	
+
+
 	public double getRemainingTime() {
 		return Settings.getInstance().timeRemaining;
 	}
