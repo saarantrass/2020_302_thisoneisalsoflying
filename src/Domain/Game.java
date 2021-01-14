@@ -78,8 +78,8 @@ public class Game implements IObservable{
 			if (Settings.getInstance().timeRemaining <= 0 || this.player.getHealth() <= 0) {
 				this.finishGame();
 			} else if (!this.isPaused && !this.isFinished) {
-				this.continueGame();
 				Settings.getInstance().timeRemaining -= 1000 / Settings.timeMult;
+				this.continueGame();
 			} else {
 				try {
 					Thread.sleep(1000 / Settings.timeMult);
@@ -108,16 +108,16 @@ public class Game implements IObservable{
 
 
 	private void continueGame() {
-		this.timer++;
+		this.timer += 1000 / Settings.timeMult;
 		
-		if(this.timer % (Settings.timeMult / this.difficultyLevel) == 0) { //TODO TAM DEÄ�Ä°L
+		if(this.timer % (1000 / this.difficultyLevel) == 0) {
 			createRandomFallingObject();
 		}
 		
-		if(this.shooter.inventory.getInventoryAtomCount(1) == 0 && this.shooter.inventory.getInventoryAtomCount(2) == 0 && this.shooter.inventory.getInventoryAtomCount(3) == 0 && this.shooter.inventory.getInventoryAtomCount(4) == 0) {
-			if(this.onScreenAtomList.size() == 0)
-				this.finishGame();
-		}
+		if(this.barrelAtom == null)
+			if(this.shooter.inventory.getInventoryAtomCount(1) == 0 && this.shooter.inventory.getInventoryAtomCount(2) == 0 && this.shooter.inventory.getInventoryAtomCount(3) == 0 && this.shooter.inventory.getInventoryAtomCount(4) == 0)
+				if(this.onScreenAtomList.size() == 0)
+					this.finishGame();
 		
 		moveThemAll();
 		collisionHandler();
@@ -233,10 +233,10 @@ public class Game implements IObservable{
 					Point acord = atom.getCoordinate();
 					Point mcord = molecule.getCoordinate();
 					if(mcord.x <= acord.x && acord.x <= (mcord.x + L/4) && mcord.y <= acord.y && acord.y <= (mcord.y + L/4)) {//TODO: Check bounding box
-						double score = atom.getEfficiency();
 						this.onScreenAtomList.remove(atom);
 						this.onScreenMoleculeList.remove(molecule);
-						this.player.increaseScore(score); //TODO change score/check here
+						double score = atom.getEfficiency() + 1/(this.timer/1000.0);
+						this.player.increaseScore(score);
 					}
 				}
 			}
