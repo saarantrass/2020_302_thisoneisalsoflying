@@ -1,6 +1,5 @@
 package UI.Swing;
 
-import Domain.Game;
 import Domain.GameController;
 
 import java.awt.Dimension;
@@ -13,8 +12,7 @@ public class ScreenCoordinator { //singleton
 	private JPanel currentPanel;
 	private ScreenFrame mainFrame = new ScreenFrame();
 
-	private GameController GC;
-	private Game game;
+	private GameController GC = new GameController();
 	
 	private Background background = new Background();
 	private GameModePanel gameModePanel;
@@ -39,8 +37,6 @@ public class ScreenCoordinator { //singleton
 	
 	
 	public void initialize() {
-		this.game = new Game();
-		this.GC = new GameController(game);
 		this.buildingModePanel = new BuildingModePanel(this.GC);
 		this.buildingModeScreen();
 	}
@@ -48,7 +44,7 @@ public class ScreenCoordinator { //singleton
 	
 	public void startGame() {
 		GC.startGame();
-		this.gameModePanel = new GameModePanel(game, this.GC);
+		this.gameModePanel = new GameModePanel(this.GC);
 		this.gameScreen();
 	}
 	

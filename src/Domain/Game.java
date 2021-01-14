@@ -20,6 +20,8 @@ import Domain.SaveLoad.ISaveLoadAdapter;
 import Domain.SaveLoad.MongoSaveLoadAdapter;
 import UI.IObserver;
 public class Game implements IObservable{
+	
+	private static Game game_instance = null;
 
 	public int L;
 	private int difficultyLevel;
@@ -45,7 +47,16 @@ public class Game implements IObservable{
 
 
 
-	public Game() {}
+	private Game() {}
+	
+	
+	public static Game getInstance() {
+		if(game_instance == null) {
+			game_instance = new Game();
+		}
+		
+		return game_instance;
+	}
 	
 
 	public void startGame(){
@@ -407,10 +418,10 @@ public class Game implements IObservable{
 		// Use env variable to switch between
 		String saveMethod = System.getenv("SAVE_METHOD");
 		if (saveMethod.equalsIgnoreCase("file")) {
-			saveLoadService = new FileSaveLoadAdapter(this);
+			saveLoadService = new FileSaveLoadAdapter();
 			saveLoadService.save();			
 		} else if (saveMethod.equalsIgnoreCase("mongo")) {
-			this.mongoLoadService = new MongoSaveLoadAdapter(this);
+			this.mongoLoadService = new MongoSaveLoadAdapter();
 			this.mongoLoadService.save();		
 		} else {
 			// Wrong or no env variable set
@@ -438,7 +449,7 @@ public class Game implements IObservable{
 
 
 	public void quitGame() {
-		//TODO
+		game_instance = null;
 	}
 
 

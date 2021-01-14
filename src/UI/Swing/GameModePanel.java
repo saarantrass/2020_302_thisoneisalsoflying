@@ -80,12 +80,12 @@ public class GameModePanel extends JPanel implements IObserver{
 	private GameOverPanel gameOverPanel =  new GameOverPanel();
 	private QuitPanel quitPanel = new QuitPanel();
 	
-	public GameModePanel(Game game, GameController GC) {
+	public GameModePanel(GameController GC) {
 		
 		setFocusTraversalKeysEnabled(false);
 		
 		this.GC = GC;
-		this.game = game;
+		this.game = Game.getInstance();
 		this.game.add(this);
 		
 		this.mainGamePanel = new MainGamePanel(this.game);
@@ -293,8 +293,8 @@ public class GameModePanel extends JPanel implements IObserver{
 	
 	private void setSidePanel() {
 		int integerPart = (int) Math.floor(this.game.player.getScore());
-		int fractionalPart = (int) (int) (Math.round(this.game.player.getScore() * 100) % 100);
-		 if(fractionalPart < 10)
+		int fractionalPart = (int) (Math.round(this.game.player.getScore() * 100) % 100);
+		if(fractionalPart < 10)
 			 this.currentScoreField.setText(integerPart + ".0" + fractionalPart);
 		 else
 			 this.currentScoreField.setText(integerPart + "." + fractionalPart);
@@ -306,7 +306,11 @@ public class GameModePanel extends JPanel implements IObserver{
         else
         	this.currentTimeField.setText(Integer.toString(minutes) + ":" + Integer.toString(seconds));
         
-		this.currentHealthLabel.setText(Double.toString(Math.round(this.game.player.getHealth()))); //TODO KAÇ DECIMAL OLSUN
+        int currHealth = (int) Math.round(this.game.player.getHealth());
+        if(currHealth <= 0)
+        	this.currentHealthLabel.setText("0");
+        else
+        	this.currentHealthLabel.setText(Integer.toString(currHealth));
 		
 		this.currentEtaShieldLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryShieldCount(1)));
 		this.currentLotaShieldLabel.setText(Integer.toString(this.game.shooter.inventory.getInventoryShieldCount(2)));

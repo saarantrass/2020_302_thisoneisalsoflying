@@ -17,8 +17,8 @@ public class SaveObject {
 	public Settings currSettings;
 	public String username;
 	
-	public SaveObject(Game game) {
-		Game g = game;
+	public SaveObject() {
+		Game g = Game.getInstance();
 		Settings s = Settings.getInstance();
 		this.currGame = g;
 		this.currSettings = s;
