@@ -22,7 +22,7 @@ public class SaveObject {
 		Settings s = Settings.getInstance();
 		this.currGame = g;
 		this.currSettings = s;
-		this.username = s.getUsername();
+		this.username = s.getPlayerName();
 	}
 	
 	public JsonObject generateSaveJson() {
