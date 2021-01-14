@@ -376,17 +376,18 @@ public class Game implements IObservable{
 
 
 	public void getRandomAtomToBarrel() {
-		if(this.barrelAtom != null) 
-			this.shooter.inventory.addInventoryAtom(this.barrelAtom);
-		else if(this.barrelPowerUp != null) 
-			this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
-
-		this.barrelAtom = this.shooter.inventory.getRandomAtom();
-
-		if(this.barrelAtom != null) {
+		Atom atom = this.shooter.inventory.getRandomAtom();
+		
+		if(atom != null) {
+			if(this.barrelAtom != null) 
+				this.shooter.inventory.addInventoryAtom(this.barrelAtom);
+			else if(this.barrelPowerUp != null) 
+				this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
+			
 			this.barrelPowerUp = null;
+			this.barrelAtom = atom;
 			this.barrelAtom.setCoordinate(this.shooter.getBarrelCoordinate());
-			this.barrelAtom.setAngle(this.shooter.getAngle());
+			this.barrelAtom.setAngle(this.shooter.getAngle());			
 		}
 	}
 
