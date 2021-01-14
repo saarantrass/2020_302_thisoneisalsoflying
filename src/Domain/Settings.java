@@ -4,6 +4,8 @@ import java.awt.Dimension;
 
 public class Settings {
 	
+	private String playerName;
+	
 	private int lengthUnit;
 	private int difficultyLevel;
 	private boolean isLinear;
@@ -53,7 +55,9 @@ public class Settings {
 	}
 	
 		
-	public void setSettings(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel, Dimension screenSize) {
+	public void setSettings(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel, Dimension screenSize, String playerName) {
+		this.playerName = playerName;
+		
 		this.alphaAtomNumber = aAtomNumber;
 		this.betaAtomNumber = bAtomNumber;
 		this.gammaAtomNumber = gAtomNumber;
@@ -86,6 +90,11 @@ public class Settings {
 		this.screenSize = screenSize;
 		
 		this.timeRemaining = 600000;
+	}
+	
+	
+	public String getPlayerName() {
+		return this.playerName;
 	}
 	
 	
