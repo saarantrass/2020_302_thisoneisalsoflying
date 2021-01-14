@@ -5,6 +5,9 @@ import java.util.logging.Logger;
 
 import org.bson.Document;
 
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -27,6 +30,25 @@ public class MongoSaveLoad {
 	}
 
 	public void insert(Document obj) {
-		this.collection.insertOne(obj);
+		String username = (String) obj.get("username");
+		
+		// Check if username was already used and update if exists
+		Document query = new Document("username", username);
+		long count = this.collection.count(query);
+		if (count > 0) {
+			Document toUpdate = new Document();
+			toUpdate.append("$set", obj);
+			this.collection.replaceOne(query, obj);
+		} else {
+			this.collection.insertOne(obj);			
+		}
+		
+		System.out.println("Saved to mongodb");
+	}
+	
+	public Document read(String username) {
+		Document query = new Document("username", username);
+		Document loadDocument = this.collection.find(query).first();
+		return loadDocument;
 	}
 }

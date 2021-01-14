@@ -32,7 +32,7 @@ public class BetaMoleculeTest {
 	 * Run it once before starting the tests with @BeforeClass
 	 */
 	public static void initSettings() {
-		Settings.getInstance().setSettings(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, L, 1, screenSize);
+		Settings.getInstance().setSettings(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false, false, L, 1, screenSize, "");
 	}
 	
 	@Test

@@ -15,12 +15,14 @@ import com.google.gson.JsonParser;
 public class SaveObject {
 	public Game currGame;
 	public Settings currSettings;
-
+	public String username;
+	
 	public SaveObject() {
 		Game g = Game.getInstance();
 		Settings s = Settings.getInstance();
 		this.currGame = g;
 		this.currSettings = s;
+		this.username = s.getUsername();
 	}
 	
 	public JsonObject generateSaveJson() {
@@ -79,6 +81,9 @@ public class SaveObject {
 		String settings = gsonBuilder.toJson(this.currSettings);
 		save.add("settings", jsonParser.parse(settings).getAsJsonObject());
 		//End - Settings
+		
+		// add username
+		save.addProperty("username", this.username);
 		
 		return save;
 	}
