@@ -13,15 +13,18 @@ import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
 
 import Domain.Game;
 import Domain.Settings;
+import Domain.GameObjects.FallingObjectFactory;
 import Domain.GameObjects.Atoms.Atom;
+import Domain.GameObjects.Molecules.Molecule;
 import Domain.GameObjects.PowerUps.PowerUp;
+import Domain.GameObjects.ReactionBlockers.ReactionBlocker;
 import Domain.Player.Inventory;
 import Domain.Player.Player;
 import Domain.Player.Shooter;
+
 
 public class FileSaveLoad {
 	
@@ -58,14 +61,45 @@ public class FileSaveLoad {
         p.health = shooter.get("health").getAsDouble();
         p.score = shooter.get("score").getAsDouble();
         
-        //Game.getInstance().barrelAtom = gson.fromJson((JsonObject) jo.getAsJsonObject("barrelAtom"), Atom.class);
-        //Game.getInstance().barrelPowerUp = gson.fromJson((JsonObject) jo.getAsJsonObject("barrelPowerUp"), PowerUp.class);
+        Game.getInstance().barrelAtom = new Atom((JsonObject) jo.getAsJsonObject("barrelAtom"));
+        
+        if (!jo.get("barrelPowerUp").isJsonNull()) {
+        	Game.getInstance().barrelPowerUp = gson.fromJson((JsonObject) jo.getAsJsonObject("barrelPowerUp"), PowerUp.class);        	
+        }
         Game.getInstance().shooter = sh;
         Game.getInstance().player = p;
         Game.getInstance().L = jo.get("L").getAsInt();
         
-        //CopyOnWriteArrayList<Atom> onScAtomList = gson.fromJson(jo.get("onScreenAtomList"), new TypeToken<CopyOnWriteArrayList<Atom>>(){}.getType());
-        //System.out.println(onScAtomList);
+        CopyOnWriteArrayList<Atom> onScAtomList = new CopyOnWriteArrayList<Atom>();
+        for (JsonElement at : jo.get("onScreenAtomList").getAsJsonArray()) {
+        	onScAtomList.add(new Atom((JsonObject)at));
+        }
+        Game.getInstance().onScreenAtomList = onScAtomList;
+        
+        CopyOnWriteArrayList<Molecule> onScMoleculeList = new CopyOnWriteArrayList<Molecule>();
+        for (JsonElement at : jo.get("onScreenMoleculeList").getAsJsonArray()) {
+        	JsonObject objTemp = at.getAsJsonObject();
+        	onScMoleculeList.add(FallingObjectFactory.getInstance().getNewMolecule(objTemp.get("ID").getAsInt(), gson.fromJson((JsonObject) objTemp.getAsJsonObject("coordinate"), Point.class), objTemp.get("isLinear").getAsBoolean(), objTemp.get("isSpinning").getAsBoolean()));    
+        }
+        Game.getInstance().onScreenMoleculeList = onScMoleculeList;
+        
+        
+        CopyOnWriteArrayList<PowerUp> onScPowerUpList = new CopyOnWriteArrayList<PowerUp>();
+        for (JsonElement at : jo.get("onScreenPowerUpList").getAsJsonArray()) {
+        	JsonObject objTemp = at.getAsJsonObject();
+        	onScPowerUpList.add(FallingObjectFactory.getInstance().getNewPowerUp(objTemp.get("ID").getAsInt(), gson.fromJson((JsonObject) objTemp.getAsJsonObject("coordinate"), Point.class),false));
+        }
+        Game.getInstance().onScreenPowerUpList = onScPowerUpList;
+        
+        CopyOnWriteArrayList<ReactionBlocker> onReactionBlockerList = new CopyOnWriteArrayList<ReactionBlocker>();
+        for (JsonElement at : jo.get("onScreenReactionBlockerList").getAsJsonArray()) {
+        	JsonObject objTemp = at.getAsJsonObject();
+        	onReactionBlockerList.add(FallingObjectFactory.getInstance().getNewReactionBlocker(objTemp.get("ID").getAsInt(), gson.fromJson((JsonObject) objTemp.getAsJsonObject("coordinate"), Point.class)));
+        }
+        Game.getInstance().onScreenReactionBlockerList = onReactionBlockerList;
+        
+        System.out.println("End load");
+        
 	}
 	
 }

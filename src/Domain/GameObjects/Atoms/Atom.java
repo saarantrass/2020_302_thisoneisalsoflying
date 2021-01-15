@@ -1,11 +1,15 @@
 package Domain.GameObjects.Atoms;
 
 import java.awt.Point;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import Domain.Settings;
 import Domain.GameObjects.IMovingBehaviour;
 import Domain.GameObjects.ShootedStrategy;
 
-public abstract class Atom{
+public class Atom {
 	
 	protected int atomID;
 	private Point coordinate;
@@ -30,7 +34,20 @@ public abstract class Atom{
 		this.efficiency = 0;
 	}
 	
-	public Atom () {}
+	public Atom (JsonObject js) {
+		Gson gson = new Gson();
+		this.atomID = js.get("atomID").getAsInt();
+		this.coordinate = gson.fromJson((JsonObject) js.getAsJsonObject("coordinate"), Point.class);
+		this.L = js.get("L").getAsInt();
+		this.speed = js.get("speed").getAsDouble();
+		this.xSpeed = js.get("xSpeed").getAsDouble();
+		this.ySpeed = js.get("ySpeed").getAsDouble();
+		this.angle = js.get("angle").getAsDouble();
+		this.neutron = js.get("neutron").getAsInt();
+		this.proton = js.get("proton").getAsInt();
+		this.efficiency = js.get("efficiency").getAsDouble();
+		this.movingBehaviour = new ShootedStrategy(this);
+	}
 	
 	public int getAtomID() {
 		return this.atomID;
