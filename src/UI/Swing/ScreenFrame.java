@@ -11,6 +11,7 @@ public class ScreenFrame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.setLayout(new BorderLayout());
+		this.setAlwaysOnTop(true);
 	}
 
 }
