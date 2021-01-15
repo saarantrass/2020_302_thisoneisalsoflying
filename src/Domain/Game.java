@@ -225,7 +225,6 @@ public class Game implements IObservable{
 			this.barrelPowerUp = null;
 			getRandomAtomToBarrel();
 		}
-		//System.out.println("shooter coord ve angle "+this.shooter.getCoordinate()+" ang "+shooter.getAngle());
 	}
 
 
@@ -236,6 +235,7 @@ public class Game implements IObservable{
 		for(PowerUp pw: this.onScreenPowerUpList) { //TODO CHECK BOUNDING BOX WHEN SHOOTER IS ROTATED
 			Point pcord = pw.getCoordinate();
 			Point scord = this.shooter.getCoordinate();
+			
 			if(scord.x <= pcord.x && pcord.x <= (scord.x + L/2) && scord.y <= pcord.y && pcord.y <= (scord.y + L)) {
 				this.onScreenPowerUpList.remove(pw);
 				this.shooter.inventory.addInventoryPowerUp(pw.getID());
@@ -296,12 +296,15 @@ public class Game implements IObservable{
 		/*
 		 * Atom-Molecule Collision
 		 */
-		for(Atom atom : this.onScreenAtomList) { //TODO CHECK BOUNDING BOX
+		for(Atom atom : this.onScreenAtomList) {
 			for(Molecule molecule : this.onScreenMoleculeList) {
 				if(atom.getAtomID() == molecule.getID()) {
 					Point acord = atom.getCoordinate();
 					Point mcord = molecule.getCoordinate();
-					if(mcord.x <= acord.x && acord.x <= (mcord.x + L/4) && mcord.y <= acord.y && acord.y <= (mcord.y + L/4)) {
+					if((mcord.x <= acord.x && acord.x <= (mcord.x + L/4) && mcord.y <= acord.y && acord.y <= (mcord.y + L/4)) ||
+							(mcord.x <= (acord.x + L/10) && (acord.x + L/10) <= (mcord.x + L/4) && mcord.y <= acord.y && acord.y <= (mcord.y + L/4)) ||	
+							(mcord.x <= (acord.x + L/10) && (acord.x + L/10) <= (mcord.x + L/4) && mcord.y <= (acord.y + L/10) && (acord.y + L/10) <= (mcord.y + L/4)) ||
+							(mcord.x <= acord.x && acord.x <= (mcord.x + L/4) && mcord.y <= (acord.y + L/10) && (acord.y + L/10) <= (mcord.y + L/4))) {
 						this.onScreenAtomList.remove(atom);
 						this.onScreenMoleculeList.remove(molecule);
 						double score = atom.getEfficiency() + 1/(this.timer/1000.0);
@@ -319,19 +322,18 @@ public class Game implements IObservable{
 		/*
 		 * Shooter
 		 */
-		Point sCoord = this.shooter.getCoordinate(); //TODO CHECK SHOOTER BOUNDARIES
-		double sX = sCoord.getX();
-		double sY = sCoord.getY();
+		Point sCoord = this.shooter.getCoordinate();
+		Point bCoord = this.shooter.getBarrelCoordinate();
 
-		double dx = Math.sqrt(5*L*L/16)*Math.sin(Math.toRadians(-shooter.getAngle()+Math.atan(0.5)));  
-		double distance1 = Math.sqrt((sCoord.x - rCoordCenter.x)*(sCoord.x - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y));
-		double distance2 = Math.sqrt(((sCoord.x + L/10) - rCoordCenter.x)*((sCoord.x + L/10) - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y));
-		double distance3 = Math.sqrt(((sCoord.x + L/10) - rCoordCenter.x)*((sCoord.x + L/10) - rCoordCenter.x) + ((sCoord.y + L/10) - rCoordCenter.y)*((sCoord.y + L/10) - rCoordCenter.y));
-		double distance4 = Math.sqrt((sCoord.x - rCoordCenter.x)*(sCoord.x - rCoordCenter.x) + ((sCoord.y + L/10) - rCoordCenter.y)*((sCoord.y + L/10) - rCoordCenter.y));
-
-		if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2  || distance4 <= L*2) {
-			double mindist = Math.min(Math.min(distance1, distance2), Math.min(distance3,distance4));
-			this.player.decreaseHealth((double)((Settings.getInstance().getScreenSize().getWidth() * 7/8) /mindist)); 
+		double distance1 = Math.sqrt((sCoord.x + L/2 - rCoordCenter.x)*(sCoord.x + L/2 - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y)); //right bottom shooter
+		double distance2 = Math.sqrt((sCoord.x - rCoordCenter.x)*(sCoord.x - rCoordCenter.x) + (sCoord.y - rCoordCenter.y)*(sCoord.y - rCoordCenter.y)); //left bottom shooter
+		double distance3 = Math.sqrt((bCoord.x + L/20 - rCoordCenter.x)*(bCoord.x + L/20 - rCoordCenter.x) + (bCoord.y + L/10 - rCoordCenter.y)*(bCoord.y + L/10 - rCoordCenter.y)); //point top barrel
+		double distance4;
+		
+		if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2) {
+			double minDist = Math.min(Math.min(distance1, distance2), distance3);
+			this.player.decreaseHealth((double)((Settings.getInstance().getScreenSize().getWidth() * 7/8) / minDist)); 
+			System.out.println("d1: " + distance1 + " d2: " + distance2 + " d3: " + distance3 + " minDist: " + minDist);
 		}
 		
 		/*

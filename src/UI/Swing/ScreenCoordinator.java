@@ -77,6 +77,7 @@ public class ScreenCoordinator { //singleton
 		this.error = new ErrorFrame(msg);
 		this.error.setLocationRelativeTo(this.mainFrame);
 		this.mainFrame.setEnabled(false);
+		this.mainFrame.setAlwaysOnTop(false);
 	}
 	
 	
@@ -84,6 +85,7 @@ public class ScreenCoordinator { //singleton
 		this.error.setAlwaysOnTop(false);
 		this.error.setVisible(false);
 		this.mainFrame.setEnabled(true);
+		this.mainFrame.setAlwaysOnTop(true);
 	}
 	
 	

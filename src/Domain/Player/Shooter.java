@@ -78,15 +78,15 @@ public class Shooter implements IObservable{
 		//					and shooter y coordinate - L/10 as barrel coordinate y
 		//if angle is not 0: shooter x coordinate + L/4 - L/20 + L * sin(a) as barrel coordinate x 
 		//					and shooter y coordinate - L/10 + L * (1 - cos(a)) as barrel coordinate y
-		int dy = 0;
-		int dx = 0;
+		double dy = 0;
+		double dx = 0;
 		if (this.angle != 0) {
 			double radians = Math.toRadians(this.angle);
-			dy = (int) (L * (1 - Math.cos(radians)));
-			dx = (int) (L * Math.sin(radians));
+			dy = L * (1 - Math.cos(radians));
+			dx = L * Math.sin(radians);
 		}
 		
-		return new Point(this.coordinate.x + L/4-L/20 + dx, this.coordinate.y - L/10 + dy);
+		return new Point((int) (this.coordinate.x + L/4.0-L/20.0 + dx), (int) (this.coordinate.y - L/10.0 + dy));
 	}
 	
 	/**
