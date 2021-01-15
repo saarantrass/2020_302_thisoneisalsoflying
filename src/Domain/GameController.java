@@ -4,13 +4,11 @@ import java.awt.Dimension;
 
 public class GameController {
 	
-	
 	public GameController() {}
 	
 	
 	public void editInBuildMode(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel,Dimension screenSize, String playerName) {
-		Settings.getInstance().setSettings(aAtomNumber, bAtomNumber, gAtomNumber, sAtomNumber, aMoleculeNumber, bMoleculeNumber, gMoleculeNumber, sMoleculeNumber, aRBNumber, bRBNumber, gRBNumber, sRBNumber, aPUNumber, bPUNumber, gPUNumber, sPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, lengthUnit, difficultyLevel, screenSize);
-		//TODO WHERE TO PUT PLAYER NAME?
+		Settings.getInstance().setSettings(aAtomNumber, bAtomNumber, gAtomNumber, sAtomNumber, aMoleculeNumber, bMoleculeNumber, gMoleculeNumber, sMoleculeNumber, aRBNumber, bRBNumber, gRBNumber, sRBNumber, aPUNumber, bPUNumber, gPUNumber, sPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, lengthUnit, difficultyLevel, screenSize, playerName);
 	}
 	
 	
@@ -20,27 +18,27 @@ public class GameController {
 	
 	
 	public void moveShooter(int direction) {
-		Game.getInstance().shooter.move(direction);
+		Game.getInstance().moveShooter(direction);
 	}
 	
 	
 	public void stopMoveShooter() {
-		Game.getInstance().shooter.stopMove();
+		Game.getInstance().stopMoveShooter();
 	}
 	
 	
 	public void rotateShooter(int direction) {
-		Game.getInstance().shooter.rotate(direction);
+		Game.getInstance().rotateShooter(direction);
 	}
 	
 	
 	public void stopRotateShooter() {
-		Game.getInstance().shooter.stopRotate();
+		Game.getInstance().stopRotateShooter();
 	}
 	
 	
 	public void useBlender(int source, int goal) {
-		Blender.useBlender(source, goal, Game.getInstance().shooter.inventory);
+		Blender.useBlender(source, goal, Game.getInstance().getShooterInventory());
 	}
 	
 	

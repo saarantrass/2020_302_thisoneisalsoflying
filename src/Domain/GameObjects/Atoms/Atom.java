@@ -41,9 +41,6 @@ public abstract class Atom{
 	}
 
 	public void setEfficiency(double eff) {
-		eff = eff*100;
-		eff = Math.round(eff);
-		eff = eff /100;
 		this.efficiency = eff;	
 	}
 

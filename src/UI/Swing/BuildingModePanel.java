@@ -63,7 +63,7 @@ public class BuildingModePanel extends JPanel{
 	private JLabel unitLengthLabel = new JLabel("Unit length L: ");
 	private JLabel difficultyLevelLabel = new JLabel("Difficulty level:");
 	
-	private JTextField alphaAtomNumberField = new JTextField("100", 5);//Lower bounddan d���k yaz�nca sistem kabul ediyor,it shouldnt aq
+	private JTextField alphaAtomNumberField = new JTextField("100", 5);
 	private JTextField betaAtomNumberField = new JTextField("100", 5);
 	private JTextField gammaAtomNumberField = new JTextField("100", 5);
 	private JTextField sigmaAtomNumberField = new JTextField("100", 5);
@@ -427,19 +427,22 @@ public class BuildingModePanel extends JPanel{
 			Dimension screenSize = ScreenCoordinator.SCREEN_SIZE;
 			
 			if(playerName.equals("")) {
-				ScreenCoordinator.getInstance().displayError("Enter player name to start!");
+				ScreenCoordinator.getInstance().displayError("Enter player name to start");
 				return false;
-			} else if(L < 50 || alphaAtomNumber < 10 || betaAtomNumber < 10 || 
+			} else if(alphaAtomNumber < 10 || betaAtomNumber < 10 || 
 				gammaAtomNumber < 10 || sigmaAtomNumber < 10 || alphaMoleculeNumber < 10 || 
 				betaMoleculeNumber < 10 || gammaMoleculeNumber < 10 || sigmaMoleculeNumber < 10) {
-				ScreenCoordinator.getInstance().displayError("Atom and molecule numbers must be greater than 10!");
+				ScreenCoordinator.getInstance().displayError("Atom and molecule numbers must be greater than 10 for each type");
+				return false;
+			} else if(L < 50){
+				ScreenCoordinator.getInstance().displayError("Length unit L must be greater than 50");
 				return false;
 			} else {
 				GC.editInBuildMode(alphaAtomNumber, betaAtomNumber, gammaAtomNumber, sigmaAtomNumber, alphaMoleculeNumber, betaMoleculeNumber, gammaMoleculeNumber, sigmaMoleculeNumber, alphaRBNumber, betaRBNumber, gammaRBNumber, sigmaRBNumber, alphaPUNumber, betaPUNumber, gammaPUNumber, sigmaPUNumber, etaNumber, lotaNumber, thetaNumber, zetaNumber, isLinear, isSpinning, L, difficultyLevel, screenSize, playerName);
 				return true;		
 			}
 		} catch(NumberFormatException e) {
-			ScreenCoordinator.getInstance().displayError("Please enter a valid number!");
+			ScreenCoordinator.getInstance().displayError("Please enter a valid number");
 			return false;
 		}
 	}
