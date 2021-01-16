@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRootPane;
 
+import UI.ScreenCoordinator;
+
 @SuppressWarnings("serial")
 public class ErrorFrame extends JFrame{
 	
