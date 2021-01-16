@@ -37,8 +37,8 @@ public class GameController {
 	}
 	
 	
-	public void useBlender(int source, int goal) {
-		Blender.useBlender(source, goal, Game.getInstance().getShooterInventory());
+	public void useBlender(int sourceAtom, int goalAtom) {
+		Blender.useBlender(sourceAtom, goalAtom, Game.getInstance().getShooterInventory());
 	}
 	
 	
@@ -57,7 +57,7 @@ public class GameController {
 	}
 	
 	
-	public void getPowerUpOnBarrel(int type) {
+	public void getPowerUpToBarrel(int type) {
 		Game.getInstance().getPowerUpToBarrel(type);
 	}
 	
