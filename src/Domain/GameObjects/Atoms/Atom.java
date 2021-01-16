@@ -49,6 +49,10 @@ public class Atom {
 		this.movingBehaviour = new ShootedStrategy(this);
 	}
 	
+	public Atom() {
+		
+	}
+	
 	public int getAtomID() {
 		return this.atomID;
 	}
@@ -67,6 +71,10 @@ public class Atom {
 	
 	public IMovingBehaviour getMovingBehaviour() {
 		return this.movingBehaviour;
+	}
+	
+	public void setMovingBehaviour(IMovingBehaviour b) {
+		this.movingBehaviour = b;
 	}
 	
 	public double getAngle() {

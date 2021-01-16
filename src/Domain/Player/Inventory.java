@@ -141,4 +141,8 @@ public class Inventory {
 		}else return null;
 	}
 	
+	public HashMap<Integer, CopyOnWriteArrayList<Atom>> getAtomMap(){
+		return this.inventoryAtom;
+	}
+	
 }
