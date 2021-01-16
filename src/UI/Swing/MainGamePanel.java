@@ -6,11 +6,11 @@ import java.awt.Image;
 
 import javax.swing.JPanel;
 import Domain.Game;
+import Domain.IObserver;
 import Domain.GameObjects.Atoms.Atom;
 import Domain.GameObjects.Molecules.Molecule;
 import Domain.GameObjects.PowerUps.PowerUp;
 import Domain.GameObjects.ReactionBlockers.ReactionBlocker;
-import UI.IObserver;
 import UI.GameObjectImages.GameObjectImageFactory;
 import UI.GameObjectImages.ShooterImage;
 
@@ -25,9 +25,6 @@ public class MainGamePanel extends JPanel implements IObserver{
 	public MainGamePanel(Game game) { //TODO GAME??
 		this.game = game;
 		this.game.add(this);
-		
-		this.shooterImage = new ShooterImage(this.game.shooter, this.game.shooter.getCoordinate().x, this.game.shooter.getCoordinate().y, this.game.L);
-		this.game.shooter.add(shooterImage);
 		
 		this.factory = new GameObjectImageFactory(this.game.L);
 		
@@ -69,9 +66,17 @@ public class MainGamePanel extends JPanel implements IObserver{
 			g.drawImage(image, this.game.barrelPowerUp.getCoordinate().x, this.game.barrelPowerUp.getCoordinate().y, null);
 		}
 		
+		/*Image image = this.factory.getGameObjectImage("Shooter", 0, false, false, this.game.shooter.getAngle());
+		g.drawImage(image, this.game.shooter.getCoordinate().x, this.game.shooter.getCoordinate().y, null);*/
+		
 		shooterImage.paint(g);
 		super.paint(g);
 		g.dispose();
+	}
+	
+	public void setShooter() {
+		this.shooterImage = new ShooterImage(this.game.shooter, this.game.shooter.getCoordinate().x, this.game.shooter.getCoordinate().y, this.game.L);
+		this.game.shooter.add(shooterImage);
 	}
 
 

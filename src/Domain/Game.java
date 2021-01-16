@@ -22,7 +22,6 @@ import Domain.Player.Shooter;
 import Domain.SaveLoad.FileSaveLoadAdapter;
 import Domain.SaveLoad.ISaveLoadAdapter;
 import Domain.SaveLoad.MongoSaveLoadAdapter;
-import UI.IObserver;
 public class Game implements IObservable{
 	
 	private static Game game_instance = null;
@@ -399,13 +398,13 @@ public class Game implements IObservable{
 
 
 	public void getPowerUpToBarrel(int type) {
-		PowerUp pw = this.shooter.inventory.getPowerUp(type);
+		PowerUp pw = this.shooter.getInventoryPowerUp(type);
 
 		if(pw != null) {
 			if(this.barrelAtom != null) 
-				this.shooter.inventory.addInventoryAtom(this.barrelAtom);
+				this.shooter.addInventoryAtom(this.barrelAtom);
 			else if(this.barrelPowerUp != null) 
-				this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
+				this.shooter.addInventoryPowerUp(this.barrelPowerUp);
 
 			this.barrelAtom = null;
 			this.barrelPowerUp = pw;

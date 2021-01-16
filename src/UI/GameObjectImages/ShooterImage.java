@@ -7,8 +7,8 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
+import Domain.IObserver;
 import Domain.Player.Shooter;
-import UI.IObserver;
 import UI.ImageDesigner;
 
 @SuppressWarnings("serial")

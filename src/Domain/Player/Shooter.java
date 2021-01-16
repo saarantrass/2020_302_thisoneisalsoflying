@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Domain.IObservable;
+import Domain.IObserver;
 import Domain.Settings;
-import UI.IObserver;
+import Domain.GameObjects.Atoms.Atom;
+import Domain.GameObjects.PowerUps.PowerUp;
 
 /**
  * Shooter is the player in the game. It has an atom/power-up on its barrel and the goal of the player is to 
@@ -231,6 +233,20 @@ public class Shooter implements IObservable{
 	}
 	
 	
+	public PowerUp getInventoryPowerUp(int type) {
+		return this.inventory.getPowerUp(type);
+	}
+	
+	
+	public void addInventoryAtom(Atom barrelAtom) {
+		this.inventory.addInventoryAtom(barrelAtom);
+	}
+	
+	public void addInventoryPowerUp(PowerUp barrelPowerUp) {
+		this.inventory.addInventoryPowerUp(barrelPowerUp);
+	}
+	
+	
 	@Override
 	public void add(IObserver o) {
 		this.observers.add(o);
@@ -247,5 +263,7 @@ public class Shooter implements IObservable{
 	public void publish() {
 		for(IObserver o: this.observers) o.update();
 	}
+
+
 	
 }
