@@ -68,6 +68,7 @@ public class SaveObject {
 		
 		JsonElement coorElement = jsonParser.parse(gsonBuilder.toJson(this.currGame.shooter.getCoordinate()));
 		shooter.add("coordinate", coorElement.isJsonObject() ? coorElement.getAsJsonObject() : null);
+		shooter.addProperty("angle", this.currGame.shooter.getAngle());
 		shooter.addProperty("health", this.currGame.player.getHealth());
 		shooter.addProperty("score", this.currGame.player.getScore());
 		

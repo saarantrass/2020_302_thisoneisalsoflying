@@ -80,6 +80,7 @@ public class FileSaveLoadAdapter implements ISaveLoadAdapter {
         JsonObject shooter = (JsonObject) jo.getAsJsonObject("shooter");
         Point shcoord = gson.fromJson(shooter.get("coordinate"), Point.class);
         Shooter sh = new Shooter(shcoord);
+        sh.setAngle(shooter.get("angle").getAsDouble());
         sh.inventory = inv;
         
         Player p = new Player();
