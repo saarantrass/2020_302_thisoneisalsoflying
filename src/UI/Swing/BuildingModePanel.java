@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import Domain.GameController;
+import UI.ScreenCoordinator;
 
 @SuppressWarnings("serial")
 public class BuildingModePanel extends JPanel{

@@ -26,6 +26,7 @@ import Domain.Game;
 import Domain.GameController;
 import Domain.IObserver;
 import UI.ImageDesigner;
+import UI.ScreenCoordinator;
 
 
 @SuppressWarnings("serial")
