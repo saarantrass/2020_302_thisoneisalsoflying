@@ -71,6 +71,10 @@ public class Atom {
 		return this.movingBehaviour;
 	}
 	
+	public void setMovingBehaviour(IMovingBehaviour b) {
+		this.movingBehaviour = b;
+	}
+	
 	public double getAngle() {
 		return this.angle;
 	}

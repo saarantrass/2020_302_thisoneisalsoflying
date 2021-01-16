@@ -24,8 +24,9 @@ import javax.swing.border.LineBorder;
 
 import Domain.Game;
 import Domain.GameController;
-import UI.IObserver;
+import Domain.IObserver;
 import UI.ImageDesigner;
+import UI.ScreenCoordinator;
 
 
 @SuppressWarnings("serial")
@@ -89,6 +90,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		this.game.add(this);
 		
 		this.mainGamePanel = new MainGamePanel(this.game);
+		this.mainGamePanel.setShooter();
 		
 		this.setLayout(new BorderLayout());
 		this.setSidePanelImages();
@@ -133,7 +135,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		alphaPULabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				GC.getPowerUpOnBarrel(1);
+				GC.getPowerUpToBarrel(1);
 				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 		});
@@ -146,7 +148,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		betaPULabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				GC.getPowerUpOnBarrel(2);
+				GC.getPowerUpToBarrel(2);
 				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 		});
@@ -159,7 +161,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		gammaPULabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				GC.getPowerUpOnBarrel(3);
+				GC.getPowerUpToBarrel(3);
 				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 		});
@@ -172,7 +174,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		sigmaPULabel.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				GC.getPowerUpOnBarrel(4);
+				GC.getPowerUpToBarrel(4);
 				ScreenCoordinator.getInstance().getCurrentPanel().requestFocus();
 			}
 		});
@@ -457,6 +459,7 @@ public class GameModePanel extends JPanel implements IObserver{
 			
 			if(e.getKeyCode() == KeyEvent.VK_L) {
 				GC.loadGame();
+				mainGamePanel.setShooter();
 				
 			}
 			

@@ -1,6 +1,4 @@
-package Domain.main;
-
-import UI.Swing.ScreenCoordinator;
+package UI;
 
 public class Main {
 	

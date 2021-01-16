@@ -47,7 +47,7 @@ public abstract class FallingObject {
 	
 	public void move() {
 		updateAngle();
-		this.updateMovingStrategy();
+		updateMovingStrategy();
 		movingBehaviour.move();
 	}
 		

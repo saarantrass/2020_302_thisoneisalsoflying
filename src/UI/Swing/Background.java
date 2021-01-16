@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import UI.ImageDesigner;
+import UI.ScreenCoordinator;
 
 @SuppressWarnings("serial")
 public class Background extends JLabel{

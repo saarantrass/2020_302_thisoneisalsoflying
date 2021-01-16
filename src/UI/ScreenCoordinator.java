@@ -1,6 +1,11 @@
-package UI.Swing;
+package UI;
 
 import Domain.GameController;
+import UI.Swing.Background;
+import UI.Swing.BuildingModePanel;
+import UI.Swing.ErrorFrame;
+import UI.Swing.GameModePanel;
+import UI.Swing.ScreenFrame;
 
 import java.awt.Dimension;
 import javax.swing.JPanel;

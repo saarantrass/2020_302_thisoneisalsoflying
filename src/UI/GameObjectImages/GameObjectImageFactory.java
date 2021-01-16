@@ -30,6 +30,8 @@ public class GameObjectImageFactory {
 	private static final String GAMMA_POWERUP_IMAGE = "../../Images/powerups/+gamma-b.png";
 	private static final String SIGMA_POWERUP_IMAGE = "../../Images/powerups/+sigma-b.png";
 	
+	//private static final String SHOOTER_IMAGE = "../../Images/shooter.png";
+	
 	private int L;
 	
 	
@@ -107,6 +109,12 @@ public class GameObjectImageFactory {
 				image = ImageDesigner.getResizedImage(image, L / 4, L / 4);
 				
 				return image;
+				
+			/*case "Shooter":
+				image = new ImageIcon(getClass().getResource(SHOOTER_IMAGE)).getImage();
+				image = ImageDesigner.getResizedImage(image, L / 2, L);
+				image = ImageDesigner.getRotatedImage(image, angle, L);
+				return image;*/
 				
 			default:
 				return image;

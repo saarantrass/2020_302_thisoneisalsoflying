@@ -71,8 +71,10 @@ public class Inventory {
 	
 	
 	public void addInventoryAtom(int type, int count) {
-		Atom newAt = AtomFactory.getInstance().getNewAtom(type, new Point(0,0));
-		this.inventoryAtom.get(type).add(newAt);
+		for(int i = 0; i < count; i++) {
+			Atom newAt = AtomFactory.getInstance().getNewAtom(type, new Point(0,0));
+			this.inventoryAtom.get(type).add(newAt);			
+		}
 	}
 	
 	public void addInventoryAtom(Atom barrelAtom) {
@@ -139,6 +141,10 @@ public class Inventory {
 			PowerUp pw = this.inventoryPowerUp.get(type).remove(this.inventoryPowerUp.get(type).size() - 1);
 			return pw;
 		}else return null;
+	}
+	
+	public HashMap<Integer, CopyOnWriteArrayList<Atom>> getAtomMap(){
+		return this.inventoryAtom;
 	}
 	
 }

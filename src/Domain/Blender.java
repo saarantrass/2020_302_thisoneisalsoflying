@@ -21,17 +21,11 @@ public class Blender {
       }  	
    }
    
-   protected static boolean verifyBreak(int sourceAtom, int goalAtom, Inventory inventory) {
-	   return (sourceAtom>goalAtom && inventory.getInventoryAtomCount(sourceAtom) >= 1) ;
-   }
-   protected static boolean verifyBlend(int sourceAtom, int goalAtom, Inventory inventory) {
-	   return (sourceAtom<goalAtom && inventory.getInventoryAtomCount(sourceAtom) >= (goalAtom-sourceAtom+1)) ;
-   }
-   
-   protected static boolean verify(int sourceAtom, int goalAtom, Inventory inventory){
-	   if (verifyBreak(sourceAtom, goalAtom, inventory) || verifyBlend(sourceAtom, goalAtom, inventory) ) {
-		   return true;
-	   }
+   private static boolean verify(int sourceAtom, int goalAtom, Inventory inventory){
+	   if (sourceAtom > goalAtom)
+		   return inventory.getInventoryAtomCount(sourceAtom) >= 1;
+	   else if (sourceAtom < goalAtom)
+		   return inventory.getInventoryAtomCount(sourceAtom) >= (goalAtom-sourceAtom+1);
 	   return false;
    }
    
