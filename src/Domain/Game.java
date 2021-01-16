@@ -212,8 +212,8 @@ public class Game implements IObservable{
 
 
 	public void shoot() {
-		System.out.println("shooter coord ve angle "+shooter.getCoordinate()+" ang "+shooter.getAngle());
-		System.out.println(shooter.getCoordinate().x-Math.sqrt(5*L*L/16)*Math.sin(Math.toRadians(-shooter.getAngle()+Math.atan(0.5))));
+		//System.out.println("shooter coord ve angle "+shooter.getCoordinate()+" ang "+shooter.getAngle());
+		//System.out.println(shooter.getCoordinate().x-Math.sqrt(5*L*L/16)*Math.sin(Math.toRadians(-shooter.getAngle()+Math.atan(0.5))));
 
 		if(this.barrelAtom != null) {
 
@@ -424,28 +424,53 @@ public class Game implements IObservable{
 	public void saveGame() {
 		// Use env variable to switch between
 		String saveMethod = System.getenv("SAVE_METHOD");
-		if (saveMethod.equalsIgnoreCase("file")) {
+		if(saveMethod == null) {
+			System.out.println("No env variable set. Unable to save, please set mongo or file to SAVE_METHOD");
+		}else if (saveMethod.equalsIgnoreCase("file")) {
 			saveLoadService = new FileSaveLoadAdapter();
 			saveLoadService.save();			
 		} else if (saveMethod.equalsIgnoreCase("mongo")) {
 			this.mongoLoadService = new MongoSaveLoadAdapter();
 			this.mongoLoadService.save();		
 		} else {
-			// Wrong or no env variable set
-			System.out.println("Wrong or no env variable set. Unable to save, please set mongo or file to SAVE_METHOD");
+			System.out.println("Wrong env variable set. Unable to save, please set mongo or file to SAVE_METHOD");
 		}
 	}
 
 
 	public void loadGame() {
-		saveLoadService = new FileSaveLoadAdapter();
-		try {
-			System.out.println("burda");
-			saveLoadService.load();
-		} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// Use env variable to switch between
+		String saveMethod = System.getenv("SAVE_METHOD");
+		
+		if(saveMethod == null) {
+			System.out.println("No env variable set. Unable to save, please set mongo or file to SAVE_METHOD");
+		}else if (saveMethod.equalsIgnoreCase("file")) {
+			saveLoadService = new FileSaveLoadAdapter();
+			try {
+				saveLoadService.load();
+			} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}			
+		} else if (saveMethod.equalsIgnoreCase("mongo")) {
+			this.mongoLoadService = new MongoSaveLoadAdapter();
+			try {
+				this.mongoLoadService.load();
+			} catch (JsonSyntaxException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JsonIOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+		} else {
+			System.out.println("Wrong env variable set. Unable to save, please set mongo or file to SAVE_METHOD");
 		}
+		
+		
 	}
 
 
