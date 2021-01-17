@@ -3,15 +3,12 @@ package Domain;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
-import com.google.gson.internal.LazilyParsedNumber;
 
 import Domain.GameObjects.AtomFactory;
 import Domain.GameObjects.FallingObjectFactory;

@@ -532,6 +532,7 @@ public class GameModePanel extends JPanel implements IObserver{
 		if(this.game.isFinished()) {
 			GC.stopMoveShooter();
 			GC.stopRotateShooter();
+			this.gameOverPanel.setScore(Integer.toString((int) this.game.getPlayerScore()));
 			this.displayPanel(gameOverPanel);
 		} else {
 			this.setSidePanel();			

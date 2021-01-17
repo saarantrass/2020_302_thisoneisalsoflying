@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 public class GameOverPanel extends JPanel{
 	
 	private JLabel gameOverLabel = new JLabel("Game Over");
+	private JLabel scoreLabel = new JLabel("Score: ");
 	private JButton quitButton = new JButton("Quit");
 	
 	public GameOverPanel() {
@@ -37,10 +38,19 @@ public class GameOverPanel extends JPanel{
 		this.add(gameOverLabel, c);
 		
 		c.gridy = 1;
+		this.add(scoreLabel, c);
+		
+		c.gridy = 2;
 		this.add(quitButton, c);
 		
 		this.setBackground(new Color(0.0f, 0.0f, 0.0f, 0.3f));
 		this.setVisible(true);
+	}
+	
+	public void setScore(String score) {
+		this.scoreLabel.setText("Score: " + score);
+		this.validate();
+		this.repaint();
 	}
 	
 	public void addQuitButtonListener(ActionListener l) {
