@@ -410,7 +410,6 @@ public class Game implements IObservable{
 	public void saveGame() {
 		// Use env variable to switch between
 		String saveMethod = System.getenv("SAVE_METHOD");
-		saveMethod = "mongo"; //TODO
 		
 		if(saveMethod == null) {
 			System.out.println("No env variable set. Unable to save, please set mongo or file to SAVE_METHOD");
@@ -429,7 +428,6 @@ public class Game implements IObservable{
 	public void loadGame() {
 		// Use env variable to switch between
 		String saveMethod = System.getenv("SAVE_METHOD");
-		saveMethod = "mongo"; //TODO
 		
 		if(saveMethod == null) {
 			System.out.println("No env variable set. Unable to save, please set mongo or file to SAVE_METHOD");
