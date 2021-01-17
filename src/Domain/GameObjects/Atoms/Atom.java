@@ -49,9 +49,7 @@ public class Atom {
 		this.movingBehaviour = new ShootedStrategy(this);
 	}
 	
-	public Atom() {
-		
-	}
+	public Atom() {}
 	
 	public int getAtomID() {
 		return this.atomID;
