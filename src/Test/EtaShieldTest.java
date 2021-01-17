@@ -65,7 +65,7 @@ public class EtaShieldTest {
 		/***
 		 * Set efficiency method is tested here.
 		 * Since shield decorator overrides the base efficiency of the shield,
-		 * we use assertNotEquals to show that override
+		 * we use assertEquals to show that override
 		 */
 		atom1.setEfficiency(1.7);
 		assertEquals(1.7, atom1.getEfficiency());
@@ -73,7 +73,7 @@ public class EtaShieldTest {
 		shieldedAtom.setEfficiency(1.2);
 		assertEquals(1.2, shieldedAtom.getEfficiency());
 		
-		assertNotEquals(atom1.getEfficiency(), shieldedAtom.getEfficiency()); 
+		assertEquals(atom1.getEfficiency(), shieldedAtom.getEfficiency()); 
 		
 		shieldedAtom3 = AtomFactory.getInstance().addNewShield(1, shieldedAtom);
 		
@@ -81,7 +81,7 @@ public class EtaShieldTest {
 		assertEquals(0.7, shieldedAtom3.getEfficiency());
 		
 		
-		assertNotEquals(atom1.getEfficiency(), shieldedAtom3.getEfficiency());
+		assertEquals(atom1.getEfficiency(), shieldedAtom3.getEfficiency());
 		
 	}
 	
