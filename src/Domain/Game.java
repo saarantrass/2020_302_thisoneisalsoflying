@@ -101,7 +101,7 @@ public class Game implements IObservable{
 		this.timer += 1000 / Settings.timeMult;
 		
 		if(this.barrelAtom == null)
-			if(this.shooter.inventory.getInventoryAtomCount(1) == 0 && this.shooter.inventory.getInventoryAtomCount(2) == 0 && this.shooter.inventory.getInventoryAtomCount(3) == 0 && this.shooter.inventory.getInventoryAtomCount(4) == 0)
+			if(getShooterInventory().getInventoryAtomCount(1) == 0 && getShooterInventory().getInventoryAtomCount(2) == 0 && getShooterInventory().getInventoryAtomCount(3) == 0 && getShooterInventory().getInventoryAtomCount(4) == 0)
 				if(this.onScreenAtomList.size() == 0)
 					this.finishGame();
 		
@@ -231,7 +231,7 @@ public class Game implements IObservable{
 			
 			if(scord.x <= pcord.x && pcord.x <= (scord.x + L/2) && scord.y <= pcord.y && pcord.y <= (scord.y + L)) {
 				this.onScreenPowerUpList.remove(pw);
-				this.shooter.inventory.addInventoryPowerUp(pw.getID());
+				getShooterInventory().addInventoryPowerUp(pw.getID());
 			}
 		}
 
@@ -369,13 +369,13 @@ public class Game implements IObservable{
 
 
 	public void getRandomAtomToBarrel() {
-		Atom atom = this.shooter.inventory.getRandomAtom();
+		Atom atom = getShooterInventory().getRandomAtom();
 		
 		if(atom != null) {
 			if(this.barrelAtom != null) 
-				this.shooter.inventory.addInventoryAtom(this.barrelAtom);
+				getShooterInventory().addInventoryAtom(this.barrelAtom);
 			else if(this.barrelPowerUp != null) 
-				this.shooter.inventory.addInventoryPowerUp(this.barrelPowerUp);
+				getShooterInventory().addInventoryPowerUp(this.barrelPowerUp);
 			
 			this.barrelPowerUp = null;
 			this.barrelAtom = atom;
@@ -386,13 +386,13 @@ public class Game implements IObservable{
 
 
 	public void getPowerUpToBarrel(int type) {
-		PowerUp pw = this.shooter.getInventoryPowerUp(type);
+		PowerUp pw = getShooterInventory().getPowerUp(type);
 
 		if(pw != null) {
 			if(this.barrelAtom != null) 
-				this.shooter.addInventoryAtom(this.barrelAtom);
+				getShooterInventory().addInventoryAtom(this.barrelAtom);
 			else if(this.barrelPowerUp != null) 
-				this.shooter.addInventoryPowerUp(this.barrelPowerUp);
+				getShooterInventory().addInventoryPowerUp(this.barrelPowerUp);
 
 			this.barrelAtom = null;
 			this.barrelPowerUp = pw;
