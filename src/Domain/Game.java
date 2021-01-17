@@ -3,12 +3,15 @@ package Domain;
 import java.awt.Point;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import com.google.gson.JsonIOException;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.internal.LazilyParsedNumber;
 
 import Domain.GameObjects.AtomFactory;
 import Domain.GameObjects.FallingObjectFactory;
@@ -210,26 +213,58 @@ public class Game implements IObservable{
 			getRandomAtomToBarrel();
 		}
 	}
+	
+	private ArrayList<Point> rotatePoints(Point lt) {
+		ArrayList<Point> resList = new ArrayList<Point>();
+		resList.add(new Point(lt.x, lt.y));
+		resList.add(new Point(lt.x + L/2, lt.y)); // rt
+		resList.add(new Point(lt.x + L/2, lt.y + L)); // rb
+		resList.add(new Point(lt.x, lt.y + L)); // lb
+		
+		if (this.shooter.getAngle() != 0.0) {
+			double dy = 0;
+			double dx = 0;
+			double ang = this.shooter.getAngle();
+			for (Point p : resList) {
+				double radians = Math.toRadians(ang);
+				dy = L * (1 - Math.cos(radians));
+				dx = L * Math.sin(radians);
+				p.x = (int) (p.getX() + dx);
+				p.y = (int) (p.getY() + dy);
+			}			
+		}
+		
+		return resList;
+	}
+	
+	private boolean checkPointBounds(ArrayList<Point> bounds, Point c) {
+		double sum = 0.0;
+		int j = 0;
+		for (int i=0; i<bounds.size(); i++) {
+			j = i + 1;
+			if (j >= bounds.size())
+				j = 0;
+			
+			Point a = bounds.get(i);
+			Point b = bounds.get(j);
+			double inSum = a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y);
+			inSum = Math.abs(inSum / 2.0);
+			sum += inSum;
+		}
+		
+		double ogSum = L * L/2;
 
+		return sum <= ogSum;
+	}
 
 	private void collisionHandler() {
 		/*
 		 * PowerUp-Shooter Collision
 		 */
-		for(PowerUp pw: this.onScreenPowerUpList) { //TODO CHECK BOUNDING BOX WHEN SHOOTER IS ROTATED
-			Point pcord = pw.getCoordinate();
-			Point scord = this.shooter.getCoordinate();
-			//Point bcord = this.shooter.getBarrelCoordinate();
-			
-			/*if(((bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) <= pcord.x && (bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) >= pcord.x && bcord.y <= pcord.y && (bcord.y + L/2) >= pcord.y) ||
-					((bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) <= (pcord.x + L/4) && (bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) >= (pcord.x + L/4) && bcord.y <= pcord.y && (bcord.y + L/2) >= pcord.y) ||
-					((bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) <= (pcord.x + L/4) && (bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) >= (pcord.x + L/4) && bcord.y <= (pcord.y + L/4) && (bcord.y + L/2) >= (pcord.y + L/4)) ||
-					((bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) <= pcord.x && (bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) >= pcord.x && bcord.y <= (pcord.y + L/4) && (bcord.y + L/2) >= (pcord.y + L/4))) {
-				this.onScreenPowerUpList.remove(pw);
-				this.shooter.inventory.addInventoryPowerUp(pw.getID());
-			}*/
-			
-			if(scord.x <= pcord.x && pcord.x <= (scord.x + L/2) && scord.y <= pcord.y && pcord.y <= (scord.y + L)) {
+		ArrayList<Point> shooterBounds = this.rotatePoints(this.shooter.getCoordinate());
+		
+		for(PowerUp pw: this.onScreenPowerUpList) {
+			if (this.checkPointBounds(shooterBounds, pw.getCoordinate())) {
 				this.onScreenPowerUpList.remove(pw);
 				getShooterInventory().addInventoryPowerUp(pw.getID());
 			}
