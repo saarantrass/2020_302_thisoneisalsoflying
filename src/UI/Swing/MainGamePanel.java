@@ -26,8 +26,7 @@ public class MainGamePanel extends JPanel implements IObserver{
 		this.game = Game.getInstance();
 		this.game.add(this);
 		
-		this.factory = new GameObjectImageFactory(this.game.getLengthUnit());
-		
+		this.setFactory();
 		this.setShooter();
 		
 		this.setLayout(new BorderLayout());
@@ -75,6 +74,10 @@ public class MainGamePanel extends JPanel implements IObserver{
 	public void setShooter() {
 		this.shooterImage = new ShooterImage(this.game.shooter, this.game.shooter.getCoordinate().x, this.game.shooter.getCoordinate().y, this.game.getLengthUnit());
 		this.game.shooter.add(shooterImage);
+	}
+	
+	public void setFactory() {
+		this.factory = new GameObjectImageFactory(this.game.getLengthUnit());
 	}
 
 

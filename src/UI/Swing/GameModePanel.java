@@ -459,6 +459,7 @@ public class GameModePanel extends JPanel implements IObserver{
 			if(e.getKeyCode() == KeyEvent.VK_L) {
 				GC.loadGame();
 				mainGamePanel.setShooter();
+				mainGamePanel.setFactory();
 				removePanel(pausePanel);
 				GC.resumeGame();
 			}
