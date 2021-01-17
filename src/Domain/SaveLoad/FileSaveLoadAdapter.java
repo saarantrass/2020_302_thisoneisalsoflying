@@ -87,7 +87,11 @@ public class FileSaveLoadAdapter implements ISaveLoadAdapter {
         p.score = shooter.get("score").getAsDouble();
         
         if (!jo.get("barrelAtom").isJsonNull()) {
-        	Game.getInstance().barrelAtom = new Atom((JsonObject) jo.getAsJsonObject("barrelAtom"));
+        	JsonElement at = jo.get("barrelAtom");
+        	while(at.getAsJsonObject().get("atom") != null) {
+        		at = at.getAsJsonObject().get("atom");
+        	}
+        	Game.getInstance().barrelAtom = new Atom((JsonObject) at.getAsJsonObject());
         }
         
         if (!jo.get("barrelPowerUp").isJsonNull()) {
@@ -97,6 +101,7 @@ public class FileSaveLoadAdapter implements ISaveLoadAdapter {
         Game.getInstance().shooter = sh;
         Game.getInstance().player = p;
         Game.getInstance().L = jo.get("L").getAsInt();
+        Game.getInstance().timer = jo.get("timer").getAsInt();
         
         CopyOnWriteArrayList<Atom> onScAtomList = new CopyOnWriteArrayList<Atom>();
         for (JsonElement at : jo.get("onScreenAtomList").getAsJsonArray()) {

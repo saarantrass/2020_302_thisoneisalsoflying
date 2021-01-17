@@ -34,6 +34,7 @@ public class SaveObject {
 		save.addProperty("L", this.currGame.L);
 		save.addProperty("isPaused", this.currGame.isPaused());
 		save.addProperty("isFinished", this.currGame.isFinished());
+		save.addProperty("timer", this.currGame.timer);
 		
 		String onScreenAtomList = gsonBuilder.toJson(this.currGame.onScreenAtomList);
 		JsonArray onScreenAtomListJsonArray = jsonParser.parse(onScreenAtomList).getAsJsonArray();
