@@ -15,7 +15,6 @@ import Domain.Settings;
 
 public class FileSaveLoad {
 	
-	//TODO code to write to a text file and read from a text file
 	public void write(SaveObject currSave) {
 		JsonObject save = currSave.generateSaveJson();
 		String name = "save_" + Settings.getInstance().getPlayerName();
@@ -30,7 +29,7 @@ public class FileSaveLoad {
 		System.out.println(save);
 	}
 	
-	public JsonObject read(String userName) throws JsonSyntaxException, JsonIOException, FileNotFoundException {
+	public JsonObject read() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
 		
 		String name = "save_" + Settings.getInstance().getPlayerName();
         Object obj = new JsonParser().parse(new FileReader("Saves/"+ name +".json")); 

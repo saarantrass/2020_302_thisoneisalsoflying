@@ -10,7 +10,7 @@ public class ZigZagStrategy implements IMovingBehaviour{
 		this.obj = obj;
 	}
 	@Override
-	public void move() { //TODO BİR MİKTAR SIKINTI VAR
+	public void move() {
 		if(obj.getCoordinate().x < 0 || obj.getCoordinate().x > (Settings.getInstance().getScreenSize().getWidth() * 7/8)) {
 			obj.setxSpeed(-obj.getxSpeed());
 			obj.setTravelled(obj.getTravelled() - obj.getL());

@@ -44,13 +44,12 @@ public class FileSaveLoadAdapter implements ISaveLoadAdapter {
 
 	@Override
 	public void load() throws JsonSyntaxException, JsonIOException, FileNotFoundException {
-		// TODO Auto-generated method stub
 		GsonBuilder gsonBuilder = new GsonBuilder();
 		gsonBuilder.registerTypeAdapter(IMovingBehaviour.class, (InstanceCreator<IMovingBehaviour>) type -> new LinearStrategy(FallingObjectFactory.getInstance().getNewPowerUp(3, new Point(0,0), true)));
 		gsonBuilder.registerTypeAdapter(PowerUp.class, (InstanceCreator<PowerUp>) type -> FallingObjectFactory.getInstance().getNewPowerUp(3, new Point(0,0), true));
 		Gson gson = gsonBuilder.create();
 		
-		JsonObject jo = this.fileSaveLoad.read("a");
+		JsonObject jo = this.fileSaveLoad.read();
 		
 		JsonObject settingsobj = (JsonObject) jo.getAsJsonObject("settings");
         LoadedSettings s = gson.fromJson(settingsobj, LoadedSettings.class); //settings

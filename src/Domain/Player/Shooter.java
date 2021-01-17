@@ -167,13 +167,13 @@ public class Shooter implements IObservable{
 			if(this.isMoving) {
 				if(this.moveDirection == 0) { //left
 					if(this.coordinate.x > 0) {
-						if(this.getBarrelCoordinate().x > 0) { //TODO
+						if(this.getBarrelCoordinate().x > 0) {
 							this.coordinate.x -= speed;														
 						}
 					}
 				} else if(moveDirection == 1) { //right
 					if(this.coordinate.x < (int)(Settings.getInstance().getScreenSize().width * 7/8) - L/2) {
-						if(this.getBarrelCoordinate().x < (Settings.getInstance().getScreenSize().width * 7/8 - this.L/10)) { //TODO													
+						if(this.getBarrelCoordinate().x < (Settings.getInstance().getScreenSize().width * 7/8 - this.L/10)) {												
 							this.coordinate.x += speed;
 						}
 					}
@@ -202,13 +202,13 @@ public class Shooter implements IObservable{
 			if(this.isRotating) {
 				if(this.rotateDirection == 0) { //left
 					if(this.angle >-90) {
-						if(this.getBarrelCoordinate().x > 0) { //TODO
+						if(this.getBarrelCoordinate().x > 0) {
 							this.angle -= 90 / Settings.timeMult;								
 						}
 					}
 				} else if(this.rotateDirection == 1) { //right
 					if(this.angle<90) {
-						if(this.getBarrelCoordinate().x < (Settings.getInstance().getScreenSize().width * 7/8 - this.L/10)) { //TODO
+						if(this.getBarrelCoordinate().x < (Settings.getInstance().getScreenSize().width * 7/8 - this.L/10)) {
 							this.angle += 90 / Settings.timeMult;								
 						}
 					}
@@ -270,6 +270,4 @@ public class Shooter implements IObservable{
 		for(IObserver o: this.observers) o.update();
 	}
 
-
-	
 }

@@ -34,20 +34,6 @@ public class Atom {
 		this.efficiency = 0;
 	}
 	
-	public Atom (JsonObject js) {
-		Gson gson = new Gson();
-		this.atomID = js.get("atomID").getAsInt();
-		this.coordinate = gson.fromJson((JsonObject) js.getAsJsonObject("coordinate"), Point.class);
-		this.L = js.get("L").getAsInt();
-		this.speed = js.get("speed").getAsDouble();
-		this.xSpeed = js.get("xSpeed").getAsDouble();
-		this.ySpeed = js.get("ySpeed").getAsDouble();
-		this.angle = js.get("angle").getAsDouble();
-		this.neutron = js.get("neutron").getAsInt();
-		this.proton = js.get("proton").getAsInt();
-		this.efficiency = js.get("efficiency").getAsDouble();
-		this.movingBehaviour = new ShootedStrategy(this);
-	}
 	
 	public Atom() {}
 	
@@ -125,5 +111,20 @@ public class Atom {
 	
 	public int getProton() {
 		return this.proton;
+	}
+	
+	public Atom (JsonObject js) {
+		Gson gson = new Gson();
+		this.atomID = js.get("atomID").getAsInt();
+		this.coordinate = gson.fromJson((JsonObject) js.getAsJsonObject("coordinate"), Point.class);
+		this.L = js.get("L").getAsInt();
+		this.speed = js.get("speed").getAsDouble();
+		this.xSpeed = js.get("xSpeed").getAsDouble();
+		this.ySpeed = js.get("ySpeed").getAsDouble();
+		this.angle = js.get("angle").getAsDouble();
+		this.neutron = js.get("neutron").getAsInt();
+		this.proton = js.get("proton").getAsInt();
+		this.efficiency = js.get("efficiency").getAsDouble();
+		this.movingBehaviour = new ShootedStrategy(this);
 	}
 }
