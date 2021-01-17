@@ -26,7 +26,7 @@ public class FileSaveLoad {
         } catch (IOException e) {
             e.printStackTrace();
         }
-		System.out.println(save);
+		System.out.println("Saved to file");
 	}
 	
 	public JsonObject read() throws JsonSyntaxException, JsonIOException, FileNotFoundException {

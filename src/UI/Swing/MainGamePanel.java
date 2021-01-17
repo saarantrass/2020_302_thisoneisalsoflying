@@ -15,7 +15,7 @@ import UI.GameObjectImages.GameObjectImageFactory;
 import UI.GameObjectImages.ShooterImage;
 
 @SuppressWarnings("serial")
-public class MainGamePanel extends JPanel implements IObserver{ //TODO COUPLING?
+public class MainGamePanel extends JPanel implements IObserver{
 	
 	private Game game;
 	public ShooterImage shooterImage;
@@ -26,7 +26,7 @@ public class MainGamePanel extends JPanel implements IObserver{ //TODO COUPLING?
 		this.game = Game.getInstance();
 		this.game.add(this);
 		
-		this.factory = new GameObjectImageFactory(this.game.L);
+		this.factory = new GameObjectImageFactory(this.game.getLengthUnit());
 		
 		this.setShooter();
 		
@@ -73,7 +73,7 @@ public class MainGamePanel extends JPanel implements IObserver{ //TODO COUPLING?
 	}
 	
 	public void setShooter() {
-		this.shooterImage = new ShooterImage(this.game.shooter, this.game.shooter.getCoordinate().x, this.game.shooter.getCoordinate().y, this.game.L);
+		this.shooterImage = new ShooterImage(this.game.shooter, this.game.shooter.getCoordinate().x, this.game.shooter.getCoordinate().y, this.game.getLengthUnit());
 		this.game.shooter.add(shooterImage);
 	}
 

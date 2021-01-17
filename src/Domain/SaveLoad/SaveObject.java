@@ -31,7 +31,7 @@ public class SaveObject {
 		JsonParser jsonParser = new JsonParser();
 		
 		//Start - Game
-		save.addProperty("L", this.currGame.L);
+		save.addProperty("L", this.currGame.getLengthUnit());
 		save.addProperty("isPaused", this.currGame.isPaused());
 		save.addProperty("isFinished", this.currGame.isFinished());
 		save.addProperty("timer", this.currGame.timer);
@@ -42,7 +42,6 @@ public class SaveObject {
 		
 		
 		String onScreenMoleculeList = gsonBuilder.toJson(this.currGame.onScreenMoleculeList);
-		//System.out.println(onScreenMoleculeList);
 		
 		JsonArray onScreenMoleculeListJsonArray = jsonParser.parse(onScreenMoleculeList).getAsJsonArray();
 		save.add("onScreenMoleculeList", onScreenMoleculeListJsonArray);

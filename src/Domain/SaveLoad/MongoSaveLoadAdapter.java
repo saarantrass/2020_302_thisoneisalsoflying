@@ -105,7 +105,7 @@ public class MongoSaveLoadAdapter implements ISaveLoadAdapter {
         
         Game.getInstance().shooter = sh;
         Game.getInstance().player = p;
-        Game.getInstance().L = jo.get("L").getAsInt();
+        Game.getInstance().setLengthUnit(jo.get("L").getAsInt());
         Game.getInstance().timer = jo.get("timer").getAsInt();
         
         CopyOnWriteArrayList<Atom> onScAtomList = new CopyOnWriteArrayList<Atom>();
