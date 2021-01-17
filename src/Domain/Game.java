@@ -362,7 +362,7 @@ public class Game implements IObservable{
 		if(this.barrelAtom != null) {
 			if(this.shooter.inventory.getInventoryShieldCount(type) > 0) {
 				this.barrelAtom = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
-				this.shooter.inventory.removeInventoryShield(type);
+				this.getShooterInventory().removeInventoryShield(type);
 			}		
 		}
 	}
@@ -501,7 +501,7 @@ public class Game implements IObservable{
 	
 	
 	public Inventory getShooterInventory() {
-		return this.shooter.inventory; //TODO
+		return this.shooter.getInventory();
 	}
 	
 	

@@ -242,8 +242,14 @@ public class Shooter implements IObservable{
 		this.inventory.addInventoryAtom(barrelAtom);
 	}
 	
+	
 	public void addInventoryPowerUp(PowerUp barrelPowerUp) {
 		this.inventory.addInventoryPowerUp(barrelPowerUp);
+	}
+	
+	
+	public Inventory getInventory() {
+		return this.inventory;
 	}
 	
 	
