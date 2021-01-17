@@ -43,7 +43,7 @@ public class Settings {
 	
 	private static Settings settings = null;
 	
-	private Settings() {}
+	private Settings() {} //singleton
 	
 	
 	public static Settings getInstance() {
@@ -176,26 +176,6 @@ public class Settings {
 				break;
 			case 4:
 				this.sigmaReactionBlockerNumber--;
-				break;
-			default:
-				break;
-		}
-	}
-	
-	
-	public void decreaseShieldNumber(int type) {
-		switch(type) {
-			case 1:
-				this.etaNumber--;
-				break;
-			case 2:
-				this.lotaNumber--;
-				break;
-			case 3:
-				this.thetaNumber--;
-				break;
-			case 4:
-				this.zetaNumber--;
 				break;
 			default:
 				break;
