@@ -43,7 +43,7 @@ public class Settings {
 	
 	private static Settings settings = null;
 	
-	private Settings() {} //singleton
+	private Settings() {}
 	
 	
 	public static Settings getInstance() {
