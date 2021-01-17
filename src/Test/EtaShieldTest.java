@@ -6,7 +6,6 @@ import Domain.GameObjects.Atoms.Shields.EtaShield;
 import Domain.GameObjects.Atoms.Shields.AtomDecorator;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import org.junit.Before;
 import org.junit.Test;
 import static junit.framework.TestCase.*;

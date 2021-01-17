@@ -2,8 +2,6 @@ package Domain.SaveLoad;
 
 import java.awt.Dimension;
 
-import Domain.Settings;
-
 public class LoadedSettings {
 private String playerName;
 	

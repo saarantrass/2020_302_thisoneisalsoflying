@@ -32,8 +32,8 @@ public class Game implements IObservable{
 
 	private List<IObserver> observers = new ArrayList<IObserver>();
 
-	public boolean isPaused = false;
-	public boolean isFinished = false;
+	private boolean isPaused = false;
+	private boolean isFinished = false;
 
 	ISaveLoadAdapter saveLoadService;
 	ISaveLoadAdapter mongoLoadService;
@@ -47,7 +47,6 @@ public class Game implements IObservable{
 	public PowerUp barrelPowerUp = null; 
 	public Shooter shooter = null;
 	public Player player = null;
-
 
 
 	private Game() {}
@@ -86,29 +85,14 @@ public class Game implements IObservable{
 			} else if (!this.isPaused && !this.isFinished) {
 				Settings.getInstance().timeRemaining -= 1000 / Settings.timeMult;
 				this.continueGame();
-			} else {
-				try {
-					Thread.sleep(1000 / Settings.timeMult);
-				} catch(InterruptedException e) {
-					// nothing
-				}
 			}
 
-
-			//to prevent crash
 			try {
 				Thread.sleep(1000 / Settings.timeMult);
 			} catch (InterruptedException e) {
-				while (true) {
-					try {
-						Thread.sleep(1000 / Settings.timeMult);
-					} catch (InterruptedException e2) {
-						break;
-					}
-				}
+				System.out.println(e);
+				break;
 			}
-			//to prevent crash
-
 		}
 	});
 
@@ -211,9 +195,6 @@ public class Game implements IObservable{
 
 
 	public void shoot() {
-		//System.out.println("shooter coord ve angle "+shooter.getCoordinate()+" ang "+shooter.getAngle());
-		//System.out.println(shooter.getCoordinate().x-Math.sqrt(5*L*L/16)*Math.sin(Math.toRadians(-shooter.getAngle()+Math.atan(0.5))));
-
 		if(this.barrelAtom != null) {
 
 			this.barrelAtom.setAngle(this.shooter.getAngle());
@@ -238,6 +219,15 @@ public class Game implements IObservable{
 		for(PowerUp pw: this.onScreenPowerUpList) { //TODO CHECK BOUNDING BOX WHEN SHOOTER IS ROTATED
 			Point pcord = pw.getCoordinate();
 			Point scord = this.shooter.getCoordinate();
+			//Point bcord = this.shooter.getBarrelCoordinate();
+			
+			/*if(((bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) <= pcord.x && (bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) >= pcord.x && bcord.y <= pcord.y && (bcord.y + L/2) >= pcord.y) ||
+					((bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) <= (pcord.x + L/4) && (bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) >= (pcord.x + L/4) && bcord.y <= pcord.y && (bcord.y + L/2) >= pcord.y) ||
+					((bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) <= (pcord.x + L/4) && (bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) >= (pcord.x + L/4) && bcord.y <= (pcord.y + L/4) && (bcord.y + L/2) >= (pcord.y + L/4)) ||
+					((bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) <= pcord.x && (bcord.x - L/4 * Math.sin(Math.toRadians(90 - Math.abs(this.shooter.getAngle())))) >= pcord.x && bcord.y <= (pcord.y + L/4) && (bcord.y + L/2) >= (pcord.y + L/4))) {
+				this.onScreenPowerUpList.remove(pw);
+				this.shooter.inventory.addInventoryPowerUp(pw.getID());
+			}*/
 			
 			if(scord.x <= pcord.x && pcord.x <= (scord.x + L/2) && scord.y <= pcord.y && pcord.y <= (scord.y + L)) {
 				this.onScreenPowerUpList.remove(pw);
@@ -336,7 +326,6 @@ public class Game implements IObservable{
 		if(distance1 <= L*2 || distance2 <= L*2 || distance3 <= L*2) {
 			double minDist = Math.min(Math.min(distance1, distance2), distance3);
 			this.player.decreaseHealth((double)((Settings.getInstance().getScreenSize().getWidth() * 7/8) / minDist)); 
-			System.out.println("d1: " + distance1 + " d2: " + distance2 + " d3: " + distance3 + " minDist: " + minDist);
 		}
 		
 		/*
@@ -370,12 +359,11 @@ public class Game implements IObservable{
 
 
 	public void addShield(int type) {
-		if(this.shooter.inventory.getInventoryShieldCount(type) > 0) {
-			//System.out.println("önce speed "+this.barrelAtom.getSpeed()+ " eff "+this.barrelAtom.getEfficiency());
-			this.barrelAtom = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
-
-			//System.out.println("snr speed "+this.barrelAtom.getSpeed()+ " eff "+this.barrelAtom.getEfficiency());
-			this.shooter.inventory.removeInventoryShield(type);
+		if(this.barrelAtom != null) {
+			if(this.shooter.inventory.getInventoryShieldCount(type) > 0) {
+				this.barrelAtom = AtomFactory.getInstance().addNewShield(type,this.barrelAtom);
+				this.shooter.inventory.removeInventoryShield(type);
+			}		
 		}
 	}
 
@@ -416,13 +404,14 @@ public class Game implements IObservable{
 
 	public void pauseGame() {
 		this.isPaused = true;
-
 	}
 
 
 	public void saveGame() {
 		// Use env variable to switch between
 		String saveMethod = System.getenv("SAVE_METHOD");
+		saveMethod = "mongo"; //TODO
+		
 		if(saveMethod == null) {
 			System.out.println("No env variable set. Unable to save, please set mongo or file to SAVE_METHOD");
 		}else if (saveMethod.equalsIgnoreCase("file")) {
@@ -440,6 +429,7 @@ public class Game implements IObservable{
 	public void loadGame() {
 		// Use env variable to switch between
 		String saveMethod = System.getenv("SAVE_METHOD");
+		saveMethod = "mongo"; //TODO
 		
 		if(saveMethod == null) {
 			System.out.println("No env variable set. Unable to save, please set mongo or file to SAVE_METHOD");
@@ -448,7 +438,6 @@ public class Game implements IObservable{
 			try {
 				saveLoadService.load();
 			} catch (JsonSyntaxException | JsonIOException | FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}			
 		} else if (saveMethod.equalsIgnoreCase("mongo")) {
@@ -456,20 +445,15 @@ public class Game implements IObservable{
 			try {
 				this.mongoLoadService.load();
 			} catch (JsonSyntaxException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (JsonIOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}		
 		} else {
 			System.out.println("Wrong env variable set. Unable to save, please set mongo or file to SAVE_METHOD");
 		}
-		
-		
 	}
 
 
@@ -521,6 +505,26 @@ public class Game implements IObservable{
 	}
 	
 	
+	public boolean isPaused() {
+		return isPaused;
+	}
+
+	
+	public boolean isFinished() {
+		return isFinished;
+	}
+	
+	
+	public double getPlayerScore() {
+		return this.player.getScore();
+	}
+
+
+	public double getPlayerHealth() {
+		return this.player.getHealth();
+	}
+	
+	
 	@Override
 	public void add(IObserver o) {
 		this.observers.add(o);
@@ -537,6 +541,5 @@ public class Game implements IObservable{
 	public void publish() {
 		for(IObserver o: this.observers) o.update();
 	}
-
 
 }

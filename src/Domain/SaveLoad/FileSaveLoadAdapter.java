@@ -39,7 +39,6 @@ public class FileSaveLoadAdapter implements ISaveLoadAdapter {
 	
 	@Override
 	public void save() {
-		// TODO Auto-generated method stub
 		this.fileSaveLoad.write(currSave);
 	}
 
@@ -56,7 +55,7 @@ public class FileSaveLoadAdapter implements ISaveLoadAdapter {
 		JsonObject settingsobj = (JsonObject) jo.getAsJsonObject("settings");
         LoadedSettings s = gson.fromJson(settingsobj, LoadedSettings.class); //settings
         
-        Settings.getInstance().setSettings(s.getAtomNumber(1), s.getAtomNumber(2), s.getAtomNumber(3), s.getAtomNumber(4), s.getMoleculeNumber(1), s.getMoleculeNumber(2), s.getMoleculeNumber(3), s.getMoleculeNumber(4), s.getReactionBlockerNumber(1), s.getReactionBlockerNumber(2), s.getReactionBlockerNumber(3), s.getReactionBlockerNumber(4), s.getPowerUpNumber(1), s.getPowerUpNumber(2), s.getPowerUpNumber(3), s.getPowerUpNumber(4), s.getShieldNumber(1), s.getShieldNumber(2), s.getShieldNumber(3), s.getShieldNumber(4), s.isLinear(), s.isSpinning(), s.getLengthUnit(), s.getDifficultyLevel(), Settings.getInstance().getScreenSize(), s.getPlayerName());
+        Settings.getInstance().setSettings(s.getAtomNumber(1), s.getAtomNumber(2), s.getAtomNumber(3), s.getAtomNumber(4), s.getMoleculeNumber(1), s.getMoleculeNumber(2), s.getMoleculeNumber(3), s.getMoleculeNumber(4), s.getReactionBlockerNumber(1), s.getReactionBlockerNumber(2), s.getReactionBlockerNumber(3), s.getReactionBlockerNumber(4), s.getPowerUpNumber(1), s.getPowerUpNumber(2), s.getPowerUpNumber(3), s.getPowerUpNumber(4), s.getShieldNumber(1), s.getShieldNumber(2), s.getShieldNumber(3), s.getShieldNumber(4), s.isLinear(), s.isSpinning(), s.getLengthUnit(), s.getDifficultyLevel(), Settings.getInstance().getScreenSize(), s.getPlayerName(), s.timeRemaining);
         
         Inventory inv = gson.fromJson(jo.getAsJsonObject("shooter").getAsJsonObject("inventory"), Inventory.class); //shooter inventory
         HashMap<Integer, CopyOnWriteArrayList<Atom>> atomMap = inv.getAtomMap();

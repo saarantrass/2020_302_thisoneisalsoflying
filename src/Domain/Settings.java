@@ -37,8 +37,8 @@ public class Settings {
 	private int zetaNumber;
 	
 	private Dimension screenSize;
-	public int timeRemaining;
 	
+	public int timeRemaining;
 	public static int timeMult = 20;
 	
 	private static Settings settings = null;
@@ -55,7 +55,7 @@ public class Settings {
 	}
 	
 		
-	public void setSettings(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel, Dimension screenSize, String playerName) {
+	public void setSettings(int aAtomNumber, int bAtomNumber, int gAtomNumber, int sAtomNumber, int aMoleculeNumber, int bMoleculeNumber, int gMoleculeNumber, int sMoleculeNumber, int aRBNumber, int bRBNumber, int gRBNumber, int sRBNumber, int aPUNumber, int bPUNumber, int gPUNumber, int sPUNumber, int etaNumber, int lotaNumber, int thetaNumber, int zetaNumber, boolean isLinear, boolean isSpinning, int lengthUnit, int difficultyLevel, Dimension screenSize, String playerName, int timeRemaining) {
 		this.playerName = playerName;
 		
 		this.alphaAtomNumber = aAtomNumber;
@@ -89,7 +89,7 @@ public class Settings {
 		this.difficultyLevel = difficultyLevel;
 		this.screenSize = screenSize;
 		
-		this.timeRemaining = 600000;
+		this.timeRemaining = timeRemaining;
 	}
 	
 	

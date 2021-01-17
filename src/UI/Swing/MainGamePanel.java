@@ -15,18 +15,20 @@ import UI.GameObjectImages.GameObjectImageFactory;
 import UI.GameObjectImages.ShooterImage;
 
 @SuppressWarnings("serial")
-public class MainGamePanel extends JPanel implements IObserver{
+public class MainGamePanel extends JPanel implements IObserver{ //TODO COUPLING?
 	
 	private Game game;
 	public ShooterImage shooterImage;
 	private GameObjectImageFactory factory;
 	
 	
-	public MainGamePanel(Game game) { //TODO GAME??
-		this.game = game;
+	public MainGamePanel() {
+		this.game = Game.getInstance();
 		this.game.add(this);
 		
 		this.factory = new GameObjectImageFactory(this.game.L);
+		
+		this.setShooter();
 		
 		this.setLayout(new BorderLayout());
 		this.setOpaque(false);
@@ -35,8 +37,7 @@ public class MainGamePanel extends JPanel implements IObserver{
 	
 	
 	@Override
-	public void paint(Graphics g) { //TODO ATOM MOLECULE VS OLABİLİR Mİ?? BURDA
-		
+	public void paint(Graphics g) {
 		
 		for(Atom atom: this.game.onScreenAtomList) {
 			Image image = this.factory.getGameObjectImage("Atom", atom.getAtomID(), false, false, 0);
@@ -65,9 +66,6 @@ public class MainGamePanel extends JPanel implements IObserver{
 			Image image = this.factory.getGameObjectImage("PowerUp", this.game.barrelPowerUp.getID(), false, false, 0);
 			g.drawImage(image, this.game.barrelPowerUp.getCoordinate().x, this.game.barrelPowerUp.getCoordinate().y, null);
 		}
-		
-		/*Image image = this.factory.getGameObjectImage("Shooter", 0, false, false, this.game.shooter.getAngle());
-		g.drawImage(image, this.game.shooter.getCoordinate().x, this.game.shooter.getCoordinate().y, null);*/
 		
 		shooterImage.paint(g);
 		super.paint(g);
