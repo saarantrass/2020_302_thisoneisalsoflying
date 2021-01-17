@@ -28,7 +28,7 @@ public class Game implements IObservable{
 
 	public int L;
 	private int difficultyLevel;
-	private int timer = 0;
+	public int timer = 0;
 
 	private List<IObserver> observers = new ArrayList<IObserver>();
 
@@ -99,7 +99,7 @@ public class Game implements IObservable{
 
 	private void continueGame() {
 		this.timer += 1000 / Settings.timeMult;
-		
+		//System.out.println(this.timer);
 		if(this.barrelAtom == null)
 			if(getShooterInventory().getInventoryAtomCount(1) == 0 && getShooterInventory().getInventoryAtomCount(2) == 0 && getShooterInventory().getInventoryAtomCount(3) == 0 && getShooterInventory().getInventoryAtomCount(4) == 0)
 				if(this.onScreenAtomList.size() == 0)
